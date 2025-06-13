@@ -1,0 +1,102 @@
+{
+  "home": {
+    "meta": {
+      "title": "Pokemon Team Analysis",
+      "description": "Analyze your Pokemon team to see how they stack up against other teams.",
+      "keywords": "Pokemon, Analysis, Stats, Pokemon Go, VGC, Pokemon Battle, Pokemon Team, Ranked Battles",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "privacy-and-terms": "Privacy and Terms"
+  },
+  "cookieConsent": {
+    "title": "Cookie Consent",
+    "message": "We use cookies to improve your experience and analyze site usage. By continuing to use our site, you consent to our use of cookies.",
+    "learnMore": "Learn more",
+    "accept": "Accept",
+    "decline": "Decline",
+    "dismiss": "Dismiss"
+  },
+  "footer": {
+    "copyright": "Copyright. All rights reserved.",
+    "privacyAndTerms": "Privacy and Terms"
+  },
+  "privacyAndTerms": {
+    "meta": {
+      "title": "Privacy and Terms",
+      "description": "Our privacy policy and terms of service",
+      "keywords": "privacy policy, terms of service, legal, data protection",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "example",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "Privacy and Terms",
+    "lastUpdated": "Last updated: {date}",
+    "lastUpdatedDate": "2025-06-12",
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "introduction": "This Privacy Policy describes how we collect, use, and protect your information when you use our service.",
+      "informationCollection": {
+        "title": "Information We Collect",
+        "content": "We may collect information you provide directly to us, such as when you create an account, contact us, or use our services."
+      },
+      "informationUse": {
+        "title": "How We Use Your Information",
+        "content": "We use the information we collect to provide, maintain, and improve our services, communicate with you, and comply with legal obligations."
+      },
+      "informationSharing": {
+        "title": "Information Sharing",
+        "content": "We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy."
+      },
+      "dataSecurity": {
+        "title": "Data Security",
+        "content": "We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "If you have any questions about this Privacy Policy, please contact us at {email}."
+      }
+    },
+    "termsOfService": {
+      "title": "Terms of Service",
+      "introduction": "These Terms of Service govern your use of our website and services.",
+      "acceptance": {
+        "title": "Acceptance of Terms",
+        "content": "By accessing and using our service, you accept and agree to be bound by the terms and provision of this agreement."
+      },
+      "useOfService": {
+        "title": "Use of Service",
+        "content": "You may use our service for lawful purposes only. You agree not to use the service in any way that violates any applicable laws or regulations."
+      },
+      "userContent": {
+        "title": "User Content",
+        "content": "You retain ownership of any content you submit, post, or display on or through the service. By submitting content, you grant us a license to use, modify, and display such content."
+      },
+      "termination": {
+        "title": "Termination",
+        "content": "We may terminate or suspend your access to our service immediately, without prior notice, for any reason whatsoever."
+      },
+      "disclaimers": {
+        "title": "Disclaimers",
+        "content": "The information on this website is provided on an 'as is' basis. We disclaim all warranties, express or implied."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "If you have any questions about these Terms of Service, please contact us at {email}."
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "home": {
+    "meta": {
+      "title": "宝可梦队伍分析",
+      "description": "分析您的宝可梦队伍，了解它们与其他队伍相比的表现如何。",
+      "keywords": "宝可梦, Pokemon GO, VGC, 宝可梦对战, 宝可梦队伍, 排位对战",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    }
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "privacy-and-terms": "隐私和条款"
+  },
+  "cookieConsent": {
+    "title": "Cookie 同意",
+    "message": "我们使用 Cookie 来改善您的体验并分析网站使用情况。继续使用我们的网站即表示您同意我们使用 Cookie。",
+    "learnMore": "了解更多",
+    "accept": "接受",
+    "decline": "拒绝",
+    "dismiss": "关闭"
+  },
+  "footer": {
+    "copyright": "版权所有。保留所有权利。",
+    "privacyAndTerms": "隐私和条款"
+  },
+  "privacyAndTerms": {
+    "meta": {
+      "title": "隐私和条款",
+      "description": "我们的隐私政策和服务条款",
+      "keywords": "隐私政策, 服务条款, 法律, 数据保护",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "example",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "隐私和条款",
+    "lastUpdated": "最后更新：{date}",
+    "lastUpdatedDate": "2025-06-12",
+    "privacyPolicy": {
+      "title": "隐私政策",
+      "introduction": "本隐私政策描述了我们在您使用我们的服务时如何收集、使用和保护您的信息。",
+      "informationCollection": {
+        "title": "我们收集的信息",
+        "content": "我们可能会收集您直接向我们提供的信息，例如当您创建账户、联系我们或使用我们的服务时。"
+      },
+      "informationUse": {
+        "title": "我们如何使用您的信息",
+        "content": "我们使用收集的信息来提供、维护和改进我们的服务，与您沟通，并遵守法律义务。"
+      },
+      "informationSharing": {
+        "title": "信息共享",
+        "content": "未经您的同意，我们不会向第三方出售、交易或以其他方式转让您的个人信息，除非本政策中另有说明。"
+      },
+      "dataSecurity": {
+        "title": "数据安全",
+        "content": "我们实施适当的安全措施来保护您的个人信息免受未经授权的访问、更改、披露或销毁。"
+      },
+      "contact": {
+        "title": "联系我们",
+        "content": "如果您对本隐私政策有任何疑问，请通过 {email} 联系我们。"
+      }
+    },
+    "termsOfService": {
+      "title": "服务条款",
+      "introduction": "这些服务条款管理您对我们网站和服务的使用。",
+      "acceptance": {
+        "title": "接受条款",
+        "content": "通过访问和使用我们的服务，您接受并同意受本协议条款和条件的约束。"
+      },
+      "useOfService": {
+        "title": "服务使用",
+        "content": "您只能将我们的服务用于合法目的。您同意不以违反任何适用法律或法规的方式使用服务。"
+      },
+      "userContent": {
+        "title": "用户内容",
+        "content": "您保留对通过服务提交、发布或显示的任何内容的所有权。通过提交内容，您授予我们使用、修改和显示此类内容的许可。"
+      },
+      "termination": {
+        "title": "终止",
+        "content": "我们可能会立即终止或暂停您对我们服务的访问，无需事先通知，无论出于何种原因。"
+      },
+      "disclaimers": {
+        "title": "免责声明",
+        "content": "本网站上的信息按“现状”提供。我们不承担任何明示或暗示的保证。"
+      },
+      "contact": {
+        "title": "联系我们",
+        "content": "如果您对这些服务条款有任何疑问，请通过 {email} 联系我们。"
+      }
+    }
+  }
+}

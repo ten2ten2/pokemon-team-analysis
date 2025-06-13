@@ -1,0 +1,102 @@
+{
+  "home": {
+    "meta": {
+      "title": "포켓몬 팀 분석",
+      "description": "당신의 포켓몬 팀을 분석하여 다른 팀과 비교 평가해 보세요.",
+      "keywords": "포켓몬, 분석, 스탯, Pokemon Go, VGC, 포켓몬 배틀, 포켓몬 팀, 랭크 배틀",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    }
+  },
+  "nav": {
+    "home": "홈",
+    "about": "회사 소개",
+    "privacy-and-terms": "개인정보 보호 및 약관"
+  },
+  "cookieConsent": {
+    "title": "쿠키 동의",
+    "message": "저희는 귀하의 경험을 개선하고 사이트 사용량을 분석하기 위해 쿠키를 사용합니다. 저희 사이트를 계속 사용하시면 쿠키 사용에 동의하는 것으로 간주됩니다.",
+    "learnMore": "자세히 보기",
+    "accept": "동의",
+    "decline": "거부",
+    "dismiss": "닫기"
+  },
+  "footer": {
+    "copyright": "저작권. 모든 권리 보유.",
+    "privacyAndTerms": "개인정보 보호 및 약관"
+  },
+  "privacyAndTerms": {
+    "meta": {
+      "title": "개인정보 및 약관",
+      "description": "저희의 개인정보 보호정책 및 이용약관",
+      "keywords": "개인정보 보호정책, 이용약관, 법적 사항, 데이터 보호",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "example",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "개인정보 및 약관",
+    "lastUpdated": "최종 업데이트: {date}",
+    "lastUpdatedDate": "2025-06-12",
+    "privacyPolicy": {
+      "title": "개인정보 보호정책",
+      "introduction": "이 개인정보 보호정책은 귀하가 저희 서비스를 이용할 때 저희가 귀하의 정보를 어떻게 수집, 사용, 보호하는지 설명합니다.",
+      "informationCollection": {
+        "title": "수집하는 정보",
+        "content": "계정 생성, 문의, 서비스 이용 시 등 귀하가 직접 저희에게 제공하는 정보를 수집할 수 있습니다."
+      },
+      "informationUse": {
+        "title": "정보 사용 방법",
+        "content": "수집된 정보는 서비스 제공, 유지, 개선, 귀하와의 소통, 법적 의무 준수를 위해 사용됩니다."
+      },
+      "informationSharing": {
+        "title": "정보 공유",
+        "content": "본 정책에 명시된 경우를 제외하고, 귀하의 동의 없이 개인정보를 제3자에게 판매, 거래 또는 기타 방법으로 양도하지 않습니다."
+      },
+      "dataSecurity": {
+        "title": "데이터 보안",
+        "content": "귀하의 개인정보를 무단 접근, 변경, 공개, 파괴로부터 보호하기 위해 적절한 보안 조치를 시행합니다."
+      },
+      "contact": {
+        "title": "문의하기",
+        "content": "이 개인정보 보호정책에 대한 질문이 있으시면 {email}로 문의해 주세요."
+      }
+    },
+    "termsOfService": {
+      "title": "이용약관",
+      "introduction": "이 이용약관은 저희 웹사이트 및 서비스 이용을 규정합니다.",
+      "acceptance": {
+        "title": "약관 동의",
+        "content": "저희 서비스에 접근하고 이용함으로써, 귀하는 본 계약의 조건과 규정에 구속되는 것에 동의하고 승인합니다."
+      },
+      "useOfService": {
+        "title": "서비스 이용",
+        "content": "저희 서비스는 합법적인 목적으로만 사용할 수 있습니다. 적용 법률이나 규정을 위반하는 방식으로 서비스를 사용하지 않는 것에 동의합니다."
+      },
+      "userContent": {
+        "title": "사용자 콘텐츠",
+        "content": "서비스를 통해 제출, 게시, 표시하는 모든 콘텐츠의 소유권은 귀하에게 있습니다. 콘텐츠를 제출함으로써 저희에게 해당 콘텐츠를 사용, 수정, 표시할 수 있는 라이선스를 부여합니다."
+      },
+      "termination": {
+        "title": "종료",
+        "content": "저희는 어떤 이유로든 사전 통지 없이 즉시 귀하의 서비스 접근을 종료하거나 중단할 수 있습니다."
+      },
+      "disclaimers": {
+        "title": "면책 조항",
+        "content": "이 웹사이트의 정보는 '있는 그대로' 제공됩니다. 저희는 명시적이든 묵시적이든 모든 보증을 부인합니다."
+      },
+      "contact": {
+        "title": "문의하기",
+        "content": "이 이용약관에 대한 질문이 있으시면 {email}로 문의해 주세요."
+      }
+    }
+  }
+}

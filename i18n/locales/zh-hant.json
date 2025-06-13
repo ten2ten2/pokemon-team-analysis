@@ -1,0 +1,102 @@
+{
+  "home": {
+    "meta": {
+      "title": "寶可夢隊伍分析",
+      "description": "分析您的寶可夢隊伍，了解它們與其他隊伍相比的表現如何。",
+      "keywords": "寶可夢, Pokemon GO, VGC, 寶可夢對戰, 寶可夢隊伍, 排位對戰",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    }
+  },
+  "nav": {
+    "home": "首頁",
+    "about": "關於我們",
+    "privacy-and-terms": "隱私和條款"
+  },
+  "cookieConsent": {
+    "title": "Cookie 同意",
+    "message": "我們使用 Cookie 來改善您的體驗並分析網站使用情況。繼續使用我們的網站即表示您同意我們使用 Cookie。",
+    "learnMore": "了解更多",
+    "accept": "接受",
+    "decline": "拒絕",
+    "dismiss": "關閉"
+  },
+  "footer": {
+    "copyright": "版權所有。保留所有權利。",
+    "privacyAndTerms": "隱私和條款"
+  },
+  "privacyAndTerms": {
+    "meta": {
+      "title": "隱私和條款",
+      "description": "我們的隱私政策和服務條款",
+      "keywords": "隱私政策, 服務條款, 法律, 資料保護",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "example",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "隱私和條款",
+    "lastUpdated": "最後更新：{date}",
+    "lastUpdatedDate": "2025-06-12",
+    "privacyPolicy": {
+      "title": "隱私政策",
+      "introduction": "本隱私政策描述了我們在您使用我們的服務時如何收集、使用和保護您的資訊。",
+      "informationCollection": {
+        "title": "我們收集的資訊",
+        "content": "我們可能會收集您直接向我們提供的資訊，例如當您建立帳戶、聯絡我們或使用我們的服務時。"
+      },
+      "informationUse": {
+        "title": "我們如何使用您的資訊",
+        "content": "我們使用收集的資訊來提供、維護和改進我們的服務，與您溝通，並遵守法律義務。"
+      },
+      "informationSharing": {
+        "title": "資訊共享",
+        "content": "未經您的同意，我們不會向第三方出售、交易或以其他方式轉讓您的個人資訊，除非本政策中另有說明。"
+      },
+      "dataSecurity": {
+        "title": "資料安全",
+        "content": "我們實施適當的安全措施來保護您的個人資訊免受未經授權的存取、更改、披露或銷毀。"
+      },
+      "contact": {
+        "title": "聯絡我們",
+        "content": "如果您對本隱私政策有任何疑問，請透過 {email} 聯絡我們。"
+      }
+    },
+    "termsOfService": {
+      "title": "服務條款",
+      "introduction": "這些服務條款管理您對我們網站和服務的使用。",
+      "acceptance": {
+        "title": "接受條款",
+        "content": "透過存取和使用我們的服務，您接受並同意受本協議條款和條件的約束。"
+      },
+      "useOfService": {
+        "title": "服務使用",
+        "content": "您只能將我們的服務用於合法目的。您同意不以違反任何適用法律或法規的方式使用服務。"
+      },
+      "userContent": {
+        "title": "使用者內容",
+        "content": "您保留對透過服務提交、發布或顯示的任何內容的所有權。透過提交內容，您授予我們使用、修改和顯示此類內容的許可。"
+      },
+      "termination": {
+        "title": "終止",
+        "content": "我們可能會立即終止或暫停您對我們服務的存取，無需事先通知，無論出於何種原因。"
+      },
+      "disclaimers": {
+        "title": "免責聲明",
+        "content": "本網站上的資訊按「現狀」提供。我們不承擔任何明示或暗示的保證。"
+      },
+      "contact": {
+        "title": "聯絡我們",
+        "content": "如果您對這些服務條款有任何疑問，請透過 {email} 聯絡我們。"
+      }
+    }
+  }
+}
