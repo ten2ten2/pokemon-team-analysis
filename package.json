@@ -13,6 +13,9 @@
     "@nuxtjs/i18n": "^9.5.5",
     "@nuxtjs/robots": "^5.2.10",
     "@nuxtjs/sitemap": "^7.3.1",
+    "@pkmn/data": "^0.9.35",
+    "@pkmn/dex": "^0.9.35",
+    "@pkmn/sets": "^5.1.2",
     "@unhead/vue": "^2.0.10",
     "lucide-vue-next": "^0.514.0",
     "nuxt": "^3.17.5",
@@ -22,6 +25,8 @@
     "@tailwindcss/postcss": "^4.1.10",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.5",
-    "tailwindcss": "^4.1.10"
+    "tailwindcss": "^4.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
