@@ -1,5 +1,7 @@
 import { Team, type PokemonSet } from '@pkmn/sets';
-import { resistanceAnalysis } from './resistanceAnalysis';
+import { normalizeReport, resistanceAnalysis, resistanceUnderStatus } from './resistanceAnalysis';
+import fs from 'fs';
+import path from 'path';
 
 // ==================== 测试数据 ====================
 
@@ -92,24 +94,38 @@ function runResistanceAnalysisTest(): void {
     console.log('✅ 队伍数据解析成功');
 
     // 执行抗性分析
-    const analysisResult = resistanceAnalysis(teamParsed, 9);
+    const analysisResult = normalizeReport(resistanceAnalysis(teamParsed, 9));
     console.log('✅ 抗性分析完成');
+
+    // 根据天气和场地状态，返回修正后的抗性报告
+    const weather = 'Rain';
+    const terrain = 'Electric Terrain';
+    const resultUnderStatus = resistanceUnderStatus(analysisResult, weather, terrain);
 
     // 输出结果
     console.log('\n📊 抗性分析结果:');
-    console.log(JSON.stringify(analysisResult, null, 2));
+    // 将结果写入文件
+    // 写入基础分析结果
+    fs.writeFileSync(
+      path.join('resistance-analysis.json'),
+      JSON.stringify(analysisResult, null, 2),
+      'utf8'
+    );
+    console.log('✅ 基础分析结果已写入 output/resistance-analysis.json');
+
+    // 写入天气和场地修正后的结果
+    fs.writeFileSync(
+      path.join('resistance-analysis-with-status.json'),
+      JSON.stringify(resultUnderStatus, null, 2),
+      'utf8'
+    );
+    console.log('✅ 天气和场地修正后的结果已写入 output/resistance-analysis-with-status.json');
 
     // 简单的结果验证
     const typeCount = Object.keys(analysisResult).length;
     console.log(`\n📈 分析统计:`);
     console.log(`- 分析的属性类型数量: ${typeCount}`);
     console.log(`- 队伍宝可梦数量: ${teamParsed.team.length}`);
-
-    // 检查一些关键的抗性
-    if (analysisResult['Ground'] && analysisResult['Ground'][0]) {
-      const groundImmune = analysisResult['Ground'][0];
-      console.log(`- 地面属性免疫的宝可梦: ${groundImmune.map(p => p.name).join(', ')}`);
-    }
 
     console.log('\n🎉 测试完成！');
 

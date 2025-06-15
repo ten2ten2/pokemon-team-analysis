@@ -71,7 +71,40 @@ export const ITEM_EFFECTS: Record<string, ItemEffect> = {
   },
 } as const;
 
+/**
+ * 天气效果映射
+ */
+export const WEATHER_EFFECTS: Record<string, Record<string, number>> = {
+  'Rain': { 'Water': 1.5, 'Fire': 0.5 },                   // 水屬性招式的伤害×1.5; 火屬性招式的伤害×0.5
+  'Heavy Rain': { 'Water': 1.5, 'Fire': 0 },               // 水屬性招式的威力×1.5, 火屬性攻击招式使用失败
+  'Harsh Sunlight': { 'Fire': 1.5, 'Water': 0.5 },         // 火屬性招式的伤害×1.5, 水屬性招式的伤害×0.5
+  'Extremely Harsh Sunlight': { 'Fire': 1.5, 'Water': 0 }, // 火屬性招式的威力×1.5, 水屬性攻击招式使用失败
+  'Strong Winds': { 'Electric': 1, 'Ice': 1, 'Rock': 1 },  // 电屬性、冰屬性和岩石屬性招式不对飞行屬性效果修正为 x1
+} as const;
+
+/**
+ * 场地效果映射
+ */
+export const TERRAIN_EFFECTS: Record<string, Record<string, number>> = {
+  'Electric Terrain': { 'Electric': 1.3 }, // 地面上的寶可夢的電屬性招式威力x1.3
+  'Grassy Terrain': { 'Grass': 1.3 },      // 地面上的寶可夢的草屬性招式威力x1.3
+  'Misty Terrain': { 'Dragon': 0.5 },      // 地面上的宝可梦所受到的龙屬性招式的伤害×0.5
+  'Psychic Terrain': { 'Psychic': 1.3 },   // 地面上的寶可夢的超能力屬性招式的威力x1.3
+} as const;
+
 // ==================== 辅助函数 ====================
+
+/**
+ * 判断宝可梦是否是地面上的宝可梦
+ */
+export function isOnTerrain(types: string[], ability: string, item: string): boolean {
+  const isFlying = types.includes('Flying');
+  const hasLevitate = ability === 'Levitate';
+  const hasAirBalloon = item === 'Air Balloon';
+  const hasIronBall = item === 'Iron Ball';
+
+  return (!isFlying && !hasLevitate && !hasAirBalloon) || hasIronBall;
+}
 
 /**
  * 检查特性是否对特定属性免疫
@@ -188,4 +221,12 @@ export function getResistanceLevel(multiplier: number): string {
   if (multiplier === 1) return '普通';
   if (multiplier >= 2) return '弱点';
   return '普通';
+}
+
+/**
+ * 获取天气对特定属性的倍率修正
+ */
+export function getWeatherMultiplier(weather: string, attackType: string): number {
+  if (!weather) return 1;
+  return WEATHER_EFFECTS[weather][attackType] ?? 1;
 }

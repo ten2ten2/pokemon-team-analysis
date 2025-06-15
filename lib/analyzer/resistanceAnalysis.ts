@@ -8,6 +8,7 @@ import {
   filterTypes,
   getPokemonDisplayName,
   hasType,
+  getWeatherMultiplier,
 } from './resistanceUtils';
 
 // ==================== 类型定义 ====================
@@ -23,6 +24,15 @@ export interface ResistanceReport {
 }
 
 // ==================== 辅助函数 ====================
+
+/**
+ * 将抗性报告转换为数组
+ * @param report 抗性报告
+ * @returns 数组
+ */
+export function normalizeReport(report: ResistanceReport): { type: string; multiplier: { [multiplier: number]: ResistanceItem[]; }; }[] {
+  return Object.entries(report).map(([type, multiplier]) => ({ type, multiplier }));
+}
 
 /**
  * 处理黑色铁球的特殊效果
@@ -167,4 +177,59 @@ export function resistanceAnalysis(team: Team, genNum: number): ResistanceReport
   }
 
   return result;
+}
+
+/**
+ * 根据天气和场地状态，返回修正后的抗性报告
+ * @param report 抗性报告
+ * @param weather 天气
+ * @param terrain 场地
+ * @returns 抗性报告
+ */
+export function resistanceUnderStatus(report: { type: string; multiplier: { [multiplier: number]: ResistanceItem[]; }; }[], weather?: string, terrain?: string): { type: string; multiplier: { [multiplier: number]: ResistanceItem[]; }; }[] {
+  // 如果没有天气+没有场地，直接返回原报告
+  if (!weather && !terrain) {
+    return report;
+  }
+
+  // 如果天气存在，则根据天气修正抗性报告
+  if (weather) {
+    report = report.map(item => {
+      const weatherMultiplier = getWeatherMultiplier(weather, item.type);
+      return {
+        ...item,
+        multiplier: Object.entries(item.multiplier).reduce((acc, [mult, pokemons]) => {
+          // 分离有万能伞和没有万能伞的宝可梦
+          const umbrellaPokemons = pokemons.filter(p => p.item === 'Utility Umbrella');
+          const normalPokemons = pokemons.filter(p => p.item !== 'Utility Umbrella');
+
+          // 有万能伞的宝可梦不受晴天和雨天影响
+          if (umbrellaPokemons.length > 0) {
+            // 只有在晴天或雨天时万能伞才生效
+            if (weather === 'Rain' || weather === 'Harsh Sunlight') {
+              acc[Number(mult)] = umbrellaPokemons;
+            } else {
+              // 其他天气下万能伞无效，仍然受天气影响
+              const newMult = Number(mult) * weatherMultiplier;
+              if (!acc[newMult]) {
+                acc[newMult] = [];
+              }
+              acc[newMult] = [...acc[newMult], ...umbrellaPokemons];
+            }
+          }
+
+          // 没有万能伞的宝可梦受天气影响
+          if (normalPokemons.length > 0) {
+            const newMult = Number(mult) * weatherMultiplier;
+            if (!acc[newMult]) {
+              acc[newMult] = [];
+            }
+            acc[newMult] = [...acc[newMult], ...normalPokemons];
+          }
+          return acc;
+        }, {} as { [multiplier: number]: ResistanceItem[] })
+      };
+    });
+  }
+  return report;
 }
