@@ -1,5 +1,9 @@
 {
   "common": {
+    "loading": {
+      "teams": "Loading teams...",
+      "default": "Loading..."
+    },
     "teamName": {
       "title": "Team Name",
       "untitled": "Untitled"

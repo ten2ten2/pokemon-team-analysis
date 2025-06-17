@@ -1,5 +1,9 @@
 {
   "common": {
+    "loading": {
+      "teams": "正在加载队伍...",
+      "default": "加载中..."
+    },
     "teamName": {
       "title": "队伍名称",
       "untitled": "未命名"
