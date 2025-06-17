@@ -15,7 +15,9 @@ import {
   Trash2,
   Check,
   Plus,
-  Loader2
+  Loader2,
+  AlertTriangle,
+  AlertCircle
 } from 'lucide-vue-next'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -35,4 +37,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Check', Check)
   nuxtApp.vueApp.component('Plus', Plus)
   nuxtApp.vueApp.component('Loader2', Loader2)
+  nuxtApp.vueApp.component('AlertTriangle', AlertTriangle)
+  nuxtApp.vueApp.component('AlertCircle', AlertCircle)
 })

@@ -38,7 +38,12 @@
         "site": "pokemon-team-analysis",
         "image": "/twitter-image.png"
       }
-    }
+    },
+    "allTeams": "所有队伍",
+    "newTeam": "新队伍",
+    "noTeams": "还没有队伍",
+    "noTeamsDescription": "创建你的第一个宝可梦队伍来开始分析！",
+    "createFirstTeam": "创建你的第一个宝可梦队伍"
   },
   "nav": {
     "home": "首页",
@@ -148,5 +153,13 @@
     "title": "编辑宝可梦队伍",
     "saveButton": "保存更改",
     "saving": "保存中..."
+  },
+  "confirmDialog": {
+    "deleteTeam": {
+      "title": "删除队伍",
+      "message": "您确定要删除这个队伍吗？此操作无法撤销。",
+      "confirmButton": "删除",
+      "cancelButton": "取消"
+    }
   }
 }

@@ -38,7 +38,12 @@
         "site": "pokemon-team-analysis",
         "image": "/twitter-image.png"
       }
-    }
+    },
+    "allTeams": "All Teams",
+    "newTeam": "New Team",
+    "noTeams": "No teams yet",
+    "noTeamsDescription": "Create your first Pokémon team to get started with analysis!",
+    "createFirstTeam": "Create Your First Team"
   },
   "nav": {
     "home": "Home",
@@ -148,5 +153,13 @@
     "title": "Edit Pokémon Team",
     "saveButton": "Save Changes",
     "saving": "Saving..."
+  },
+  "confirmDialog": {
+    "deleteTeam": {
+      "title": "Delete Team",
+      "message": "Are you sure you want to delete this team? This action cannot be undone.",
+      "confirmButton": "Delete",
+      "cancelButton": "Cancel"
+    }
   }
 }

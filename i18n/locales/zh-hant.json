@@ -38,7 +38,12 @@
         "site": "pokemon-team-analysis",
         "image": "/twitter-image.png"
       }
-    }
+    },
+    "allTeams": "所有隊伍",
+    "newTeam": "新隊伍",
+    "noTeams": "還沒有隊伍",
+    "noTeamsDescription": "創建你的第一個寶可夢隊伍來開始分析！",
+    "createFirstTeam": "創建你的第一個寶可夢隊伍"
   },
   "nav": {
     "home": "首頁",
@@ -148,5 +153,13 @@
     "title": "編輯寶可夢隊伍",
     "saveButton": "儲存變更",
     "saving": "儲存中..."
+  },
+  "confirmDialog": {
+    "deleteTeam": {
+      "title": "刪除隊伍",
+      "message": "您確定要刪除這個隊伍嗎？此操作無法復原。",
+      "confirmButton": "刪除",
+      "cancelButton": "取消"
+    }
   }
 }

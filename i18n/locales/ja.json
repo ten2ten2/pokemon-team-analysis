@@ -38,7 +38,12 @@
         "site": "pokemon-team-analysis",
         "image": "/twitter-image.png"
       }
-    }
+    },
+    "allTeams": "すべてのチーム",
+    "newTeam": "新しいチーム",
+    "noTeams": "チームがまだありません",
+    "noTeamsDescription": "最初のポケモンチームを作成して分析を始めましょう！",
+    "createFirstTeam": "最初のチームを作成"
   },
   "nav": {
     "home": "ホーム",
@@ -148,5 +153,13 @@
     "title": "ポケモンチームの編集",
     "saveButton": "変更を保存",
     "saving": "保存中..."
+  },
+  "confirmDialog": {
+    "deleteTeam": {
+      "title": "チームを削除",
+      "message": "このチームを削除してもよろしいですか？この操作は元に戻すことができません。",
+      "confirmButton": "削除",
+      "cancelButton": "キャンセル"
+    }
   }
 }
