@@ -4,6 +4,10 @@
       "teams": "正在加载队伍...",
       "default": "加载中..."
     },
+    "error": {
+      "title": "错误",
+      "loadingTeams": "加载队伍失败，请尝试刷新页面。"
+    },
     "teamName": {
       "title": "队伍名称",
       "untitled": "未命名"
@@ -153,7 +157,8 @@
   "teamEditModal": {
     "title": "编辑宝可梦队伍",
     "saveButton": "保存更改",
-    "saving": "保存中..."
+    "saving": "保存中...",
+    "problemTitle": "队伍中有问题"
   },
   "confirmDialog": {
     "deleteTeam": {

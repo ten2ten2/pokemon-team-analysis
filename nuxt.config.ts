@@ -9,6 +9,18 @@ export default defineNuxtConfig({
     'nuxt-gtag'
   ].filter(Boolean),
   plugins: ['~/plugins/lucide.ts'],
+  image: {
+    quality: 80,
+    format: ['webp', 'png'],
+    presets: {
+      pokemon: {
+        modifiers: {
+          format: 'webp',
+          quality: 85
+        }
+      }
+    }
+  },
   runtimeConfig: {
     public: {
       siteUrl: 'http://localhost:3000',

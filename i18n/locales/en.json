@@ -4,6 +4,10 @@
       "teams": "Loading teams...",
       "default": "Loading..."
     },
+    "error": {
+      "title": "Error",
+      "loadingTeams": "Failed to load teams. Please try refreshing the page."
+    },
     "teamName": {
       "title": "Team Name",
       "untitled": "Untitled"
@@ -153,7 +157,8 @@
   "teamEditModal": {
     "title": "Edit Pokémon Team",
     "saveButton": "Save Changes",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "problemTitle": "Problems in the team"
   },
   "confirmDialog": {
     "deleteTeam": {

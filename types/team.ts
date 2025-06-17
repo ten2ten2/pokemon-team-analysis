@@ -69,4 +69,5 @@ export interface TeamUpdateData {
   teamRawData: string
   gameVersion: GameVersion
   rules: Rules
+  errors: string[] | null
 }

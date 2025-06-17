@@ -3,9 +3,11 @@ import { useSeoLinks } from '~/composables/useSeoLinks'
 import { useCustomSeoMeta } from '~/composables/useSeoMeta'
 import { useStructuredData } from '~/composables/useStructuredData'
 import { useTeamStorage } from '~/composables/useTeamStorage'
+import { useAsyncClientState } from '~/composables/useClientState'
 import type { Team, TeamImportData, TeamUpdateData } from '~/types/team'
-import { normalizeTeamName } from '~/utils/teamUtils'
+import { normalizeTeamName, cloneTeam } from '~/utils/teamUtils'
 import { type Pokemon, SPRITES_URL_PREFIX } from '~/types/pokemon';
+import { formatDate } from '~/utils/formatDate'
 
 const { t, locale } = useI18n()
 const pageName = 'home'
@@ -18,23 +20,23 @@ useStructuredData({ page: pageName })
 // Team storage
 const { getTeams, addTeam, deleteTeam, updateTeam } = useTeamStorage()
 
-// Teams data
-const teams = ref<Team[]>([])
-const isLoading = ref(false)
+// Use async client state for teams data to avoid hydration mismatch
+const {
+  state: teams,
+  isHydrated,
+  isLoading,
+  error: teamsError,
+  setState: setTeams
+} = useAsyncClientState<Team[]>([], async () => {
+  return getTeams()
+})
+
+// Modal state
 const isModalOpen = ref(false)
 const modalMode = ref<'import' | 'edit'>('import')
 const editingTeam = ref<Team | null>(null)
-const isHydrated = ref(false)
 const isConfirmDeleteOpen = ref(false)
 const teamToDelete = ref<Team | null>(null)
-
-// Load teams from localStorage on client side
-onMounted(async () => {
-  // Ensure hydration is complete before loading data
-  await nextTick()
-  teams.value = getTeams()
-  isHydrated.value = true
-})
 
 // Methods
 const createNewTeam = () => {
@@ -61,7 +63,10 @@ const handleTeamImport = (data: TeamImportData) => {
   const newTeam = addTeam(data)
 
   // Update local reactive state
-  teams.value = [newTeam, ...teams.value]
+  if (import.meta.client && isHydrated.value) {
+    const currentTeams = Array.isArray(teams.value) ? [...teams.value] : []
+    setTeams([newTeam, ...currentTeams])
+  }
 }
 
 const handleTeamUpdate = (data: TeamUpdateData) => {
@@ -75,17 +80,20 @@ const handleTeamUpdate = (data: TeamUpdateData) => {
     rules: data.rules
   })
 
-  if (updatedTeam) {
+  if (updatedTeam && import.meta.client && isHydrated.value) {
     // Update local reactive state
-    const teamIndex = teams.value.findIndex(team => team.id === data.id)
+    const currentTeams = Array.isArray(teams.value) ? [...teams.value] : []
+    const teamIndex = currentTeams.findIndex(team => team.id === data.id)
     if (teamIndex !== -1) {
-      teams.value[teamIndex] = updatedTeam
+      currentTeams[teamIndex] = updatedTeam
+      setTeams([...currentTeams])
     }
   }
 }
 
 const handleDeleteTeam = (teamId: string) => {
-  const team = teams.value.find(t => t.id === teamId)
+  const currentTeams = Array.isArray(teams.value) ? [...teams.value] : []
+  const team = currentTeams.find(t => t.id === teamId)
   if (team) {
     teamToDelete.value = team
     isConfirmDeleteOpen.value = true
@@ -95,10 +103,13 @@ const handleDeleteTeam = (teamId: string) => {
 const confirmDeleteTeam = () => {
   if (teamToDelete.value) {
     // Delete from localStorage
-    deleteTeam(teamToDelete.value.id)
+    const success = deleteTeam(teamToDelete.value.id)
 
-    // Update local reactive state
-    teams.value = teams.value.filter(team => team.id !== teamToDelete.value!.id)
+    if (success && import.meta.client && isHydrated.value) {
+      // Update local reactive state
+      const currentTeams = Array.isArray(teams.value) ? [...teams.value] : []
+      setTeams(currentTeams.filter(team => team.id !== teamToDelete.value!.id))
+    }
 
     // Reset state
     teamToDelete.value = null
@@ -111,9 +122,10 @@ const cancelDeleteTeam = () => {
   isConfirmDeleteOpen.value = false
 }
 
-const startEditingTeam = (team: Team) => {
+const startEditingTeam = (team: any) => {
   modalMode.value = 'edit'
-  editingTeam.value = team
+  // Create a mutable copy of the team using cloneTeam
+  editingTeam.value = cloneTeam(team)
   isModalOpen.value = true
 }
 
@@ -143,7 +155,7 @@ const getSprite = (pkm: Pokemon) => {
           <h2 id="teams-heading" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
             {{ t('home.allTeams') }}
           </h2>
-          <button v-if="teams.length > 0" @click="createNewTeam"
+          <button v-if="isHydrated && teams.length > 0" @click="createNewTeam"
             class="btn-primary inline-flex items-center justify-center px-6 py-3 shadow-md hover:shadow-lg focus-ring-red transform hover:scale-105 active:scale-95 w-auto"
             :disabled="isLoading" :aria-label="'Create new Pokémon team'">
             <Plus class="w-5 h-5 mr-2" aria-hidden="true" />
@@ -159,6 +171,15 @@ const getSprite = (pkm: Pokemon) => {
             :aria-label="t('common.loading.teams')">
             <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500"></div>
             <span class="sr-only">{{ t('common.loading.teams') }}</span>
+          </div>
+
+          <!-- Error State -->
+          <div v-else-if="teamsError" class="flex items-center justify-center flex-1 text-center py-8">
+            <div class="text-red-600 dark:text-red-400">
+              <AlertCircle class="w-12 h-12 mx-auto mb-4" />
+              <p class="text-lg font-medium mb-2">{{ t('common.error.title') }}</p>
+              <p class="text-sm">{{ t('common.error.loadingTeams') }}</p>
+            </div>
           </div>
 
           <!-- Empty State -->
@@ -200,14 +221,15 @@ const getSprite = (pkm: Pokemon) => {
                 <!-- Team card header -->
                 <header class="flex items-start justify-between mb-3">
                   <!-- Team name -->
-                  <div class="flex-1 mr-3">
-                    <h3 :id="`team-${team.id}-title`" class="font-semibold text-gray-900 dark:text-white text-lg">
+                  <div class="flex-1 mr-3 min-w-0">
+                    <h3 :id="`team-${team.id}-title`" :title="team.name"
+                      class="font-semibold text-gray-900 dark:text-white text-lg truncate">
                       {{ team.name }}
                     </h3>
                   </div>
 
                   <!-- Action buttons -->
-                  <nav class="flex items-center gap-1" :aria-label="`Actions for ${team.name}`">
+                  <nav class="flex items-center gap-1 flex-shrink-0" :aria-label="`Actions for ${team.name}`">
                     <button @click="startEditingTeam(team)"
                       class="p-1.5 text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded transition-colors focus-ring-gray"
                       :aria-label="`Edit team: ${team.name}`" type="button">
@@ -234,8 +256,8 @@ const getSprite = (pkm: Pokemon) => {
                   <template v-else>
                     <ul class="flex flex-row gap-1 items-center">
                       <li v-for="pkm in team.teamData" :key="pkm.species">
-                        <NuxtImg :src="getSprite(pkm)" :alt="pkm.species" :title="pkm.species" height="32" width="32"
-                          placeholder="blur" />
+                        <NuxtImg :src="getSprite(pkm as Pokemon)" :alt="pkm.species" :title="pkm.species" height="32"
+                          width="32" loading="lazy" />
                       </li>
                     </ul>
                   </template>
@@ -263,12 +285,7 @@ const getSprite = (pkm: Pokemon) => {
                     <dt class="sr-only">Created on:</dt>
                     <dd>
                       <time :datetime="team.createdAt.toISOString()">
-                        <ClientOnly :fallback="t('common.loading.default')">
-                          {{ team.createdAt.toLocaleDateString(locale, {
-                            year: 'numeric', month: 'long', day: 'numeric'
-                          })
-                          }}
-                        </ClientOnly>
+                        {{ formatDate(team.createdAt.toISOString(), locale) }}
                       </time>
                     </dd>
                   </dl>

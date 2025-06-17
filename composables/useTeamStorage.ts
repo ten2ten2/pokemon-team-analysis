@@ -10,15 +10,48 @@ const isClient = () => {
   return import.meta.client && typeof window !== 'undefined' && typeof localStorage !== 'undefined'
 }
 
+// 安全的 localStorage 操作包装器
+const safeLocalStorage = {
+  getItem: (key: string): string | null => {
+    if (!isClient()) return null
+    try {
+      return localStorage.getItem(key)
+    } catch (error) {
+      console.warn('localStorage.getItem failed:', error)
+      return null
+    }
+  },
+
+  setItem: (key: string, value: string): boolean => {
+    if (!isClient()) return false
+    try {
+      localStorage.setItem(key, value)
+      return true
+    } catch (error) {
+      console.warn('localStorage.setItem failed:', error)
+      return false
+    }
+  },
+
+  removeItem: (key: string): boolean => {
+    if (!isClient()) return false
+    try {
+      localStorage.removeItem(key)
+      return true
+    } catch (error) {
+      console.warn('localStorage.removeItem failed:', error)
+      return false
+    }
+  }
+}
+
 export const useTeamStorage = () => {
   // 获取所有队伍数据
   const getTeams = (): Team[] => {
-    if (!isClient()) return []
+    const stored = safeLocalStorage.getItem(STORAGE_KEY)
+    if (!stored) return []
 
     try {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      if (!stored) return []
-
       const teams = JSON.parse(stored) as Team[]
       // 确保 createdAt 是 Date 对象，并验证数据完整性
       return teams.filter(team => team && team.id && team.name).map(team => {
@@ -51,13 +84,16 @@ export const useTeamStorage = () => {
   }
 
   // 保存队伍数据
-  const saveTeams = (teams: Team[]): void => {
-    if (!isClient()) return
-
+  const saveTeams = (teams: Team[]): boolean => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(teams))
+      const success = safeLocalStorage.setItem(STORAGE_KEY, JSON.stringify(teams))
+      if (!success) {
+        console.error('Failed to save teams to localStorage')
+      }
+      return success
     } catch (error) {
       console.error('Error saving teams to localStorage:', error)
+      return false
     }
   }
 
@@ -87,10 +123,10 @@ export const useTeamStorage = () => {
   }
 
   // 删除队伍
-  const deleteTeam = (teamId: string): void => {
+  const deleteTeam = (teamId: string): boolean => {
     const currentTeams = getTeams()
     const updatedTeams = currentTeams.filter(team => team.id !== teamId)
-    saveTeams(updatedTeams)
+    return saveTeams(updatedTeams)
   }
 
   // 更新队伍
@@ -113,9 +149,9 @@ export const useTeamStorage = () => {
     }
 
     currentTeams[teamIndex] = updatedTeam
-    saveTeams(currentTeams)
+    const success = saveTeams(currentTeams)
 
-    return updatedTeam
+    return success ? updatedTeam : null
   }
 
   // 获取单个队伍
@@ -125,14 +161,8 @@ export const useTeamStorage = () => {
   }
 
   // 清空所有队伍数据
-  const clearAllTeams = (): void => {
-    if (!isClient()) return
-
-    try {
-      localStorage.removeItem(STORAGE_KEY)
-    } catch (error) {
-      console.error('Error clearing teams from localStorage:', error)
-    }
+  const clearAllTeams = (): boolean => {
+    return safeLocalStorage.removeItem(STORAGE_KEY)
   }
 
   return {

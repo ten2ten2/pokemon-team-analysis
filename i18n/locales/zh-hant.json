@@ -4,6 +4,10 @@
       "teams": "正在載入隊伍...",
       "default": "載入中..."
     },
+    "error": {
+      "title": "錯誤",
+      "loadingTeams": "載入隊伍失敗，請嘗試重新整理頁面。"
+    },
     "teamName": {
       "title": "隊伍名稱",
       "untitled": "未命名"
@@ -153,7 +157,8 @@
   "teamEditModal": {
     "title": "編輯寶可夢隊伍",
     "saveButton": "儲存變更",
-    "saving": "儲存中..."
+    "saving": "儲存中...",
+    "problemTitle": "隊伍中有問題"
   },
   "confirmDialog": {
     "deleteTeam": {

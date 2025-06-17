@@ -4,6 +4,10 @@
       "teams": "팀 로딩 중...",
       "default": "로딩 중..."
     },
+    "error": {
+      "title": "오류",
+      "loadingTeams": "팀을 로드하는데 실패했습니다. 페이지를 새로고침해 보세요."
+    },
     "teamName": {
       "title": "팀 이름",
       "untitled": "미정"
@@ -153,7 +157,8 @@
   "teamEditModal": {
     "title": "포켓몬 팀 편집",
     "saveButton": "변경사항 저장",
-    "saving": "저장 중..."
+    "saving": "저장 중...",
+    "problemTitle": "팀에 문제가 있습니다"
   },
   "confirmDialog": {
     "deleteTeam": {

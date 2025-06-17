@@ -56,7 +56,8 @@ const handleSubmit = async () => {
         teamName: teamName.value,
         teamRawData: teamRawData.value.trim(),
         gameVersion: gameVersion.value,
-        rules: rules.value
+        rules: rules.value,
+        errors: props.team.errors
       })
     } else {
       emit('import', {
@@ -92,6 +93,7 @@ const handleClickOutside = (event: MouseEvent) => {
 
 // Watch for modal open/close to handle body scroll and keyboard events
 watch(() => props.isOpen, (isOpen) => {
+  // Only run on client side to avoid hydration mismatch
   if (import.meta.client) {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -99,7 +101,15 @@ watch(() => props.isOpen, (isOpen) => {
     } else {
       document.body.style.overflow = ''
       document.removeEventListener('keydown', handleEscape)
-      teamRawData.value = ''
+      // Reset form data when modal closes
+      nextTick(() => {
+        if (!isOpen) {
+          teamRawData.value = ''
+          teamName.value = ''
+          gameVersion.value = DEFAULT_GAME_VERSION
+          rules.value = DEFAULT_RULES
+        }
+      })
     }
   }
 })
@@ -149,6 +159,16 @@ onUnmounted(() => {
                     <li>• {{ t('teamImportModal.instructions.content.3') }}</li>
                   </ul>
                 </div>
+                <div v-else-if="team?.errors && team.errors.length > 0"
+                  class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                  <h3 class="text-sm font-medium text-yellow-900 dark:text-yellow-100 mb-2">
+                    {{ t('teamEditModal.problemTitle') }}
+                  </h3>
+                  <ul v-for="item in team?.errors" :key="item"
+                    class="text-sm text-gray-800 dark:text-gray-200 space-y-1">
+                    <li>{{ item }}</li>
+                  </ul>
+                </div>
 
                 <!-- Team Name -->
                 <div>
@@ -156,7 +176,10 @@ onUnmounted(() => {
                     {{ t('common.teamName.title') }}
                   </label>
                   <input id="team-name" v-model="teamName" class="form-input" :disabled="isImporting"
-                    :placeholder="t('common.teamName.untitled')" />
+                    :placeholder="t('common.teamName.untitled')" maxlength="16" />
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {{ teamName.length }}/16
+                  </p>
                 </div>
 
                 <!-- Team Options -->
