@@ -7,7 +7,7 @@ useHead({
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
     <Header />
     <NuxtPage />
     <CookieConsent />

@@ -7,18 +7,18 @@
     "gameVersion": {
       "title": "遊戲版本",
       "options": {
-        "sv": "朱/紫"
+        "sv": "朱 / 紫"
       }
     },
     "rules": {
       "title": "規則",
       "options": {
-        "doublesRegG": "雙打·規則 G",
-        "doublesRegH": "雙打·規則 H",
-        "doublesRegI": "雙打·規則 I",
-        "singlesRegG": "單打·規則 G",
-        "singlesRegH": "單打·規則 H",
-        "singlesRegI": "單打·規則 I"
+        "doublesRegG": "雙打・規則 G",
+        "doublesRegH": "雙打・規則 H",
+        "doublesRegI": "雙打・規則 I",
+        "singlesRegG": "單打・規則 G",
+        "singlesRegH": "單打・規則 H",
+        "singlesRegI": "單打・規則 I"
       }
     }
   },

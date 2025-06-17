@@ -7,18 +7,18 @@
     "gameVersion": {
       "title": "ゲームバージョン",
       "options": {
-        "sv": "スカーレット・バイオレット"
+        "sv": "スカーレット / バイオレット"
       }
     },
     "rules": {
       "title": "ルール",
       "options": {
-        "doublesRegG": "ダブル · レギュレーション G",
-        "doublesRegH": "ダブル · レギュレーション H",
-        "doublesRegI": "ダブル · レギュレーション I",
-        "singlesRegG": "シングル · レギュレーション G",
-        "singlesRegH": "シングル · レギュレーション H",
-        "singlesRegI": "シングル · レギュレーション I"
+        "doublesRegG": "ダブル・レギュレーション G",
+        "doublesRegH": "ダブル・レギュレーション H",
+        "doublesRegI": "ダブル・レギュレーション I",
+        "singlesRegG": "シングル・レギュレーション G",
+        "singlesRegH": "シングル・レギュレーション H",
+        "singlesRegI": "シングル・レギュレーション I"
       }
     }
   },
