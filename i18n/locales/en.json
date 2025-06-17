@@ -43,7 +43,8 @@
     "newTeam": "New Team",
     "noTeams": "No teams yet",
     "noTeamsDescription": "Create your first Pokémon team to get started with analysis!",
-    "createFirstTeam": "Create Your First Team"
+    "createFirstTeam": "Create Your First Team",
+    "teamHasProblems": "There are problems in the team"
   },
   "nav": {
     "home": "Home",

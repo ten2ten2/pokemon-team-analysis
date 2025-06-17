@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
+    '@nuxt/image',
     'nuxt-gtag'
   ].filter(Boolean),
   plugins: ['~/plugins/lucide.ts'],

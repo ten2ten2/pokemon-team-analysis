@@ -43,7 +43,8 @@
     "newTeam": "新しいチーム",
     "noTeams": "チームがまだありません",
     "noTeamsDescription": "最初のポケモンチームを作成して分析を始めましょう！",
-    "createFirstTeam": "最初のチームを作成"
+    "createFirstTeam": "最初のチームを作成",
+    "teamHasProblems": "チームに問題があります"
   },
   "nav": {
     "home": "ホーム",

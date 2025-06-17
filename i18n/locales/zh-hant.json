@@ -43,7 +43,8 @@
     "newTeam": "新隊伍",
     "noTeams": "還沒有隊伍",
     "noTeamsDescription": "創建你的第一個寶可夢隊伍來開始分析！",
-    "createFirstTeam": "創建你的第一個寶可夢隊伍"
+    "createFirstTeam": "創建你的第一個寶可夢隊伍",
+    "teamHasProblems": "隊伍中有問題"
   },
   "nav": {
     "home": "首頁",

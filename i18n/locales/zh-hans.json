@@ -43,7 +43,8 @@
     "newTeam": "新队伍",
     "noTeams": "还没有队伍",
     "noTeamsDescription": "创建你的第一个宝可梦队伍来开始分析！",
-    "createFirstTeam": "创建你的第一个宝可梦队伍"
+    "createFirstTeam": "创建你的第一个宝可梦队伍",
+    "teamHasProblems": "队伍中有问题"
   },
   "nav": {
     "home": "首页",
