@@ -14,7 +14,8 @@ import {
   Edit3,
   Trash2,
   Check,
-  Plus
+  Plus,
+  Loader2
 } from 'lucide-vue-next'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -33,4 +34,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Trash2', Trash2)
   nuxtApp.vueApp.component('Check', Check)
   nuxtApp.vueApp.component('Plus', Plus)
+  nuxtApp.vueApp.component('Loader2', Loader2)
 })
