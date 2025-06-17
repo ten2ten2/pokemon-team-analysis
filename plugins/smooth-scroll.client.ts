@@ -34,24 +34,32 @@ export default defineNuxtPlugin(() => {
     }
   }
 
-  // Initialize on app mounted
+  // Initialize when DOM is ready
   let cleanup: (() => void) | null = null
 
-  onMounted(() => {
-    cleanup = initSmoothScroll()
-  })
-
-  // Also reinitialize when navigating to new pages
-  const router = useRouter()
-  router.afterEach(() => {
-    nextTick(() => {
-      if (cleanup) cleanup()
+  // Use process.client to ensure we're on client side
+  if (process.client) {
+    // Initialize immediately if DOM is already loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        cleanup = initSmoothScroll()
+      })
+    } else {
       cleanup = initSmoothScroll()
-    })
-  })
+    }
 
-  // Cleanup on app unmount
-  onBeforeUnmount(() => {
-    if (cleanup) cleanup()
-  })
+    // Also reinitialize when navigating to new pages
+    const router = useRouter()
+    router.afterEach(() => {
+      nextTick(() => {
+        if (cleanup) cleanup()
+        cleanup = initSmoothScroll()
+      })
+    })
+
+    // Cleanup when page unloads
+    window.addEventListener('beforeunload', () => {
+      if (cleanup) cleanup()
+    })
+  }
 })
