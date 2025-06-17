@@ -16,8 +16,8 @@ Impish Nature
 IVs: 0 Spe
   - U - turn
   - Fake Out
-    - Flare Blitz
-      - Knock Off
+  - Flare Blitz
+  - Knock Off
 
 Lunala @ Leftovers
 Ability: Shadow Shield
@@ -27,9 +27,9 @@ EVs: 132 HP / 20 Def / 180 SpA / 172 SpD / 4 Spe
 Modest Nature
 IVs: 0 Atk
   - Moongeist Beam
-    - Moonblast
-    - Wide Guard
-      - Trick Room
+  - Moonblast
+  - Wide Guard
+  - Trick Room
 
 Amoonguss (F) @ Covert Cloak
 Ability: Regenerator
@@ -39,9 +39,9 @@ EVs: 236 HP / 196 Def / 76 SpD
 Sassy Nature
 IVs: 0 Atk / 0 Spe
   - Rage Powder
-    - Spore
-    - Pollen Puff
-      - Protect
+  - Spore
+  - Pollen Puff
+  - Protect
 
 Ursaluna (M) @ Flame Orb
 Ability: Guts
@@ -52,8 +52,8 @@ Brave Nature
 IVs: 14 SpA / 0 Spe
   - Facade
   - Headlong Rush
-    - Earthquake
-    - Protect
+  - Earthquake
+  - Protect
 
 Koraidon @ Life Orb
 Ability: Orichalcum Pulse
@@ -62,9 +62,9 @@ Tera Type: Fire
 EVs: 4 HP / 252 Atk / 252 Spe
 Jolly Nature
   - Flare Blitz
-    - Close Combat
-      - Flame Charge
-        - Protect
+  - Close Combat
+  - Flame Charge
+  - Protect
 
 Flutter Mane @ Focus Sash
 Ability: Protosynthesis
@@ -76,8 +76,8 @@ Timid Nature
 IVs: 3 Atk
   - Moonblast
   - Shadow Ball
-    - Icy Wind
-      - Protect
+  - Icy Wind
+  - Protect
 `;
 
 // ==================== 测试执行 ====================
