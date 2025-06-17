@@ -38,7 +38,9 @@
   },
   "nav": {
     "home": "首頁",
+    "qa": "Q&A",
     "about": "關於我們",
+    "resources": "其它資源",
     "privacy-and-terms": "隱私和條款"
   },
   "cookieConsent": {
@@ -137,5 +139,10 @@
     "importButton": "匯入隊伍",
     "importing": "匯入中...",
     "cancelButton": "取消"
+  },
+  "teamEditModal": {
+    "title": "編輯寶可夢隊伍",
+    "saveButton": "儲存變更",
+    "saving": "儲存中..."
   }
 }

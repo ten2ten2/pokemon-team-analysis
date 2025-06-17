@@ -13,12 +13,12 @@
     "rules": {
       "title": "ルール",
       "options": {
-        "doublesRegG": "ダブル·レギュレーション G",
-        "doublesRegH": "ダブル·レギュレーション H",
-        "doublesRegI": "ダブル·レギュレーション I",
-        "singlesRegG": "シングル·レギュレーション G",
-        "singlesRegH": "シングル·レギュレーション H",
-        "singlesRegI": "シングル·レギュレーション I"
+        "doublesRegG": "ダブル · レギュレーション G",
+        "doublesRegH": "ダブル · レギュレーション H",
+        "doublesRegI": "ダブル · レギュレーション I",
+        "singlesRegG": "シングル · レギュレーション G",
+        "singlesRegH": "シングル · レギュレーション H",
+        "singlesRegI": "シングル · レギュレーション I"
       }
     }
   },
@@ -38,7 +38,9 @@
   },
   "nav": {
     "home": "ホーム",
+    "qa": "Q&A",
     "about": "私たちについて",
+    "resources": "リソース",
     "privacy-and-terms": "プライバシーと利用規約"
   },
   "cookieConsent": {
@@ -137,5 +139,10 @@
     "importButton": "チームをインポート",
     "importing": "インポート中...",
     "cancelButton": "キャンセル"
+  },
+  "teamEditModal": {
+    "title": "ポケモンチームの編集",
+    "saveButton": "変更を保存",
+    "saving": "保存中..."
   }
 }

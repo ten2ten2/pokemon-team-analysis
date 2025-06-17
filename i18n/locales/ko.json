@@ -13,12 +13,12 @@
     "rules": {
       "title": "규칙",
       "options": {
-        "doublesRegG": "더블배틀·레귤레이션 G",
-        "doublesRegH": "더블배틀·레귤레이션 H",
-        "doublesRegI": "더블배틀·레귤레이션 I",
-        "singlesRegG": "싱글배틀·레귤레이션 G",
-        "singlesRegH": "싱글배틀·레귤레이션 H",
-        "singlesRegI": "싱글배틀·레귤레이션 I"
+        "doublesRegG": "더블배틀 · 레귤레이션 G",
+        "doublesRegH": "더블배틀 · 레귤레이션 H",
+        "doublesRegI": "더블배틀 · 레귤레이션 I",
+        "singlesRegG": "싱글배틀 · 레귤레이션 G",
+        "singlesRegH": "싱글배틀 · 레귤레이션 H",
+        "singlesRegI": "싱글배틀 · 레귤레이션 I"
       }
     }
   },
@@ -38,7 +38,9 @@
   },
   "nav": {
     "home": "홈",
+    "qa": "Q&A",
     "about": "회사 소개",
+    "resources": "자료",
     "privacy-and-terms": "개인정보 보호 및 약관"
   },
   "cookieConsent": {
@@ -137,5 +139,10 @@
     "importButton": "팀 가져오기",
     "importing": "가져오는 중...",
     "cancelButton": "취소"
+  },
+  "teamEditModal": {
+    "title": "포켓몬 팀 편집",
+    "saveButton": "변경사항 저장",
+    "saving": "저장 중..."
   }
 }

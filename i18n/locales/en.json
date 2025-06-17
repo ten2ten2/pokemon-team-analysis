@@ -139,5 +139,10 @@
     "importButton": "Import Team",
     "importing": "Importing...",
     "cancelButton": "Cancel"
+  },
+  "teamEditModal": {
+    "title": "Edit Pokémon Team",
+    "saveButton": "Save Changes",
+    "saving": "Saving..."
   }
 }

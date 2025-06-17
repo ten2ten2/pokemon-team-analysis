@@ -38,7 +38,9 @@
   },
   "nav": {
     "home": "首页",
+    "qa": "Q&A",
     "about": "关于我们",
+    "resources": "其它资源",
     "privacy-and-terms": "隐私和条款"
   },
   "cookieConsent": {
@@ -137,5 +139,10 @@
     "importButton": "导入队伍",
     "importing": "导入中...",
     "cancelButton": "取消"
+  },
+  "teamEditModal": {
+    "title": "编辑宝可梦队伍",
+    "saveButton": "保存更改",
+    "saving": "保存中..."
   }
 }
