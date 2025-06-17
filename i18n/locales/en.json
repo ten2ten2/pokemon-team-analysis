@@ -1,9 +1,32 @@
 {
+  "common": {
+    "teamName": {
+      "title": "Team Name",
+      "untitled": "Untitled"
+    },
+    "gameVersion": {
+      "title": "Game Version",
+      "options": {
+        "sv": "Scarlet/Violet"
+      }
+    },
+    "rules": {
+      "title": "Rules",
+      "options": {
+        "doublesRegG": "Doubles, Regulation G",
+        "doublesRegH": "Doubles, Regulation H",
+        "doublesRegI": "Doubles, Regulation I",
+        "singlesRegG": "Singles, Regulation G",
+        "singlesRegH": "Singles, Regulation H",
+        "singlesRegI": "Singles, Regulation I"
+      }
+    }
+  },
   "home": {
     "meta": {
-      "title": "Pokemon Team Analysis",
-      "description": "Analyze your Pokemon team to see how they stack up against other teams.",
-      "keywords": "Pokemon, Analysis, Stats, Pokemon Go, VGC, Pokemon Battle, Pokemon Team, Ranked Battles",
+      "title": "Pokémon Team Analysis",
+      "description": "Analyze your Pokémon team to see how they stack up against other teams.",
+      "keywords": "Pokémon, Analysis, Stats, Pokémon Go, VGC, Pokémon Battle, Pokémon Team, Ranked Battles",
       "openGraph": {
         "image": "/og-image.png"
       },
@@ -15,7 +38,9 @@
   },
   "nav": {
     "home": "Home",
+    "qa": "Q&A",
     "about": "About",
+    "resources": "Resources",
     "privacy-and-terms": "Privacy and Terms"
   },
   "cookieConsent": {
@@ -98,5 +123,21 @@
         "content": "If you have any questions about these Terms of Service, please contact us at {email}."
       }
     }
+  },
+  "teamImportModal": {
+    "title": "Import Pokémon Team",
+    "instructions": {
+      "title": "How to import your team:",
+      "content": {
+        "1": "Select the appropriate game version and rules",
+        "2": "Paste the team data in the text area below",
+        "3": "Click \"Import Team\" to add it to your collection"
+      }
+    },
+    "dataInputTitle": "Pokémon Team Data",
+    "dataInputPlaceholder": "Paste your team here...\n\nExample:\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
+    "importButton": "Import Team",
+    "importing": "Importing...",
+    "cancelButton": "Cancel"
   }
 }

@@ -1,4 +1,27 @@
 {
+  "common": {
+    "teamName": {
+      "title": "팀 이름",
+      "untitled": "미정"
+    },
+    "gameVersion": {
+      "title": "게임 버전",
+      "options": {
+        "sv": "스칼렛/바이올렛"
+      }
+    },
+    "rules": {
+      "title": "규칙",
+      "options": {
+        "doublesRegG": "더블배틀·레귤레이션 G",
+        "doublesRegH": "더블배틀·레귤레이션 H",
+        "doublesRegI": "더블배틀·레귤레이션 I",
+        "singlesRegG": "싱글배틀·레귤레이션 G",
+        "singlesRegH": "싱글배틀·레귤레이션 H",
+        "singlesRegI": "싱글배틀·레귤레이션 I"
+      }
+    }
+  },
   "home": {
     "meta": {
       "title": "포켓몬 팀 분석",
@@ -98,5 +121,21 @@
         "content": "이 이용약관에 대한 질문이 있으시면 {email}로 문의해 주세요."
       }
     }
+  },
+  "teamImportModal": {
+    "title": "포켓몬 팀 가져오기",
+    "instructions": {
+      "title": "팀 가져오기 방법:",
+      "content": {
+        "1": "적절한 게임 버전과 규칙을 선택하세요",
+        "2": "아래 텍스트 영역에 팀 데이터를 붙여넣으세요",
+        "3": "\"팀 가져오기\" 버튼을 클릭하여 컬렉션에 추가하세요"
+      }
+    },
+    "dataInputTitle": "포켓몬 팀 데이터",
+    "dataInputPlaceholder": "여기에 팀을 붙여넣으세요...\n\n예시:\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
+    "importButton": "팀 가져오기",
+    "importing": "가져오는 중...",
+    "cancelButton": "취소"
   }
 }

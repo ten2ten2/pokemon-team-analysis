@@ -1,4 +1,27 @@
 {
+  "common": {
+    "teamName": {
+      "title": "隊伍名稱",
+      "untitled": "未命名"
+    },
+    "gameVersion": {
+      "title": "遊戲版本",
+      "options": {
+        "sv": "朱/紫"
+      }
+    },
+    "rules": {
+      "title": "規則",
+      "options": {
+        "doublesRegG": "雙打·規則 G",
+        "doublesRegH": "雙打·規則 H",
+        "doublesRegI": "雙打·規則 I",
+        "singlesRegG": "單打·規則 G",
+        "singlesRegH": "單打·規則 H",
+        "singlesRegI": "單打·規則 I"
+      }
+    }
+  },
   "home": {
     "meta": {
       "title": "寶可夢隊伍分析",
@@ -98,5 +121,21 @@
         "content": "如果您對這些服務條款有任何疑問，請透過 {email} 聯絡我們。"
       }
     }
+  },
+  "teamImportModal": {
+    "title": "匯入寶可夢隊伍",
+    "instructions": {
+      "title": "如何匯入您的隊伍：",
+      "content": {
+        "1": "選擇適當的遊戲版本和規則",
+        "2": "在下方文字區域貼上隊伍資料",
+        "3": "點擊「匯入隊伍」將其添加到您的收藏中"
+      }
+    },
+    "dataInputTitle": "寶可夢隊伍資料",
+    "dataInputPlaceholder": "在此貼上您的隊伍...\n\n範例：\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
+    "importButton": "匯入隊伍",
+    "importing": "匯入中...",
+    "cancelButton": "取消"
   }
 }

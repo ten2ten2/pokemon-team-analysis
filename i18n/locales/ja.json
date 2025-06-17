@@ -1,4 +1,27 @@
 {
+  "common": {
+    "teamName": {
+      "title": "チーム名",
+      "untitled": "未命名"
+    },
+    "gameVersion": {
+      "title": "ゲームバージョン",
+      "options": {
+        "sv": "スカーレット・バイオレット"
+      }
+    },
+    "rules": {
+      "title": "ルール",
+      "options": {
+        "doublesRegG": "ダブル·レギュレーション G",
+        "doublesRegH": "ダブル·レギュレーション H",
+        "doublesRegI": "ダブル·レギュレーション I",
+        "singlesRegG": "シングル·レギュレーション G",
+        "singlesRegH": "シングル·レギュレーション H",
+        "singlesRegI": "シングル·レギュレーション I"
+      }
+    }
+  },
   "home": {
     "meta": {
       "title": "ポケモンチーム分析",
@@ -98,5 +121,21 @@
         "content": "これらの利用規約についてご質問がございましたら、{email} までお問い合わせください。"
       }
     }
+  },
+  "teamImportModal": {
+    "title": "ポケモンチームのインポート",
+    "instructions": {
+      "title": "ポケモンチームのインポート方法:",
+      "content": {
+        "1": "適切なゲームバージョンとルールを選択します。",
+        "2": "チームデータをテキストエリアに貼り付けます。",
+        "3": "「チームをインポート」ボタンをクリックして、チームを追加します。"
+      }
+    },
+    "dataInputTitle": "ポケモンチームデータ",
+    "dataInputPlaceholder": "チームデータを貼り付けてください...\n\n例:\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
+    "importButton": "チームをインポート",
+    "importing": "インポート中...",
+    "cancelButton": "キャンセル"
   }
 }
