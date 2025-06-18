@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./pokemon-types.css";
 
 @layer base {
   html {
@@ -26,6 +27,7 @@
 }
 
 @layer components {
+
   /* Navigation Link Styles */
   .nav-link {
     @apply text-gray-700 hover:text-red-600 transition-colors duration-200;
@@ -183,7 +185,7 @@
   }
 
   /* Dropdown menu positioning */
-  .dropdown-container > div[role="menu"] {
+  .dropdown-container>div[role="menu"] {
     margin-top: -4px;
     padding-top: 8px;
   }
