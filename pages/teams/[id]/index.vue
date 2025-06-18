@@ -2,7 +2,7 @@
 import type { Team, TeamUpdateData } from '~/types/team'
 import { formatDate } from '~/utils/formatDate'
 import { getSprite } from '~/utils/teamUtils'
-import { getTypeBadgeClass, getTypeChipClass } from '~/utils/pokemonTypeUtils'
+import { getTypeBadgeClass, getTypeChipClass, getTypeIconClass, getMoveCategoryIconClass } from '~/utils/pokemonTypeUtils'
 // Lucide icons are globally registered in plugins/lucide.ts
 
 const route = useRoute()
@@ -297,6 +297,7 @@ useHead({
                       </h3>
                       <div class="flex flex-wrap gap-1 mt-1">
                         <span v-for="type in pokemon.types" :key="type" :class="getTypeBadgeClass(type)">
+                          <i :class="getTypeIconClass(type)" aria-hidden="true"></i>
                           {{ translateName(type, 'type') }}
                         </span>
                       </div>
@@ -328,6 +329,7 @@ useHead({
                         {{ $t('teamDetail.pokemon.teraType') }}:
                       </span>
                       <span :class="getTypeBadgeClass(pokemon.teraType)">
+                        <i :class="getTypeIconClass(pokemon.teraType)" aria-hidden="true"></i>
                         {{ translateName(pokemon.teraType, 'type') }}
                       </span>
                     </div>
@@ -338,7 +340,10 @@ useHead({
                       </span>
                       <div class="flex-1 min-w-0">
                         <div class="flex flex-wrap gap-1">
-                          <span v-for="move in pokemon.moves" :key="move" :class="getTypeChipClass('normal')">
+                          <span v-for="move in pokemon.moves" :key="move"
+                            :class="getTypeChipClass(pokemon.movesDetails[move].type)">
+                            <i :class="getMoveCategoryIconClass(pokemon.movesDetails[move].category)"
+                              aria-hidden="true"></i>
                             {{ translateName(move, 'move') }}
                           </span>
                         </div>

@@ -10,7 +10,7 @@ export const usePokemonTranslations = () => {
   const { locale } = useI18n()
 
   // 翻译数据版本（修改此版本号可强制刷新缓存）
-  const TRANSLATION_VERSION = '1.1'
+  const TRANSLATION_VERSION = '1.2'
 
   // 翻译数据缓存
   const translationData = ref<TranslationData>({
@@ -71,11 +71,6 @@ export const usePokemonTranslations = () => {
       'move': 'moves',
       'item': 'items',
       'type': 'types'
-    }
-
-    if (type === 'move') {
-      console.log('originalName', originalName)
-      console.log('normalizedName', normalizedName)
     }
 
     // 获取对应类型的翻译数据

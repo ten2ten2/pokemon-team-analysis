@@ -1,8 +1,22 @@
 /* 宝可梦属性配色样式 */
 
+/* 宝可梦属性图标 */
+.sprite-type,.sprite-category {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background: url(/assets/icons/types.webp) no-repeat;
+    vertical-align: middle;
+    background-size: 20px 420px;
+}
+
 /* Normal 一般 */
 .type-normal {
   @apply bg-gray-400 text-white;
+}
+
+.sprite-type-normal {
+    background-position: 0 0;
 }
 
 .type-normal-light {
@@ -14,6 +28,10 @@
   @apply bg-red-700 text-white;
 }
 
+.sprite-type-fighting {
+    background-position: 0 -20px;
+}
+
 .type-fighting-light {
   @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
 }
@@ -21,6 +39,10 @@
 /* Flying 飞行 */
 .type-flying {
   @apply bg-indigo-400 text-white;
+}
+
+.sprite-type-flying {
+    background-position: 0 -40px;
 }
 
 .type-flying-light {
@@ -32,6 +54,10 @@
   @apply bg-purple-600 text-white;
 }
 
+.sprite-type-poison {
+    background-position: 0 -60px;
+}
+
 .type-poison-light {
   @apply bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300;
 }
@@ -39,6 +65,10 @@
 /* Ground 地面 */
 .type-ground {
   @apply bg-yellow-600 text-white;
+}
+
+.sprite-type-ground {
+    background-position: 0 -80px;
 }
 
 .type-ground-light {
@@ -50,6 +80,10 @@
   @apply bg-yellow-800 text-white;
 }
 
+.sprite-type-rock {
+    background-position: 0 -100px;
+}
+
 .type-rock-light {
   @apply bg-yellow-100 text-yellow-900 dark:bg-yellow-900/30 dark:text-yellow-200;
 }
@@ -57,6 +91,10 @@
 /* Bug 虫 */
 .type-bug {
   @apply bg-green-500 text-white;
+}
+
+.sprite-type-bug {
+    background-position: 0 -120px;
 }
 
 .type-bug-light {
@@ -68,6 +106,10 @@
   @apply bg-purple-800 text-white;
 }
 
+.sprite-type-ghost {
+    background-position: 0 -140px;
+}
+
 .type-ghost-light {
   @apply bg-purple-100 text-purple-900 dark:bg-purple-900/30 dark:text-purple-200;
 }
@@ -75,6 +117,10 @@
 /* Steel 钢 */
 .type-steel {
   @apply bg-gray-500 text-white;
+}
+
+.sprite-type-steel {
+    background-position: 0 -160px;
 }
 
 .type-steel-light {
@@ -86,6 +132,10 @@
   @apply bg-red-500 text-white;
 }
 
+.sprite-type-fire {
+    background-position: 0 -180px;
+}
+
 .type-fire-light {
   @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
 }
@@ -93,6 +143,10 @@
 /* Water 水 */
 .type-water {
   @apply bg-blue-500 text-white;
+}
+
+.sprite-type-water {
+    background-position: 0 -200px;
 }
 
 .type-water-light {
@@ -104,6 +158,10 @@
   @apply bg-green-600 text-white;
 }
 
+.sprite-type-grass {
+    background-position: 0 -220px;
+}
+
 .type-grass-light {
   @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
 }
@@ -111,6 +169,10 @@
 /* Electric 电 */
 .type-electric {
   @apply bg-yellow-400 text-gray-900;
+}
+
+.sprite-type-electric {
+    background-position: 0 -240px;
 }
 
 .type-electric-light {
@@ -122,6 +184,10 @@
   @apply bg-pink-500 text-white;
 }
 
+.sprite-type-psychic {
+    background-position: 0 -260px;
+}
+
 .type-psychic-light {
   @apply bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300;
 }
@@ -129,6 +195,10 @@
 /* Ice 冰 */
 .type-ice {
   @apply bg-cyan-400 text-white;
+}
+
+.sprite-type-ice {
+    background-position: 0 -280px;
 }
 
 .type-ice-light {
@@ -140,6 +210,10 @@
   @apply bg-indigo-700 text-white;
 }
 
+.sprite-type-dragon {
+    background-position: 0 -300px;
+}
+
 .type-dragon-light {
   @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300;
 }
@@ -147,6 +221,10 @@
 /* Dark 恶 */
 .type-dark {
   @apply bg-gray-800 text-white;
+}
+
+.sprite-type-dark {
+    background-position: 0 -320px;
 }
 
 .type-dark-light {
@@ -158,15 +236,32 @@
   @apply bg-pink-400 text-white;
 }
 
+.sprite-type-fairy {
+    background-position: 0 -340px;
+}
+
 .type-fairy-light {
   @apply bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300;
 }
 
+/* 宝可梦分类图标 */
+.sprite-category-physical {
+  background-position: 0 -360px;
+}
+
+.sprite-category-special {
+  background-position: 0 -380px;
+}
+
+.sprite-category-status {
+  background-position: 0 -400px;
+}
+
 /* 通用样式 */
 .pokemon-type-badge {
-  @apply inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium transition-colors;
+  @apply inline-flex items-center gap-1 pl-2 pr-3 py-1 rounded-full text-sm font-medium transition-colors;
 }
 
 .pokemon-type-chip {
-  @apply inline-block px-2 py-1 text-xs rounded break-words transition-colors;
+  @apply inline-flex items-center gap-1 pl-2 pr-3 py-1 text-sm rounded-full font-medium break-words transition-colors;
 }

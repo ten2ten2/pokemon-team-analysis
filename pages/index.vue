@@ -57,8 +57,6 @@ const closeModal = () => {
 }
 
 const handleTeamImport = (data: TeamImportData) => {
-  console.log('Importing team data:', data)
-
   // Add team to localStorage and get the created team
   const newTeam = addTeam(data)
 
@@ -70,8 +68,6 @@ const handleTeamImport = (data: TeamImportData) => {
 }
 
 const handleTeamUpdate = (data: TeamUpdateData) => {
-  console.log('Updating team data:', data)
-
   // Update in localStorage
   const updatedTeam = updateTeam(data.id, {
     name: normalizeTeamName(data.teamName),

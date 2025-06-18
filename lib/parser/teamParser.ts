@@ -1,6 +1,6 @@
 import { type PokemonSet } from '@pkmn/sets';
 import { Dex as SimDex, Teams, TeamValidator } from '@pkmn/sim';
-import { Generations, type Specie } from '@pkmn/data';
+import { Generations, Moves, type Move, type Specie } from '@pkmn/data';
 import { Dex } from '@pkmn/dex';
 import type { Pokemon } from '~/types/pokemon';
 import { initializeFormats } from './formatInitializer';
@@ -30,12 +30,13 @@ export function parseAndValidateTeam(teamRawString: string, rule: string): { tea
 // 补充队伍信息
 function completeTeam(teamParsed: PokemonSet<string>[], genNum: number): Pokemon[] {
   const gen = new Generations(Dex).get(genNum);
+  const moves = gen.moves;
   const teamSpecies = teamParsed.map(pkm => gen.species.get(pkm.species));
-  return teamParsed.map((pkm, index) => completeSinglePokemon(pkm, teamSpecies[index]!));
+  return teamParsed.map((pkm, index) => completeSinglePokemon(pkm, teamSpecies[index]!, moves));
 }
 
 // 补充单个宝可梦信息
-function completeSinglePokemon(pkm: PokemonSet, specie: Specie): Pokemon {
+function completeSinglePokemon(pkm: PokemonSet, specie: Specie, moves: Moves): Pokemon {
   const types = specie.types ?? [];
   return {
     ...pkm,
@@ -53,6 +54,16 @@ function completeSinglePokemon(pkm: PokemonSet, specie: Specie): Pokemon {
         // 如果导入失败，回退到使用 specie.num
         return specie.num;
       }
+    })(),
+    movesDetails: (() => {
+      return pkm.moves.reduce((acc, move) => {
+        const moveDetail = moves.get(move);
+        console.log('moveDetail', moveDetail);
+        if (moveDetail) {
+          acc[move] = moveDetail;
+        }
+        return acc;
+      }, {} as Record<string, Move>);
     })(),
   };
 }
