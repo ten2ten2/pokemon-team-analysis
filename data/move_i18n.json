@@ -3808,13 +3808,13 @@
   "headlong-rush": {
     "en": "Headlong Rush",
     "ja": "ぶちかまし",
-    "es": "",
-    "de": "",
+    "es": "Arremetida",
+    "de": "Schmetterramme",
     "it": "Scontro Frontale",
-    "fr": "",
-    "zh-hant": "突飞猛扑",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Assaut Frontal",
+    "zh-hant": "突飛猛撲",
+    "zh-hans": "突飞猛扑",
+    "ko": "들이받기"
   },
   "heal-bell": {
     "en": "Heal Bell",
@@ -4138,13 +4138,13 @@
   "hyper-drill": {
     "en": "Hyper Drill",
     "ja": "ハイパードリル",
-    "es": "",
-    "de": "",
+    "es": "Hipertaladro",
+    "de": "Hyperbohrer",
     "it": "Ipertrapano",
-    "fr": "",
-    "zh-hant": "强力钻",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Hyperceuse",
+    "zh-hant": "強力鑽",
+    "zh-hans": "强力钻",
+    "ko": "하이퍼드릴"
   },
   "hyper-fang": {
     "en": "Hyper Fang",
@@ -4281,13 +4281,13 @@
   "ice-spinner": {
     "en": "Ice Spinner",
     "ja": "アイススピナー",
-    "es": "",
-    "de": "",
+    "es": "Pirueta Helada",
+    "de": "Eiskreisel",
     "it": "Vortighiaccio",
-    "fr": "",
+    "fr": "Cryo-Pirouette",
     "zh-hant": "冰旋",
-    "zh-hans": "",
-    "ko": ""
+    "zh-hans": "冰旋",
+    "ko": "아이스스피너"
   },
   "icicle-crash": {
     "en": "Icicle Crash",
@@ -4347,13 +4347,13 @@
   "infernal-parade": {
     "en": "Infernal Parade",
     "ja": "ひゃっきやこう",
-    "es": "",
-    "de": "",
+    "es": "Marcha Espectral",
+    "de": "Phantomparade",
     "it": "Corteo Spettrale",
-    "fr": "",
-    "zh-hant": "群魔乱舞",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Cortège Funèbre",
+    "zh-hant": "群魔亂舞",
+    "zh-hans": "群魔乱舞",
+    "ko": "백귀야행"
   },
   "inferno": {
     "en": "Inferno",
@@ -4468,13 +4468,13 @@
   "ivy-cudgel": {
     "en": "Ivy Cudgel",
     "ja": "ツタこんぼう",
-    "es": "",
-    "de": "",
-    "it": "",
-    "fr": "",
-    "zh-hant": "",
-    "zh-hans": "",
-    "ko": ""
+    "es": "Garrote Liana",
+    "de": "Rankenkeule",
+    "it": "Clava di Liane",
+    "fr": "Massue Liane",
+    "zh-hant": "棘藤棒",
+    "zh-hans": "棘藤棒",
+    "ko": "덩굴방망이"
   },
   "jaw-lock": {
     "en": "Jaw Lock",
@@ -4490,13 +4490,13 @@
   "jet-punch": {
     "en": "Jet Punch",
     "ja": "ジェットパンチ",
-    "es": "",
-    "de": "",
+    "es": "Puño Jet",
+    "de": "Düsenhieb",
     "it": "Pugnojet",
-    "fr": "",
-    "zh-hant": "喷射拳",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Poing Sonique",
+    "zh-hant": "噴射拳",
+    "zh-hans": "喷射拳",
+    "ko": "제트펀치"
   },
   "judgment": {
     "en": "Judgment",
@@ -4578,13 +4578,13 @@
   "kowtow-cleave": {
     "en": "Kowtow Cleave",
     "ja": "ドゲザン",
-    "es": "",
-    "de": "",
+    "es": "Genufendiente",
+    "de": "Kniefallspalter",
     "it": "Genufendente",
-    "fr": "",
-    "zh-hant": "仆刀",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Génusection",
+    "zh-hant": "仆斬",
+    "zh-hans": "仆刀",
+    "ko": "도각참"
   },
   "lands-wrath": {
     "en": "Land’s Wrath",
@@ -4633,13 +4633,13 @@
   "last-respects": {
     "en": "Last Respects",
     "ja": "おはかまいり",
-    "es": "",
-    "de": "",
+    "es": "Homenaje Póstumo",
+    "de": "Letzte Ehre",
     "it": "Omaggio ai KO",
-    "fr": "",
-    "zh-hant": "扫墓",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Hommage Posthume",
+    "zh-hant": "掃墓",
+    "zh-hans": "扫墓",
+    "ko": "성묘"
   },
   "lava-plume": {
     "en": "Lava Plume",
@@ -4864,24 +4864,24 @@
   "lumina-crash": {
     "en": "Lumina Crash",
     "ja": "ルミナコリジョン",
-    "es": "",
-    "de": "",
+    "es": "Fotocolisión",
+    "de": "Lichteinschlag",
     "it": "Fotocollisione",
-    "fr": "",
-    "zh-hant": "琉光冲激",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Lumino-Impact",
+    "zh-hant": "琉光衝激",
+    "zh-hans": "琉光冲激",
+    "ko": "루미나콜리전"
   },
   "lunar-blessing": {
     "en": "Lunar Blessing",
     "ja": "みかづきのいのり",
-    "es": "",
-    "de": "",
+    "es": "Plegaria Lunar",
+    "de": "Lunargebet",
     "it": "Invocaluna",
-    "fr": "",
-    "zh-hant": "新月祈祷",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Prière Lunaire",
+    "zh-hant": "新月祈禱",
+    "zh-hans": "新月祈祷",
+    "ko": "초승달의기도"
   },
   "lunar-dance": {
     "en": "Lunar Dance",
@@ -4974,13 +4974,13 @@
   "magical-torque": {
     "en": "Magical Torque",
     "ja": "マジカルアクセル",
-    "es": "",
-    "de": "",
+    "es": "Feerichoque",
+    "de": "Zauberturbo",
     "it": "Turboincanto",
-    "fr": "",
-    "zh-hant": "魔法暴冲",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Crash Magique",
+    "zh-hant": "魔法暴衝",
+    "zh-hans": "魔法暴冲",
+    "ko": "매지컬액셀"
   },
   "magma-storm": {
     "en": "Magma Storm",
@@ -5040,13 +5040,13 @@
   "make-it-rain": {
     "en": "Make It Rain",
     "ja": "ゴールドラッシュ",
-    "es": "",
-    "de": "",
+    "es": "Fiebre Dorada",
+    "de": "Goldrausch",
     "it": "Corsa all'Oro",
-    "fr": "",
+    "fr": "Ruée d'Or",
     "zh-hant": "淘金潮",
-    "zh-hans": "",
-    "ko": ""
+    "zh-hans": "淘金潮",
+    "ko": "골드러시"
   },
   "malicious-moonsault": {
     "en": "Malicious Moonsault",
@@ -5084,13 +5084,13 @@
   "matcha-gotcha": {
     "en": "Matcha Gotcha",
     "ja": "シャカシャカほう",
-    "es": "",
-    "de": "",
-    "it": "",
-    "fr": "",
-    "zh-hant": "",
-    "zh-hans": "",
-    "ko": ""
+    "es": "Cañón Batidor",
+    "de": "Quirlschuss",
+    "it": "Spruzzatè",
+    "fr": "Mortier Matcha",
+    "zh-hant": "刷刷茶炮",
+    "zh-hans": "刷刷茶炮",
+    "ko": "휘적휘적포"
   },
   "max-airstream": {
     "en": "Max Airstream",
@@ -5678,24 +5678,24 @@
   "mortal-spin": {
     "en": "Mortal Spin",
     "ja": "キラースピン",
-    "es": "",
-    "de": "",
+    "es": "Giro Mortífero",
+    "de": "Letalwirbler",
     "it": "Glitturbine",
-    "fr": "",
-    "zh-hant": "晶光转转",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Toupie Éclat",
+    "zh-hant": "晶光轉轉",
+    "zh-hans": "晶光转转",
+    "ko": "킬러스핀"
   },
   "mountain-gale": {
     "en": "Mountain Gale",
     "ja": "ひょうざんおろし",
-    "es": "",
-    "de": "",
-    "it": "Soffio d’Iceberg",
-    "fr": "",
-    "zh-hant": "冰山风",
-    "zh-hans": "",
-    "ko": ""
+    "es": "Viento Carámbano",
+    "de": "Frostfallwind",
+    "it": "Soffio d'Iceberg",
+    "fr": "Bise Glaciaire",
+    "zh-hant": "冰山風",
+    "zh-hans": "冰山风",
+    "ko": "빙산바람"
   },
   "mud-bomb": {
     "en": "Mud Bomb",
@@ -5777,13 +5777,13 @@
   "mystical-power": {
     "en": "Mystical Power",
     "ja": "しんぴのちから",
-    "es": "",
-    "de": "",
+    "es": "Poder Místico",
+    "de": "Mythenkraft",
     "it": "Forza Mistica",
-    "fr": "",
+    "fr": "Force Mystique",
     "zh-hant": "神秘之力",
-    "zh-hans": "",
-    "ko": ""
+    "zh-hans": "神秘之力",
+    "ko": "신비의힘"
   },
   "nasty-plot": {
     "en": "Nasty Plot",
@@ -5931,13 +5931,13 @@
   "noxious-torque": {
     "en": "Noxious Torque",
     "ja": "ポイズンアクセル",
-    "es": "",
-    "de": "",
+    "es": "Ponzochoque",
+    "de": "Toxiturbo",
     "it": "Turbotossina",
-    "fr": "",
-    "zh-hant": "剧毒暴冲",
-    "zh-hans": "",
-    "ko": ""
+    "fr": "Crash Toxique",
+    "zh-hant": "劇毒暴衝",
+    "zh-hans": "剧毒暴冲",
+    "ko": "포이즌액셀"
   },
   "nuzzle": {
     "en": "Nuzzle",

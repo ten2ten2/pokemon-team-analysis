@@ -59,8 +59,9 @@ export const usePokemonTranslations = () => {
 
     // 标准化名称为小写并移除特殊字符
     const normalizedName = originalName.toLowerCase()
-      .replace(/[^a-z0-9 \-]/g, '')
-      .replace(/ +/g, '-')
+      .replace(/\s*-\s*/g, '-') // 把「多个空格 + 连字符 + 多个空格」都统一替换成单个连字符
+      .replace(/[^a-z0-9 \-]/g, '') // 移除所有非字母、数字、空格和连字符的字符
+      .replace(/ +/g, '-') // 将所有空格替换为连字符
       .replace(/^the-/, '') // 移除开头的 "the-"
 
     // 映射类型到数据键
@@ -70,6 +71,11 @@ export const usePokemonTranslations = () => {
       'move': 'moves',
       'item': 'items',
       'type': 'types'
+    }
+
+    if (type === 'move') {
+      console.log('originalName', originalName)
+      console.log('normalizedName', normalizedName)
     }
 
     // 获取对应类型的翻译数据
