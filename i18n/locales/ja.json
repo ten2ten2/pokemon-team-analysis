@@ -28,7 +28,8 @@
         "singlesRegH": "シングル・レギュレーション H",
         "singlesRegI": "シングル・レギュレーション I"
       }
-    }
+    },
+    "comingSoon": "近日公開"
   },
   "home": {
     "meta": {
@@ -166,6 +167,46 @@
       "message": "このチームを削除してもよろしいですか？この操作は元に戻すことができません。",
       "confirmButton": "削除",
       "cancelButton": "キャンセル"
+    }
+  },
+  "teamDetail": {
+    "meta": {
+      "title": "チーム詳細",
+      "description": "{name} の詳細を表示、{count} 匹のポケモンが含まれています",
+      "defaultDescription": "ポケモンチーム詳細ページ"
+    },
+    "notFound": {
+      "title": "チームが見つかりません",
+      "description": "ID \"{id}\" のチームは存在しないか削除されています。",
+      "backToHome": "ホームに戻る"
+    },
+    "createdAt": "作成日",
+    "useTranslation": "翻訳を使用",
+    "tabs": {
+      "overview": "概要",
+      "resistance": "タイプ相性"
+    },
+    "validationErrors": {
+      "title": "チーム検証エラー",
+      "description": "チームデータに以下の問題があります。編集ボタンをクリックして修正してください："
+    },
+    "editTeam": "チームを編集",
+    "teamMembers": {
+      "title": "チームメンバー ({count}/6)",
+      "description": "チーム内のポケモンの詳細情報です"
+    },
+    "pokemon": {
+      "ability": "特性",
+      "item": "持ち物",
+      "teraType": "テラタイプ",
+      "moves": "技"
+    },
+    "rawData": {
+      "title": "生のチームデータ",
+      "description": "これはインポートした元のチームテキストデータです",
+      "copy": "コピー",
+      "copied": "コピーしました！",
+      "copyButton": "生のチームデータをクリップボードにコピー"
     }
   }
 }

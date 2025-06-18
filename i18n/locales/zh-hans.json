@@ -28,7 +28,8 @@
         "singlesRegH": "单打・规则 H",
         "singlesRegI": "单打・规则 I"
       }
-    }
+    },
+    "comingSoon": "即将推出"
   },
   "home": {
     "meta": {
@@ -166,6 +167,46 @@
       "message": "您确定要删除这个队伍吗？此操作无法撤销。",
       "confirmButton": "删除",
       "cancelButton": "取消"
+    }
+  },
+  "teamDetail": {
+    "meta": {
+      "title": "队伍详情",
+      "description": "查看 {name} 的详细信息，包含 {count} 只宝可梦",
+      "defaultDescription": "宝可梦队伍详情页面"
+    },
+    "notFound": {
+      "title": "队伍未找到",
+      "description": "ID 为 \"{id}\" 的队伍不存在或已被删除。",
+      "backToHome": "返回首页"
+    },
+    "createdAt": "创建时间",
+    "useTranslation": "使用翻译",
+    "tabs": {
+      "overview": "概览",
+      "resistance": "抗性分析"
+    },
+    "validationErrors": {
+      "title": "队伍验证错误",
+      "description": "您的队伍数据存在以下问题，请点击编辑按钮修复："
+    },
+    "editTeam": "编辑队伍",
+    "teamMembers": {
+      "title": "队伍成员 ({count}/6)",
+      "description": "以下是您队伍中的宝可梦详细信息"
+    },
+    "pokemon": {
+      "ability": "特性",
+      "item": "道具",
+      "teraType": "太晶属性",
+      "moves": "技能"
+    },
+    "rawData": {
+      "title": "原始队伍数据",
+      "description": "这是您导入的原始队伍文本数据",
+      "copy": "复制",
+      "copied": "已复制！",
+      "copyButton": "复制原始队伍数据到剪贴板"
     }
   }
 }

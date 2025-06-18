@@ -28,7 +28,8 @@
         "singlesRegH": "Singles, Regulation H",
         "singlesRegI": "Singles, Regulation I"
       }
-    }
+    },
+    "comingSoon": "Coming Soon"
   },
   "home": {
     "meta": {
@@ -166,6 +167,46 @@
       "message": "Are you sure you want to delete this team? This action cannot be undone.",
       "confirmButton": "Delete",
       "cancelButton": "Cancel"
+    }
+  },
+  "teamDetail": {
+    "meta": {
+      "title": "Team Details",
+      "description": "View {name} details, containing {count} Pokémon",
+      "defaultDescription": "Pokémon team details page"
+    },
+    "notFound": {
+      "title": "Team Not Found",
+      "description": "The team with ID \"{id}\" does not exist or has been deleted.",
+      "backToHome": "Back to Home"
+    },
+    "createdAt": "Created",
+    "useTranslation": "Use Translation",
+    "tabs": {
+      "overview": "Overview",
+      "resistance": "Resistance"
+    },
+    "validationErrors": {
+      "title": "Team Validation Errors",
+      "description": "Your team data has the following issues, please click the edit button to fix:"
+    },
+    "editTeam": "Edit Team",
+    "teamMembers": {
+      "title": "Team Members ({count}/6)",
+      "description": "Below are the detailed information of Pokémon in your team"
+    },
+    "pokemon": {
+      "ability": "Ability",
+      "item": "Item",
+      "teraType": "Tera Type",
+      "moves": "Moves"
+    },
+    "rawData": {
+      "title": "Raw Team Data",
+      "description": "This is the original team text data you imported",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "copyButton": "Copy raw team data to clipboard"
     }
   }
 }

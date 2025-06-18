@@ -28,7 +28,8 @@
         "singlesRegH": "싱글배틀 · 레귤레이션 H",
         "singlesRegI": "싱글배틀 · 레귤레이션 I"
       }
-    }
+    },
+    "comingSoon": "곧 출시"
   },
   "home": {
     "meta": {
@@ -166,6 +167,46 @@
       "message": "이 팀을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
       "confirmButton": "삭제",
       "cancelButton": "취소"
+    }
+  },
+  "teamDetail": {
+    "meta": {
+      "title": "팀 상세정보",
+      "description": "{name} 상세정보 보기, {count}마리의 포켓몬 포함",
+      "defaultDescription": "포켓몬 팀 상세정보 페이지"
+    },
+    "notFound": {
+      "title": "팀을 찾을 수 없음",
+      "description": "ID \"{id}\"인 팀이 존재하지 않거나 삭제되었습니다.",
+      "backToHome": "홈으로 돌아가기"
+    },
+    "createdAt": "생성일",
+    "useTranslation": "번역 사용",
+    "tabs": {
+      "overview": "개요",
+      "resistance": "상성 분석"
+    },
+    "validationErrors": {
+      "title": "팀 검증 오류",
+      "description": "팀 데이터에 다음 문제가 있습니다. 편집 버튼을 클릭하여 수정하세요:"
+    },
+    "editTeam": "팀 편집",
+    "teamMembers": {
+      "title": "팀 멤버 ({count}/6)",
+      "description": "팀 내 포켓몬의 상세 정보입니다"
+    },
+    "pokemon": {
+      "ability": "특성",
+      "item": "도구",
+      "teraType": "테라스탈 타입",
+      "moves": "기술"
+    },
+    "rawData": {
+      "title": "원본 팀 데이터",
+      "description": "가져온 원본 팀 텍스트 데이터입니다",
+      "copy": "복사",
+      "copied": "복사됨!",
+      "copyButton": "원본 팀 데이터를 클립보드에 복사"
     }
   }
 }

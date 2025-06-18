@@ -28,7 +28,8 @@
         "singlesRegH": "單打・規則 H",
         "singlesRegI": "單打・規則 I"
       }
-    }
+    },
+    "comingSoon": "即將推出"
   },
   "home": {
     "meta": {
@@ -166,6 +167,46 @@
       "message": "您確定要刪除這個隊伍嗎？此操作無法復原。",
       "confirmButton": "刪除",
       "cancelButton": "取消"
+    }
+  },
+  "teamDetail": {
+    "meta": {
+      "title": "隊伍詳情",
+      "description": "查看 {name} 的詳細資訊，包含 {count} 隻寶可夢",
+      "defaultDescription": "寶可夢隊伍詳情頁面"
+    },
+    "notFound": {
+      "title": "隊伍未找到",
+      "description": "ID 為 \"{id}\" 的隊伍不存在或已被刪除。",
+      "backToHome": "返回首頁"
+    },
+    "createdAt": "建立時間",
+    "useTranslation": "使用翻譯",
+    "tabs": {
+      "overview": "概覽",
+      "resistance": "抗性分析"
+    },
+    "validationErrors": {
+      "title": "隊伍驗證錯誤",
+      "description": "您的隊伍資料存在以下問題，請點擊編輯按鈕修復："
+    },
+    "editTeam": "編輯隊伍",
+    "teamMembers": {
+      "title": "隊伍成員 ({count}/6)",
+      "description": "以下是您隊伍中的寶可夢詳細資訊"
+    },
+    "pokemon": {
+      "ability": "特性",
+      "item": "道具",
+      "teraType": "太晶屬性",
+      "moves": "技能"
+    },
+    "rawData": {
+      "title": "原始隊伍資料",
+      "description": "這是您匯入的原始隊伍文字資料",
+      "copy": "複製",
+      "copied": "已複製！",
+      "copyButton": "複製原始隊伍資料到剪貼簿"
     }
   }
 }
