@@ -207,85 +207,88 @@ const startEditingTeam = (team: any) => {
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 auto-rows-max">
               <!-- Team cards will be rendered here -->
-              <NuxtLink v-for="team in teams" :key="team.id" :to="`/teams/${team.id}`" class="no-underline">
-                <article
-                  class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow duration-200 h-fit"
-                  :aria-labelledby="`team-${team.id}-title`">
-                  <!-- Team card header -->
-                  <header class="flex items-start justify-between mb-3">
-                    <!-- Team name -->
-                    <div class="flex-1 mr-3 min-w-0">
-                      <h3 :id="`team-${team.id}-title`" :title="team.name"
-                        class="font-semibold text-gray-900 dark:text-white text-lg truncate">
-                        {{ team.name }}
-                      </h3>
-                    </div>
+              <div v-for="team in teams" :key="team.id" class="relative">
+                <!-- Action buttons positioned absolutely outside the link -->
+                <nav class="absolute top-6 right-5 z-10 flex items-center gap-1"
+                  :aria-label="`Actions for ${team.name}`">
+                  <button @click="startEditingTeam(team)"
+                    class="p-1.5 text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded transition-colors focus-ring-gray"
+                    :aria-label="`Edit team: ${team.name}`" type="button">
+                    <Edit3 class="w-4 h-4" aria-hidden="true" />
+                    <span class="sr-only">Edit</span>
+                  </button>
+                  <button @click="handleDeleteTeam(team.id)"
+                    class="p-1.5 text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded transition-colors focus-ring-gray"
+                    :aria-label="`Delete team: ${team.name}`" type="button">
+                    <Trash2 class="w-4 h-4" aria-hidden="true" />
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </nav>
 
-                    <!-- Action buttons -->
-                    <nav class="flex items-center gap-1 flex-shrink-0" :aria-label="`Actions for ${team.name}`">
-                      <button @click="startEditingTeam(team)"
-                        class="p-1.5 text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded transition-colors focus-ring-gray"
-                        :aria-label="`Edit team: ${team.name}`" type="button">
-                        <Edit3 class="w-4 h-4" aria-hidden="true" />
-                        <span class="sr-only">Edit</span>
-                      </button>
-                      <button @click="handleDeleteTeam(team.id)"
-                        class="p-1.5 text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded transition-colors focus-ring-gray"
-                        :aria-label="`Delete team: ${team.name}`" type="button">
-                        <Trash2 class="w-4 h-4" aria-hidden="true" />
-                        <span class="sr-only">Delete</span>
-                      </button>
-                    </nav>
-                  </header>
+                <NuxtLinkLocale :to="`/teams/${team.id}`" class="no-underline block">
+                  <article
+                    class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow duration-200 h-fit cursor-pointer"
+                    :aria-labelledby="`team-${team.id}-title`">
+                    <!-- Team card header -->
+                    <header class="mb-3">
+                      <!-- Team name -->
+                      <div class="pr-16">
+                        <h3 :id="`team-${team.id}-title`" :title="team.name"
+                          class="font-semibold text-gray-900 dark:text-white text-lg truncate">
+                          {{ team.name }}
+                        </h3>
+                      </div>
+                    </header>
 
-                  <!-- Team description -->
-                  <p class="text-sm mb-4">
-                    <template v-if="team.errors && team.errors.length > 0">
-                      <span class="text-red-600 dark:text-red-400 leading-tight">
-                        <AlertCircle class="w-3.5 h-3.5 inline align-baseline relative top-0.5" aria-hidden="true" />
-                        {{ t('home.teamHasProblems') }}
-                      </span>
-                    </template>
-                    <template v-else>
-                      <ul class="flex flex-row gap-1 items-center">
-                        <li v-for="pkm in team.teamData" :key="pkm.species">
-                          <NuxtImg
-                            :src="pkm.shiny ? getSprite(pkm as Pokemon, 'default-shiny') : getSprite(pkm as Pokemon)"
-                            :alt="pkm.species" :title="pkm.species" height="32" width="32" loading="lazy" />
-                        </li>
-                      </ul>
-                    </template>
-                  </p>
+                    <!-- Team description -->
+                    <p class="text-sm mb-4">
+                      <template v-if="team.errors && team.errors.length > 0">
+                        <span class="text-red-600 dark:text-red-400 leading-tight">
+                          <AlertCircle class="w-3.5 h-3.5 inline align-baseline relative top-0.5" aria-hidden="true" />
+                          {{ t('home.teamHasProblems') }}
+                        </span>
+                      </template>
+                      <template v-else>
+                        <ul class="flex flex-row gap-1 items-center">
+                          <li v-for="pkm in team.teamData" :key="pkm.species">
+                            <NuxtImg
+                              :src="pkm.shiny ? getSprite(pkm as Pokemon, 'default-shiny') : getSprite(pkm as Pokemon)"
+                              :alt="pkm.species" :title="pkm.species" height="32" width="32" loading="lazy" />
+                          </li>
+                        </ul>
+                      </template>
+                    </p>
 
-                  <!-- Team metadata -->
-                  <footer class="space-y-2">
-                    <!-- Game version -->
-                    <dl class="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                      <Gamepad2 class="w-4 h-4 mr-2" aria-hidden="true" />
-                      <dt class="sr-only">Game version:</dt>
-                      <dd>{{ t(`common.gameVersion.options.${team.gameVersion}`) }}</dd>
-                    </dl>
+                    <!-- Team metadata -->
+                    <footer class="space-y-2">
+                      <!-- Game version -->
+                      <dl class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                        <Gamepad2 class="w-4 h-4 mr-2" aria-hidden="true" />
+                        <dt class="sr-only">Game version:</dt>
+                        <dd>{{ t(`common.gameVersion.options.${team.gameVersion}`) }}</dd>
+                      </dl>
 
-                    <!-- Rules -->
-                    <dl class="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                      <FileText class="w-4 h-4 mr-2" aria-hidden="true" />
-                      <dt class="sr-only">Rules:</dt>
-                      <dd>{{ t(`common.rules.options.${team.rules}`) }}</dd>
-                    </dl>
+                      <!-- Rules -->
+                      <dl class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                        <FileText class="w-4 h-4 mr-2" aria-hidden="true" />
+                        <dt class="sr-only">Rules:</dt>
+                        <dd>{{ t(`common.rules.options.${team.rules}`) }}</dd>
+                      </dl>
 
-                    <!-- Created date -->
-                    <dl class="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                      <Calendar class="w-4 h-4 mr-2" aria-hidden="true" />
-                      <dt class="sr-only">Created on:</dt>
-                      <dd>
-                        <time :datetime="team.createdAt.toISOString()">
-                          {{ formatDate(team.createdAt.toISOString(), locale) }}
-                        </time>
-                      </dd>
-                    </dl>
-                  </footer>
-                </article>
-              </NuxtLink>
+                      <!-- Created date -->
+                      <dl class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                        <Calendar class="w-4 h-4 mr-2" aria-hidden="true" />
+                        <dt class="sr-only">Created on:</dt>
+                        <dd>
+                          <time :datetime="team.createdAt.toISOString()">
+                            {{ formatDate(team.createdAt.toISOString(), locale) }}
+                          </time>
+                        </dd>
+                      </dl>
+                    </footer>
+                  </article>
+                </NuxtLinkLocale>
+              </div>
             </div>
           </div>
         </div>
