@@ -1,6 +1,28 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
+// 动态生成重定向规则
+const generateRedirectRules = () => {
+  const rules: Record<string, any> = {}
+
+  // 默认语言 (en) 的重定向
+  rules['/teams'] = { redirect: { to: '/', statusCode: 301 } }
+  rules['/teams/'] = { redirect: { to: '/', statusCode: 301 } }
+
+  // 支持的语言列表
+  const locales = ['ja', 'ko', 'zh-hans', 'zh-hant']
+  // 为每个语言生成重定向规则
+  locales.forEach(locale => {
+    rules[`/${locale}/teams`] = { redirect: { to: `/${locale}`, statusCode: 301 } }
+    rules[`/${locale}/teams/`] = { redirect: { to: `/${locale}`, statusCode: 301 } }
+  })
+
+  return rules
+}
+
 export default defineNuxtConfig({
+  nitro: {
+    routeRules: generateRedirectRules()
+  },
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
