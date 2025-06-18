@@ -3,7 +3,7 @@
  */
 
 import type { Team } from '~/types/team'
-import type { Pokemon } from '~/types/pokemon'
+import { type Pokemon, SPRITES_URL_PREFIX } from '~/types/pokemon'
 
 export const DEFAULT_TEAM_NAME = 'Untitled Team'
 
@@ -24,6 +24,16 @@ export function normalizeTeamName(name: string): string {
 
   // 限制最大长度为16字符
   return trimmed.length > 16 ? trimmed.substring(0, 16) : trimmed
+}
+
+/**
+ * 获取精灵图片
+ * @param pkm - 精灵
+ * @param stripeType - 精灵图片类型
+ * @returns 精灵图片
+ */
+export const getSprite = (pkm: Pokemon, stripeType: string = 'default') => {
+  return `${SPRITES_URL_PREFIX[stripeType]}${pkm.pokeapiNum}.png`
 }
 
 /**
