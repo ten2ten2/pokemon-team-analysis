@@ -8,6 +8,8 @@
       "title": "오류",
       "loadingTeams": "팀을 로드하는데 실패했습니다. 페이지를 새로고침해 보세요."
     },
+    "ability": "특성",
+    "item": "도구",
     "teamName": {
       "title": "팀 이름",
       "untitled": "미정"
@@ -208,5 +210,48 @@
       "copied": "복사됨!",
       "copyButton": "원본 팀 데이터를 클립보드에 복사"
     }
+  },
+  "resistance": {
+    "meta": {
+      "title": "상성 분석",
+      "description": "{name} 팀의 타입 상성 분석, {count}마리의 포켓몬 포함",
+      "defaultDescription": "포켓몬 팀 타입 상성 분석 페이지"
+    },
+    "title": "타입 상성 분석",
+    "description": "다양한 타입 공격에 대한 팀의 상성 성능을 분석하며, 날씨와 필드 조건을 선택적으로 설정할 수 있습니다.",
+    "validationError": {
+      "description": "팀 데이터에 문제가 있어 상성 분석을 수행할 수 없습니다. 먼저 팀 데이터를 수정해 주세요."
+    },
+    "controls": {
+      "title": "분석 설정",
+      "weather": "날씨 조건",
+      "terrain": "필드 조건"
+    },
+    "weather": {
+      "none": "날씨 없음",
+      "rain": "비",
+      "heavy_rain": "큰비",
+      "harsh_sunlight": "쾌청",
+      "extremely_harsh_sunlight": "대쾌청",
+      "strong_winds": "난기류"
+    },
+    "terrain": {
+      "none": "필드 없음",
+      "electric_terrain": "일렉트릭필드",
+      "grassy_terrain": "그래스필드",
+      "misty_terrain": "미스트필드",
+      "psychic_terrain": "사이코필드"
+    },
+    "multiplier": {
+      "immune": "무효",
+      "label": "배수"
+    },
+    "pokemon": "포켓몬",
+    "attackType": "공격 타입",
+    "resistanceLevel": "저항 레벨",
+    "typeAttack": "타입 공격",
+    "noEffectiveAttacks": "모든 팀 멤버가 이 타입 공격을 보통 데미지로 받습니다",
+    "noData": "상성 데이터가 없습니다",
+    "calculating": "상성 데이터 계산 중..."
   }
 }

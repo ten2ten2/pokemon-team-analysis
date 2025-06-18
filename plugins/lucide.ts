@@ -20,7 +20,8 @@ import {
   AlertCircle,
   Sparkles,
   Edit2,
-  Copy
+  Copy,
+  Sword
 } from 'lucide-vue-next'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -45,4 +46,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Sparkles', Sparkles)
   nuxtApp.vueApp.component('Edit2', Edit2)
   nuxtApp.vueApp.component('Copy', Copy)
+  nuxtApp.vueApp.component('Sword', Sword)
 })

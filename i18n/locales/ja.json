@@ -8,6 +8,8 @@
       "title": "エラー",
       "loadingTeams": "チームの読み込みに失敗しました。ページを更新してみてください。"
     },
+    "ability": "特性",
+    "item": "持ち物",
     "teamName": {
       "title": "チーム名",
       "untitled": "未命名"
@@ -208,5 +210,48 @@
       "copied": "コピーしました！",
       "copyButton": "生のチームデータをクリップボードにコピー"
     }
+  },
+  "resistance": {
+    "meta": {
+      "title": "タイプ相性分析",
+      "description": "{name} チームのタイプ相性を分析、{count} 匹のポケモンが含まれています",
+      "defaultDescription": "ポケモンチームタイプ相性分析ページ"
+    },
+    "title": "タイプ相性分析",
+    "description": "様々なタイプの攻撃に対するチームの相性パフォーマンスを分析し、天気や場の状態を任意で設定できます。",
+    "validationError": {
+      "description": "チームデータに問題があり、タイプ相性分析を実行できません。まずチームデータを修正してください。"
+    },
+    "controls": {
+      "title": "分析設定",
+      "weather": "天気状態",
+      "terrain": "フィールド状態"
+    },
+    "weather": {
+      "none": "天気なし",
+      "rain": "雨",
+      "heavy_rain": "大雨",
+      "harsh_sunlight": "晴れ",
+      "extremely_harsh_sunlight": "大日照り",
+      "strong_winds": "乱気流"
+    },
+    "terrain": {
+      "none": "フィールドなし",
+      "electric_terrain": "エレキフィールド",
+      "grassy_terrain": "グラスフィールド",
+      "misty_terrain": "ミストフィールド",
+      "psychic_terrain": "サイコフィールド"
+    },
+    "multiplier": {
+      "immune": "無効",
+      "label": "倍率"
+    },
+    "pokemon": "ポケモン",
+    "attackType": "攻撃タイプ",
+    "resistanceLevel": "抵抗レベル",
+    "typeAttack": "タイプ攻撃",
+    "noEffectiveAttacks": "すべてのチームメンバーがこのタイプの攻撃を等倍で受けます",
+    "noData": "相性データがありません",
+    "calculating": "相性データを計算中..."
   }
 }

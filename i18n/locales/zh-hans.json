@@ -8,6 +8,8 @@
       "title": "错误",
       "loadingTeams": "加载队伍失败，请尝试刷新页面。"
     },
+    "ability": "特性",
+    "item": "道具",
     "teamName": {
       "title": "队伍名称",
       "untitled": "未命名"
@@ -208,5 +210,48 @@
       "copied": "已复制！",
       "copyButton": "复制原始队伍数据到剪贴板"
     }
+  },
+  "resistance": {
+    "meta": {
+      "title": "抗性分析",
+      "description": "分析 {name} 队伍的属性抗性，包含 {count} 只宝可梦",
+      "defaultDescription": "宝可梦队伍抗性分析页面"
+    },
+    "title": "属性抗性分析",
+    "description": "分析您的队伍对各属性攻击的抗性表现，可选择不同的天气和场地状态。",
+    "validationError": {
+      "description": "您的队伍数据存在问题，无法进行抗性分析。请先修复队伍数据。"
+    },
+    "controls": {
+      "title": "分析设置",
+      "weather": "天气状态",
+      "terrain": "场地状态"
+    },
+    "weather": {
+      "none": "无天气",
+      "rain": "雨天",
+      "heavy_rain": "大雨天",
+      "harsh_sunlight": "大晴天",
+      "extremely_harsh_sunlight": "大日照",
+      "strong_winds": "乱流"
+    },
+    "terrain": {
+      "none": "无场地",
+      "electric_terrain": "电气场地",
+      "grassy_terrain": "青草场地",
+      "misty_terrain": "薄雾场地",
+      "psychic_terrain": "精神场地"
+    },
+    "multiplier": {
+      "immune": "免疫",
+      "label": "倍率"
+    },
+    "pokemon": "宝可梦",
+    "attackType": "攻击属性",
+    "resistanceLevel": "抵抗程度",
+    "typeAttack": "属性攻击",
+    "noEffectiveAttacks": "所有队伍成员都正常承受此属性攻击",
+    "noData": "暂无抗性数据",
+    "calculating": "正在计算抗性数据..."
   }
 }

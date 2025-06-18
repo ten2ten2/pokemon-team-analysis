@@ -76,10 +76,10 @@ export const ITEM_EFFECTS: Record<string, ItemEffect> = {
  */
 export const WEATHER_EFFECTS: Record<string, Record<string, number>> = {
   'Rain': { 'Water': 1.5, 'Fire': 0.5 },                   // 水屬性招式的伤害×1.5; 火屬性招式的伤害×0.5
-  'Heavy Rain': { 'Water': 1.5, 'Fire': 0 },               // 水屬性招式的威力×1.5, 火屬性攻击招式使用失败
+  // 'Heavy Rain': { 'Water': 1.5, 'Fire': 0 },               // 水屬性招式的威力×1.5, 火屬性攻击招式使用失败
   'Harsh Sunlight': { 'Fire': 1.5, 'Water': 0.5 },         // 火屬性招式的伤害×1.5, 水屬性招式的伤害×0.5
-  'Extremely Harsh Sunlight': { 'Fire': 1.5, 'Water': 0 }, // 火屬性招式的威力×1.5, 水屬性攻击招式使用失败
-  'Strong Winds': { 'Electric': 1, 'Ice': 1, 'Rock': 1 },  // 电屬性、冰屬性和岩石屬性招式不对飞行屬性效果修正为 x1
+  // 'Extremely Harsh Sunlight': { 'Fire': 1.5, 'Water': 0 }, // 火屬性招式的威力×1.5, 水屬性攻击招式使用失败
+  // 'Strong Winds': { 'Electric': 1, 'Ice': 1, 'Rock': 1 },  // 电屬性、冰屬性和岩石屬性招式不对飞行屬性效果修正为 x1
 } as const;
 
 /**

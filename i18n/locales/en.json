@@ -8,6 +8,8 @@
       "title": "Error",
       "loadingTeams": "Failed to load teams. Please try refreshing the page."
     },
+    "ability": "Ability",
+    "item": "Item",
     "teamName": {
       "title": "Team Name",
       "untitled": "Untitled"
@@ -208,5 +210,48 @@
       "copied": "Copied!",
       "copyButton": "Copy raw team data to clipboard"
     }
+  },
+  "resistance": {
+    "meta": {
+      "title": "Resistance Analysis",
+      "description": "Analyze {name} team's type resistance with {count} Pokémon",
+      "defaultDescription": "Pokémon team resistance analysis page"
+    },
+    "title": "Type Resistance Analysis",
+    "description": "Analyze your team's resistance performance against various type attacks, with optional weather and terrain conditions.",
+    "validationError": {
+      "description": "Your team data has issues and cannot be analyzed for resistance. Please fix the team data first."
+    },
+    "controls": {
+      "title": "Analysis Settings",
+      "weather": "Weather Condition",
+      "terrain": "Terrain Condition"
+    },
+    "weather": {
+      "none": "No Weather",
+      "rain": "Rain",
+      "heavy_rain": "Heavy Rain",
+      "harsh_sunlight": "Harsh Sunlight",
+      "extremely_harsh_sunlight": "Extremely Harsh Sunlight",
+      "strong_winds": "Strong Winds"
+    },
+    "terrain": {
+      "none": "No Terrain",
+      "electric_terrain": "Electric Terrain",
+      "grassy_terrain": "Grassy Terrain",
+      "misty_terrain": "Misty Terrain",
+      "psychic_terrain": "Psychic Terrain"
+    },
+    "multiplier": {
+      "immune": "Immune",
+      "label": "Multiplier"
+    },
+    "pokemon": "Pokémon",
+    "attackType": "Attack Type",
+    "resistanceLevel": "Resistance Level",
+    "typeAttack": "Type Attack",
+    "noEffectiveAttacks": "All team members take normal damage from this type attack",
+    "noData": "No resistance data available",
+    "calculating": "Calculating resistance data..."
   }
 }

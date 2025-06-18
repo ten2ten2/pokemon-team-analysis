@@ -8,6 +8,8 @@
       "title": "錯誤",
       "loadingTeams": "載入隊伍失敗，請嘗試重新整理頁面。"
     },
+    "ability": "特性",
+    "item": "道具",
     "teamName": {
       "title": "隊伍名稱",
       "untitled": "未命名"
@@ -208,5 +210,48 @@
       "copied": "已複製！",
       "copyButton": "複製原始隊伍資料到剪貼簿"
     }
+  },
+  "resistance": {
+    "meta": {
+      "title": "抗性分析",
+      "description": "分析 {name} 隊伍的屬性抗性，包含 {count} 隻寶可夢",
+      "defaultDescription": "寶可夢隊伍屬性抗性分析頁面"
+    },
+    "title": "屬性抗性分析",
+    "description": "分析您的隊伍對各種屬性攻擊的抗性表現，可選擇性設定天氣和場地條件。",
+    "validationError": {
+      "description": "您的隊伍資料有問題，無法進行抗性分析。請先修復隊伍資料。"
+    },
+    "controls": {
+      "title": "分析設定",
+      "weather": "天氣條件",
+      "terrain": "場地條件"
+    },
+    "weather": {
+      "none": "無天氣",
+      "rain": "下雨",
+      "heavy_rain": "大雨",
+      "harsh_sunlight": "大晴天",
+      "extremely_harsh_sunlight": "大日照",
+      "strong_winds": "亂流"
+    },
+    "terrain": {
+      "none": "無場地",
+      "electric_terrain": "電氣場地",
+      "grassy_terrain": "青草場地",
+      "misty_terrain": "薄霧場地",
+      "psychic_terrain": "精神場地"
+    },
+    "multiplier": {
+      "immune": "無效",
+      "label": "倍率"
+    },
+    "pokemon": "寶可夢",
+    "attackType": "攻擊屬性",
+    "resistanceLevel": "抗性等級",
+    "typeAttack": "屬性攻擊",
+    "noEffectiveAttacks": "所有隊伍成員都以一般傷害承受此屬性攻擊",
+    "noData": "無抗性資料",
+    "calculating": "正在計算抗性資料..."
   }
 }
