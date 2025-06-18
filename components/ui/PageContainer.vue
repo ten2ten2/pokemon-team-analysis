@@ -8,6 +8,7 @@ interface Props {
   headerClass?: string
   headerContainerClass?: string
   contentSpacing?: string
+  maxWidth?: 'default' | 'wide' | 'full'
   // Breadcrumb props
   showBreadcrumb?: boolean
   breadcrumbItems?: BreadcrumbItem[]
@@ -15,17 +16,30 @@ interface Props {
   breadcrumbMaxItems?: number
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   pageTitle: '',
   backgroundClass: 'bg-gray-50 dark:bg-gray-900',
   headerTitleClass: '',
   headerClass: '',
   headerContainerClass: '',
   contentSpacing: 'py-8 space-y-12',
+  maxWidth: 'default',
   showBreadcrumb: true,
   breadcrumbItems: () => [],
   breadcrumbSeparator: 'chevron',
   breadcrumbMaxItems: 5
+})
+
+// 计算最大宽度类
+const maxWidthClass = computed(() => {
+  switch (props.maxWidth) {
+    case 'wide':
+      return 'max-w-7xl'
+    case 'full':
+      return 'max-w-full'
+    default:
+      return 'max-w-5xl'
+  }
 })
 </script>
 
@@ -37,7 +51,7 @@ withDefaults(defineProps<Props>(), {
 
     <!-- Page Header -->
     <div v-if="$slots.header || pageTitle" :class="[
-      'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8',
+      maxWidthClass, 'mx-auto px-4 sm:px-6 lg:px-8',
       breadcrumbItems.length > 0 ? 'pt-2' : 'pt-8'
     ]">
       <ContentCard :title="pageTitle" :title-class="headerTitleClass" :header-class="headerClass"
@@ -52,7 +66,7 @@ withDefaults(defineProps<Props>(), {
     </div>
 
     <!-- Main Content -->
-    <div :class="['max-w-5xl mx-auto px-4 sm:px-6 lg:px-8', contentSpacing]">
+    <div :class="[maxWidthClass, 'mx-auto px-4 sm:px-6 lg:px-8', contentSpacing]">
       <slot />
     </div>
   </main>
