@@ -26,22 +26,25 @@ const isImporting = ref(false)
 const teamName = ref('')
 
 // Initialize form data when editing
-watch(() => props.team, (team) => {
-  if (team && props.mode === 'edit') {
+watch([() => props.team, () => props.mode], ([team, mode]) => {
+  if (team && mode === 'edit') {
     teamName.value = team.name
     teamRawData.value = team.teamRawData
     gameVersion.value = team.gameVersion
     rules.value = team.rules
+  } else if (mode === 'import') {
+    // Reset form data for import mode
+    teamName.value = ''
+    teamRawData.value = ''
+    gameVersion.value = DEFAULT_GAME_VERSION
+    rules.value = DEFAULT_RULES
   }
 }, { immediate: true })
 
 // Close modal
 const closeModal = () => {
   emit('close')
-  teamRawData.value = ''
-  gameVersion.value = DEFAULT_GAME_VERSION
-  rules.value = DEFAULT_RULES
-  teamName.value = ''
+  // 不在这里重置表单数据，让 watch 处理
 }
 
 // Handle submit (import or update)
@@ -101,9 +104,9 @@ watch(() => props.isOpen, (isOpen) => {
     } else {
       document.body.style.overflow = ''
       document.removeEventListener('keydown', handleEscape)
-      // Reset form data when modal closes
+      // Reset form data when modal closes (only for import mode or when no team)
       nextTick(() => {
-        if (!isOpen) {
+        if (!isOpen && (props.mode === 'import' || !props.team)) {
           teamRawData.value = ''
           teamName.value = ''
           gameVersion.value = DEFAULT_GAME_VERSION
