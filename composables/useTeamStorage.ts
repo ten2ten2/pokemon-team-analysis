@@ -61,7 +61,7 @@ export const useTeamStorage = () => {
 
         if (!Array.isArray(team.teamData) && team.teamRawData) {
           // 旧数据需要解析
-          const parsedResult = parseAndValidateTeam(team.teamRawData, `[Gen 9] VGC 2025 Reg I`)
+          const parsedResult = parseAndValidateTeam(team.teamRawData, team.rules)
           teamData = parsedResult.team || []
           errors = parsedResult.errors
         }
@@ -100,7 +100,7 @@ export const useTeamStorage = () => {
   // 添加新队伍
   const addTeam = (teamInput: TeamInput): Team => {
     // 解析队伍数据
-    const parsedResult = parseAndValidateTeam(teamInput.teamRawData, `[Gen 9] VGC 2025 Reg I`)
+    const parsedResult = parseAndValidateTeam(teamInput.teamRawData, teamInput.rules)
     const teamData = parsedResult.team || []
     const errors = parsedResult.errors
 
@@ -142,7 +142,7 @@ export const useTeamStorage = () => {
     if (updates.teamRawData !== undefined || updates.rules !== undefined) {
       const parsedResult = parseAndValidateTeam(
         updatedTeam.teamRawData,
-        `[Gen 9] VGC 2025 Reg I`
+        updatedTeam.rules
       )
       updatedTeam.teamData = parsedResult.team || []
       updatedTeam.errors = parsedResult.errors

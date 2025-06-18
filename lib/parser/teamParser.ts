@@ -1,13 +1,17 @@
 import { type PokemonSet } from '@pkmn/sets';
-import { Teams, TeamValidator } from '@pkmn/sim';
+import { Dex as SimDex, Teams, TeamValidator } from '@pkmn/sim';
 import { Generations, type Specie } from '@pkmn/data';
 import { Dex } from '@pkmn/dex';
 import type { Pokemon } from '~/types/pokemon';
+import { initializeFormats } from './formatInitializer';
 
 // 解析队伍并验证队伍是否符合规则
 export function parseAndValidateTeam(teamRawString: string, rule: string): { team: Pokemon[] | null, errors: string[] | null } {
+  // 确保格式已正确初始化（幂等操作）
+  initializeFormats();
+
   const teamParsed = Teams.import(teamRawString);
-  const validator = new TeamValidator(rule);
+  const validator = new TeamValidator(rule, SimDex);
   const result = validator.validateTeam(teamParsed);
   if (result) {
     return { team: null, errors: result };
