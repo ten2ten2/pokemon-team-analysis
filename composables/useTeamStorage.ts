@@ -2,8 +2,15 @@ import type { Team, TeamInput } from '~/types/team'
 import { DEFAULT_GAME_VERSION, DEFAULT_RULES } from '~/types/team'
 import { normalizeTeamName } from '~/utils/teamUtils'
 import { parseAndValidateTeam } from '~/lib/parser/teamParser'
+import { generateId, type IdGeneratorOptions } from '~/utils/idGenerator'
 
 const STORAGE_KEY = 'pokemon-teams'
+
+// ID 生成配置 - 可以根据需要调整
+const ID_CONFIG: IdGeneratorOptions = {
+  type: 'hybrid', // 推荐：时间戳 + 随机，如 "l8x9k2m-a3k9"
+  length: 4 // 随机部分长度
+}
 
 // 安全的客户端检查函数
 const isClient = () => {
@@ -105,7 +112,7 @@ export const useTeamStorage = () => {
     const errors = parsedResult.errors
 
     const newTeam: Team = {
-      id: Date.now().toString(),
+      id: generateId(ID_CONFIG),
       name: normalizeTeamName(teamInput.teamName),
       gameVersion: teamInput.gameVersion,
       rules: teamInput.rules,
