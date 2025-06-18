@@ -17,7 +17,10 @@ import {
   Plus,
   Loader2,
   AlertTriangle,
-  AlertCircle
+  AlertCircle,
+  Sparkles,
+  Edit2,
+  Copy
 } from 'lucide-vue-next'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -39,4 +42,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Loader2', Loader2)
   nuxtApp.vueApp.component('AlertTriangle', AlertTriangle)
   nuxtApp.vueApp.component('AlertCircle', AlertCircle)
+  nuxtApp.vueApp.component('Sparkles', Sparkles)
+  nuxtApp.vueApp.component('Edit2', Edit2)
+  nuxtApp.vueApp.component('Copy', Copy)
 })
