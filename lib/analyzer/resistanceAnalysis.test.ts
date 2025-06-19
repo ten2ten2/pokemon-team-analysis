@@ -1,83 +1,75 @@
 import { Team, type PokemonSet } from '@pkmn/sets';
-import { normalizeReport, resistanceAnalysis, resistanceUnderStatus } from './resistanceAnalysis';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import {
+  ResistanceAnalyzer,
+  getPokemonResistance,
+  getTeamResistanceLevel,
+} from './resistanceAnalysis';
 
 // ==================== 测试数据 ====================
 
 const teamExportFormat = `
-Incineroar (M) @ Safety Goggles
+Incineroar @ Safety Goggles
 Ability: Intimidate
 Level: 50
-Shiny: Yes
-Tera Type: Fairy
-EVs: 244 HP / 188 Def / 76 SpD
-Impish Nature
-IVs: 0 Spe
-  - U - turn
-  - Fake Out
-  - Flare Blitz
-  - Knock Off
+EVs: 236 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 252 Spe
+Jolly Nature
+- Fake Out
+- Flare Blitz
+- Darkest Lariat
+- U-turn
 
-Lunala @ Leftovers
-Ability: Shadow Shield
+Rillaboom @ Assault Vest
+Ability: Grassy Surge
 Level: 50
-Tera Type: Fairy
-EVs: 132 HP / 20 Def / 180 SpA / 172 SpD / 4 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Grassy Glide
+- Wood Hammer
+- U-turn
+- High Horsepower
+
+Regieleki @ Focus Sash
+Ability: Transistor
+Level: 50
+EVs: 4 HP / 252 SpA / 252 Spe
 Modest Nature
 IVs: 0 Atk
-  - Moongeist Beam
-  - Moonblast
-  - Wide Guard
-  - Trick Room
+- Thunderbolt
+- Volt Switch
+- Electroweb
+- Protect
 
-Amoonguss (F) @ Covert Cloak
-Ability: Regenerator
+Landorus-Therian @ Life Orb
+Ability: Intimidate
 Level: 50
-Tera Type: Dark
-EVs: 236 HP / 196 Def / 76 SpD
-Sassy Nature
-IVs: 0 Atk / 0 Spe
-  - Rage Powder
-  - Spore
-  - Pollen Puff
-  - Protect
-
-Ursaluna (M) @ Flame Orb
-Ability: Guts
-Level: 50
-Tera Type: Ghost
-EVs: 140 HP / 252 Atk / 116 SpD
-Brave Nature
-IVs: 14 SpA / 0 Spe
-  - Facade
-  - Headlong Rush
-  - Earthquake
-  - Protect
-
-Koraidon @ Life Orb
-Ability: Orichalcum Pulse
-Level: 50
-Tera Type: Fire
 EVs: 4 HP / 252 Atk / 252 Spe
 Jolly Nature
-  - Flare Blitz
-  - Close Combat
-  - Flame Charge
-  - Protect
+- Earthquake
+- Rock Slide
+- U-turn
+- Protect
 
-Flutter Mane @ Focus Sash
-Ability: Protosynthesis
+Grimmsnarl @ Light Clay
+Ability: Prankster
 Level: 50
-Shiny: Yes
-Tera Type: Fairy
-EVs: 4 Def / 252 SpA / 252 Spe
-Timid Nature
-IVs: 3 Atk
-  - Moonblast
-  - Shadow Ball
-  - Icy Wind
-  - Protect
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Light Screen
+- Reflect
+- Spirit Break
+- Taunt
+
+Dragapult @ Choice Specs
+Ability: Clear Body
+Level: 50
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+IVs: 0 Atk
+- Shadow Ball
+- Draco Meteor
+- Hydro Pump
+- U-turn
 `;
 
 // ==================== 测试执行 ====================
@@ -93,39 +85,96 @@ function runResistanceAnalysisTest(): void {
     const teamParsed = Team.import(teamExportFormat) as Team<PokemonSet<string>>;
     console.log('✅ 队伍数据解析成功');
 
-    // 执行抗性分析
-    const analysisResult = normalizeReport(resistanceAnalysis(teamParsed, 9));
-    console.log('✅ 抗性分析完成');
+    // 创建分析器实例
+    const analyzer = new ResistanceAnalyzer(9);
+    console.log('✅ 抗性分析器创建成功');
 
-    // 根据天气和场地状态，返回修正后的抗性报告
+    // 执行基础抗性分析
+    const basicResult = analyzer.analyze(teamParsed);
+    console.log('✅ 基础抗性分析完成');
+
+    // 执行带天气和场地的抗性分析
     const weather = 'Rain';
     const terrain = 'Electric Terrain';
-    const resultUnderStatus = resistanceUnderStatus(analysisResult, weather, terrain);
+    const weatherResult = analyzer.analyze(teamParsed, weather, terrain);
+    console.log('✅ 天气和场地抗性分析完成');
+
+    // 测试新的便捷函数
+    console.log('\n📊 测试便捷函数:');
+
+    // 测试获取特定宝可梦的抗性
+    const fireResistance = getPokemonResistance(basicResult, 0, 'Fire'); // Incineroar对火的抗性
+    console.log(`- Incineroar对火属性的抗性倍率: ${fireResistance}`);
+
+    // 测试获取队伍整体抗性等级
+    const teamFireLevel = getTeamResistanceLevel(basicResult, 'Fire');
+    console.log(`- 队伍对火属性的整体抗性等级: ${teamFireLevel}`);
+
+    // 测试完成
+    console.log('✅ 新API测试通过');
 
     // 输出结果
     console.log('\n📊 抗性分析结果:');
-    // 将结果写入文件
+
     // 写入基础分析结果
     fs.writeFileSync(
-      path.join('resistance-analysis.json'),
-      JSON.stringify(analysisResult, null, 2),
+      'resistance-analysis-new.json',
+      JSON.stringify(basicResult, null, 2),
       'utf8'
     );
-    console.log('✅ 基础分析结果已写入 output/resistance-analysis.json');
+    console.log('✅ 基础分析结果已写入 resistance-analysis-new.json');
 
     // 写入天气和场地修正后的结果
     fs.writeFileSync(
-      path.join('resistance-analysis-with-status.json'),
-      JSON.stringify(resultUnderStatus, null, 2),
+      'resistance-analysis-with-weather-new.json',
+      JSON.stringify(weatherResult, null, 2),
       'utf8'
     );
-    console.log('✅ 天气和场地修正后的结果已写入 output/resistance-analysis-with-status.json');
+    console.log('✅ 天气和场地修正后的结果已写入 resistance-analysis-with-weather-new.json');
+
+    // 测试完成，不再需要legacy格式
+    console.log('✅ 所有测试文件已生成');
 
     // 简单的结果验证
-    const typeCount = Object.keys(analysisResult).length;
     console.log(`\n📈 分析统计:`);
-    console.log(`- 分析的属性类型数量: ${typeCount}`);
-    console.log(`- 队伍宝可梦数量: ${teamParsed.team.length}`);
+    console.log(`- 分析的属性类型数量: ${basicResult.summary.totalTypes}`);
+    console.log(`- 队伍宝可梦数量: ${basicResult.summary.teamSize}`);
+    console.log(`- 主要弱点数量: ${basicResult.summary.weaknesses.length}`);
+    console.log(`- 主要抗性数量: ${basicResult.summary.resistances.length}`);
+    console.log(`- 免疫属性数量: ${basicResult.summary.immunities.length}`);
+
+    // 显示分析摘要
+    console.log('\n📋 分析摘要:');
+    if (basicResult.summary.weaknesses.length > 0) {
+      console.log('主要弱点:');
+      basicResult.summary.weaknesses.slice(0, 3).forEach(w => {
+        console.log(`  - ${w.type}: ${w.count}只宝可梦`);
+      });
+    }
+
+    if (basicResult.summary.resistances.length > 0) {
+      console.log('主要抗性:');
+      basicResult.summary.resistances.slice(0, 3).forEach(r => {
+        console.log(`  - ${r.type}: ${r.count}只宝可梦`);
+      });
+    }
+
+    if (basicResult.summary.immunities.length > 0) {
+      console.log('完全免疫:');
+      basicResult.summary.immunities.slice(0, 3).forEach(i => {
+        console.log(`  - ${i.type}: ${i.count}只宝可梦`);
+      });
+    }
+
+    // 性能测试
+    console.log('\n⚡ 性能测试:');
+    const startTime = Date.now();
+    for (let i = 0; i < 100; i++) {
+      analyzer.analyze(teamParsed);
+    }
+    const endTime = Date.now();
+    console.log(`- 100次分析耗时: ${endTime - startTime}ms`);
+    console.log(`- 平均每次分析耗时: ${(endTime - startTime) / 100}ms`);
 
     console.log('\n🎉 测试完成！');
 
@@ -134,8 +183,40 @@ function runResistanceAnalysisTest(): void {
   }
 }
 
-// 如果直接运行此文件，则执行测试
-// 在ES模块中，我们直接调用测试函数
-runResistanceAnalysisTest();
+/**
+ * 运行API对比测试
+ */
+function runAPIComparisonTest(): void {
+  console.log('\n🔄 运行新旧API对比测试...\n');
 
-export { runResistanceAnalysisTest };
+  try {
+    const teamParsed = Team.import(teamExportFormat) as Team<PokemonSet<string>>;
+
+    // 新API测试
+    const newAnalyzer = new ResistanceAnalyzer(9);
+    const newStartTime = Date.now();
+    const newResult = newAnalyzer.analyze(teamParsed);
+    const newEndTime = Date.now();
+
+    // 验证数据一致性
+    const newFireResistance = getPokemonResistance(newResult, 0, 'Fire');
+    console.log(`新API - Incineroar对火属性抗性: ${newFireResistance}`);
+    console.log(`新API - 分析耗时: ${newEndTime - newStartTime}ms`);
+
+    // 验证数据结构
+    console.log(`新API - 数据结构验证:`);
+    console.log(`  - typeResistances长度: ${newResult.typeResistances.length}`);
+    console.log(`  - pokemonData长度: ${newResult.pokemonData.length}`);
+    console.log(`  - 包含metadata: ${!!newResult.metadata}`);
+    console.log(`  - 包含summary: ${!!newResult.summary}`);
+
+    console.log('\n✅ API对比测试完成');
+
+  } catch (error) {
+    console.error('❌ API对比测试失败:', error);
+  }
+}
+
+// 执行测试
+runResistanceAnalysisTest();
+runAPIComparisonTest();

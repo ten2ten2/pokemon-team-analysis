@@ -252,6 +252,15 @@
     "typeAttack": "屬性攻擊",
     "noEffectiveAttacks": "所有隊伍成員都以一般傷害承受此屬性攻擊",
     "noData": "無抗性資料",
-    "calculating": "正在計算抗性資料..."
+    "calculating": "正在計算抗性資料...",
+    "summary": {
+      "title": "分析摘要",
+      "weaknesses": "主要弱點",
+      "resistances": "主要抗性",
+      "immunities": "完全免疫",
+      "noWeaknesses": "隊伍無明顯弱點",
+      "noResistances": "隊伍無明顯抗性",
+      "noImmunities": "隊伍無屬性免疫"
+    }
   }
 }

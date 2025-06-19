@@ -252,6 +252,15 @@
     "typeAttack": "属性攻击",
     "noEffectiveAttacks": "所有队伍成员都正常承受此属性攻击",
     "noData": "暂无抗性数据",
-    "calculating": "正在计算抗性数据..."
+    "calculating": "正在计算抗性数据...",
+    "summary": {
+      "title": "分析摘要",
+      "weaknesses": "主要弱点",
+      "resistances": "主要抗性",
+      "immunities": "完全免疫",
+      "noWeaknesses": "队伍无明显弱点",
+      "noResistances": "队伍无明显抗性",
+      "noImmunities": "队伍无属性免疫"
+    }
   }
 }

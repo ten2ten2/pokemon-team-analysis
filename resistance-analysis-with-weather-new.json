@@ -1,0 +1,1755 @@
+{
+  "typeResistances": [
+    {
+      "type": "Bug",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "2": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 1,
+        "1": 2,
+        "2": 1,
+        "3": 0.5,
+        "4": 1,
+        "5": 0.5
+      },
+      "teamResistanceLevel": 1
+    },
+    {
+      "type": "Dark",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "2": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          }
+        ],
+        "0.25": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 0.5,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 0.25,
+        "5": 2
+      },
+      "teamResistanceLevel": 1
+    },
+    {
+      "type": "Dragon",
+      "multipliers": {
+        "0": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "1": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "2": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 0,
+        "5": 2
+      },
+      "teamResistanceLevel": 0
+    },
+    {
+      "type": "Electric",
+      "multipliers": {
+        "0": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "1": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 1,
+        "1": 0.5,
+        "2": 0.5,
+        "3": 0,
+        "4": 1,
+        "5": 0.5
+      },
+      "teamResistanceLevel": 4
+    },
+    {
+      "type": "Fairy",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "2": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 2,
+        "5": 2
+      },
+      "teamResistanceLevel": -2
+    },
+    {
+      "type": "Fighting",
+      "multipliers": {
+        "0": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "1": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "2": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 2,
+        "1": 1,
+        "2": 1,
+        "3": 0.5,
+        "4": 1,
+        "5": 0
+      },
+      "teamResistanceLevel": 1
+    },
+    {
+      "type": "Fire",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "0.25": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 0.25,
+        "1": 1,
+        "2": 0.5,
+        "3": 0.5,
+        "4": 0.5,
+        "5": 0.25
+      },
+      "teamResistanceLevel": 1
+    },
+    {
+      "type": "Flying",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "2": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 1,
+        "1": 2,
+        "2": 0.5,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "teamResistanceLevel": 0
+    },
+    {
+      "type": "Ghost",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "2": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 0.5,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 0.5,
+        "5": 2
+      },
+      "teamResistanceLevel": 1
+    },
+    {
+      "type": "Grass",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 0.5,
+        "1": 0.5,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 0.5
+      },
+      "teamResistanceLevel": 3
+    },
+    {
+      "type": "Ground",
+      "multipliers": {
+        "0": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "1": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "2": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 2,
+        "1": 0.5,
+        "2": 2,
+        "3": 0,
+        "4": 1,
+        "5": 1
+      },
+      "teamResistanceLevel": 0
+    },
+    {
+      "type": "Ice",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "2": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "4": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 0.5,
+        "1": 2,
+        "2": 1,
+        "3": 4,
+        "4": 1,
+        "5": 2
+      },
+      "teamResistanceLevel": -2
+    },
+    {
+      "type": "Normal",
+      "multipliers": {
+        "0": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "1": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 0
+      },
+      "teamResistanceLevel": 1
+    },
+    {
+      "type": "Poison",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          }
+        ],
+        "2": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 1,
+        "1": 2,
+        "2": 1,
+        "3": 0.5,
+        "4": 2,
+        "5": 0.5
+      },
+      "teamResistanceLevel": 0
+    },
+    {
+      "type": "Psychic",
+      "multipliers": {
+        "0": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "1": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 0,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 0,
+        "5": 1
+      },
+      "teamResistanceLevel": 2
+    },
+    {
+      "type": "Rock",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "2": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 2,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "teamResistanceLevel": -1
+    },
+    {
+      "type": "Steel",
+      "multipliers": {
+        "1": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ],
+        "2": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "0.5": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 0.5,
+        "1": 1,
+        "2": 0.5,
+        "3": 1,
+        "4": 2,
+        "5": 1
+      },
+      "teamResistanceLevel": 1
+    },
+    {
+      "type": "Water",
+      "multipliers": {
+        "3": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ],
+        "1.5": [
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ],
+        "0.75": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      "pokemonMultipliers": {
+        "0": 3,
+        "1": 0.75,
+        "2": 1.5,
+        "3": 3,
+        "4": 1.5,
+        "5": 0.75
+      },
+      "teamResistanceLevel": 0
+    }
+  ],
+  "pokemonData": [
+    {
+      "name": "Incineroar",
+      "ability": "Intimidate",
+      "item": "Safety Goggles",
+      "species": "Incineroar",
+      "index": 0
+    },
+    {
+      "name": "Rillaboom",
+      "ability": "Grassy Surge",
+      "item": "Assault Vest",
+      "species": "Rillaboom",
+      "index": 1
+    },
+    {
+      "name": "Regieleki",
+      "ability": "Transistor",
+      "item": "Focus Sash",
+      "species": "Regieleki",
+      "index": 2
+    },
+    {
+      "name": "Landorus-Therian",
+      "ability": "Intimidate",
+      "item": "Life Orb",
+      "species": "Landorus-Therian",
+      "index": 3
+    },
+    {
+      "name": "Grimmsnarl",
+      "ability": "Prankster",
+      "item": "Light Clay",
+      "species": "Grimmsnarl",
+      "index": 4
+    },
+    {
+      "name": "Dragapult",
+      "ability": "Clear Body",
+      "item": "Choice Specs",
+      "species": "Dragapult",
+      "index": 5
+    }
+  ],
+  "summary": {
+    "totalTypes": 18,
+    "teamSize": 6,
+    "weaknesses": [
+      {
+        "type": "Water",
+        "count": 4,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      {
+        "type": "Ice",
+        "count": 3,
+        "pokemons": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ]
+      },
+      {
+        "type": "Fairy",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Ground",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          }
+        ]
+      },
+      {
+        "type": "Poison",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      {
+        "type": "Bug",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          }
+        ]
+      },
+      {
+        "type": "Dark",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Dragon",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Fighting",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          }
+        ]
+      },
+      {
+        "type": "Flying",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          }
+        ]
+      },
+      {
+        "type": "Ghost",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Rock",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          }
+        ]
+      },
+      {
+        "type": "Steel",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      }
+    ],
+    "resistances": [
+      {
+        "type": "Fire",
+        "count": 5,
+        "pokemons": [
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          },
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Electric",
+        "count": 3,
+        "pokemons": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Grass",
+        "count": 3,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Bug",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Dark",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      {
+        "type": "Ghost",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      {
+        "type": "Poison",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Steel",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          }
+        ]
+      },
+      {
+        "type": "Water",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          },
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Fighting",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ]
+      },
+      {
+        "type": "Flying",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Regieleki",
+            "ability": "Transistor",
+            "item": "Focus Sash",
+            "species": "Regieleki",
+            "index": 2
+          }
+        ]
+      },
+      {
+        "type": "Ground",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Rillaboom",
+            "ability": "Grassy Surge",
+            "item": "Assault Vest",
+            "species": "Rillaboom",
+            "index": 1
+          }
+        ]
+      },
+      {
+        "type": "Ice",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          }
+        ]
+      }
+    ],
+    "immunities": [
+      {
+        "type": "Psychic",
+        "count": 2,
+        "pokemons": [
+          {
+            "name": "Incineroar",
+            "ability": "Intimidate",
+            "item": "Safety Goggles",
+            "species": "Incineroar",
+            "index": 0
+          },
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      {
+        "type": "Dragon",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Grimmsnarl",
+            "ability": "Prankster",
+            "item": "Light Clay",
+            "species": "Grimmsnarl",
+            "index": 4
+          }
+        ]
+      },
+      {
+        "type": "Electric",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ]
+      },
+      {
+        "type": "Fighting",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "Ground",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Landorus-Therian",
+            "ability": "Intimidate",
+            "item": "Life Orb",
+            "species": "Landorus-Therian",
+            "index": 3
+          }
+        ]
+      },
+      {
+        "type": "Normal",
+        "count": 1,
+        "pokemons": [
+          {
+            "name": "Dragapult",
+            "ability": "Clear Body",
+            "item": "Choice Specs",
+            "species": "Dragapult",
+            "index": 5
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "generation": 9,
+    "weather": "Rain",
+    "terrain": "Electric Terrain",
+    "calculatedAt": "2025-06-19T00:57:20.035Z"
+  }
+}

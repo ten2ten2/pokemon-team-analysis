@@ -252,6 +252,15 @@
     "typeAttack": "Type Attack",
     "noEffectiveAttacks": "All team members take normal damage from this type attack",
     "noData": "No resistance data available",
-    "calculating": "Calculating resistance data..."
+    "calculating": "Calculating resistance data...",
+    "summary": {
+      "title": "Analysis Summary",
+      "weaknesses": "Major Weaknesses",
+      "resistances": "Major Resistances",
+      "immunities": "Complete Immunities",
+      "noWeaknesses": "Team has no major weaknesses",
+      "noResistances": "Team has no major resistances",
+      "noImmunities": "Team has no type immunities"
+    }
   }
 }

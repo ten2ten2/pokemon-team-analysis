@@ -17,219 +17,389 @@ export interface ResistanceItem {
   name: string;
   ability?: string;
   item?: string;
+  species: string;
+  index: number; // 宝可梦在队伍中的索引
 }
 
-export interface ResistanceReport {
-  [type: string]: { [multiplier: number]: Array<ResistanceItem> };
+export interface TypeResistanceData {
+  type: string;
+  multipliers: { [multiplier: number]: ResistanceItem[] };
+  pokemonMultipliers: { [pokemonIndex: number]: number }; // 快速查找特定宝可梦的倍率
+  teamResistanceLevel: number; // 队伍整体抗性等级 (-6 到 +6)
 }
 
-// ==================== 辅助函数 ====================
-
-/**
- * 将抗性报告转换为数组
- * @param report 抗性报告
- * @returns 数组
- */
-export function normalizeReport(report: ResistanceReport): { type: string; multiplier: { [multiplier: number]: ResistanceItem[]; }; }[] {
-  return Object.entries(report).map(([type, multiplier]) => ({ type, multiplier }));
-}
-
-/**
- * 处理黑色铁球的特殊效果
- */
-function handleIronBallEffect(
-  pokemon: PokemonSet | Partial<PokemonSet>,
-  attackType: string,
-  pokemonTypes: string[],
-  baseMult: number,
-  abilityMult: number
-): { baseMult: number; abilityMult: number } {
-  if (pokemon.item !== 'Iron Ball' || attackType !== 'Ground') {
-    return { baseMult, abilityMult };
-  }
-
-  let newBaseMult = baseMult;
-  let newAbilityMult = abilityMult;
-
-  // 地面属性招式对飞行属性宝可梦伤害固定 x1
-  if (hasType(pokemonTypes, 'Flying')) {
-    newBaseMult = 1;
-  }
-  // 地面属性招式对漂浮特性宝可梦，漂浮特性失去效果
-  else if (pokemon.ability === 'Levitate') {
-    newAbilityMult = 1;
-  }
-
-  return { baseMult: newBaseMult, abilityMult: newAbilityMult };
-}
-
-/**
- * 处理标靶道具的特殊效果
- */
-function handleRingTargetEffect(
-  pokemon: PokemonSet | Partial<PokemonSet>,
-  attackType: string,
-  pokemonTypes: string[],
-  types: any
-): number {
-  if (pokemon.item !== 'Ring Target') {
-    return types.totalEffectiveness(attackType, pokemonTypes);
-  }
-
-  const targetType = RING_TARGET_EFFECTS[attackType];
-  if (targetType && hasType(pokemonTypes, targetType)) {
-    const filteredTypes = filterTypes(pokemonTypes, targetType);
-    return types.totalEffectiveness(attackType, filteredTypes);
-  }
-
-  return types.totalEffectiveness(attackType, pokemonTypes);
-}
-
-/**
- * 计算单个宝可梦对特定属性攻击的抗性倍率
- */
-function calculatePokemonResistance(
-  pokemon: PokemonSet | Partial<PokemonSet>,
-  attackType: string,
-  types: any,
-  species: any
-): number {
-  const pokemonSpecies = species.get(pokemon.species as string);
-  const pokemonTypes = pokemonSpecies?.types ?? [];
-
-  // 1. 计算基础属性抗性
-  let baseMult = types.totalEffectiveness(attackType, pokemonTypes);
-
-  // 2. 处理标靶道具的特殊效果（需要在基础计算后处理）
-  baseMult = handleRingTargetEffect(pokemon, attackType, pokemonTypes, types);
-
-  // 3. 计算特性影响
-  let abilityMult = getAbilityMultiplier(pokemon.ability, attackType);
-
-  // 4. 处理黑色铁球的特殊效果
-  const ironBallResult = handleIronBallEffect(
-    pokemon,
-    attackType,
-    pokemonTypes,
-    baseMult,
-    abilityMult
-  );
-  baseMult = ironBallResult.baseMult;
-  abilityMult = ironBallResult.abilityMult;
-
-  // 5. 计算道具影响
-  const itemMult = getItemMultiplier(pokemon.item, attackType);
-
-  return baseMult * abilityMult * itemMult;
-}
-
-/**
- * 创建抗性项目对象
- */
-function createResistanceItem(pokemon: PokemonSet | Partial<PokemonSet>): ResistanceItem {
-  return {
-    name: getPokemonDisplayName(pokemon),
-    ability: pokemon.ability,
-    item: pokemon.item,
+export interface ResistanceAnalysisResult {
+  typeResistances: TypeResistanceData[];
+  pokemonData: ResistanceItem[];
+  summary: {
+    totalTypes: number;
+    teamSize: number;
+    weaknesses: { type: string; count: number; pokemons: ResistanceItem[] }[];
+    resistances: { type: string; count: number; pokemons: ResistanceItem[] }[];
+    immunities: { type: string; count: number; pokemons: ResistanceItem[] }[];
+  };
+  metadata: {
+    generation: number;
+    weather?: string;
+    terrain?: string;
+    calculatedAt: Date;
   };
 }
 
-// ==================== 主要函数 ====================
+// ==================== 数据处理类 ====================
 
-/**
- * 分析队伍对各属性攻击的抗性
- * @param team 宝可梦队伍
- * @param genNum 世代编号
- * @returns 抗性分析报告
- */
-export function resistanceAnalysis(team: Team, genNum: number): ResistanceReport {
-  const result: ResistanceReport = {};
-  const gen = new Generations(Dex).get(genNum);
-  const types = gen.types;
-  const species = gen.species;
+export class ResistanceAnalyzer {
+  private gen: any;
+  private types: any;
+  private species: any;
+  private generation: number;
 
-  // 获取所有属性类型 (排除星晶属性)
-  const typeList = Array.from(gen.types, (t) => t.name).filter(
-    type => type !== 'Stellar'
-  );
+  constructor(genNum: number = 9) {
+    this.generation = genNum;
+    this.gen = new Generations(Dex).get(genNum);
+    this.types = this.gen.types;
+    this.species = this.gen.species;
+  }
 
-  const pokemonList = Array.from(team.team);
+  /**
+   * 分析队伍的完整抗性数据
+   */
+  analyze(team: Team, weather?: string, terrain?: string): ResistanceAnalysisResult {
+    const pokemonList = Array.from(team.team);
+    const pokemonData = this.createPokemonData(pokemonList);
+    const typeList = this.getTypeList();
+    const typeResistances = this.calculateTypeResistances(pokemonData, typeList);
 
-  // 遍历每个攻击属性
-  for (const attackType of typeList) {
-    result[attackType] = {};
-
-    // 遍历队伍中的每个宝可梦
-    for (const pokemon of pokemonList) {
-      const finalMultiplier = calculatePokemonResistance(
-        pokemon,
-        attackType,
-        types,
-        species
-      );
-
-      // 将结果添加到报告中
-      if (!result[attackType][finalMultiplier]) {
-        result[attackType][finalMultiplier] = [];
-      }
-      result[attackType][finalMultiplier].push(createResistanceItem(pokemon));
+    // 应用天气和场地效果
+    if (weather || terrain) {
+      this.applyEnvironmentEffects(typeResistances, weather, terrain);
     }
+
+    const summary = this.generateSummary(typeResistances, pokemonData);
+
+    return {
+      typeResistances,
+      pokemonData,
+      summary,
+      metadata: {
+        generation: this.generation,
+        weather,
+        terrain,
+        calculatedAt: new Date()
+      }
+    };
   }
 
-  return result;
-}
-
-/**
- * 根据天气和场地状态，返回修正后的抗性报告
- * @param report 抗性报告
- * @param weather 天气
- * @param terrain 场地
- * @returns 抗性报告
- */
-export function resistanceUnderStatus(report: { type: string; multiplier: { [multiplier: number]: ResistanceItem[]; }; }[], weather?: string, terrain?: string): { type: string; multiplier: { [multiplier: number]: ResistanceItem[]; }; }[] {
-  // 如果没有天气+没有场地，直接返回原报告
-  if (!weather && !terrain) {
-    return report;
+  /**
+   * 创建宝可梦数据数组
+   */
+  private createPokemonData(pokemonList: (PokemonSet | Partial<PokemonSet>)[]): ResistanceItem[] {
+    return pokemonList.map((pokemon, index) => ({
+      name: getPokemonDisplayName(pokemon),
+      ability: pokemon.ability,
+      item: pokemon.item,
+      species: pokemon.species || 'Unknown',
+      index
+    }));
   }
 
-  // 如果天气存在，则根据天气修正抗性报告
-  if (weather) {
-    report = report.map(item => {
-      const weatherMultiplier = getWeatherMultiplier(weather, item.type);
+  /**
+   * 获取所有属性类型（排除星晶属性）
+   */
+  private getTypeList(): string[] {
+    return Array.from(this.gen.types, (t: any) => t.name).filter(
+      type => type !== 'Stellar'
+    );
+  }
+
+  /**
+   * 计算所有属性的抗性数据
+   */
+  private calculateTypeResistances(
+    pokemonData: ResistanceItem[],
+    typeList: string[]
+  ): TypeResistanceData[] {
+    return typeList.map(attackType => {
+      const multipliers: { [multiplier: number]: ResistanceItem[] } = {};
+      const pokemonMultipliers: { [pokemonIndex: number]: number } = {};
+      let teamResistanceLevel = 0;
+
+      pokemonData.forEach(pokemon => {
+        const multiplier = this.calculatePokemonResistance(pokemon, attackType);
+
+        // 存储倍率映射
+        pokemonMultipliers[pokemon.index] = multiplier;
+
+        // 按倍率分组
+        if (!multipliers[multiplier]) {
+          multipliers[multiplier] = [];
+        }
+        multipliers[multiplier].push(pokemon);
+
+        // 计算队伍抗性等级
+        if (multiplier < 1) {
+          teamResistanceLevel += 1; // 抵抗
+        } else if (multiplier > 1) {
+          teamResistanceLevel -= 1; // 弱点
+        }
+      });
+
       return {
-        ...item,
-        multiplier: Object.entries(item.multiplier).reduce((acc, [mult, pokemons]) => {
-          // 分离有万能伞和没有万能伞的宝可梦
-          const umbrellaPokemons = pokemons.filter(p => p.item === 'Utility Umbrella');
-          const normalPokemons = pokemons.filter(p => p.item !== 'Utility Umbrella');
-
-          // 有万能伞的宝可梦不受晴天和雨天影响
-          if (umbrellaPokemons.length > 0) {
-            // 只有在晴天或雨天时万能伞才生效
-            if (weather === 'Rain' || weather === 'Harsh Sunlight') {
-              acc[Number(mult)] = umbrellaPokemons;
-            } else {
-              // 其他天气下万能伞无效，仍然受天气影响
-              const newMult = Number(mult) * weatherMultiplier;
-              if (!acc[newMult]) {
-                acc[newMult] = [];
-              }
-              acc[newMult] = [...acc[newMult], ...umbrellaPokemons];
-            }
-          }
-
-          // 没有万能伞的宝可梦受天气影响
-          if (normalPokemons.length > 0) {
-            const newMult = Number(mult) * weatherMultiplier;
-            if (!acc[newMult]) {
-              acc[newMult] = [];
-            }
-            acc[newMult] = [...acc[newMult], ...normalPokemons];
-          }
-          return acc;
-        }, {} as { [multiplier: number]: ResistanceItem[] })
+        type: attackType,
+        multipliers,
+        pokemonMultipliers,
+        teamResistanceLevel
       };
     });
   }
-  return report;
+
+  /**
+   * 计算单个宝可梦对特定属性的抗性倍率
+   */
+  private calculatePokemonResistance(pokemon: ResistanceItem, attackType: string): number {
+    // 通过species获取完整的宝可梦数据
+    const pokemonSpecies = this.species.get(pokemon.species);
+    const pokemonTypes = pokemonSpecies?.types ?? [];
+
+    // 1. 计算基础属性抗性
+    let baseMult = this.types.totalEffectiveness(attackType, pokemonTypes);
+
+    // 2. 处理标靶道具的特殊效果
+    baseMult = this.handleRingTargetEffect(pokemon, attackType, pokemonTypes);
+
+    // 3. 计算特性影响
+    let abilityMult = getAbilityMultiplier(pokemon.ability, attackType);
+
+    // 4. 处理黑色铁球的特殊效果
+    const ironBallResult = this.handleIronBallEffect(
+      pokemon,
+      attackType,
+      pokemonTypes,
+      baseMult,
+      abilityMult
+    );
+    baseMult = ironBallResult.baseMult;
+    abilityMult = ironBallResult.abilityMult;
+
+    // 5. 计算道具影响
+    const itemMult = getItemMultiplier(pokemon.item, attackType);
+
+    return baseMult * abilityMult * itemMult;
+  }
+
+  /**
+   * 处理黑色铁球的特殊效果
+   */
+  private handleIronBallEffect(
+    pokemon: ResistanceItem,
+    attackType: string,
+    pokemonTypes: string[],
+    baseMult: number,
+    abilityMult: number
+  ): { baseMult: number; abilityMult: number } {
+    if (pokemon.item !== 'Iron Ball' || attackType !== 'Ground') {
+      return { baseMult, abilityMult };
+    }
+
+    let newBaseMult = baseMult;
+    let newAbilityMult = abilityMult;
+
+    if (hasType(pokemonTypes, 'Flying')) {
+      newBaseMult = 1;
+    } else if (pokemon.ability === 'Levitate') {
+      newAbilityMult = 1;
+    }
+
+    return { baseMult: newBaseMult, abilityMult: newAbilityMult };
+  }
+
+  /**
+   * 处理标靶道具的特殊效果
+   */
+  private handleRingTargetEffect(
+    pokemon: ResistanceItem,
+    attackType: string,
+    pokemonTypes: string[]
+  ): number {
+    if (pokemon.item !== 'Ring Target') {
+      return this.types.totalEffectiveness(attackType, pokemonTypes);
+    }
+
+    const targetType = RING_TARGET_EFFECTS[attackType];
+    if (targetType && hasType(pokemonTypes, targetType)) {
+      const filteredTypes = filterTypes(pokemonTypes, targetType);
+      return this.types.totalEffectiveness(attackType, filteredTypes);
+    }
+
+    return this.types.totalEffectiveness(attackType, pokemonTypes);
+  }
+
+  /**
+   * 应用天气和场地效果
+   */
+  private applyEnvironmentEffects(
+    typeResistances: TypeResistanceData[],
+    weather?: string,
+    terrain?: string
+  ): void {
+    if (!weather && !terrain) return;
+
+    typeResistances.forEach(typeData => {
+      if (weather) {
+        this.applyWeatherEffects(typeData, weather);
+      }
+      // TODO: 实现场地效果
+    });
+  }
+
+  /**
+   * 应用天气效果
+   */
+  private applyWeatherEffects(typeData: TypeResistanceData, weather: string): void {
+    const weatherMultiplier = getWeatherMultiplier(weather, typeData.type);
+    if (weatherMultiplier === 1) return;
+
+    const newMultipliers: { [multiplier: number]: ResistanceItem[] } = {};
+    const newPokemonMultipliers: { [pokemonIndex: number]: number } = {};
+
+    Object.entries(typeData.multipliers).forEach(([mult, pokemons]) => {
+      const originalMult = parseFloat(mult);
+
+      pokemons.forEach(pokemon => {
+        let finalMult = originalMult;
+
+        // 万能伞特殊处理
+        if (pokemon.item === 'Utility Umbrella' &&
+          (weather === 'Rain' || weather === 'Harsh Sunlight')) {
+          // 万能伞在雨天和晴天下不受天气影响
+          finalMult = originalMult;
+        } else {
+          finalMult = originalMult * weatherMultiplier;
+        }
+
+        newPokemonMultipliers[pokemon.index] = finalMult;
+
+        if (!newMultipliers[finalMult]) {
+          newMultipliers[finalMult] = [];
+        }
+        newMultipliers[finalMult].push(pokemon);
+      });
+    });
+
+    typeData.multipliers = newMultipliers;
+    typeData.pokemonMultipliers = newPokemonMultipliers;
+  }
+
+  /**
+   * 生成分析摘要
+   */
+  private generateSummary(
+    typeResistances: TypeResistanceData[],
+    pokemonData: ResistanceItem[]
+  ): ResistanceAnalysisResult['summary'] {
+    const weaknesses: { type: string; count: number; pokemons: ResistanceItem[]; weightScore: number }[] = [];
+    const resistances: { type: string; count: number; pokemons: ResistanceItem[]; weightScore: number }[] = [];
+    const immunities: { type: string; count: number; pokemons: ResistanceItem[]; weightScore: number }[] = [];
+
+    typeResistances.forEach(typeData => {
+      const weakPokemons: ResistanceItem[] = [];
+      const resistPokemons: ResistanceItem[] = [];
+      const immunePokemons: ResistanceItem[] = [];
+      let weaknessWeight = 0;
+      let resistanceWeight = 0;
+
+      Object.entries(typeData.multipliers).forEach(([mult, pokemons]) => {
+        const multiplier = parseFloat(mult);
+        if (multiplier === 0) {
+          immunePokemons.push(...pokemons);
+        } else if (multiplier < 1) {
+          resistPokemons.push(...pokemons);
+          // 抗性权重：越小的倍率权重越高 (1 - multiplier)
+          resistanceWeight += pokemons.length * (1 - multiplier);
+        } else if (multiplier > 1) {
+          weakPokemons.push(...pokemons);
+          // 弱点权重：越大的倍率权重越高 (multiplier - 1)
+          weaknessWeight += pokemons.length * (multiplier - 1);
+        }
+      });
+
+      if (weakPokemons.length > 0) {
+        weaknesses.push({
+          type: typeData.type,
+          count: weakPokemons.length,
+          pokemons: weakPokemons,
+          weightScore: weaknessWeight
+        });
+      }
+      if (resistPokemons.length > 0) {
+        resistances.push({
+          type: typeData.type,
+          count: resistPokemons.length,
+          pokemons: resistPokemons,
+          weightScore: resistanceWeight
+        });
+      }
+      if (immunePokemons.length > 0) {
+        immunities.push({
+          type: typeData.type,
+          count: immunePokemons.length,
+          pokemons: immunePokemons,
+          weightScore: immunePokemons.length // 免疫的权重就是数量
+        });
+      }
+    });
+
+    // 排序：首先按数量，数量相同时按权重分数
+    const sortByCountAndWeight = (a: { count: number; weightScore: number }, b: { count: number; weightScore: number }) => {
+      if (b.count !== a.count) {
+        return b.count - a.count; // 数量优先
+      }
+      return b.weightScore - a.weightScore; // 数量相同时按权重
+    };
+
+    return {
+      totalTypes: typeResistances.length,
+      teamSize: pokemonData.length,
+      weaknesses: weaknesses.sort(sortByCountAndWeight),
+      resistances: resistances.sort(sortByCountAndWeight),
+      immunities: immunities.sort(sortByCountAndWeight)
+    };
+  }
+}
+
+// ==================== 便捷函数 ====================
+
+/**
+ * 获取特定宝可梦对特定属性的抗性倍率（优化的查找）
+ */
+export function getPokemonResistance(
+  result: ResistanceAnalysisResult,
+  pokemonIndex: number,
+  attackType: string
+): number {
+  const typeData = result.typeResistances.find(t => t.type === attackType);
+  return typeData?.pokemonMultipliers[pokemonIndex] ?? 1;
+}
+
+/**
+ * 获取队伍对特定属性的整体抗性等级
+ */
+export function getTeamResistanceLevel(
+  result: ResistanceAnalysisResult,
+  attackType: string
+): number {
+  const typeData = result.typeResistances.find(t => t.type === attackType);
+  return typeData?.teamResistanceLevel ?? 0;
+}
+
+/**
+ * 获取具有特定倍率的宝可梦列表
+ */
+export function getPokemonWithMultiplier(
+  result: ResistanceAnalysisResult,
+  attackType: string,
+  multiplier: number
+): ResistanceItem[] {
+  const typeData = result.typeResistances.find(t => t.type === attackType);
+  return typeData?.multipliers[multiplier] ?? [];
 }

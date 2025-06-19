@@ -252,6 +252,15 @@
     "typeAttack": "タイプ攻撃",
     "noEffectiveAttacks": "すべてのチームメンバーがこのタイプの攻撃を等倍で受けます",
     "noData": "相性データがありません",
-    "calculating": "相性データを計算中..."
+    "calculating": "相性データを計算中...",
+    "summary": {
+      "title": "分析サマリー",
+      "weaknesses": "主な弱点",
+      "resistances": "主な耐性",
+      "immunities": "完全無効",
+      "noWeaknesses": "チームに明確な弱点はありません",
+      "noResistances": "チームに明確な耐性はありません",
+      "noImmunities": "チームにタイプ無効はありません"
+    }
   }
 }

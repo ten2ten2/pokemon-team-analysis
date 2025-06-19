@@ -252,6 +252,15 @@
     "typeAttack": "타입 공격",
     "noEffectiveAttacks": "모든 팀 멤버가 이 타입 공격을 보통 데미지로 받습니다",
     "noData": "상성 데이터가 없습니다",
-    "calculating": "상성 데이터 계산 중..."
+    "calculating": "상성 데이터 계산 중...",
+    "summary": {
+      "title": "분석 요약",
+      "weaknesses": "주요 약점",
+      "resistances": "주요 저항",
+      "immunities": "완전 무효",
+      "noWeaknesses": "팀에 명확한 약점이 없습니다",
+      "noResistances": "팀에 명확한 저항이 없습니다",
+      "noImmunities": "팀에 타입 무효가 없습니다"
+    }
   }
 }

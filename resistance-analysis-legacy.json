@@ -1,0 +1,954 @@
+[
+  {
+    "type": "Bug",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "2": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Dark",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "2": [
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        }
+      ],
+      "0.25": [
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ]
+    }
+  },
+  {
+    "type": "Dragon",
+    "multiplier": {
+      "0": [
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "1": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "2": [
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Electric",
+    "multiplier": {
+      "0": [
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "1": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Fairy",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "2": [
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Fighting",
+    "multiplier": {
+      "0": [
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "1": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "2": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ]
+    }
+  },
+  {
+    "type": "Fire",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "2": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Flying",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "2": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        }
+      ]
+    }
+  },
+  {
+    "type": "Ghost",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "2": [
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ]
+    }
+  },
+  {
+    "type": "Grass",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Ground",
+    "multiplier": {
+      "0": [
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "1": [
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "2": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        }
+      ]
+    }
+  },
+  {
+    "type": "Ice",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "2": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "4": [
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        }
+      ]
+    }
+  },
+  {
+    "type": "Normal",
+    "multiplier": {
+      "0": [
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "1": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ]
+    }
+  },
+  {
+    "type": "Poison",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        }
+      ],
+      "2": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Psychic",
+    "multiplier": {
+      "0": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "1": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  },
+  {
+    "type": "Rock",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "2": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        }
+      ]
+    }
+  },
+  {
+    "type": "Steel",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ],
+      "2": [
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        }
+      ]
+    }
+  },
+  {
+    "type": "Water",
+    "multiplier": {
+      "1": [
+        {
+          "name": "Regieleki",
+          "ability": "Transistor",
+          "item": "Focus Sash",
+          "species": "Regieleki",
+          "index": 2
+        },
+        {
+          "name": "Grimmsnarl",
+          "ability": "Prankster",
+          "item": "Light Clay",
+          "species": "Grimmsnarl",
+          "index": 4
+        }
+      ],
+      "2": [
+        {
+          "name": "Incineroar",
+          "ability": "Intimidate",
+          "item": "Safety Goggles",
+          "species": "Incineroar",
+          "index": 0
+        },
+        {
+          "name": "Landorus-Therian",
+          "ability": "Intimidate",
+          "item": "Life Orb",
+          "species": "Landorus-Therian",
+          "index": 3
+        }
+      ],
+      "0.5": [
+        {
+          "name": "Rillaboom",
+          "ability": "Grassy Surge",
+          "item": "Assault Vest",
+          "species": "Rillaboom",
+          "index": 1
+        },
+        {
+          "name": "Dragapult",
+          "ability": "Clear Body",
+          "item": "Choice Specs",
+          "species": "Dragapult",
+          "index": 5
+        }
+      ]
+    }
+  }
+]

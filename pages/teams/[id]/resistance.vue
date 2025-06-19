@@ -4,7 +4,13 @@ import type { Team as TeamType } from '~/types/team'
 import type { Pokemon } from '~/types/pokemon'
 import { getSprite } from '~/utils/teamUtils'
 import { getTypeBadgeClass, getTypeIconClass } from '~/utils/pokemonTypeUtils'
-import { resistanceAnalysis, normalizeReport, resistanceUnderStatus, type ResistanceItem } from '~/lib/analyzer/resistanceAnalysis'
+import {
+  ResistanceAnalyzer,
+  getPokemonResistance,
+  getTeamResistanceLevel,
+  type ResistanceAnalysisResult,
+  type ResistanceItem
+} from '~/lib/analyzer/resistanceAnalysis'
 import { WEATHER_EFFECTS, TERRAIN_EFFECTS } from '~/lib/analyzer/resistanceUtils'
 
 const route = useRoute()
@@ -14,9 +20,12 @@ const activeTab = ref('resistance')
 const teamId = route.params.id as string
 const selectedWeather = ref<string>('')
 const selectedTerrain = ref<string>('')
-const resistanceData = ref<any[]>([])
+const resistanceResult = ref<ResistanceAnalysisResult | null>(null)
 const loading = ref(false)
 const currentTeam = ref<TeamType | null>(null)
+
+// 创建抗性分析器实例
+const analyzer = new ResistanceAnalyzer(9)
 
 // Tab 配置
 const tabs = computed(() => [
@@ -41,18 +50,15 @@ const calculateResistance = async (team: TeamType) => {
     const teamParsed = Team.import(team.teamRawData)
     if (!teamParsed) return
 
-    // 执行抗性分析
-    const analysisResult = normalizeReport(resistanceAnalysis(teamParsed, 9))
-
-    // 根据天气和场地状态修正
-    resistanceData.value = resistanceUnderStatus(
-      analysisResult,
+    // 执行抗性分析（包含天气和场地效果）
+    resistanceResult.value = analyzer.analyze(
+      teamParsed,
       selectedWeather.value || undefined,
       selectedTerrain.value || undefined
     )
   } catch (error) {
     console.error('抗性分析失败:', error)
-    resistanceData.value = []
+    resistanceResult.value = null
   } finally {
     loading.value = false
   }
@@ -105,66 +111,20 @@ const terrainOptions = computed(() => [
 
 // 获取所有属性类型
 const getAllTypes = computed(() => {
-  if (!resistanceData.value.length) return []
-  return resistanceData.value.map(item => item.type)
+  if (!resistanceResult.value) return []
+  return resistanceResult.value.typeResistances.map(tr => tr.type)
 })
 
-// 获取所有可能的抗性倍率
-const getAllMultipliers = computed(() => {
-  const multipliers = new Set<number>()
-
-  resistanceData.value.forEach(typeData => {
-    Object.keys(typeData.multiplier).forEach(mult => {
-      const multiplier = parseFloat(mult)
-      if (multiplier !== 1) { // 排除 1 倍率
-        multipliers.add(multiplier)
-      }
-    })
-  })
-
-  return Array.from(multipliers).sort((a, b) => a - b)
-})
-
-// 获取特定属性和倍率下的宝可梦列表
-const getPokemonWithMultiplier = (attackType: string, multiplier: number): ResistanceItem[] => {
-  const typeData = resistanceData.value.find(item => item.type === attackType)
-  if (!typeData) return []
-
-  return (typeData.multiplier[multiplier] as ResistanceItem[]) || []
+// 获取特定宝可梦对特定属性的抗性倍率（优化的查找）
+const getResistanceMultiplier = (pokemonIndex: number, attackType: string): number => {
+  if (!resistanceResult.value) return 1
+  return getPokemonResistance(resistanceResult.value, pokemonIndex, attackType)
 }
 
-// 获取特定宝可梦对特定属性的抗性倍率
-const getResistanceMultiplier = (pokemonSpecies: string, attackType: string): number => {
-  const typeData = resistanceData.value.find(item => item.type === attackType)
-  if (!typeData) return 1
-
-  // 遍历所有倍率，找到包含该宝可梦的倍率
-  for (const [mult, pokemonList] of Object.entries(typeData.multiplier)) {
-    const multiplier = parseFloat(mult)
-    const list = pokemonList as ResistanceItem[]
-    if (list.some(pokemon => pokemon.name.includes(pokemonSpecies))) {
-      return multiplier
-    }
-  }
-
-  return 1 // 默认返回1倍
-}
-
-// 计算队伍对特定属性的整体抵抗程度
-const getTypeResistanceLevel = (attackType: string, teamMembers: Pokemon[]): number => {
-  let level = 0
-
-  teamMembers.forEach(pokemon => {
-    const multiplier = getResistanceMultiplier(pokemon.species, attackType)
-    if (multiplier < 1) {
-      level += 1 // 抵抗，向右+1
-    } else if (multiplier > 1) {
-      level -= 1 // 弱点，向左+1
-    }
-    // multiplier === 1 时不改变level
-  })
-
-  return level
+// 计算队伍对特定属性的整体抵抗程度（优化的查找）
+const getTypeResistanceLevel = (attackType: string): number => {
+  if (!resistanceResult.value) return 0
+  return getTeamResistanceLevel(resistanceResult.value, attackType)
 }
 
 // 获取抵抗程度的竖条显示
@@ -206,6 +166,25 @@ const handleTeamChange = (team: TeamType) => {
   }
 }
 
+// 分析摘要计算属性
+const analysisSummary = computed(() => {
+  return resistanceResult.value?.summary
+})
+
+// 根据宝可梦索引获取完整的宝可梦数据
+const getPokemonByIndex = (index: number, teamData: Pokemon[]): Pokemon | undefined => {
+  return teamData[index]
+}
+
+// 获取宝可梦图片的简化函数
+const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string => {
+  const fullPokemon = getPokemonByIndex(pokemon.index, teamData)
+  if (fullPokemon) {
+    return getSprite(fullPokemon, fullPokemon.shiny ? 'default-shiny' : 'default')
+  }
+  // 如果找不到完整数据，返回默认图片
+  return '/images/pokemon-placeholder.png'
+}
 
 </script>
 
@@ -265,6 +244,165 @@ const handleTeamChange = (team: TeamType) => {
               </div>
             </div>
           </div>
+
+          <!-- 分析摘要 -->
+          <div v-if="analysisSummary && !loading"
+            class="mt-6 bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              {{ t('resistance.summary.title') }}
+            </h3>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- 主要弱点 -->
+              <div class="lg:border-r border-gray-200 dark:border-gray-700 lg:pr-6">
+                <h4 class="text-base font-medium text-red-700 dark:text-red-400 mb-3 flex items-center gap-2">
+                  <AlertTriangle class="w-4 h-4" aria-hidden="true" />
+                  {{ t('resistance.summary.weaknesses') }}
+                </h4>
+                <div v-if="analysisSummary.weaknesses.length > 0" class="space-y-3">
+                  <div v-for="weakness in analysisSummary.weaknesses.slice(0, 4)" :key="weakness.type"
+                    class="bg-red-50 dark:bg-red-900/20 rounded-lg p-3 border border-red-200 dark:border-red-800">
+                    <div class="flex items-center mb-2">
+                      <span :class="getTypeBadgeClass(weakness.type)" class="text-sm font-medium">
+                        <i :class="getTypeIconClass(weakness.type)" aria-hidden="true"></i>
+                        {{ translateName(weakness.type, 'type') }}
+                      </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <div v-for="pokemon in weakness.pokemons" :key="pokemon.index" class="relative group">
+                        <div
+                          class="flex items-center gap-2 bg-white dark:bg-gray-800 rounded-md p-2 border border-red-200 dark:border-red-700">
+                          <NuxtImg :src="getPokemonSprite(pokemon, team.teamData)"
+                            :alt="translateName(pokemon.species, 'species')"
+                            :title="translateName(pokemon.species, 'species')"
+                            class="w-6 h-6 object-contain rounded-full bg-gray-100 dark:bg-gray-700" height="24"
+                            width="24" loading="lazy" />
+                          <span class="text-xs text-gray-700 dark:text-gray-300 truncate max-w-[60px]">
+                            {{ translateName(pokemon.species, 'species') }}
+                          </span>
+                          <span :class="[
+                            'text-xs px-1.5 py-0.5 rounded font-medium',
+                            getMultiplierClass(getResistanceMultiplier(pokemon.index, weakness.type))
+                          ]">
+                            {{ getMultiplierText(getResistanceMultiplier(pokemon.index, weakness.type)) }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div v-else
+                  class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                  <div class="flex items-center gap-2">
+                    <Shield class="w-5 h-5 text-green-600 dark:text-green-400" aria-hidden="true" />
+                    <p class="text-sm text-green-700 dark:text-green-300 font-medium">
+                      {{ t('resistance.summary.noWeaknesses') }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 主要抗性 -->
+              <div class="lg:border-r border-gray-200 dark:border-gray-700 lg:pr-6">
+                <h4 class="text-base font-medium text-green-700 dark:text-green-400 mb-3 flex items-center gap-2">
+                  <Shield class="w-4 h-4" aria-hidden="true" />
+                  {{ t('resistance.summary.resistances') }}
+                </h4>
+                <div v-if="analysisSummary.resistances.length > 0" class="space-y-3">
+                  <div v-for="resistance in analysisSummary.resistances.slice(0, 4)" :key="resistance.type"
+                    class="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
+                    <div class="flex items-center mb-2">
+                      <span :class="getTypeBadgeClass(resistance.type)" class="text-sm font-medium">
+                        <i :class="getTypeIconClass(resistance.type)" aria-hidden="true"></i>
+                        {{ translateName(resistance.type, 'type') }}
+                      </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <div v-for="pokemon in resistance.pokemons" :key="pokemon.index" class="relative group">
+                        <div
+                          class="flex items-center gap-2 bg-white dark:bg-gray-800 rounded-md p-2 border border-green-200 dark:border-green-700">
+                          <NuxtImg :src="getPokemonSprite(pokemon, team.teamData)"
+                            :alt="translateName(pokemon.species, 'species')"
+                            :title="translateName(pokemon.species, 'species')"
+                            class="w-6 h-6 object-contain rounded-full bg-gray-100 dark:bg-gray-700" height="24"
+                            width="24" loading="lazy" />
+                          <span class="text-xs text-gray-700 dark:text-gray-300 truncate max-w-[60px]">
+                            {{ translateName(pokemon.species, 'species') }}
+                          </span>
+                          <span :class="[
+                            'text-xs px-1.5 py-0.5 rounded font-medium',
+                            getMultiplierClass(getResistanceMultiplier(pokemon.index, resistance.type))
+                          ]">
+                            {{ getMultiplierText(getResistanceMultiplier(pokemon.index, resistance.type)) }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div v-else
+                  class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border border-orange-200 dark:border-orange-800">
+                  <div class="flex items-center gap-2">
+                    <AlertTriangle class="w-5 h-5 text-orange-600 dark:text-orange-400" aria-hidden="true" />
+                    <p class="text-sm text-orange-700 dark:text-orange-300 font-medium">
+                      {{ t('resistance.summary.noResistances') }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 免疫 -->
+              <div>
+                <h4 class="text-base font-medium text-blue-700 dark:text-blue-400 mb-3 flex items-center gap-2">
+                  <Check class="w-4 h-4" aria-hidden="true" />
+                  {{ t('resistance.summary.immunities') }}
+                </h4>
+                <div v-if="analysisSummary.immunities.length > 0" class="space-y-3">
+                  <div v-for="immunity in analysisSummary.immunities.slice(0, 4)" :key="immunity.type"
+                    class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+                    <div class="flex items-center mb-2">
+                      <span :class="getTypeBadgeClass(immunity.type)" class="text-sm font-medium">
+                        <i :class="getTypeIconClass(immunity.type)" aria-hidden="true"></i>
+                        {{ translateName(immunity.type, 'type') }}
+                      </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <div v-for="pokemon in immunity.pokemons" :key="pokemon.index" class="relative group">
+                        <div
+                          class="flex items-center gap-2 bg-white dark:bg-gray-800 rounded-md p-2 border border-blue-200 dark:border-blue-700">
+                          <NuxtImg :src="getPokemonSprite(pokemon, team.teamData)"
+                            :alt="translateName(pokemon.species, 'species')"
+                            :title="translateName(pokemon.species, 'species')"
+                            class="w-6 h-6 object-contain rounded-full bg-gray-100 dark:bg-gray-700" height="24"
+                            width="24" loading="lazy" />
+                          <span class="text-xs text-gray-700 dark:text-gray-300 truncate max-w-[60px]">
+                            {{ translateName(pokemon.species, 'species') }}
+                          </span>
+                          <span :class="[
+                            'text-xs px-1.5 py-0.5 rounded font-medium',
+                            getMultiplierClass(getResistanceMultiplier(pokemon.index, immunity.type))
+                          ]">
+                            {{ getMultiplierText(getResistanceMultiplier(pokemon.index, immunity.type)) }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div v-else
+                  class="bg-gray-50 dark:bg-gray-900/20 rounded-lg p-4 border border-gray-200 dark:border-gray-800">
+                  <div class="flex items-center gap-2">
+                    <X class="w-5 h-5 text-gray-600 dark:text-gray-400" aria-hidden="true" />
+                    <p class="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                      {{ t('resistance.summary.noImmunities') }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- 抗性表格 -->
@@ -273,7 +411,7 @@ const handleTeamChange = (team: TeamType) => {
           <LoadingSpinner v-if="loading" :message="t('resistance.calculating')" size="sm" />
 
           <!-- 抗性数据表格 -->
-          <div v-else-if="resistanceData.length > 0"
+          <div v-else-if="resistanceResult && getAllTypes.length > 0"
             class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
             <div class="overflow-x-auto">
               <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
@@ -328,21 +466,20 @@ const handleTeamChange = (team: TeamType) => {
                         </span>
                         <!-- 抵抗程度竖条显示 -->
                         <div class="flex items-center">
-                          <div
-                            v-for="bar in getResistanceLevelBars(getTypeResistanceLevel(type, team.teamData), team.teamData.length)"
+                          <div v-for="bar in getResistanceLevelBars(getTypeResistanceLevel(type), team.teamData.length)"
                             :key="bar.position" :class="bar.class">
                           </div>
                         </div>
                       </div>
                     </td>
                     <!-- 抗性倍率列 -->
-                    <td v-for="pokemon in team.teamData" :key="pokemon.species" class="px-3 py-4 text-center">
+                    <td v-for="(pokemon, index) in team.teamData" :key="pokemon.species" class="px-3 py-4 text-center">
                       <div class="flex justify-center">
-                        <span v-if="getResistanceMultiplier(pokemon.species, type) !== 1" :class="[
+                        <span v-if="getResistanceMultiplier(index, type) !== 1" :class="[
                           'inline-flex items-center px-2 py-1 rounded text-sm font-medium',
-                          getMultiplierClass(getResistanceMultiplier(pokemon.species, type))
+                          getMultiplierClass(getResistanceMultiplier(index, type))
                         ]">
-                          {{ getMultiplierText(getResistanceMultiplier(pokemon.species, type)) }}
+                          {{ getMultiplierText(getResistanceMultiplier(index, type)) }}
                         </span>
                         <span v-else class="text-gray-400 dark:text-gray-500 text-sm">-</span>
                       </div>

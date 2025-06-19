@@ -21,7 +21,8 @@ import {
   Sparkles,
   Edit2,
   Copy,
-  Sword
+  Sword,
+  Shield
 } from 'lucide-vue-next'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -47,4 +48,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Edit2', Edit2)
   nuxtApp.vueApp.component('Copy', Copy)
   nuxtApp.vueApp.component('Sword', Sword)
+  nuxtApp.vueApp.component('Shield', Shield)
 })
