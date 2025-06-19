@@ -225,7 +225,9 @@
     "controls": {
       "title": "分析设置",
       "weather": "天气状态",
-      "terrain": "场地状态"
+      "terrain": "场地状态",
+      "terastallizationPokemon": "太晶化宝可梦",
+      "teraType": "太晶属性"
     },
     "weather": {
       "none": "无天气",
@@ -240,7 +242,12 @@
       "electric_terrain": "电气场地",
       "grassy_terrain": "青草场地",
       "misty_terrain": "薄雾场地",
-      "psychic_terrain": "精神场地"
+      "psychic_terrain": "精神场地",
+      "grounded": "地面上"
+    },
+    "terastallization": {
+      "none": "无太晶化",
+      "selectType": "选择太晶属性"
     },
     "multiplier": {
       "immune": "免疫",

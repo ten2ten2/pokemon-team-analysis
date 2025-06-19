@@ -224,8 +224,10 @@
     },
     "controls": {
       "title": "분석 설정",
-      "weather": "날씨 조건",
-      "terrain": "필드 조건"
+      "weather": "날씨 상태",
+      "terrain": "필드 상태",
+      "terastallizationPokemon": "테라스탈 포켓몬",
+      "teraType": "테라 타입"
     },
     "weather": {
       "none": "날씨 없음",
@@ -240,7 +242,13 @@
       "electric_terrain": "일렉트릭필드",
       "grassy_terrain": "그래스필드",
       "misty_terrain": "미스트필드",
-      "psychic_terrain": "사이코필드"
+      "psychic_terrain": "사이코필드",
+      "grounded": "접지"
+    },
+    "terastallization": {
+      "none": "테라스탈 없음",
+      "selectType": "테라 타입 선택",
+      "indicator": "테라스탈 상태"
     },
     "multiplier": {
       "immune": "무효",

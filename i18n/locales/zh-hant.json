@@ -224,8 +224,10 @@
     },
     "controls": {
       "title": "分析設定",
-      "weather": "天氣條件",
-      "terrain": "場地條件"
+      "weather": "天氣狀態",
+      "terrain": "場地狀態",
+      "terastallizationPokemon": "太晶化寶可夢",
+      "teraType": "太晶屬性"
     },
     "weather": {
       "none": "無天氣",
@@ -240,7 +242,13 @@
       "electric_terrain": "電氣場地",
       "grassy_terrain": "青草場地",
       "misty_terrain": "薄霧場地",
-      "psychic_terrain": "精神場地"
+      "psychic_terrain": "精神場地",
+      "grounded": "地面上"
+    },
+    "terastallization": {
+      "none": "無太晶化",
+      "selectType": "選擇太晶屬性",
+      "indicator": "太晶化狀態"
     },
     "multiplier": {
       "immune": "無效",

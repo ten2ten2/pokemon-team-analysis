@@ -225,7 +225,9 @@
     "controls": {
       "title": "分析設定",
       "weather": "天気状態",
-      "terrain": "フィールド状態"
+      "terrain": "フィールド状態",
+      "terastallizationPokemon": "テラスタルポケモン",
+      "teraType": "テラスタイプ"
     },
     "weather": {
       "none": "天気なし",
@@ -240,7 +242,13 @@
       "electric_terrain": "エレキフィールド",
       "grassy_terrain": "グラスフィールド",
       "misty_terrain": "ミストフィールド",
-      "psychic_terrain": "サイコフィールド"
+      "psychic_terrain": "サイコフィールド",
+      "grounded": "接地"
+    },
+    "terastallization": {
+      "none": "テラスタルなし",
+      "selectType": "テラスタイプを選択",
+      "indicator": "テラスタル状態"
     },
     "multiplier": {
       "immune": "無効",

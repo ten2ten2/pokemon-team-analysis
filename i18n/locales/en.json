@@ -225,7 +225,9 @@
     "controls": {
       "title": "Analysis Settings",
       "weather": "Weather Condition",
-      "terrain": "Terrain Condition"
+      "terrain": "Terrain Condition",
+      "terastallizationPokemon": "Terastallized Pokémon",
+      "teraType": "Tera Type"
     },
     "weather": {
       "none": "No Weather",
@@ -240,7 +242,13 @@
       "electric_terrain": "Electric Terrain",
       "grassy_terrain": "Grassy Terrain",
       "misty_terrain": "Misty Terrain",
-      "psychic_terrain": "Psychic Terrain"
+      "psychic_terrain": "Psychic Terrain",
+      "grounded": "Grounded"
+    },
+    "terastallization": {
+      "none": "No Terastallization",
+      "selectType": "Select Tera Type",
+      "indicator": "Terastallized"
     },
     "multiplier": {
       "immune": "Immune",

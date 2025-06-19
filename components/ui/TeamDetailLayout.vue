@@ -24,24 +24,30 @@ const { t } = useI18n()
 const { getTeam, updateTeam } = useTeamStorage()
 const { gameVersionOptions, rulesOptions } = useTeamOptions()
 const { getTranslatedName } = usePokemonTranslations()
-const { preferences, setUseTranslation } = useUserPreferences()
+const { preferences, effectiveUseTranslation, setUseTranslation } = useUserPreferences()
 
 // 响应式数据
 const team = ref<Team | null>(null)
 const pending = ref(true)
 const showEditModal = ref(false)
 
-// 使用用户偏好设置中的翻译开关
+// 使用用户偏好设置中的翻译开关 - 英语环境下永远为 false
 const useTranslation = computed({
-  get: () => preferences.value.useTranslation,
+  get: () => effectiveUseTranslation.value,
   set: (value: boolean) => setUseTranslation(value)
 })
 
-// 获取团队数据
-onMounted(() => {
-  team.value = getTeam(props.teamId)
-  pending.value = false
-})
+// 获取团队数据 - 使用immediate watch来避免onMounted的问题
+watch(
+  () => props.teamId,
+  (newTeamId) => {
+    if (newTeamId) {
+      team.value = getTeam(newTeamId)
+      pending.value = false
+    }
+  },
+  { immediate: true }
+)
 
 // 创建翻译名称帮助函数
 const translateName = (name: string, type: 'species' | 'ability' | 'move' | 'item' | 'type' = 'species') => {
