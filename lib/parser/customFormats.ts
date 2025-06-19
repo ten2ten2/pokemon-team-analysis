@@ -23,8 +23,8 @@ export const Formats: FormatList = [
     mod: 'gen9',
     gameType: 'doubles',
     bestOfDefault: true,
-    ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets', 'Limit One Restricted'],
-    restricted: ['Restricted Legendary'],
+    ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
+    banned: ['Restricted Legendary', 'Mythical', 'Legendary'],
   },
   {
     name: "doublesRegI",
@@ -47,8 +47,8 @@ export const Formats: FormatList = [
     mod: 'gen9',
     gameType: 'singles',
     bestOfDefault: true,
-    ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets', 'Limit One Restricted'],
-    restricted: ['Restricted Legendary'],
+    ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
+    banned: ['Restricted Legendary', 'Mythical', 'Legendary'],
   },
   {
     name: "singlesRegI",
