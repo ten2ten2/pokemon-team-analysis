@@ -32,7 +32,6 @@ const toggleDropdown = (itemId: string) => {
 const handleNavClick = (item: NavItem) => {
   if (item.type === 'modal' && item.modal) {
     // Handle modal opening - you can implement this based on your modal system
-    console.log('Open modal:', item.modal)
     closeMobileMenu()
   }
 }

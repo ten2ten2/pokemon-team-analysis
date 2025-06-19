@@ -58,7 +58,6 @@ function completeSinglePokemon(pkm: PokemonSet, specie: Specie, moves: Moves): P
     movesDetails: (() => {
       return pkm.moves.reduce((acc, move) => {
         const moveDetail = moves.get(move);
-        console.log('moveDetail', moveDetail);
         if (moveDetail) {
           acc[move] = moveDetail;
         }
