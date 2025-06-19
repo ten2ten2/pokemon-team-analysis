@@ -3,7 +3,7 @@ import { Team } from '@pkmn/sets'
 import type { Team as TeamType } from '~/types/team'
 import type { Pokemon } from '~/types/pokemon'
 import { getSprite } from '~/utils/teamUtils'
-import { getTypeBadgeClass, getTypeIconClass } from '~/utils/pokemonTypeUtils'
+import { getTypeBadgeClass, getTypeIconClass, getTypeBadgeClassByTeraStatus, getTypeIconClassByTeraStatus } from '~/utils/pokemonTypeUtils'
 import {
   ResistanceAnalyzer,
   getPokemonResistance,
@@ -525,13 +525,14 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                           <div class="flex flex-wrap justify-center gap-1 mt-1">
                             <!-- 如果宝可梦太晶化了，显示太晶属性，否则显示原始属性 -->
                             <template v-if="selectedTerastallizationPokemon === pokemonIndex && pokemon.teraType">
-                              <span :class="getTypeBadgeClass(pokemon.teraType)">
-                                <i :class="getTypeIconClass(pokemon.teraType)" aria-hidden="true"></i>
+                              <span :class="getTypeBadgeClassByTeraStatus(pokemon.teraType, true)">
+                                <i :class="getTypeIconClassByTeraStatus(pokemon.teraType, true)" aria-hidden="true"></i>
                               </span>
                             </template>
                             <template v-else>
-                              <span v-for="type in pokemon.types" :key="type" :class="getTypeBadgeClass(type)">
-                                <i :class="getTypeIconClass(type)" aria-hidden="true"></i>
+                              <span v-for="type in pokemon.types" :key="type"
+                                :class="getTypeBadgeClassByTeraStatus(type, false)">
+                                <i :class="getTypeIconClassByTeraStatus(type, false)" aria-hidden="true"></i>
                               </span>
                             </template>
                           </div>

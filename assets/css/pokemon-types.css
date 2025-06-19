@@ -244,6 +244,22 @@
   @apply bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300;
 }
 
+/* Stellar 星晶 */
+.type-stellar {
+  background: #338DA6;
+  @apply text-white;
+}
+
+.sprite-type-stellar {
+    background: url(/assets/icons/stellar_icon.png) no-repeat center;
+    background-size: 20px 20px;
+}
+
+.type-stellar-light {
+  background-color: rgba(51, 141, 166, 0.1);
+  @apply text-gray-800 dark:text-gray-200;
+}
+
 /* 宝可梦分类图标 */
 .sprite-category-physical {
   background-position: 0 -360px;
@@ -264,4 +280,124 @@
 
 .pokemon-type-chip {
   @apply inline-flex items-center gap-1 pl-2 pr-3 py-1 text-sm rounded-full font-medium break-words transition-colors;
+}
+
+/* 太晶化属性样式 - 保持原有背景色，使用太晶化图标 */
+/* 太晶化属性的背景色与对应的普通属性一致，通过 JavaScript 动态应用 */
+
+.type-tera {
+  background-color: white;
+  @apply text-gray-800 border border-gray-300;
+}
+
+.type-tera-light {
+  background-color: #f9fafb;
+  @apply text-gray-800 border border-gray-200;
+}
+
+/* 星晶属性的特殊背景色 */
+.type-tera-stellar {
+  background-color: #338DA6;
+  @apply text-white;
+}
+
+.type-tera-stellar-light {
+  background-color: rgba(51, 141, 166, 0.1);
+  @apply text-gray-800 dark:text-gray-200;
+}
+
+/* 太晶化图标 - 使用独立的太晶化图标 */
+.sprite-type-tera-normal {
+    background: url(/assets/icons/tera_normal_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-fighting {
+    background: url(/assets/icons/tera_fighting_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-flying {
+    background: url(/assets/icons/tera_flying_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-poison {
+    background: url(/assets/icons/tera_poison_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-ground {
+    background: url(/assets/icons/tera_ground_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-rock {
+    background: url(/assets/icons/tera_rock_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-bug {
+    background: url(/assets/icons/tera_bug_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-ghost {
+    background: url(/assets/icons/tera_ghost_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-steel {
+    background: url(/assets/icons/tera_steel_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-fire {
+    background: url(/assets/icons/tera_fire_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-water {
+    background: url(/assets/icons/tera_water_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-grass {
+    background: url(/assets/icons/tera_grass_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-electric {
+    background: url(/assets/icons/tera_electric_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-psychic {
+    background: url(/assets/icons/tera_psychic_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-ice {
+    background: url(/assets/icons/tera_ice_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-dragon {
+    background: url(/assets/icons/tera_dragon_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-dark {
+    background: url(/assets/icons/tera_dark_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-fairy {
+    background: url(/assets/icons/tera_fairy_icon.png) no-repeat center;
+    background-size: 23px 23px;
+}
+
+.sprite-type-tera-stellar {
+    background: url(/assets/icons/stellar_icon.png) no-repeat center;
+    background-size: 20px 20px;
 }

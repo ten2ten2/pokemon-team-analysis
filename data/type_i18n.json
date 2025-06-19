@@ -196,5 +196,16 @@
     "zh-hant": "水",
     "zh-hans": "水",
     "ko": "물"
+  },
+  "stellar": {
+    "en": "Stellar",
+    "ja": "ステラ",
+    "es": "Astral",
+    "de": "Stellar",
+    "it": "Astrale",
+    "fr": "Stellaire",
+    "zh-hant": "星晶",
+    "zh-hans": "星晶",
+    "ko": "스텔라"
   }
 }
