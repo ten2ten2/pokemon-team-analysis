@@ -19,7 +19,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-const route = useRoute()
 const { t } = useI18n()
 const { getTeam, updateTeam } = useTeamStorage()
 const { gameVersionOptions, rulesOptions } = useTeamOptions()
