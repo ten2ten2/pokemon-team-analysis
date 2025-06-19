@@ -39,28 +39,38 @@ const handleTranslationToggle = () => {
             <span class="font-medium">{{ t('common.rules.title') }}:</span>
             {{ getRulesLabel(team.rules) }}
           </span>
-          <time :datetime="team.createdAt.toISOString()" class="inline-flex items-center gap-1">
-            <span class="font-medium">{{ t('teamDetail.createdAt') }}:</span>
-            {{ formatDate(team.createdAt.toISOString(), locale) }}
-          </time>
+          <ClientOnly>
+            <time :datetime="team.createdAt.toISOString()" class="inline-flex items-center gap-1">
+              <span class="font-medium">{{ t('teamDetail.createdAt') }}:</span>
+              {{ formatDate(team.createdAt.toISOString(), locale) }}
+            </time>
+            <template #fallback>
+              <time :datetime="team.createdAt.toISOString()" class="inline-flex items-center gap-1">
+                <span class="font-medium">{{ t('teamDetail.createdAt') }}:</span>
+                {{ team.createdAt.toLocaleDateString() }}
+              </time>
+            </template>
+          </ClientOnly>
         </div>
       </div>
 
       <!-- 翻译开关 (仅非英文语言且团队无错误时显示) -->
-      <div v-if="locale !== 'en' && (!team.errors || team.errors.length === 0)" class="flex items-center gap-3">
-        <label for="translation-toggle" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-          {{ t('teamDetail.useTranslation') }}
-        </label>
-        <button id="translation-toggle" type="button" :class="[
-          'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus-ring-red',
-          useTranslation ? 'bg-red-400 hover:bg-red-600' : 'bg-gray-200 dark:bg-gray-700'
-        ]" role="switch" :aria-checked="useTranslation" @click="handleTranslationToggle">
-          <span :class="[
-            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
-            useTranslation ? 'translate-x-5' : 'translate-x-0'
-          ]" aria-hidden="true" />
-        </button>
-      </div>
+      <ClientOnly>
+        <div v-if="locale !== 'en' && (!team.errors || team.errors.length === 0)" class="flex items-center gap-3">
+          <label for="translation-toggle" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {{ t('teamDetail.useTranslation') }}
+          </label>
+          <button id="translation-toggle" type="button" :class="[
+            'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus-ring-red',
+            useTranslation ? 'bg-red-400 hover:bg-red-600' : 'bg-gray-200 dark:bg-gray-700'
+          ]" role="switch" :aria-checked="useTranslation" @click="handleTranslationToggle">
+            <span :class="[
+              'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+              useTranslation ? 'translate-x-5' : 'translate-x-0'
+            ]" aria-hidden="true" />
+          </button>
+        </div>
+      </ClientOnly>
     </div>
 
     <!-- Tab 导航 -->

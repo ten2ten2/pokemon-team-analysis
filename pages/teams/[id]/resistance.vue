@@ -164,8 +164,6 @@ const terastallizationPokemonOptions = computed(() => {
   return options
 })
 
-
-
 // 获取所有属性类型
 const getAllTypes = computed(() => {
   if (!resistanceResult.value) return []

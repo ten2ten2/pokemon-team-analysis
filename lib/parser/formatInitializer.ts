@@ -24,13 +24,10 @@ function markFormatsInitialized(): void {
 export function initializeFormats(): void {
   // 如果已经初始化过，直接返回
   if (isFormatsInitialized()) {
-    console.debug('Custom formats already initialized globally, skipping...');
     return;
   }
 
   try {
-    console.debug('Initializing custom formats...');
-
     // 验证 Formats 数据
     if (!Formats || !Array.isArray(Formats)) {
       throw new Error('Invalid Formats data');
@@ -51,25 +48,18 @@ export function initializeFormats(): void {
     });
 
     if (existingFormats.length > 0) {
-      console.debug(`Found existing formats: ${existingFormats.join(', ')}, marking as initialized`);
       markFormatsInitialized();
       return;
     }
 
-    // 添加格式
-    const formatCount = Formats.filter(f => 'name' in f && f.name).length;
-    console.debug(`Adding ${formatCount} custom formats`);
-
     SimDex.formats.extend(Formats);
     markFormatsInitialized();
 
-    console.log('✅ Custom formats initialized successfully');
   } catch (error) {
     console.error('❌ Failed to initialize custom formats:', error);
 
     // 如果是重复 ID 错误，仍然标记为已初始化
     if (error instanceof Error && error.message.includes('duplicate ID')) {
-      console.warn('⚠️  Formats appear to be already loaded, marking as initialized');
       markFormatsInitialized();
       return;
     }
@@ -107,19 +97,15 @@ export function verifyFormatsLoaded(): boolean {
     }
   }
 
-  console.log('✅ All custom formats verified in SimDex');
   return true;
 }
 
 // 模块加载时自动初始化
-console.log('📦 Loading formatInitializer module...');
 initializeFormats();
 
 // 延迟验证以确保格式完全加载（解决惰性加载时序问题）
 setTimeout(() => {
-  if (verifyFormatsLoaded()) {
-    console.log('🎉 Format initialization completed and verified');
-  } else {
-    console.error('⚠️  Format initialization verification failed');
+  if (!verifyFormatsLoaded()) {
+    console.error('⚠️ Format initialization verification failed');
   }
 }, 100); // 使用稍长的延迟确保初始化完成

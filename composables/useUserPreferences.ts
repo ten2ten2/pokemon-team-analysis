@@ -33,6 +33,7 @@ const safeLocalStorage = {
 
 export const useUserPreferences = () => {
   const { locale } = useI18n()
+  const isHydrated = ref(false)
 
   // 加载用户偏好设置
   const loadPreferences = (): UserPreferences => {
@@ -64,22 +65,35 @@ export const useUserPreferences = () => {
   // 响应式偏好设置
   const preferences = ref<UserPreferences>(loadPreferences())
 
+  // 只在客户端设置为已水合
+  onMounted(() => {
+    if (import.meta.client) {
+      isHydrated.value = true
+    }
+  })
+
   // 监听偏好设置变化并自动保存
   watch(preferences, (newPreferences) => {
     savePreferences(newPreferences)
   }, { deep: true })
 
-  // 计算属性：在英文环境下永远返回false
+  // 计算属性：在英文环境下永远返回false，但只在客户端水合后才应用此逻辑
   const effectivePreferences = computed(() => {
+    // 在服务端渲染或未水合时，直接返回原始偏好设置以避免hydration mismatch
+    if (!isHydrated.value) {
+      return preferences.value
+    }
+
     return {
       ...preferences.value,
       useTranslation: locale.value === 'en' ? false : preferences.value.useTranslation
     }
   })
 
-  // 更新翻译开关 - 在英文环境下不生效
+  // 更新翻译开关 - 在英文环境下不生效，但只在客户端检查
   const setUseTranslation = (value: boolean) => {
-    if (locale.value === 'en') {
+    // 只在客户端水合后才检查语言环境
+    if (isHydrated.value && locale.value === 'en') {
       // 在英文环境下不允许设置翻译开关
       return
     }
@@ -93,6 +107,7 @@ export const useUserPreferences = () => {
 
   return {
     preferences: readonly(effectivePreferences),
+    isHydrated: readonly(isHydrated),
     setUseTranslation,
     resetPreferences
   }

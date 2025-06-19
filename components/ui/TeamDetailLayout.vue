@@ -144,33 +144,40 @@ useHead({
 <template>
   <div>
     <PageContainer :showBreadcrumb="false" maxWidth="full">
-      <!-- 团队未找到 -->
-      <TeamNotFound v-if="!team && !pending" :team-id="teamId" />
+      <ClientOnly>
+        <!-- 团队未找到 -->
+        <TeamNotFound v-if="!team && !pending" :team-id="teamId" />
 
-      <!-- 加载中 -->
-      <LoadingSpinner v-else-if="pending" :message="$t('common.loading.default')" />
+        <!-- 加载中 -->
+        <LoadingSpinner v-else-if="pending" :message="$t('common.loading.default')" />
 
-      <!-- 团队详情 -->
-      <div v-else-if="team">
-        <!-- 团队标题区域 -->
-        <TeamHeader :team="team" :use-translation="useTranslation" :get-game-version-label="getGameVersionLabel"
-          :get-rules-label="getRulesLabel" @update:use-translation="useTranslation = $event">
-          <!-- Tab 导航插槽 -->
-          <template #tabs>
-            <slot name="tabs" :active-tab="activeTab" :handle-tab-change="handleTabChange" />
-          </template>
-        </TeamHeader>
+        <!-- 团队详情 -->
+        <div v-else-if="team">
+          <!-- 团队标题区域 -->
+          <TeamHeader :team="team" :use-translation="useTranslation" :get-game-version-label="getGameVersionLabel"
+            :get-rules-label="getRulesLabel" @update:use-translation="useTranslation = $event">
+            <!-- Tab 导航插槽 -->
+            <template #tabs>
+              <slot name="tabs" :active-tab="activeTab" :handle-tab-change="handleTabChange" />
+            </template>
+          </TeamHeader>
 
-        <!-- 主要内容 -->
-        <main>
-          <!-- 验证错误组件 -->
-          <TeamValidationErrors v-if="team.errors && team.errors.length > 0" :errors="team.errors"
-            :show-edit-button="showEditButton" @edit="showEditModal = true" />
+          <!-- 主要内容 -->
+          <main>
+            <!-- 验证错误组件 -->
+            <TeamValidationErrors v-if="team.errors && team.errors.length > 0" :errors="team.errors"
+              :show-edit-button="showEditButton" @edit="showEditModal = true" />
 
-          <!-- 内容插槽 -->
-          <slot :team="team" :translate-name="translateName" :use-translation="useTranslation" :pending="pending" />
-        </main>
-      </div>
+            <!-- 内容插槽 -->
+            <slot :team="team" :translate-name="translateName" :use-translation="useTranslation" :pending="pending" />
+          </main>
+        </div>
+
+        <!-- 服务端渲染时的占位符 -->
+        <template #fallback>
+          <LoadingSpinner :message="$t('common.loading.default')" />
+        </template>
+      </ClientOnly>
     </PageContainer>
 
     <!-- 编辑模态框 -->
