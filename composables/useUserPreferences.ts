@@ -32,7 +32,6 @@ const safeLocalStorage = {
 }
 
 export const useUserPreferences = () => {
-  // 获取当前语言环境
   const { locale } = useI18n()
 
   // 加载用户偏好设置
@@ -70,16 +69,18 @@ export const useUserPreferences = () => {
     savePreferences(newPreferences)
   }, { deep: true })
 
-  // 实际的翻译开关状态 - 英语环境下永远为 false
-  const effectiveUseTranslation = computed(() => {
-    return locale.value !== 'en' && preferences.value.useTranslation
+  // 计算属性：在英文环境下永远返回false
+  const effectivePreferences = computed(() => {
+    return {
+      ...preferences.value,
+      useTranslation: locale.value === 'en' ? false : preferences.value.useTranslation
+    }
   })
 
-  // 更新翻译开关
+  // 更新翻译开关 - 在英文环境下不生效
   const setUseTranslation = (value: boolean) => {
-    // 英语环境下不允许开启翻译
     if (locale.value === 'en') {
-      preferences.value.useTranslation = false
+      // 在英文环境下不允许设置翻译开关
       return
     }
     preferences.value.useTranslation = value
@@ -91,8 +92,7 @@ export const useUserPreferences = () => {
   }
 
   return {
-    preferences: readonly(preferences),
-    effectiveUseTranslation: readonly(effectiveUseTranslation),
+    preferences: readonly(effectivePreferences),
     setUseTranslation,
     resetPreferences
   }

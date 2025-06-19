@@ -86,10 +86,10 @@ export const WEATHER_EFFECTS: Record<string, Record<string, number>> = {
  * 场地效果映射
  */
 export const TERRAIN_EFFECTS: Record<string, Record<string, number>> = {
-  'Electric Terrain': { 'Electric': 1.3 }, // 地面上的寶可夢的電屬性招式威力x1.3
-  'Grassy Terrain': { 'Grass': 1.3 },      // 地面上的寶可夢的草屬性招式威力x1.3
+  'Electric Terrain': { 'Electric': 1.3 }, // 如果攻击方为地面上的寶可夢, 電屬性招式威力x1.3
+  'Grassy Terrain': { 'Grass': 1.3 },      // 如果攻击方为地面上的寶可夢, 草屬性招式威力x1.3
   'Misty Terrain': { 'Dragon': 0.5 },      // 地面上的宝可梦所受到的龙屬性招式的伤害×0.5
-  'Psychic Terrain': { 'Psychic': 1.3 },   // 地面上的寶可夢的超能力屬性招式的威力x1.3
+  'Psychic Terrain': { 'Psychic': 1.3 },   // 如果攻击方为地面上的寶可夢, 超能力屬性招式的威力x1.3
 } as const;
 
 // ==================== 辅助函数 ====================
@@ -229,4 +229,12 @@ export function getResistanceLevel(multiplier: number): string {
 export function getWeatherMultiplier(weather: string, attackType: string): number {
   if (!weather) return 1;
   return WEATHER_EFFECTS[weather][attackType] ?? 1;
+}
+
+/**
+ * 获取场地对特定属性的倍率修正
+ */
+export function getTerrainMultiplier(terrain: string, attackType: string): number {
+  if (!terrain) return 1;
+  return TERRAIN_EFFECTS[terrain][attackType] ?? 1;
 }

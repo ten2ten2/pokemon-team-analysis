@@ -12,14 +12,18 @@ import {
   type ResistanceItem
 } from '~/lib/analyzer/resistanceAnalysis'
 import { WEATHER_EFFECTS, TERRAIN_EFFECTS } from '~/lib/analyzer/resistanceUtils'
+import { usePokemonTranslations } from '~/composables/usePokemonTranslations'
 
 const route = useRoute()
 const { t } = useI18n()
+const { getTranslatedName } = usePokemonTranslations()
+const { preferences } = useUserPreferences()
 
 const activeTab = ref('resistance')
 const teamId = route.params.id as string
 const selectedWeather = ref<string>('')
 const selectedTerrain = ref<string>('')
+const selectedTerastallizationPokemon = ref<number>(-1) // -1 表示未选择
 const resistanceResult = ref<ResistanceAnalysisResult | null>(null)
 const loading = ref(false)
 const currentTeam = ref<TeamType | null>(null)
@@ -50,11 +54,24 @@ const calculateResistance = async (team: TeamType) => {
     const teamParsed = Team.import(team.teamRawData)
     if (!teamParsed) return
 
-    // 执行抗性分析（包含天气和场地效果）
+    // 构建太晶化参数 - 检查选择的宝可梦是否有太晶属性
+    let terastallization: { pokemonIndex: number; teraType: string } | undefined
+    if (selectedTerastallizationPokemon.value >= 0 && team.teamData) {
+      const pokemon = team.teamData[selectedTerastallizationPokemon.value]
+      if (pokemon?.teraType) {
+        terastallization = {
+          pokemonIndex: selectedTerastallizationPokemon.value,
+          teraType: pokemon.teraType
+        }
+      }
+    }
+
+    // 执行抗性分析（包含天气、场地和太晶化效果）
     resistanceResult.value = analyzer.analyze(
       teamParsed,
       selectedWeather.value || undefined,
-      selectedTerrain.value || undefined
+      selectedTerrain.value || undefined,
+      terastallization
     )
   } catch (error) {
     console.error('抗性分析失败:', error)
@@ -64,8 +81,8 @@ const calculateResistance = async (team: TeamType) => {
   }
 }
 
-// 监听天气和场地变化
-watch([selectedWeather, selectedTerrain], () => {
+// 监听天气、场地和太晶化变化
+watch([selectedWeather, selectedTerrain, selectedTerastallizationPokemon], () => {
   if (currentTeam.value) {
     calculateResistance(currentTeam.value)
   }
@@ -74,7 +91,8 @@ watch([selectedWeather, selectedTerrain], () => {
 // 获取倍率的显示样式
 const getMultiplierClass = (multiplier: number) => {
   if (multiplier === 0) return 'bg-green-200 text-green-900 border-green-300'
-  if (multiplier < 1) return 'bg-green-100 text-green-800 border-green-300'
+  if (multiplier > 0 && multiplier < 1) return 'bg-green-100 text-green-800 border-green-300'
+  if (multiplier === 1) return 'bg-gray-100 text-gray-800 border-gray-300'
   if (multiplier > 1 && multiplier < 4) return 'bg-red-100 text-red-800 border-red-300'
   if (multiplier >= 4) return 'bg-red-200 text-red-900 border-red-300'
   return 'bg-blue-100 text-blue-800 border-blue-300'
@@ -89,6 +107,25 @@ const getMultiplierText = (multiplier: number) => {
   if (multiplier === 2) return '2×'
   if (multiplier === 4) return '4×'
   return `${multiplier}×`
+}
+
+// 检查是否是场地特定的攻击类型
+const isTerrainSpecificType = (attackType: string): boolean => {
+  return attackType.includes('(Grounded)')
+}
+
+// 获取场地特定攻击类型的基础类型
+const getBaseType = (attackType: string): string => {
+  return attackType.replace(' (Grounded)', '')
+}
+
+// 获取场地特定攻击类型的显示名称
+const getTerrainTypeDisplayName = (attackType: string, translateFn: (name: string, type?: 'species' | 'ability' | 'move' | 'item' | 'type') => string): string => {
+  if (isTerrainSpecificType(attackType)) {
+    const baseType = getBaseType(attackType)
+    return `${translateFn(baseType, 'type')} (${t('resistance.terrain.grounded')})`
+  }
+  return translateFn(attackType, 'type')
 }
 
 // 天气选项
@@ -108,6 +145,26 @@ const terrainOptions = computed(() => [
     label: t(`resistance.terrain.${terrain.toLowerCase().replace(/\s+/g, '_')}`)
   }))
 ])
+
+// 太晶化宝可梦选项 - 只显示有太晶属性的宝可梦
+const terastallizationPokemonOptions = computed(() => {
+  if (!currentTeam.value?.teamData) return []
+
+  const options = [{ value: -1, label: t('resistance.terastallization.none') }]
+
+  currentTeam.value.teamData.forEach((pokemon, index) => {
+    if (pokemon.teraType) {
+      options.push({
+        value: index,
+        label: `${getTranslatedName(pokemon.species, 'species', preferences.value.useTranslation)} (${getTranslatedName(pokemon.teraType, 'type', preferences.value.useTranslation)})`
+      })
+    }
+  })
+
+  return options
+})
+
+
 
 // 获取所有属性类型
 const getAllTypes = computed(() => {
@@ -194,7 +251,7 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
       <TabNavigation :tabs="tabs" :active-tab="currentTab" :team-id="teamId" @change="handleTabChange" />
     </template>
 
-    <template #default="{ team, translateName, useTranslation }">
+    <template #default="{ team, translateName }">
       <!-- 监听团队变化 -->
       {{ handleTeamChange(team) }}
 
@@ -216,7 +273,7 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               {{ t('resistance.controls.title') }}
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <!-- 天气选择 -->
               <div>
                 <label for="weather-select" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -242,6 +299,22 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                   </option>
                 </select>
               </div>
+
+              <!-- 太晶化宝可梦选择 -->
+              <div>
+                <label for="terastallization-pokemon-select"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {{ t('resistance.controls.terastallizationPokemon') }}
+                </label>
+                <select id="terastallization-pokemon-select" v-model="selectedTerastallizationPokemon"
+                  class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white">
+                  <option v-for="option in terastallizationPokemonOptions" :key="option.value" :value="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+              </div>
+
+
             </div>
           </div>
 
@@ -262,9 +335,12 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                   <div v-for="weakness in analysisSummary.weaknesses.slice(0, 4)" :key="weakness.type"
                     class="bg-red-50 dark:bg-red-900/20 rounded-lg p-3 border border-red-200 dark:border-red-800">
                     <div class="flex items-center mb-2">
-                      <span :class="getTypeBadgeClass(weakness.type)" class="text-sm font-medium">
-                        <i :class="getTypeIconClass(weakness.type)" aria-hidden="true"></i>
-                        {{ translateName(weakness.type, 'type') }}
+                      <span
+                        :class="isTerrainSpecificType(weakness.type) ? getTypeBadgeClass(getBaseType(weakness.type)) : getTypeBadgeClass(weakness.type)"
+                        class="text-base font-medium">
+                        <i :class="isTerrainSpecificType(weakness.type) ? getTypeIconClass(getBaseType(weakness.type)) : getTypeIconClass(weakness.type)"
+                          aria-hidden="true"></i>
+                        {{ getTerrainTypeDisplayName(weakness.type, translateName) }}
                       </span>
                     </div>
                     <div class="flex flex-wrap gap-2">
@@ -276,11 +352,11 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                             :title="translateName(pokemon.species, 'species')"
                             class="w-6 h-6 object-contain rounded-full bg-gray-100 dark:bg-gray-700" height="24"
                             width="24" loading="lazy" />
-                          <span class="text-xs text-gray-700 dark:text-gray-300 truncate max-w-[60px]">
+                          <span class="text-sm text-gray-700 dark:text-gray-300">
                             {{ translateName(pokemon.species, 'species') }}
                           </span>
                           <span :class="[
-                            'text-xs px-1.5 py-0.5 rounded font-medium',
+                            'text-sm px-1.5 py-0.5 rounded font-medium',
                             getMultiplierClass(getResistanceMultiplier(pokemon.index, weakness.type))
                           ]">
                             {{ getMultiplierText(getResistanceMultiplier(pokemon.index, weakness.type)) }}
@@ -295,7 +371,7 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                   class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
                   <div class="flex items-center gap-2">
                     <Shield class="w-5 h-5 text-green-600 dark:text-green-400" aria-hidden="true" />
-                    <p class="text-sm text-green-700 dark:text-green-300 font-medium">
+                    <p class="text-base text-green-700 dark:text-green-300 font-medium">
                       {{ t('resistance.summary.noWeaknesses') }}
                     </p>
                   </div>
@@ -312,9 +388,12 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                   <div v-for="resistance in analysisSummary.resistances.slice(0, 4)" :key="resistance.type"
                     class="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
                     <div class="flex items-center mb-2">
-                      <span :class="getTypeBadgeClass(resistance.type)" class="text-sm font-medium">
-                        <i :class="getTypeIconClass(resistance.type)" aria-hidden="true"></i>
-                        {{ translateName(resistance.type, 'type') }}
+                      <span
+                        :class="isTerrainSpecificType(resistance.type) ? getTypeBadgeClass(getBaseType(resistance.type)) : getTypeBadgeClass(resistance.type)"
+                        class="text-base font-medium">
+                        <i :class="isTerrainSpecificType(resistance.type) ? getTypeIconClass(getBaseType(resistance.type)) : getTypeIconClass(resistance.type)"
+                          aria-hidden="true"></i>
+                        {{ getTerrainTypeDisplayName(resistance.type, translateName) }}
                       </span>
                     </div>
                     <div class="flex flex-wrap gap-2">
@@ -326,11 +405,11 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                             :title="translateName(pokemon.species, 'species')"
                             class="w-6 h-6 object-contain rounded-full bg-gray-100 dark:bg-gray-700" height="24"
                             width="24" loading="lazy" />
-                          <span class="text-xs text-gray-700 dark:text-gray-300 truncate max-w-[60px]">
+                          <span class="text-sm text-gray-700 dark:text-gray-300">
                             {{ translateName(pokemon.species, 'species') }}
                           </span>
                           <span :class="[
-                            'text-xs px-1.5 py-0.5 rounded font-medium',
+                            'text-sm px-1.5 py-0.5 rounded font-medium',
                             getMultiplierClass(getResistanceMultiplier(pokemon.index, resistance.type))
                           ]">
                             {{ getMultiplierText(getResistanceMultiplier(pokemon.index, resistance.type)) }}
@@ -345,7 +424,7 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                   class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border border-orange-200 dark:border-orange-800">
                   <div class="flex items-center gap-2">
                     <AlertTriangle class="w-5 h-5 text-orange-600 dark:text-orange-400" aria-hidden="true" />
-                    <p class="text-sm text-orange-700 dark:text-orange-300 font-medium">
+                    <p class="text-base text-orange-700 dark:text-orange-300 font-medium">
                       {{ t('resistance.summary.noResistances') }}
                     </p>
                   </div>
@@ -354,17 +433,20 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
 
               <!-- 免疫 -->
               <div>
-                <h4 class="text-base font-medium text-blue-700 dark:text-blue-400 mb-3 flex items-center gap-2">
+                <h4 class="text-base font-medium text-green-700 dark:text-green-400 mb-3 flex items-center gap-2">
                   <Check class="w-4 h-4" aria-hidden="true" />
                   {{ t('resistance.summary.immunities') }}
                 </h4>
                 <div v-if="analysisSummary.immunities.length > 0" class="space-y-3">
                   <div v-for="immunity in analysisSummary.immunities.slice(0, 4)" :key="immunity.type"
-                    class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+                    class="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
                     <div class="flex items-center mb-2">
-                      <span :class="getTypeBadgeClass(immunity.type)" class="text-sm font-medium">
-                        <i :class="getTypeIconClass(immunity.type)" aria-hidden="true"></i>
-                        {{ translateName(immunity.type, 'type') }}
+                      <span
+                        :class="isTerrainSpecificType(immunity.type) ? getTypeBadgeClass(getBaseType(immunity.type)) : getTypeBadgeClass(immunity.type)"
+                        class="text-base font-medium">
+                        <i :class="isTerrainSpecificType(immunity.type) ? getTypeIconClass(getBaseType(immunity.type)) : getTypeIconClass(immunity.type)"
+                          aria-hidden="true"></i>
+                        {{ getTerrainTypeDisplayName(immunity.type, translateName) }}
                       </span>
                     </div>
                     <div class="flex flex-wrap gap-2">
@@ -376,11 +458,11 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                             :title="translateName(pokemon.species, 'species')"
                             class="w-6 h-6 object-contain rounded-full bg-gray-100 dark:bg-gray-700" height="24"
                             width="24" loading="lazy" />
-                          <span class="text-xs text-gray-700 dark:text-gray-300 truncate max-w-[60px]">
+                          <span class="text-sm text-gray-700 dark:text-gray-300">
                             {{ translateName(pokemon.species, 'species') }}
                           </span>
                           <span :class="[
-                            'text-xs px-1.5 py-0.5 rounded font-medium',
+                            'text-sm px-1.5 py-0.5 rounded font-medium',
                             getMultiplierClass(getResistanceMultiplier(pokemon.index, immunity.type))
                           ]">
                             {{ getMultiplierText(getResistanceMultiplier(pokemon.index, immunity.type)) }}
@@ -395,7 +477,7 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                   class="bg-gray-50 dark:bg-gray-900/20 rounded-lg p-4 border border-gray-200 dark:border-gray-800">
                   <div class="flex items-center gap-2">
                     <X class="w-5 h-5 text-gray-600 dark:text-gray-400" aria-hidden="true" />
-                    <p class="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                    <p class="text-base text-gray-700 dark:text-gray-300 font-medium">
                       {{ t('resistance.summary.noImmunities') }}
                     </p>
                   </div>
@@ -425,8 +507,8 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                         <Sword class="w-4 h-4 transform scale-x-[-1]" aria-hidden="true" />
                       </div>
                     </th>
-                    <th v-for="pokemon in team.teamData" :key="pokemon.species" scope="col"
-                      class="px-3 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider min-w-[120px]">
+                    <th v-for="(pokemon, pokemonIndex) in team.teamData" :key="pokemon.species" scope="col"
+                      class="px-3 py-3 text-center text-sm font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider min-w-[120px]">
                       <div class="flex flex-col items-center gap-2">
                         <div class="relative">
                           <NuxtImg
@@ -439,14 +521,21 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                           </span>
                         </div>
                         <div class="text-center">
-                          <div class="text-xs font-medium text-gray-900 dark:text-white truncate max-w-[100px]">
+                          <div class="text-sm font-medium text-gray-900 dark:text-white truncate max-w-[100px]">
                             {{ translateName(pokemon.species, 'species') }}
                           </div>
                           <div class="flex flex-wrap justify-center gap-1 mt-1">
-                            <span v-for="type in pokemon.types" :key="type" :class="getTypeBadgeClass(type)"
-                              class="text-xs">
-                              <i :class="getTypeIconClass(type)" aria-hidden="true"></i>
-                            </span>
+                            <!-- 如果宝可梦太晶化了，显示太晶属性，否则显示原始属性 -->
+                            <template v-if="selectedTerastallizationPokemon === pokemonIndex && pokemon.teraType">
+                              <span :class="getTypeBadgeClass(pokemon.teraType)">
+                                <i :class="getTypeIconClass(pokemon.teraType)" aria-hidden="true"></i>
+                              </span>
+                            </template>
+                            <template v-else>
+                              <span v-for="type in pokemon.types" :key="type" :class="getTypeBadgeClass(type)">
+                                <i :class="getTypeIconClass(type)" aria-hidden="true"></i>
+                              </span>
+                            </template>
                           </div>
                         </div>
                       </div>
@@ -460,9 +549,12 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                     <td
                       class="px-4 py-4 whitespace-nowrap sticky left-0 bg-white dark:bg-gray-800 z-10 border-r border-gray-200 dark:border-gray-600 w-56 min-w-56">
                       <div class="flex items-center justify-between">
-                        <span :class="getTypeBadgeClass(type)" class="flex-shrink-0">
-                          <i :class="getTypeIconClass(type)" aria-hidden="true"></i>
-                          {{ translateName(type, 'type') }}
+                        <span
+                          :class="isTerrainSpecificType(type) ? getTypeBadgeClass(getBaseType(type)) : getTypeBadgeClass(type)"
+                          class="flex-shrink-0">
+                          <i :class="isTerrainSpecificType(type) ? getTypeIconClass(getBaseType(type)) : getTypeIconClass(type)"
+                            aria-hidden="true"></i>
+                          {{ getTerrainTypeDisplayName(type, translateName) }}
                         </span>
                         <!-- 抵抗程度竖条显示 -->
                         <div class="flex items-center">
@@ -475,13 +567,12 @@ const getPokemonSprite = (pokemon: ResistanceItem, teamData: Pokemon[]): string 
                     <!-- 抗性倍率列 -->
                     <td v-for="(pokemon, index) in team.teamData" :key="pokemon.species" class="px-3 py-4 text-center">
                       <div class="flex justify-center">
-                        <span v-if="getResistanceMultiplier(index, type) !== 1" :class="[
+                        <span :class="[
                           'inline-flex items-center px-2 py-1 rounded text-sm font-medium',
                           getMultiplierClass(getResistanceMultiplier(index, type))
                         ]">
                           {{ getMultiplierText(getResistanceMultiplier(index, type)) }}
                         </span>
-                        <span v-else class="text-gray-400 dark:text-gray-500 text-sm">-</span>
                       </div>
                     </td>
                   </tr>

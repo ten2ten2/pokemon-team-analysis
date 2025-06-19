@@ -24,16 +24,16 @@ const { t } = useI18n()
 const { getTeam, updateTeam } = useTeamStorage()
 const { gameVersionOptions, rulesOptions } = useTeamOptions()
 const { getTranslatedName } = usePokemonTranslations()
-const { preferences, effectiveUseTranslation, setUseTranslation } = useUserPreferences()
+const { preferences, setUseTranslation } = useUserPreferences()
 
 // 响应式数据
 const team = ref<Team | null>(null)
 const pending = ref(true)
 const showEditModal = ref(false)
 
-// 使用用户偏好设置中的翻译开关 - 英语环境下永远为 false
+// 使用用户偏好设置中的翻译开关
 const useTranslation = computed({
-  get: () => effectiveUseTranslation.value,
+  get: () => preferences.value.useTranslation,
   set: (value: boolean) => setUseTranslation(value)
 })
 

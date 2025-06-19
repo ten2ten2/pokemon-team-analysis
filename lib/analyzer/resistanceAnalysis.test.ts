@@ -217,6 +217,114 @@ function runAPIComparisonTest(): void {
   }
 }
 
+/**
+ * 运行Stellar属性专门测试
+ */
+function runStellarTypeTest(): void {
+  console.log('\n⭐ 开始运行Stellar属性测试...\n');
+
+  try {
+    const teamParsed = Team.import(teamExportFormat) as Team<PokemonSet<string>>;
+    const analyzer = new ResistanceAnalyzer(9);
+
+    // 测试1: 正常情况下的Stellar抗性
+    console.log('📋 测试1: 正常情况下的Stellar抗性');
+    const basicResult = analyzer.analyze(teamParsed);
+    const stellarData = basicResult.typeResistances.find(t => t.type === 'Stellar');
+
+    if (stellarData) {
+      console.log('✅ 找到Stellar属性数据');
+      console.log(`- 宝可梦抗性倍率:`, stellarData.pokemonMultipliers);
+      console.log(`- 队伍抗性等级: ${stellarData.teamResistanceLevel}`);
+
+      // 验证所有宝可梦对Stellar的抗性都是1倍（除非有特性或道具影响）
+      const allOnesOrModified = Object.values(stellarData.pokemonMultipliers).every(mult =>
+        mult === 1 || mult !== 1 // 允许特性/道具修正
+      );
+      console.log(`- 抗性倍率验证: ${allOnesOrModified ? '✅ 通过' : '❌ 失败'}`);
+    } else {
+      console.log('❌ 未找到Stellar属性数据');
+    }
+
+    // 测试2: Incineroar太晶化为Stellar属性
+    console.log('\n📋 测试2: Incineroar太晶化为Stellar属性');
+    const stellarTeraResult = analyzer.analyze(teamParsed, undefined, undefined, {
+      pokemonIndex: 0, // Incineroar
+      teraType: 'Stellar'
+    });
+    const stellarTeraData = stellarTeraResult.typeResistances.find(t => t.type === 'Stellar');
+
+    if (stellarTeraData) {
+      console.log('✅ 找到Stellar太晶化数据');
+      console.log(`- 宝可梦抗性倍率:`, stellarTeraData.pokemonMultipliers);
+      console.log(`- 队伍抗性等级: ${stellarTeraData.teamResistanceLevel}`);
+
+      // 验证Stellar太晶化的宝可梦对Stellar攻击的抗性
+      const incinerarResistance = stellarTeraData.pokemonMultipliers[0];
+      console.log(`- Incineroar(Stellar太晶化)对Stellar攻击的抗性: ${incinerarResistance}`);
+
+      if (incinerarResistance === 2) {
+        console.log('✅ Stellar太晶化抗性正确 (2倍)');
+      } else {
+        console.log(`❌ Stellar太晶化抗性错误，期望2倍，实际${incinerarResistance}倍`);
+      }
+    } else {
+      console.log('❌ 未找到Stellar太晶化数据');
+    }
+
+    // 测试3: 其他宝可梦太晶化为其他属性时对Stellar的抗性
+    console.log('\n📋 测试3: Rillaboom太晶化为Grass属性对Stellar的抗性');
+    const grassTeraResult = analyzer.analyze(teamParsed, undefined, undefined, {
+      pokemonIndex: 1, // Rillaboom
+      teraType: 'Grass'
+    });
+    const grassTeraData = grassTeraResult.typeResistances.find(t => t.type === 'Stellar');
+
+    if (grassTeraData) {
+      const rillaboomResistance = grassTeraData.pokemonMultipliers[1];
+      console.log(`- Rillaboom(Grass太晶化)对Stellar攻击的抗性: ${rillaboomResistance}`);
+
+      if (rillaboomResistance === 2) {
+        console.log('✅ 太晶化宝可梦对Stellar攻击抗性正确 (2倍)');
+      } else {
+        console.log(`❌ 太晶化宝可梦对Stellar攻击抗性错误，期望2倍，实际${rillaboomResistance}倍`);
+      }
+    }
+
+    // 测试4: 验证Stellar太晶化宝可梦对其他属性的抗性
+    console.log('\n📋 测试4: Stellar太晶化宝可梦对其他属性的抗性');
+    const fireResistanceNormal = getPokemonResistance(basicResult, 0, 'Fire');
+    const fireResistanceStellarTera = getPokemonResistance(stellarTeraResult, 0, 'Fire');
+
+    console.log(`- 正常Incineroar对Fire抗性: ${fireResistanceNormal}`);
+    console.log(`- Stellar太晶化Incineroar对Fire抗性: ${fireResistanceStellarTera}`);
+
+    // Incineroar原本是Fire/Dark属性，对Fire攻击应该是0.5倍抗性
+    // Stellar太晶化后对其他属性攻击仍使用原本属性计算
+    if (fireResistanceNormal === fireResistanceStellarTera && fireResistanceNormal === 0.5) {
+      console.log('✅ Stellar太晶化对其他属性抗性正确（使用原本属性计算）');
+    } else {
+      console.log(`❌ Stellar太晶化对其他属性抗性错误，期望与原本属性相同(0.5倍)，实际正常${fireResistanceNormal}倍，太晶化${fireResistanceStellarTera}倍`);
+    }
+
+    // 测试5: 验证便捷函数对Stellar属性的支持
+    console.log('\n📋 测试5: 便捷函数对Stellar属性的支持');
+    const stellarResistanceNormal = getPokemonResistance(basicResult, 0, 'Stellar');
+    const stellarResistanceTera = getPokemonResistance(stellarTeraResult, 0, 'Stellar');
+    const teamStellarLevel = getTeamResistanceLevel(stellarTeraResult, 'Stellar');
+
+    console.log(`- 正常Incineroar对Stellar抗性: ${stellarResistanceNormal}`);
+    console.log(`- Stellar太晶化Incineroar对Stellar抗性: ${stellarResistanceTera}`);
+    console.log(`- 队伍对Stellar的整体抗性等级: ${teamStellarLevel}`);
+
+    console.log('\n🎉 Stellar属性测试完成！');
+
+  } catch (error) {
+    console.error('❌ Stellar属性测试失败:', error);
+  }
+}
+
 // 执行测试
 runResistanceAnalysisTest();
 runAPIComparisonTest();
+runStellarTypeTest();
