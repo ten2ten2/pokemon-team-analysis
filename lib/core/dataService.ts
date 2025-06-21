@@ -1,10 +1,10 @@
 // 外部依赖
-import { Generations, type Generation } from '@pkmn/data'
 import { Dex } from '@pkmn/dex'
+import { Generations, type Generation } from '@pkmn/data'
 
 // 项目常量和服务
 import { CACHE_KEYS, CACHE_TTL, DEFAULT_GENERATION } from './constants'
-import { cacheService } from './cacheService'
+import { cacheManager } from '~/lib/core/cacheManager'
 
 // ==================== Data Service ====================
 
@@ -29,11 +29,11 @@ class DataService {
   private getCachedGeneration(genNum: number): Generation {
     const cacheKey = CACHE_KEYS.GENERATION(genNum)
 
-    let generation = cacheService.get<Generation>(cacheKey)
+    let generation = cacheManager.get<Generation>(cacheKey)
     if (!generation) {
       generation = new Generations(Dex).get(genNum)
       // 长期缓存世代数据
-      cacheService.set(cacheKey, generation, CACHE_TTL.LONG)
+      cacheManager.set(cacheKey, generation, { ttl: CACHE_TTL.LONG })
     }
 
     return generation
