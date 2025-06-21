@@ -1,4 +1,5 @@
-import { CACHE_MANAGER_CONFIG, CACHE_HEALTH_THRESHOLDS, type HealthStatus } from '~/lib/core/constants'
+import type { HealthStatus } from '~/lib/core/constants'
+import { CACHE_MANAGER_CONFIG, CACHE_HEALTH_THRESHOLDS } from '~/lib/core/constants'
 
 // ==================== Enhanced Cache Manager ====================
 
