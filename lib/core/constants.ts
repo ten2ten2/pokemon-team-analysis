@@ -1,4 +1,4 @@
-import type { NatureEffect } from './types'
+import type { NatureEffect } from '~/lib/core/types'
 
 // ==================== Game Configuration ====================
 

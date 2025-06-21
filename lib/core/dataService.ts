@@ -3,7 +3,7 @@ import { Dex } from '@pkmn/dex'
 import { Generations, type Generation } from '@pkmn/data'
 
 // 项目常量和服务
-import { CACHE_KEYS, CACHE_TTL, DEFAULT_GENERATION } from './constants'
+import { CACHE_KEYS, CACHE_TTL, DEFAULT_GENERATION } from '~/lib/core/constants'
 import { cacheManager } from '~/lib/core/cacheManager'
 
 // ==================== Data Service ====================
@@ -47,8 +47,8 @@ class DataService {
   }
 
   /**
-   * 获取当前世代对象
-   */
+ * 获取当前世代对象
+ */
   getGeneration(gen?: number): Generation {
     const genToUse = gen ?? this.currentGeneration
     return this.getCachedGeneration(genToUse)
