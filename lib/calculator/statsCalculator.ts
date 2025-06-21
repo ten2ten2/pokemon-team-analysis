@@ -4,12 +4,9 @@ import {
   NATURE_MODIFIERS,
   NATURE_BOOST,
   NATURE_REDUCTION,
-  NATURE_NEUTRAL,
-  CACHE_KEYS,
-  CACHE_TTL
+  NATURE_NEUTRAL
 } from '~/lib/core/constants'
 import { DEFAULT_BASE_STATS, DEFAULT_IVS, DEFAULT_EVS } from '~/lib/core/constants'
-import { cacheService } from '~/lib/core/cacheService'
 
 // ==================== 辅助函数 ====================
 
@@ -64,33 +61,6 @@ function calculateStat(base: number, iv: number, ev: number, level: number, natu
   return Math.floor((Math.floor(base * 2 + iv + ev / 4) * level / 100 + 5) * natureModifier)
 }
 
-/**
- * 生成缓存键
- */
-function generateStatsCacheKey(
-  baseStats: StatsTable,
-  ivs: StatsTable,
-  evs: StatsTable,
-  level: number,
-  nature: string
-): string {
-  // 创建简化的哈希以减少键长度
-  const baseHash = JSON.stringify(baseStats)
-  const ivsHash = JSON.stringify(ivs)
-  const evsHash = JSON.stringify(evs)
-  const combinedHash = `${baseHash}-${ivsHash}-${evsHash}-${level}-${nature}`
-
-  // 使用简单的哈希函数
-  let hash = 0
-  for (let i = 0; i < combinedHash.length; i++) {
-    const char = combinedHash.charCodeAt(i)
-    hash = ((hash << 5) - hash) + char
-    hash = hash & hash // 转换为32位整数
-  }
-
-  return CACHE_KEYS.POKEMON_STATS(Math.abs(hash).toString())
-}
-
 // ==================== 主要函数 ====================
 
 /**
@@ -125,13 +95,6 @@ export function calculateStats(
     console.warn('BaseStats is undefined, using default values')
   }
 
-  // 检查缓存
-  const cacheKey = generateStatsCacheKey(normalizedBaseStats, normalizedIvs, normalizedEvs, level, normalizedNature)
-  const cached = cacheService.get<StatsTable>(cacheKey)
-  if (cached) {
-    return cached
-  }
-
   // 计算各项属性
   const stats: StatsTable = {
     hp: calculateHP(normalizedBaseStats.hp, normalizedIvs.hp, normalizedEvs.hp, level),
@@ -142,30 +105,5 @@ export function calculateStats(
     spe: calculateStat(normalizedBaseStats.spe, normalizedIvs.spe, normalizedEvs.spe, level, getNatureModifier(normalizedNature, 'spe'))
   }
 
-  // 缓存结果 (中期缓存，30分钟过期)
-  cacheService.set(cacheKey, stats, CACHE_TTL.MEDIUM)
-
   return stats
-}
-
-// ==================== 工具函数 ====================
-
-/**
- * 清理属性计算相关的缓存
- */
-export function clearStatsCache(): void {
-  // 清理所有属性计算相关的缓存
-  const pattern = /^pokemon_stats:/
-  const deletedCount = cacheService.clearByPattern(pattern)
-  console.log(`Cleared ${deletedCount} stats cache entries`)
-}
-
-/**
- * 获取属性计算缓存的统计信息
- */
-export function getStatsCacheInfo(): { message: string } {
-  const stats = cacheService.getCacheStats()
-  return {
-    message: `Total cache entries: ${stats.general.totalEntries}, Memory usage: ${stats.general.memoryUsage}, Hit rate: ${stats.general.hitRate}%`
-  }
 }
