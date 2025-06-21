@@ -1,4 +1,4 @@
-import { CACHE_MANAGER_CONFIG, CACHE_HEALTH_THRESHOLDS } from '~/lib/core/constants'
+import { CACHE_MANAGER_CONFIG, CACHE_HEALTH_THRESHOLDS, type HealthStatus } from '~/lib/core/constants'
 
 // ==================== Enhanced Cache Manager ====================
 
@@ -330,14 +330,14 @@ class EnhancedCacheManager {
    * 获取缓存健康报告
    */
   getHealthReport(): {
-    status: 'healthy' | 'warning' | 'critical'
+    status: HealthStatus
     metrics: CacheStats
     recommendations: string[]
   } {
     const stats = this.getStats()
     const recommendations: string[] = []
 
-    let status: 'healthy' | 'warning' | 'critical' = 'healthy'
+    let status: HealthStatus = 'healthy'
 
     // 检查命中率
     if (stats.hitRate < CACHE_HEALTH_THRESHOLDS.HIT_RATE_WARNING) {
