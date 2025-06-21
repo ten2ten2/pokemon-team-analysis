@@ -1,1502 +1,599 @@
-import type { Team } from '../../types/team';
-import { Generations, type Move } from '@pkmn/data';
-import { Dex } from '@pkmn/dex';
+import { Generations } from '@pkmn/data'
+import type { Move } from '@pkmn/dex'
+import type { Team } from '~/types/team'
+import { Dex } from '@pkmn/dex'
 
-const teamString = `{
-  "id": "mc1a0rth-w9lj",
-  "name": "UntitledX",
-  "gameVersion": "sv",
-  "rules": "doublesRegI",
-  "teamRawData": "Incineroar (M) @ Safety Goggles\\nAbility: Intimidate\\nLevel: 50\\nShiny: Yes \\nTera Type: Fairy\\nEVs: 244 HP / 188 Def / 76 SpD\\nImpish Nature\\nIVs: 0 Spe\\n  - U - turn\\n  - Fake Out\\n  - Flare Blitz\\n  - Knock Off\\n\\nLunala @ Leftovers\\nAbility: Shadow Shield\\nLevel: 50\\nTera Type: Fairy\\nEVs: 132 HP / 20 Def / 180 SpA / 172 SpD / 4 Spe\\nModest Nature\\nIVs: 0 Atk\\n  - Moongeist Beam\\n  - Moonblast\\n  - Wide Guard\\n  - Trick Room\\n\\nAmoonguss (F) @ Covert Cloak\\nAbility: Regenerator\\nLevel: 50\\nTera Type: Dark\\nEVs: 236 HP / 196 Def / 76 SpD\\nSassy Nature\\nIVs: 0 Atk / 0 Spe\\n  - Rage Powder\\n  - Spore\\n  - Pollen Puff\\n  - Protect\\n\\nUrsaluna (M) @ Flame Orb\\nAbility: Guts\\nLevel: 50\\nTera Type: Ghost\\nEVs: 140 HP / 252 Atk / 116 SpD\\nBrave Nature\\nIVs: 14 SpA / 0 Spe\\n  - Facade\\n  - Headlong Rush\\n  - Earthquake\\n  - Protect\\n\\nKoraidon @ Life Orb\\nAbility: Orichalcum Pulse\\nLevel: 50\\nTera Type: Fire\\nEVs: 4 HP / 252 Atk / 252 Spe\\nJolly Nature\\n  - Flare Blitz\\n  - Close Combat\\n  - Flame Charge\\n  - Protect\\n\\nFlutter Mane @ Focus Sash\\nAbility: Protosynthesis\\nLevel: 50\\nShiny: Yes\\nTera Type: Fairy\\nEVs: 4 Def / 252 SpA / 252 Spe\\nTimid Nature\\nIVs: 3 Atk\\n  - Moonblast\\n  - Shadow Ball\\n  - Icy Wind\\n  - Protect",
-  "teamData": [
-    {
-      "name": "",
-      "species": "Incineroar",
-      "gender": "M",
-      "item": "Safety Goggles",
-      "ability": "Intimidate",
-      "level": 50,
-      "shiny": true,
-      "teraType": "Fairy",
-      "evs": {
-        "hp": 244,
-        "atk": 0,
-        "def": 188,
-        "spa": 0,
-        "spd": 76,
-        "spe": 0
-      },
-      "nature": "Impish",
-      "ivs": {
-        "hp": 31,
-        "atk": 31,
-        "def": 31,
-        "spa": 31,
-        "spd": 31,
-        "spe": 0
-      },
-      "moves": [
-        "U - turn",
-        "Fake Out",
-        "Flare Blitz",
-        "Knock Off"
-      ],
-      "types": [
-        "Fire",
-        "Dark"
-      ],
-      "pokeapiNum": 727,
-      "movesDetails": {
-        "U - turn": {
-          "exists": true,
-          "num": 369,
-          "accuracy": 100,
-          "basePower": 70,
-          "category": "Physical",
-          "name": "U-turn",
-          "pp": 20,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "selfSwitch": true,
-          "secondary": null,
-          "target": "normal",
-          "type": "Bug",
-          "desc": "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members, or if the target switched out using an Eject Button or through the effect of the Emergency Exit or Wimp Out Abilities.",
-          "shortDesc": "User switches out after damaging the target.",
-          "id": "uturn",
-          "fullname": "move: U-turn",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 4,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 120
-          },
-          "zMove": {
-            "basePower": 140
-          }
-        },
-        "Fake Out": {
-          "exists": true,
-          "num": 252,
-          "accuracy": 100,
-          "basePower": 40,
-          "category": "Physical",
-          "name": "Fake Out",
-          "pp": 10,
-          "priority": 3,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "secondary": {
-            "chance": 100,
-            "volatileStatus": "flinch"
-          },
-          "target": "normal",
-          "type": "Normal",
-          "desc": "Has a 100% chance to make the target flinch. Fails unless it is the user's first turn on the field.",
-          "shortDesc": "Hits first. First turn out only. 100% flinch chance.",
-          "id": "fakeout",
-          "fullname": "move: Fake Out",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 3,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 100,
-              "volatileStatus": "flinch"
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 90
-          },
-          "zMove": {
-            "basePower": 100
-          }
-        },
-        "Flare Blitz": {
-          "exists": true,
-          "num": 394,
-          "accuracy": 100,
-          "basePower": 120,
-          "category": "Physical",
-          "name": "Flare Blitz",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "defrost": 1,
-            "metronome": 1
-          },
-          "recoil": [
-            33,
-            100
-          ],
-          "secondary": {
-            "chance": 10,
-            "status": "brn"
-          },
-          "target": "normal",
-          "type": "Fire",
-          "desc": "Has a 10% chance to burn the target. If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
-          "shortDesc": "Has 33% recoil. 10% chance to burn. Thaws user.",
-          "id": "flareblitz",
-          "fullname": "move: Flare Blitz",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 4,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 10,
-              "status": "brn"
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 140
-          },
-          "zMove": {
-            "basePower": 190
-          }
-        },
-        "Knock Off": {
-          "exists": true,
-          "num": 282,
-          "accuracy": 100,
-          "basePower": 65,
-          "category": "Physical",
-          "name": "Knock Off",
-          "pp": 20,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "secondary": null,
-          "target": "normal",
-          "type": "Dark",
-          "desc": "If the target is holding an item that can be removed from it, ignoring the Sticky Hold Ability, this move's power is multiplied by 1.5. If the user has not fainted, the target loses its held item. This move cannot cause Pokemon with the Sticky Hold Ability to lose their held item or cause a Kyogre, a Groudon, a Giratina, an Arceus, a Genesect, a Silvally, a Zacian, or a Zamazenta to lose their Blue Orb, Red Orb, Griseous Orb, Plate, Drive, Memory, Rusted Sword, or Rusted Shield respectively. Items lost to this move cannot be regained with Recycle or the Harvest Ability.",
-          "shortDesc": "1.5x damage if foe holds an item. Removes item.",
-          "id": "knockoff",
-          "fullname": "move: Knock Off",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 3,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 120
-          },
-          "zMove": {
-            "basePower": 120
-          }
-        }
-      }
-    },
-    {
-      "name": "",
-      "species": "Lunala",
-      "gender": "",
-      "item": "Leftovers",
-      "ability": "Shadow Shield",
-      "level": 50,
-      "teraType": "Fairy",
-      "evs": {
-        "hp": 132,
-        "atk": 0,
-        "def": 20,
-        "spa": 180,
-        "spd": 172,
-        "spe": 4
-      },
-      "nature": "Modest",
-      "ivs": {
-        "hp": 31,
-        "atk": 0,
-        "def": 31,
-        "spa": 31,
-        "spd": 31,
-        "spe": 31
-      },
-      "moves": [
-        "Moongeist Beam",
-        "Moonblast",
-        "Wide Guard",
-        "Trick Room"
-      ],
-      "types": [
-        "Psychic",
-        "Ghost"
-      ],
-      "pokeapiNum": 792,
-      "movesDetails": {
-        "Moongeist Beam": {
-          "exists": true,
-          "num": 714,
-          "accuracy": 100,
-          "basePower": 100,
-          "category": "Special",
-          "name": "Moongeist Beam",
-          "pp": 5,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "mirror": 1
-          },
-          "ignoreAbility": true,
-          "secondary": null,
-          "target": "normal",
-          "type": "Ghost",
-          "desc": "This move and its effects ignore the Abilities of other Pokemon.",
-          "shortDesc": "Ignores the Abilities of other Pokemon.",
-          "id": "moongeistbeam",
-          "fullname": "move: Moongeist Beam",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 7,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "maxMove": {
-            "basePower": 130
-          },
-          "zMove": {
-            "basePower": 180
-          }
-        },
-        "Moonblast": {
-          "exists": true,
-          "num": 585,
-          "accuracy": 100,
-          "basePower": 95,
-          "category": "Special",
-          "name": "Moonblast",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "secondary": {
-            "chance": 30,
-            "boosts": {
-              "spa": -1
-            }
-          },
-          "target": "normal",
-          "type": "Fairy",
-          "desc": "Has a 30% chance to lower the target's Special Attack by 1 stage.",
-          "shortDesc": "30% chance to lower the target's Sp. Atk by 1.",
-          "id": "moonblast",
-          "fullname": "move: Moonblast",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 6,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 30,
-              "boosts": {
-                "spa": -1
-              }
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 130
-          },
-          "zMove": {
-            "basePower": 175
-          }
-        },
-        "Wide Guard": {
-          "exists": true,
-          "num": 469,
-          "accuracy": true,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Wide Guard",
-          "pp": 10,
-          "priority": 3,
-          "flags": {
-            "snatch": 1
-          },
-          "sideCondition": "wideguard",
-          "condition": {
-            "duration": 1,
-            "onTryHitPriority": 4
-          },
-          "secondary": null,
-          "target": "allySide",
-          "type": "Rock",
-          "zMove": {
-            "boost": {
-              "def": 1
-            }
-          },
-          "desc": "The user and its party members are protected from moves made by other Pokemon, including allies, during this turn that target all adjacent foes or all adjacent Pokemon. This move modifies the same 1/X chance of being successful used by other protection moves, where X starts at 1 and triples each time this move is successfully used, but does not use the chance to check for failure. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Burning Bulwark, Detect, Endure, King's Shield, Max Guard, Obstruct, Protect, Quick Guard, Silk Trap, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn or if this move is already in effect for the user's side.",
-          "shortDesc": "Protects allies from multi-target moves this turn.",
-          "id": "wideguard",
-          "fullname": "move: Wide Guard",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 5,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        },
-        "Trick Room": {
-          "exists": true,
-          "num": 433,
-          "accuracy": true,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Trick Room",
-          "pp": 5,
-          "priority": -7,
-          "flags": {
-            "mirror": 1,
-            "metronome": 1
-          },
-          "pseudoWeather": "trickroom",
-          "condition": {
-            "duration": 5,
-            "onFieldResidualOrder": 27,
-            "onFieldResidualSubOrder": 1
-          },
-          "secondary": null,
-          "target": "all",
-          "type": "Psychic",
-          "zMove": {
-            "boost": {
-              "accuracy": 1
-            }
-          },
-          "desc": "For 5 turns, the Speed of every Pokemon is recalculated for the purposes of determining turn order. During the effect, each Pokemon's Speed is considered to be (10000 - its normal Speed), and if this value is greater than 8191, 8192 is subtracted from it. If this move is used during the effect, the effect ends.",
-          "shortDesc": "Goes last. For 5 turns, turn order is reversed.",
-          "id": "trickroom",
-          "fullname": "move: Trick Room",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 4,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        }
-      }
-    },
-    {
-      "name": "",
-      "species": "Amoonguss",
-      "gender": "F",
-      "item": "Covert Cloak",
-      "ability": "Regenerator",
-      "level": 50,
-      "teraType": "Dark",
-      "evs": {
-        "hp": 236,
-        "atk": 0,
-        "def": 196,
-        "spa": 0,
-        "spd": 76,
-        "spe": 0
-      },
-      "nature": "Sassy",
-      "ivs": {
-        "hp": 31,
-        "atk": 0,
-        "def": 31,
-        "spa": 31,
-        "spd": 31,
-        "spe": 0
-      },
-      "moves": [
-        "Rage Powder",
-        "Spore",
-        "Pollen Puff",
-        "Protect"
-      ],
-      "types": [
-        "Grass",
-        "Poison"
-      ],
-      "pokeapiNum": 591,
-      "movesDetails": {
-        "Rage Powder": {
-          "exists": true,
-          "num": 476,
-          "accuracy": true,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Rage Powder",
-          "pp": 20,
-          "priority": 2,
-          "flags": {
-            "noassist": 1,
-            "failcopycat": 1,
-            "powder": 1
-          },
-          "volatileStatus": "ragepowder",
-          "condition": {
-            "duration": 1,
-            "onFoeRedirectTargetPriority": 1
-          },
-          "secondary": null,
-          "target": "self",
-          "type": "Bug",
-          "zMove": {
-            "effect": "clearnegativeboost"
-          },
-          "desc": "Until the end of the turn, all single-target attacks from the opposing side are redirected to the user. Such attacks are redirected to the user before they can be reflected by Magic Coat or the Magic Bounce Ability, or drawn in by the Lightning Rod or Storm Drain Abilities. Fails if it is not a Double Battle or Battle Royal. This effect is ignored while the user is under the effect of Sky Drop.",
-          "shortDesc": "The foes' moves target the user on the turn used.",
-          "id": "ragepowder",
-          "fullname": "move: Rage Powder",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 5,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        },
-        "Spore": {
-          "exists": true,
-          "num": 147,
-          "accuracy": 100,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Spore",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "reflectable": 1,
-            "mirror": 1,
-            "metronome": 1,
-            "powder": 1
-          },
-          "status": "slp",
-          "secondary": null,
-          "target": "normal",
-          "type": "Grass",
-          "zMove": {
-            "effect": "clearnegativeboost"
-          },
-          "shortDesc": "Causes the target to fall asleep.",
-          "id": "spore",
-          "fullname": "move: Spore",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 1,
-          "desc": "Causes the target to fall asleep.",
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        },
-        "Pollen Puff": {
-          "exists": true,
-          "num": 676,
-          "accuracy": 100,
-          "basePower": 90,
-          "category": "Special",
-          "name": "Pollen Puff",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "mirror": 1,
-            "allyanim": 1,
-            "metronome": 1,
-            "bullet": 1
-          },
-          "secondary": null,
-          "target": "normal",
-          "type": "Bug",
-          "desc": "If the target is an ally, this move restores 1/2 of its maximum HP, rounded down, instead of dealing damage.",
-          "shortDesc": "If the target is an ally, heals 50% of its max HP.",
-          "id": "pollenpuff",
-          "fullname": "move: Pollen Puff",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 7,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 130
-          },
-          "zMove": {
-            "basePower": 175
-          }
-        },
-        "Protect": {
-          "exists": true,
-          "num": 182,
-          "accuracy": true,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Protect",
-          "pp": 10,
-          "priority": 4,
-          "flags": {
-            "noassist": 1,
-            "failcopycat": 1
-          },
-          "stallingMove": true,
-          "volatileStatus": "protect",
-          "condition": {
-            "duration": 1,
-            "onTryHitPriority": 3
-          },
-          "secondary": null,
-          "target": "self",
-          "type": "Normal",
-          "zMove": {
-            "effect": "clearnegativeboost"
-          },
-          "desc": "The user is protected from most attacks made by other Pokemon during this turn. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Burning Bulwark, Detect, Endure, King's Shield, Max Guard, Obstruct, Protect, Quick Guard, Silk Trap, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
-          "shortDesc": "Prevents moves from affecting the user this turn.",
-          "id": "protect",
-          "fullname": "move: Protect",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 2,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        }
-      }
-    },
-    {
-      "name": "",
-      "species": "Ursaluna",
-      "gender": "M",
-      "item": "Flame Orb",
-      "ability": "Guts",
-      "level": 50,
-      "teraType": "Ghost",
-      "evs": {
-        "hp": 140,
-        "atk": 252,
-        "def": 0,
-        "spa": 0,
-        "spd": 116,
-        "spe": 0
-      },
-      "nature": "Brave",
-      "ivs": {
-        "hp": 31,
-        "atk": 31,
-        "def": 31,
-        "spa": 14,
-        "spd": 31,
-        "spe": 0
-      },
-      "moves": [
-        "Facade",
-        "Headlong Rush",
-        "Earthquake",
-        "Protect"
-      ],
-      "types": [
-        "Ground",
-        "Normal"
-      ],
-      "pokeapiNum": 901,
-      "movesDetails": {
-        "Facade": {
-          "exists": true,
-          "num": 263,
-          "accuracy": 100,
-          "basePower": 70,
-          "category": "Physical",
-          "name": "Facade",
-          "pp": 20,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "secondary": null,
-          "target": "normal",
-          "type": "Normal",
-          "desc": "Power doubles if the user is burned, paralyzed, or poisoned. The physical damage halving effect from the user's burn is ignored.",
-          "shortDesc": "Power doubles if user is burn/poison/paralyzed.",
-          "id": "facade",
-          "fullname": "move: Facade",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 3,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 120
-          },
-          "zMove": {
-            "basePower": 140
-          }
-        },
-        "Headlong Rush": {
-          "exists": true,
-          "num": 838,
-          "accuracy": 100,
-          "basePower": 120,
-          "category": "Physical",
-          "name": "Headlong Rush",
-          "pp": 5,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "punch": 1,
-            "metronome": 1
-          },
-          "self": {
-            "boosts": {
-              "def": -1,
-              "spd": -1
-            }
-          },
-          "secondary": null,
-          "target": "normal",
-          "type": "Ground",
-          "desc": "Lowers the user's Defense and Special Defense by 1 stage.",
-          "shortDesc": "Lowers the user's Defense and Sp. Def by 1.",
-          "id": "headlongrush",
-          "fullname": "move: Headlong Rush",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 9,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 140
-          },
-          "zMove": {
-            "basePower": 190
-          }
-        },
-        "Earthquake": {
-          "exists": true,
-          "num": 89,
-          "accuracy": 100,
-          "basePower": 100,
-          "category": "Physical",
-          "name": "Earthquake",
-          "pp": 10,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "mirror": 1,
-            "nonsky": 1,
-            "metronome": 1
-          },
-          "secondary": null,
-          "target": "allAdjacent",
-          "type": "Ground",
-          "desc": "Damage doubles if the target is using Dig.",
-          "shortDesc": "Hits adjacent Pokemon. Double damage on Dig.",
-          "id": "earthquake",
-          "fullname": "move: Earthquake",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 1,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 130
-          },
-          "zMove": {
-            "basePower": 180
-          }
-        },
-        "Protect": {
-          "exists": true,
-          "num": 182,
-          "accuracy": true,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Protect",
-          "pp": 10,
-          "priority": 4,
-          "flags": {
-            "noassist": 1,
-            "failcopycat": 1
-          },
-          "stallingMove": true,
-          "volatileStatus": "protect",
-          "condition": {
-            "duration": 1,
-            "onTryHitPriority": 3
-          },
-          "secondary": null,
-          "target": "self",
-          "type": "Normal",
-          "zMove": {
-            "effect": "clearnegativeboost"
-          },
-          "desc": "The user is protected from most attacks made by other Pokemon during this turn. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Burning Bulwark, Detect, Endure, King's Shield, Max Guard, Obstruct, Protect, Quick Guard, Silk Trap, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
-          "shortDesc": "Prevents moves from affecting the user this turn.",
-          "id": "protect",
-          "fullname": "move: Protect",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 2,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        }
-      }
-    },
-    {
-      "name": "",
-      "species": "Koraidon",
-      "gender": "",
-      "item": "Life Orb",
-      "ability": "Orichalcum Pulse",
-      "level": 50,
-      "teraType": "Fire",
-      "evs": {
-        "hp": 4,
-        "atk": 252,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 252
-      },
-      "nature": "Jolly",
-      "moves": [
-        "Flare Blitz",
-        "Close Combat",
-        "Flame Charge",
-        "Protect"
-      ],
-      "types": [
-        "Fighting",
-        "Dragon"
-      ],
-      "pokeapiNum": 1007,
-      "movesDetails": {
-        "Flare Blitz": {
-          "exists": true,
-          "num": 394,
-          "accuracy": 100,
-          "basePower": 120,
-          "category": "Physical",
-          "name": "Flare Blitz",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "defrost": 1,
-            "metronome": 1
-          },
-          "recoil": [
-            33,
-            100
-          ],
-          "secondary": {
-            "chance": 10,
-            "status": "brn"
-          },
-          "target": "normal",
-          "type": "Fire",
-          "desc": "Has a 10% chance to burn the target. If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
-          "shortDesc": "Has 33% recoil. 10% chance to burn. Thaws user.",
-          "id": "flareblitz",
-          "fullname": "move: Flare Blitz",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 4,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 10,
-              "status": "brn"
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 140
-          },
-          "zMove": {
-            "basePower": 190
-          }
-        },
-        "Close Combat": {
-          "exists": true,
-          "num": 370,
-          "accuracy": 100,
-          "basePower": 120,
-          "category": "Physical",
-          "name": "Close Combat",
-          "pp": 5,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "self": {
-            "boosts": {
-              "def": -1,
-              "spd": -1
-            }
-          },
-          "secondary": null,
-          "target": "normal",
-          "type": "Fighting",
-          "desc": "Lowers the user's Defense and Special Defense by 1 stage.",
-          "shortDesc": "Lowers the user's Defense and Sp. Def by 1.",
-          "id": "closecombat",
-          "fullname": "move: Close Combat",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 4,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 95
-          },
-          "zMove": {
-            "basePower": 190
-          }
-        },
-        "Flame Charge": {
-          "exists": true,
-          "num": 488,
-          "accuracy": 100,
-          "basePower": 50,
-          "category": "Physical",
-          "name": "Flame Charge",
-          "pp": 20,
-          "priority": 0,
-          "flags": {
-            "contact": 1,
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "secondary": {
-            "chance": 100,
-            "self": {
-              "boosts": {
-                "spe": 1
-              }
-            }
-          },
-          "target": "normal",
-          "type": "Fire",
-          "desc": "Has a 100% chance to raise the user's Speed by 1 stage.",
-          "shortDesc": "100% chance to raise the user's Speed by 1.",
-          "id": "flamecharge",
-          "fullname": "move: Flame Charge",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 5,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 100,
-              "self": {
-                "boosts": {
-                  "spe": 1
-                }
-              }
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 100
-          },
-          "zMove": {
-            "basePower": 100
-          }
-        },
-        "Protect": {
-          "exists": true,
-          "num": 182,
-          "accuracy": true,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Protect",
-          "pp": 10,
-          "priority": 4,
-          "flags": {
-            "noassist": 1,
-            "failcopycat": 1
-          },
-          "stallingMove": true,
-          "volatileStatus": "protect",
-          "condition": {
-            "duration": 1,
-            "onTryHitPriority": 3
-          },
-          "secondary": null,
-          "target": "self",
-          "type": "Normal",
-          "zMove": {
-            "effect": "clearnegativeboost"
-          },
-          "desc": "The user is protected from most attacks made by other Pokemon during this turn. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Burning Bulwark, Detect, Endure, King's Shield, Max Guard, Obstruct, Protect, Quick Guard, Silk Trap, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
-          "shortDesc": "Prevents moves from affecting the user this turn.",
-          "id": "protect",
-          "fullname": "move: Protect",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 2,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        }
-      }
-    },
-    {
-      "name": "",
-      "species": "Flutter Mane",
-      "gender": "",
-      "item": "Focus Sash",
-      "ability": "Protosynthesis",
-      "level": 50,
-      "shiny": true,
-      "teraType": "Fairy",
-      "evs": {
-        "hp": 0,
-        "atk": 0,
-        "def": 4,
-        "spa": 252,
-        "spd": 0,
-        "spe": 252
-      },
-      "nature": "Timid",
-      "ivs": {
-        "hp": 31,
-        "atk": 3,
-        "def": 31,
-        "spa": 31,
-        "spd": 31,
-        "spe": 31
-      },
-      "moves": [
-        "Moonblast",
-        "Shadow Ball",
-        "Icy Wind",
-        "Protect"
-      ],
-      "types": [
-        "Ghost",
-        "Fairy"
-      ],
-      "pokeapiNum": 987,
-      "movesDetails": {
-        "Moonblast": {
-          "exists": true,
-          "num": 585,
-          "accuracy": 100,
-          "basePower": 95,
-          "category": "Special",
-          "name": "Moonblast",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1
-          },
-          "secondary": {
-            "chance": 30,
-            "boosts": {
-              "spa": -1
-            }
-          },
-          "target": "normal",
-          "type": "Fairy",
-          "desc": "Has a 30% chance to lower the target's Special Attack by 1 stage.",
-          "shortDesc": "30% chance to lower the target's Sp. Atk by 1.",
-          "id": "moonblast",
-          "fullname": "move: Moonblast",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 6,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 30,
-              "boosts": {
-                "spa": -1
-              }
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 130
-          },
-          "zMove": {
-            "basePower": 175
-          }
-        },
-        "Shadow Ball": {
-          "exists": true,
-          "num": 247,
-          "accuracy": 100,
-          "basePower": 80,
-          "category": "Special",
-          "name": "Shadow Ball",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1,
-            "bullet": 1
-          },
-          "secondary": {
-            "chance": 20,
-            "boosts": {
-              "spd": -1
-            }
-          },
-          "target": "normal",
-          "type": "Ghost",
-          "desc": "Has a 20% chance to lower the target's Special Defense by 1 stage.",
-          "shortDesc": "20% chance to lower the target's Sp. Def by 1.",
-          "id": "shadowball",
-          "fullname": "move: Shadow Ball",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 2,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 20,
-              "boosts": {
-                "spd": -1
-              }
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 130
-          },
-          "zMove": {
-            "basePower": 160
-          }
-        },
-        "Icy Wind": {
-          "exists": true,
-          "num": 196,
-          "accuracy": 95,
-          "basePower": 55,
-          "category": "Special",
-          "name": "Icy Wind",
-          "pp": 15,
-          "priority": 0,
-          "flags": {
-            "protect": 1,
-            "mirror": 1,
-            "metronome": 1,
-            "wind": 1
-          },
-          "secondary": {
-            "chance": 100,
-            "boosts": {
-              "spe": -1
-            }
-          },
-          "target": "allAdjacentFoes",
-          "type": "Ice",
-          "desc": "Has a 100% chance to lower the target's Speed by 1 stage.",
-          "shortDesc": "100% chance to lower the foe(s) Speed by 1.",
-          "id": "icywind",
-          "fullname": "move: Icy Wind",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 2,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": [
-            {
-              "chance": 100,
-              "boosts": {
-                "spe": -1
-              }
-            }
-          ],
-          "hasSheerForce": false,
-          "ignoreImmunity": false,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false,
-          "maxMove": {
-            "basePower": 110
-          },
-          "zMove": {
-            "basePower": 100
-          }
-        },
-        "Protect": {
-          "exists": true,
-          "num": 182,
-          "accuracy": true,
-          "basePower": 0,
-          "category": "Status",
-          "name": "Protect",
-          "pp": 10,
-          "priority": 4,
-          "flags": {
-            "noassist": 1,
-            "failcopycat": 1
-          },
-          "stallingMove": true,
-          "volatileStatus": "protect",
-          "condition": {
-            "duration": 1,
-            "onTryHitPriority": 3
-          },
-          "secondary": null,
-          "target": "self",
-          "type": "Normal",
-          "zMove": {
-            "effect": "clearnegativeboost"
-          },
-          "desc": "The user is protected from most attacks made by other Pokemon during this turn. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Burning Bulwark, Detect, Endure, King's Shield, Max Guard, Obstruct, Protect, Quick Guard, Silk Trap, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
-          "shortDesc": "Prevents moves from affecting the user this turn.",
-          "id": "protect",
-          "fullname": "move: Protect",
-          "effectType": "Move",
-          "kind": "Move",
-          "gen": 2,
-          "isNonstandard": null,
-          "critRatio": 1,
-          "secondaries": null,
-          "hasSheerForce": false,
-          "ignoreImmunity": true,
-          "isZ": false,
-          "isMax": false,
-          "ignoreAbility": false
-        }
-      }
-    }
-  ],
-  "errors": null,
-  "createdAt": "2025-06-18T01:31:36.509Z"
-}`;
+// ============================================================================
+// 常量定义
+// ============================================================================
+
+// 热门宝可梦列表（基于VGC使用率）
+const POPULAR_POKEMON = [
+  'Incineroar', 'Rillaboom', 'Grimmsnarl', 'Dragapult', 'Torkoal', 'Venusaur',
+  'Charizard', 'Lapras', 'Tyranitar', 'Excadrill', 'Togekiss', 'Whimsicott',
+  'Dusclops', 'Conkeldurr', 'Rotom-Heat', 'Gastrodon', 'Coalossal', 'Rhyperior',
+  'Indeedee', 'Hatterne', 'Dracovish', 'Milotic', 'Butterfree', 'Corviknight',
+  'Lucario', 'Rotom-Wash', 'Mimikyu', 'Clefairy', 'Arcanine', 'Magnezone',
+  'Porygon2', 'Sylveon', 'Politoed', 'Kingdra', 'Ludicolo', 'Amoonguss',
+  'Volcarona', 'Tapu Fini', 'Celesteela', 'Kartana'
+] as const
+
+// 热门属性组合
+const POPULAR_TYPE_COMBINATIONS = [
+  ['Fire', 'Fighting'], ['Grass', 'Poison'], ['Electric', 'Flying'],
+  ['Water', 'Ground'], ['Psychic', 'Fairy'], ['Dark', 'Flying'],
+  ['Steel', 'Flying'], ['Ghost', 'Poison'], ['Dragon', 'Flying'],
+  ['Fighting', 'Steel'], ['Fire', 'Flying'], ['Water', 'Flying'],
+  ['Grass', 'Flying'], ['Electric', 'Steel'], ['Rock', 'Ground'],
+  ['Ice', 'Flying'], ['Bug', 'Flying'], ['Normal', 'Flying'],
+  ['Fire', 'Ground'], ['Water', 'Psychic']
+] as const
+
+// 性能常量
+const STAB_MULTIPLIER = 1.5
+const DEFAULT_BASE_STAT = 100
+const MAX_MOVES_PER_CATEGORY = 5
+const CACHE_SIZE_LIMIT = 100
+
+// ============================================================================
+// 类型定义
+// ============================================================================
 
 export interface MoveInfo extends Move {
-  effectiveness: number;
-  pokemon: string;
+  readonly effectiveness: number
+  readonly pokemon: string
+  readonly damageScore: number
+  readonly hasSTAB: boolean
 }
 
 export interface CoverageForCombinationUnit {
-  type1: string;
-  type2: string;
-
-  effectiveMovesPhysical: MoveInfo[];
-  neutralMovesPhysical: MoveInfo[];
-  resistantMovesPhysical: MoveInfo[];
-  immuneMovesPhysical: MoveInfo[];
-
-  effectiveMovesSpecial: MoveInfo[];
-  neutralMovesSpecial: MoveInfo[];
-  resistantMovesSpecial: MoveInfo[];
-  immuneMovesSpecial: MoveInfo[];
-
-  level?: string;
-  score?: number;
-
-  levelPhysical?: string;
-  scorePhysical?: number;
-
-  levelSpecial?: string;
-  scoreSpecial?: number;
+  readonly type1: string
+  readonly type2: string
+  readonly effectiveMovesPhysical: readonly MoveInfo[]
+  readonly neutralMovesPhysical: readonly MoveInfo[]
+  readonly resistantMovesPhysical: readonly MoveInfo[]
+  readonly immuneMovesPhysical: readonly MoveInfo[]
+  readonly effectiveMovesSpecial: readonly MoveInfo[]
+  readonly neutralMovesSpecial: readonly MoveInfo[]
+  readonly resistantMovesSpecial: readonly MoveInfo[]
+  readonly immuneMovesSpecial: readonly MoveInfo[]
+  readonly level: CoverageLevel
+  readonly score: number
+  readonly levelPhysical: CoverageLevel
+  readonly scorePhysical: number
+  readonly levelSpecial: CoverageLevel
+  readonly scoreSpecial: number
+  readonly isPopular: boolean
 }
 
-function calculateLevelAndScore(unit: CoverageForCombinationUnit) {
-  const numEffectivePhysical = unit.effectiveMovesPhysical.length;
-  const numNeutralPhysical = unit.neutralMovesPhysical.length;
-  const numResistantPhysical = unit.resistantMovesPhysical.length;
-
-  const numEffectiveSpecial = unit.effectiveMovesSpecial.length;
-  const numNeutralSpecial = unit.neutralMovesSpecial.length;
-  const numResistantSpecial = unit.resistantMovesSpecial.length;
-
-  if (numEffectivePhysical > 0) {
-    unit.levelPhysical = 'Effective';
-    unit.scorePhysical = numEffectivePhysical * unit.effectiveMovesPhysical[0].basePower;
-  } else if (numNeutralPhysical > 0) {
-    unit.levelPhysical = 'Neutral';
-    unit.scorePhysical = numNeutralPhysical * unit.neutralMovesPhysical[0].basePower;
-  } else if (numResistantPhysical > 0) {
-    unit.levelPhysical = 'Resistant';
-    unit.scorePhysical = numResistantPhysical * unit.resistantMovesPhysical[0].basePower;
-  } else {
-    unit.levelPhysical = 'Immune';
-    unit.scorePhysical = 0;
+export interface PopularPokemonCoverage {
+  readonly pokemon: string
+  readonly types: readonly string[]
+  readonly bestMoves: {
+    readonly physical: readonly MoveInfo[]
+    readonly special: readonly MoveInfo[]
+    readonly overall: readonly MoveInfo[]
   }
+  readonly coverageLevel: CoverageLevel
+  readonly overallScore: number
+}
 
-  if (numEffectiveSpecial > 0) {
-    unit.levelSpecial = 'Effective';
-    unit.scoreSpecial = numEffectiveSpecial * unit.effectiveMovesSpecial[0].basePower;
-  } else if (numNeutralSpecial > 0) {
-    unit.levelSpecial = 'Neutral';
-    unit.scoreSpecial = numNeutralSpecial * unit.neutralMovesSpecial[0].basePower;
-  } else if (numResistantSpecial > 0) {
-    unit.levelSpecial = 'Resistant';
-    unit.scoreSpecial = numResistantSpecial * unit.resistantMovesSpecial[0].basePower;
-  } else {
-    unit.levelSpecial = 'Immune';
-    unit.scoreSpecial = 0;
-  }
+export type CoverageLevel = 'Effective' | 'Neutral' | 'Resistant' | 'Immune'
 
-  if (numEffectivePhysical + numEffectiveSpecial > 0) {
-    unit.level = 'Effective';
-    unit.score = (numEffectivePhysical + numEffectiveSpecial) * Math.max(unit.effectiveMovesPhysical[0]?.basePower ?? 0, unit.effectiveMovesSpecial[0]?.basePower ?? 0);
-  } else if (numNeutralPhysical + numNeutralSpecial > 0) {
-    unit.level = 'Neutral';
-    unit.score = (numNeutralPhysical + numNeutralSpecial) * Math.max(unit.neutralMovesPhysical[0]?.basePower ?? 0, unit.neutralMovesSpecial[0]?.basePower ?? 0);
-  } else if (numResistantPhysical + numResistantSpecial > 0) {
-    unit.level = 'Resistant';
-    unit.score = (numResistantPhysical + numResistantSpecial) * Math.max(unit.resistantMovesPhysical[0]?.basePower ?? 0, unit.resistantMovesSpecial[0]?.basePower ?? 0);
-  } else {
-    unit.level = 'Immune';
-    unit.score = 0;
+export interface CoverageAnalysisResult {
+  readonly typeCoverageMatrix: ReadonlyMap<string, ReadonlyMap<string, CoverageForCombinationUnit | null>>
+  readonly popularPokemonCoverage: readonly PopularPokemonCoverage[]
+  readonly teamInfo: {
+    readonly id: string
+    readonly name: string
+    readonly pokemonCount: number
   }
 }
 
-function coverageAnalyze(team: Team) {
-  const gen = new Generations(Dex).get(9);
-  const types = gen.types;
-  // const species = gen.species;
-  const allTypes = Array.from(types, (t: any) => t.name).filter((t: any) => t !== 'Stellar');
-  // const allTypeCombinations = chooseTwoCombinations(allTypes) as string[][];
+// ============================================================================
+// 缓存系统
+// ============================================================================
 
-  const pokemonList = team.teamData;
+interface CacheEntry<T> {
+  readonly value: T
+  readonly timestamp: number
+}
 
-  const matrix = new Map<string, Map<string, CoverageForCombinationUnit | null>>();
+class LRUCache<K, V> {
+  private readonly cache = new Map<string, CacheEntry<V>>()
+  private readonly maxSize: number
+  private readonly ttl: number
 
-  for (let i = 0; i < allTypes.length; i++) {
-    const type1 = allTypes[i];
-    matrix.set(type1, new Map<string, CoverageForCombinationUnit | null>());
-    for (let j = 0; j < allTypes.length; j++) {
-      const type2 = allTypes[j];
-      if (j < i) {
-        matrix.get(type1)?.set(type2, null);
-        continue;
-      } else {
-        const unit: CoverageForCombinationUnit = {
-          type1,
-          type2,
-          effectiveMovesPhysical: [],
-          neutralMovesPhysical: [],
-          resistantMovesPhysical: [],
-          immuneMovesPhysical: [],
-          effectiveMovesSpecial: [],
-          neutralMovesSpecial: [],
-          resistantMovesSpecial: [],
-          immuneMovesSpecial: [],
-        };
-        for (const pokemon of pokemonList) {
-          const pokemonMoves = pokemon.moves;
-          for (const move of pokemonMoves) {
-            const moveData = gen.moves.get(move);
-            if (moveData && moveData.category !== 'Status') {
-              const combanationTypes = j === i ? [type1] : [type1, type2];
-              const effectiveness = types.totalEffectiveness(moveData.type, combanationTypes);
-              const moveInfo: MoveInfo = {
-                ...moveData,
-                pokemon: pokemon.species,
-                name: moveData.name,
-                category: moveData.category,
-                effectiveness
-              }
-              if (effectiveness <= 0) {
-                if (moveData.category === 'Physical') {
-                  unit.immuneMovesPhysical.push(moveInfo);
-                } else {
-                  unit.immuneMovesSpecial.push(moveInfo);
-                }
-              } else if (effectiveness > 0 && effectiveness < 1) {
-                if (moveData.category === 'Physical') {
-                  unit.resistantMovesPhysical.push(moveInfo);
-                } else {
-                  unit.resistantMovesSpecial.push(moveInfo);
-                }
-              } else if (effectiveness === 1) {
-                if (moveData.category === 'Physical') {
-                  unit.neutralMovesPhysical.push(moveInfo);
-                } else {
-                  unit.neutralMovesSpecial.push(moveInfo);
-                }
-              } else {
-                if (moveData.category === 'Physical') {
-                  unit.effectiveMovesPhysical.push(moveInfo);
-                } else {
-                  unit.effectiveMovesSpecial.push(moveInfo);
-                }
-              }
-            }
-          }
-        }
-        matrix.get(type1)?.set(type2, unit);
-        unit.effectiveMovesPhysical.sort((a, b) => b.basePower - a.basePower);
-        unit.effectiveMovesSpecial.sort((a, b) => b.basePower - a.basePower);
-        unit.neutralMovesPhysical.sort((a, b) => b.basePower - a.basePower);
-        unit.neutralMovesSpecial.sort((a, b) => b.basePower - a.basePower);
-        unit.resistantMovesPhysical.sort((a, b) => b.basePower - a.basePower);
-        unit.resistantMovesSpecial.sort((a, b) => b.basePower - a.basePower);
-        unit.immuneMovesPhysical.sort((a, b) => b.basePower - a.basePower);
-        unit.immuneMovesSpecial.sort((a, b) => b.basePower - a.basePower);
-        calculateLevelAndScore(unit);
-      }
+  constructor(maxSize = CACHE_SIZE_LIMIT, ttlMs = 5 * 60 * 1000) {
+    this.maxSize = maxSize
+    this.ttl = ttlMs
+  }
+
+  get(key: K): V | undefined {
+    const keyStr = this.serializeKey(key)
+    const entry = this.cache.get(keyStr)
+
+    if (!entry) return undefined
+
+    if (Date.now() - entry.timestamp > this.ttl) {
+      this.cache.delete(keyStr)
+      return undefined
+    }
+
+    // LRU: 重新插入以更新位置
+    this.cache.delete(keyStr)
+    this.cache.set(keyStr, entry)
+
+    return entry.value
+  }
+
+  set(key: K, value: V): void {
+    const keyStr = this.serializeKey(key)
+
+    // 如果缓存已满，删除最旧的条目
+    if (this.cache.size >= this.maxSize) {
+      const firstKey = this.cache.keys().next().value
+      if (firstKey) this.cache.delete(firstKey)
+    }
+
+    this.cache.set(keyStr, {
+      value,
+      timestamp: Date.now()
+    })
+  }
+
+  clear(): void {
+    this.cache.clear()
+  }
+
+  private serializeKey(key: K): string {
+    return typeof key === 'string' ? key : JSON.stringify(key)
+  }
+}
+
+// ============================================================================
+// 工具函数
+// ============================================================================
+
+const memoize = <T extends (...args: any[]) => any>(fn: T): T => {
+  const cache = new Map<string, ReturnType<T>>()
+
+  return ((...args: Parameters<T>): ReturnType<T> => {
+    const key = JSON.stringify(args)
+
+    if (cache.has(key)) {
+      return cache.get(key)!
+    }
+
+    const result = fn(...args)
+    cache.set(key, result)
+    return result
+  }) as T
+}
+
+const isPopularCombination = memoize((type1: string, type2: string): boolean => {
+  return POPULAR_TYPE_COMBINATIONS.some(combo =>
+    (combo[0] === type1 && combo[1] === type2) ||
+    (combo[0] === type2 && combo[1] === type1)
+  )
+})
+
+const calculateDamageScore = (
+  basePower: number,
+  effectiveness: number,
+  hasSTAB: boolean,
+  attackStat: number
+): number => {
+  const stabMultiplier = hasSTAB ? STAB_MULTIPLIER : 1
+  return basePower * effectiveness * stabMultiplier * (attackStat / 100)
+}
+
+const estimateAttackStat = memoize((pokemon: any, isSpecial: boolean): number => {
+  const evKey = isSpecial ? 'spa' : 'atk'
+  const ivKey = isSpecial ? 'spa' : 'atk'
+
+  const evValue = pokemon.evs?.[evKey] || 0
+  const ivValue = pokemon.ivs?.[ivKey] || 31
+
+  return Math.floor(((2 * DEFAULT_BASE_STAT + ivValue + Math.floor(evValue / 4)) * 50) / 100 + 5)
+})
+
+// ============================================================================
+// 覆盖分析器
+// ============================================================================
+
+export class CoverageAnalyzer {
+  private readonly gen: any
+  private readonly types: any
+  private readonly moveCache = new LRUCache<string, any>()
+  private readonly speciesCache = new LRUCache<string, any>()
+  private readonly effectivenessCache = new LRUCache<string, number>()
+
+  constructor(generation: number = 9) {
+    try {
+      this.gen = new Generations(Dex).get(generation)
+      this.types = this.gen.types
+    } catch (error) {
+      throw new Error(`Failed to initialize CoverageAnalyzer: ${error}`)
     }
   }
 
-  // Convert the matrix to a serializable object
-  const serializableMatrix: Record<string, Record<string, CoverageForCombinationUnit | null>> = {};
-  matrix.forEach((typeMap, type1) => {
-    serializableMatrix[type1] = {};
-    typeMap.forEach((value, type2) => {
-      serializableMatrix[type1][type2] = value;
-    });
-  });
-  console.log(JSON.stringify(serializableMatrix, null, 2));
+  analyze(team: Team): CoverageAnalysisResult {
+    if (!team?.teamData?.length) {
+      throw new Error('Invalid team data provided')
+    }
+
+    try {
+      const allTypes = this.getAllTypes()
+      const typeCoverageMatrix = this.buildTypeCoverageMatrix(team, allTypes)
+      const popularPokemonCoverage = this.analyzePopularPokemonCoverage(team)
+
+      return {
+        typeCoverageMatrix,
+        popularPokemonCoverage,
+        teamInfo: {
+          id: team.id || '',
+          name: team.name || '',
+          pokemonCount: team.teamData.length
+        }
+      }
+    } catch (error) {
+      console.error('Coverage analysis failed:', error)
+      throw new Error(`Coverage analysis failed: ${error}`)
+    }
+  }
+
+  private getAllTypes(): readonly string[] {
+    return Array.from(this.types, (t: any) => t.name).filter((t: any) => t !== 'Stellar')
+  }
+
+  private buildTypeCoverageMatrix(
+    team: Team,
+    allTypes: readonly string[]
+  ): ReadonlyMap<string, ReadonlyMap<string, CoverageForCombinationUnit | null>> {
+    const matrix = new Map<string, Map<string, CoverageForCombinationUnit | null>>()
+
+    // 初始化矩阵
+    for (const type1 of allTypes) {
+      const row = new Map<string, CoverageForCombinationUnit | null>()
+      for (const type2 of allTypes) {
+        row.set(type2, null)
+      }
+      matrix.set(type1, row)
+    }
+
+    // 只计算上三角矩阵（包括对角线）
+    for (let i = 0; i < allTypes.length; i++) {
+      const type1 = allTypes[i]
+
+      for (let j = i; j < allTypes.length; j++) {
+        const type2 = allTypes[j]
+        const unit = this.analyzeCombination(team, type1, type2)
+        matrix.get(type1)!.set(type2, unit)
+      }
+    }
+
+    // 转换为只读Map
+    const readonlyMatrix = new Map<string, ReadonlyMap<string, CoverageForCombinationUnit | null>>()
+    for (const [type1, row] of matrix) {
+      readonlyMatrix.set(type1, new Map(row))
+    }
+
+    return readonlyMatrix
+  }
+
+  private analyzeCombination(team: Team, type1: string, type2: string): CoverageForCombinationUnit {
+    const combinationTypes = type1 === type2 ? [type1] : [type1, type2]
+    const isPopular = isPopularCombination(type1, type2)
+
+    // 分类存储招式
+    const moveCategories = {
+      effectiveMovesPhysical: [] as MoveInfo[],
+      neutralMovesPhysical: [] as MoveInfo[],
+      resistantMovesPhysical: [] as MoveInfo[],
+      immuneMovesPhysical: [] as MoveInfo[],
+      effectiveMovesSpecial: [] as MoveInfo[],
+      neutralMovesSpecial: [] as MoveInfo[],
+      resistantMovesSpecial: [] as MoveInfo[],
+      immuneMovesSpecial: [] as MoveInfo[]
+    }
+
+    // 分析每只宝可梦的招式
+    for (const pokemon of team.teamData || []) {
+      this.analyzePokemonMoves(pokemon, combinationTypes, moveCategories)
+    }
+
+    // 排序并限制数量
+    this.sortAndLimitMoves(moveCategories)
+
+    // 计算等级和分数
+    const scores = this.calculateScores(moveCategories)
+
+    return {
+      type1,
+      type2,
+      ...moveCategories,
+      ...scores,
+      isPopular
+    }
+  }
+
+  private analyzePokemonMoves(
+    pokemon: any,
+    combinationTypes: string[],
+    moveCategories: Record<string, MoveInfo[]>
+  ): void {
+    const pokemonMoves = pokemon.moves || []
+
+    for (const moveName of pokemonMoves) {
+      const moveData = this.getMoveData(moveName)
+      if (!moveData || moveData.category === 'Status') continue
+
+      const effectiveness = this.getEffectiveness(moveData.type, combinationTypes)
+      const moveInfo = this.createMoveInfo(moveData, pokemon, effectiveness)
+
+      this.categorizeMove(moveCategories, moveInfo, effectiveness)
+    }
+  }
+
+  private getMoveData(moveName: string): any {
+    let moveData = this.moveCache.get(moveName)
+    if (!moveData) {
+      moveData = this.gen.moves.get(moveName)
+      if (moveData) {
+        this.moveCache.set(moveName, moveData)
+      }
+    }
+    return moveData
+  }
+
+  private getSpeciesData(speciesName: string): any {
+    let speciesData = this.speciesCache.get(speciesName)
+    if (!speciesData) {
+      speciesData = this.gen.species.get(speciesName)
+      if (speciesData) {
+        this.speciesCache.set(speciesName, speciesData)
+      }
+    }
+    return speciesData
+  }
+
+  private getEffectiveness(moveType: string, targetTypes: string[]): number {
+    const cacheKey = `${moveType}-${targetTypes.join(',')}`
+
+    let effectiveness = this.effectivenessCache.get(cacheKey)
+    if (effectiveness === undefined) {
+      effectiveness = this.types.totalEffectiveness(moveType, targetTypes) || 1
+      this.effectivenessCache.set(cacheKey, effectiveness as number)
+    }
+
+    return effectiveness as number
+  }
+
+  private createMoveInfo(moveData: any, pokemon: any, effectiveness: number): MoveInfo {
+    const hasSTAB = pokemon.types?.includes(moveData.type) ?? false
+    const isSpecial = moveData.category === 'Special'
+    const attackStat = estimateAttackStat(pokemon, isSpecial)
+    const damageScore = calculateDamageScore(
+      moveData.basePower || 0,
+      effectiveness,
+      hasSTAB,
+      attackStat
+    )
+
+    return {
+      ...moveData,
+      effectiveness,
+      pokemon: pokemon.species,
+      damageScore,
+      hasSTAB
+    }
+  }
+
+  private categorizeMove(
+    moveCategories: Record<string, MoveInfo[]>,
+    moveInfo: MoveInfo,
+    effectiveness: number
+  ): void {
+    const isPhysical = moveInfo.category === 'Physical'
+    const suffix = isPhysical ? 'Physical' : 'Special'
+
+    if (effectiveness <= 0) {
+      moveCategories[`immuneMoves${suffix}`].push(moveInfo)
+    } else if (effectiveness < 1) {
+      moveCategories[`resistantMoves${suffix}`].push(moveInfo)
+    } else if (effectiveness === 1) {
+      moveCategories[`neutralMoves${suffix}`].push(moveInfo)
+    } else {
+      moveCategories[`effectiveMoves${suffix}`].push(moveInfo)
+    }
+  }
+
+  private sortAndLimitMoves(moveCategories: Record<string, MoveInfo[]>): void {
+    const sortFn = (a: MoveInfo, b: MoveInfo) => b.damageScore - a.damageScore
+
+    for (const category of Object.keys(moveCategories)) {
+      moveCategories[category].sort(sortFn)
+      moveCategories[category] = moveCategories[category].slice(0, MAX_MOVES_PER_CATEGORY)
+    }
+  }
+
+  private calculateScores(moveCategories: Record<string, MoveInfo[]>): {
+    level: CoverageLevel
+    score: number
+    levelPhysical: CoverageLevel
+    scorePhysical: number
+    levelSpecial: CoverageLevel
+    scoreSpecial: number
+  } {
+    const calculateCategoryScore = (
+      effective: MoveInfo[],
+      neutral: MoveInfo[],
+      resistant: MoveInfo[]
+    ): { level: CoverageLevel; score: number } => {
+      if (effective.length > 0) {
+        const topMove = effective[0]
+        return {
+          level: 'Effective',
+          score: effective.length * (topMove?.damageScore || 0)
+        }
+      } else if (neutral.length > 0) {
+        const topMove = neutral[0]
+        return {
+          level: 'Neutral',
+          score: neutral.length * (topMove?.damageScore || 0)
+        }
+      } else if (resistant.length > 0) {
+        const topMove = resistant[0]
+        return {
+          level: 'Resistant',
+          score: resistant.length * (topMove?.damageScore || 0)
+        }
+      } else {
+        return { level: 'Immune', score: 0 }
+      }
+    }
+
+    // 物理分数
+    const physicalResult = calculateCategoryScore(
+      moveCategories.effectiveMovesPhysical,
+      moveCategories.neutralMovesPhysical,
+      moveCategories.resistantMovesPhysical
+    )
+
+    // 特殊分数
+    const specialResult = calculateCategoryScore(
+      moveCategories.effectiveMovesSpecial,
+      moveCategories.neutralMovesSpecial,
+      moveCategories.resistantMovesSpecial
+    )
+
+    // 总体分数
+    const allEffective = [
+      ...moveCategories.effectiveMovesPhysical,
+      ...moveCategories.effectiveMovesSpecial
+    ]
+    const allNeutral = [
+      ...moveCategories.neutralMovesPhysical,
+      ...moveCategories.neutralMovesSpecial
+    ]
+    const allResistant = [
+      ...moveCategories.resistantMovesPhysical,
+      ...moveCategories.resistantMovesSpecial
+    ]
+
+    const overallResult = calculateCategoryScore(allEffective, allNeutral, allResistant)
+
+    return {
+      level: overallResult.level,
+      score: overallResult.score,
+      levelPhysical: physicalResult.level,
+      scorePhysical: physicalResult.score,
+      levelSpecial: specialResult.level,
+      scoreSpecial: specialResult.score
+    }
+  }
+
+  private analyzePopularPokemonCoverage(team: Team): readonly PopularPokemonCoverage[] {
+    const results = POPULAR_POKEMON.map(pokemonName => {
+      const pokemonData = this.getSpeciesData(pokemonName)
+
+      if (!pokemonData) {
+        return this.createEmptyPokemonCoverage(pokemonName)
+      }
+      return this.analyzeSinglePokemonCoverage(team, pokemonName, pokemonData.types || [])
+    })
+
+    return results.sort((a, b) => b.overallScore - a.overallScore)
+  }
+
+  private analyzeSinglePokemonCoverage(
+    team: Team,
+    pokemonName: string,
+    types: readonly string[]
+  ): PopularPokemonCoverage {
+    const bestMoves = {
+      physical: [] as MoveInfo[],
+      special: [] as MoveInfo[],
+      overall: [] as MoveInfo[]
+    }
+
+    // 分析所有招式
+    for (const pokemon of team.teamData || []) {
+      const pokemonMoves = pokemon.moves || []
+
+      for (const moveName of pokemonMoves) {
+        const moveData = this.getMoveData(moveName)
+        if (!moveData || moveData.category === 'Status') continue
+
+        const effectiveness = this.getEffectiveness(moveData.type, Array.from(types))
+        const moveInfo = this.createMoveInfo(moveData, pokemon, effectiveness)
+
+        if (moveInfo.category === 'Physical') {
+          bestMoves.physical.push(moveInfo)
+        } else {
+          bestMoves.special.push(moveInfo)
+        }
+        bestMoves.overall.push(moveInfo)
+      }
+    }
+
+    // 排序并限制数量
+    const sortFn = (a: MoveInfo, b: MoveInfo) => b.damageScore - a.damageScore
+    bestMoves.physical.sort(sortFn)
+    bestMoves.special.sort(sortFn)
+    bestMoves.overall.sort(sortFn)
+
+    bestMoves.physical = bestMoves.physical.slice(0, MAX_MOVES_PER_CATEGORY)
+    bestMoves.special = bestMoves.special.slice(0, MAX_MOVES_PER_CATEGORY)
+    bestMoves.overall = bestMoves.overall.slice(0, MAX_MOVES_PER_CATEGORY)
+
+    // 确定覆盖等级和总分
+    const topMove = bestMoves.overall[0]
+    let coverageLevel: CoverageLevel = 'Immune'
+    let overallScore = 0
+
+    if (topMove) {
+      if (topMove.effectiveness > 1) {
+        coverageLevel = 'Effective'
+      } else if (topMove.effectiveness === 1) {
+        coverageLevel = 'Neutral'
+      } else if (topMove.effectiveness > 0) {
+        coverageLevel = 'Resistant'
+      }
+      overallScore = topMove.damageScore
+    }
+
+    return {
+      pokemon: pokemonName,
+      types: Array.from(types),
+      bestMoves,
+      coverageLevel,
+      overallScore
+    }
+  }
+
+  private createEmptyPokemonCoverage(pokemonName: string): PopularPokemonCoverage {
+    return {
+      pokemon: pokemonName,
+      types: [],
+      bestMoves: { physical: [], special: [], overall: [] },
+      coverageLevel: 'Immune',
+      overallScore: 0
+    }
+  }
+
+  clearCache(): void {
+    this.moveCache.clear()
+    this.speciesCache.clear()
+    this.effectivenessCache.clear()
+  }
 }
 
-coverageAnalyze(JSON.parse(teamString) as Team);
+// ============================================================================
+// 导出函数
+// ============================================================================
+
+export function createCoverageAnalyzer(generation: number = 9): CoverageAnalyzer {
+  return new CoverageAnalyzer(generation)
+}

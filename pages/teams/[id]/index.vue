@@ -17,6 +17,11 @@ const tabs = computed(() => [
     key: 'resistance',
     label: t('teamDetail.tabs.resistance'),
     to: `/teams/${teamId}/resistance`
+  },
+  {
+    key: 'coverage',
+    label: t('teamDetail.tabs.coverage'),
+    to: `/teams/${teamId}/coverage`
   }
 ])
 </script>

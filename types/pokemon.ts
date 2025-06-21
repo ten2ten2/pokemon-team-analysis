@@ -1,5 +1,6 @@
 import { type PokemonSet } from '@pkmn/sets'
 import type { Move } from '@pkmn/data'
+import type { StatsTable } from '@pkmn/types'
 
 // ==================== 常量定义 ====================
 
@@ -17,6 +18,8 @@ export const SPRITES_URL_PREFIX: Record<string, string> = {
  */
 export interface Pokemon extends PokemonSet {
   types: string[]
-  pokeapiNum: number
+  pokeApiNum: number
   movesDetails: Record<string, Move>
+  baseStats: StatsTable
+  stats: StatsTable
 }

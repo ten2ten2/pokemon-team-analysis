@@ -27,13 +27,25 @@ export function normalizeTeamName(name: string): string {
 }
 
 /**
+ * 将名称转换为小写，并去除非字母数字和空格
+ * @param name - 名称
+ * @returns 处理后的名称
+ */
+export function normalizeName(name: string): string {
+  return name.toLowerCase()       // 转换为小写
+    .replace(/\s*-\s*/g, '-')     // 把「多个空格 + 连字符 + 多个空格」都统一替换成单个连字符
+    .replace(/[^a-z0-9 \-]/g, '') // 移除所有非字母、数字、空格和连字符的字符
+    .replace(/ +/g, '-')          // 将所有空格替换为连字符
+}
+
+/**
  * 获取精灵图片
  * @param pkm - 精灵
  * @param stripeType - 精灵图片类型
  * @returns 精灵图片
  */
 export const getSprite = (pkm: Pokemon, stripeType: string = 'default') => {
-  return `${SPRITES_URL_PREFIX[stripeType]}${pkm.pokeapiNum}.png`
+  return `${SPRITES_URL_PREFIX[stripeType]}${pkm.pokeApiNum}.png`
 }
 
 /**

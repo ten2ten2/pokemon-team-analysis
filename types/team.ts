@@ -15,6 +15,10 @@ export const RULES = {
   SINGLES_REG_I: 'singlesRegI'
 } as const
 
+export const GENERATION_MAP: Record<GameVersion, number> = {
+  [GAME_VERSIONS.SV]: 9,
+} as const
+
 // ==================== 默认值 ====================
 
 export const DEFAULT_GAME_VERSION = GAME_VERSIONS.SV

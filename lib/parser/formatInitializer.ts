@@ -19,7 +19,7 @@ function markFormatsInitialized(): void {
 }
 
 /**
- * 初始化自定义格式（幂等操作）
+ * 初始化自定义格式 (幂等操作)
  */
 export function initializeFormats(): void {
   // 如果已经初始化过，直接返回
@@ -33,8 +33,8 @@ export function initializeFormats(): void {
       throw new Error('Invalid Formats data');
     }
 
-    // 检查是否有格式已经存在（防止重复添加）
-    // 注意：格式ID现在是从name自动生成的（转为小写）
+    // 检查是否有格式已经存在 (防止重复添加)
+    // 注意：格式ID现在是从name自动生成的 (转为小写)
     const customFormatNames = ['doublesregg', 'doublesregh', 'doublesregi', 'singlesregg', 'singlesregh', 'singlesregi'];
     const existingFormats = customFormatNames.filter(name => {
       try {
@@ -76,7 +76,7 @@ export function verifyFormatsLoaded(): boolean {
     return false;
   }
 
-  // 注意：格式ID现在是从name自动生成的（转为小写）
+  // 注意：格式ID现在是从name自动生成的 (转为小写)
   const customFormatNames = ['doublesregg', 'doublesregh', 'doublesregi', 'singlesregg', 'singlesregh', 'singlesregi'];
 
   for (const formatName of customFormatNames) {
@@ -103,7 +103,7 @@ export function verifyFormatsLoaded(): boolean {
 // 模块加载时自动初始化
 initializeFormats();
 
-// 延迟验证以确保格式完全加载（解决惰性加载时序问题）
+// 延迟验证以确保格式完全加载 (解决惰性加载时序问题)
 setTimeout(() => {
   if (!verifyFormatsLoaded()) {
     console.error('⚠️ Format initialization verification failed');
