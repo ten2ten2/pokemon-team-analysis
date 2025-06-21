@@ -1,91 +1,10 @@
 // lib/calculator/statsCalculator.ts - 优化后的版本
 
 import type { StatsTable } from '@pkmn/types'
-
-// ==================== 类型定义 ====================
-
-type StatKey = 'atk' | 'def' | 'spa' | 'spd' | 'spe'
-type NatureModifier = 1.1 | 1.0 | 0.9
-
-interface NatureEffect {
-  readonly increased?: StatKey
-  readonly decreased?: StatKey
-}
-
-// ==================== 常量定义 ====================
-
-// 默认种族值 (当无法获取真实数据时使用)
-const DEFAULT_BASE_STATS: StatsTable = {
-  hp: 100,
-  atk: 100,
-  def: 100,
-  spa: 100,
-  spd: 100,
-  spe: 100
-} as const
-
-// 默认个体值
-const DEFAULT_IVS: StatsTable = {
-  hp: 31,
-  atk: 31,
-  def: 31,
-  spa: 31,
-  spd: 31,
-  spe: 31
-} as const
-
-// 默认努力值
-const DEFAULT_EVS: StatsTable = {
-  hp: 0,
-  atk: 0,
-  def: 0,
-  spa: 0,
-  spd: 0,
-  spe: 0
-} as const
-
-// 性格效果映射
-const NATURE_MODIFIERS: Record<string, NatureEffect> = {
-  // +攻击
-  'Lonely': { increased: 'atk', decreased: 'def' },
-  'Adamant': { increased: 'atk', decreased: 'spa' },
-  'Naughty': { increased: 'atk', decreased: 'spd' },
-  'Brave': { increased: 'atk', decreased: 'spe' },
-  // +防御
-  'Bold': { increased: 'def', decreased: 'atk' },
-  'Impish': { increased: 'def', decreased: 'spa' },
-  'Lax': { increased: 'def', decreased: 'spd' },
-  'Relaxed': { increased: 'def', decreased: 'spe' },
-  // +特攻
-  'Modest': { increased: 'spa', decreased: 'atk' },
-  'Mild': { increased: 'spa', decreased: 'def' },
-  'Rash': { increased: 'spa', decreased: 'spd' },
-  'Quiet': { increased: 'spa', decreased: 'spe' },
-  // +特防
-  'Calm': { increased: 'spd', decreased: 'atk' },
-  'Gentle': { increased: 'spd', decreased: 'def' },
-  'Careful': { increased: 'spd', decreased: 'spa' },
-  'Sassy': { increased: 'spd', decreased: 'spe' },
-  // +速度
-  'Timid': { increased: 'spe', decreased: 'atk' },
-  'Hasty': { increased: 'spe', decreased: 'def' },
-  'Jolly': { increased: 'spe', decreased: 'spa' },
-  'Naive': { increased: 'spe', decreased: 'spd' },
-  // 中性 (无修正)
-  'Hardy': {},
-  'Docile': {},
-  'Bashful': {},
-  'Quirky': {},
-  'Serious': {}
-} as const
-
-// 性格修正值
-const NATURE_BOOST = 1.1 as const
-const NATURE_REDUCTION = 0.9 as const
-const NATURE_NEUTRAL = 1.0 as const
-
-// 缓存计算结果
-const statsCache = new Map<string, StatsTable>()
+import { NATURE_MODIFIERS, NATURE_BOOST, NATURE_REDUCTION, NATURE_NEUTRAL, CACHE_KEYS, CACHE_TTL } from '../core/constants'
+import { DEFAULT_BASE_STATS, DEFAULT_IVS, DEFAULT_EVS } from '../core/defaults'
+import { cacheService } from '../core/cacheService'
+import type { StatKey, NatureModifier } from '../core/types'
 
 // ==================== 辅助函数 ====================
 
@@ -143,14 +62,28 @@ function calculateStat(base: number, iv: number, ev: number, level: number, natu
 /**
  * 生成缓存键
  */
-function generateCacheKey(
+function generateStatsCacheKey(
   baseStats: StatsTable,
   ivs: StatsTable,
   evs: StatsTable,
   level: number,
   nature: string
 ): string {
-  return `${JSON.stringify(baseStats)}-${JSON.stringify(ivs)}-${JSON.stringify(evs)}-${level}-${nature}`
+  // 创建简化的哈希以减少键长度
+  const baseHash = JSON.stringify(baseStats)
+  const ivsHash = JSON.stringify(ivs)
+  const evsHash = JSON.stringify(evs)
+  const combinedHash = `${baseHash}-${ivsHash}-${evsHash}-${level}-${nature}`
+
+  // 使用简单的哈希函数
+  let hash = 0
+  for (let i = 0; i < combinedHash.length; i++) {
+    const char = combinedHash.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash // 转换为32位整数
+  }
+
+  return CACHE_KEYS.POKEMON_STATS(Math.abs(hash).toString())
 }
 
 // ==================== 主要函数 ====================
@@ -188,8 +121,8 @@ export function calculateStats(
   }
 
   // 检查缓存
-  const cacheKey = generateCacheKey(normalizedBaseStats, normalizedIvs, normalizedEvs, level, normalizedNature)
-  const cached = statsCache.get(cacheKey)
+  const cacheKey = generateStatsCacheKey(normalizedBaseStats, normalizedIvs, normalizedEvs, level, normalizedNature)
+  const cached = cacheService.get<StatsTable>(cacheKey)
   if (cached) {
     return cached
   }
@@ -204,25 +137,30 @@ export function calculateStats(
     spe: calculateStat(normalizedBaseStats.spe, normalizedIvs.spe, normalizedEvs.spe, level, getNatureModifier(normalizedNature, 'spe'))
   }
 
-  // 缓存结果
-  statsCache.set(cacheKey, stats)
+  // 缓存结果 (中期缓存，30分钟过期)
+  cacheService.set(cacheKey, stats, CACHE_TTL.MEDIUM)
 
   return stats
 }
 
+// ==================== 工具函数 ====================
+
 /**
- * 清除缓存 (调试用/可选的性能优化函数)
+ * 清理属性计算相关的缓存
  */
 export function clearStatsCache(): void {
-  statsCache.clear()
+  // 清理所有属性计算相关的缓存
+  const pattern = /^pokemon_stats:/
+  const deletedCount = cacheService.clearByPattern(pattern)
+  console.log(`Cleared ${deletedCount} stats cache entries`)
 }
 
 /**
- * 获取缓存统计信息 (调试用)
+ * 获取属性计算缓存的统计信息
  */
-export function getStatsCacheInfo(): { size: number; keys: string[] } {
+export function getStatsCacheInfo(): { message: string } {
+  const stats = cacheService.getCacheStats()
   return {
-    size: statsCache.size,
-    keys: Array.from(statsCache.keys())
+    message: `Total cache entries: ${stats.general.totalEntries}, Memory usage: ${stats.general.memoryUsage}, Hit rate: ${stats.general.hitRate}%`
   }
 }
