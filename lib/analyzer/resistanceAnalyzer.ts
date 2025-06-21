@@ -1,19 +1,48 @@
-import { Team, type PokemonSet } from '@pkmn/sets';
-import { Generations } from '@pkmn/data';
-import { Dex } from '@pkmn/dex';
+import type { TypeName } from '@pkmn/types'
+import { BaseAnalyzer } from '~/lib/analyzer/baseAnalyzer'
 import {
-  getAbilityMultiplier,
-  getItemMultiplier,
+  IMMUNITY_ABILITIES,
+  ITEM_EFFECTS,
   RING_TARGET_EFFECTS,
-  filterTypes,
-  getPokemonDisplayName,
-  hasType,
-  getWeatherMultiplier,
-  getTerrainMultiplier,
-  isOnTerrain,
-} from './resistanceUtils';
+  SPECIAL_ABILITIES,
+  TERRAIN_EFFECTS,
+  TERRIAN_TYPES,
+  WEATHER_EFFECTS,
+} from '~/lib/core/constants'
+import type { Pokemon } from '~/lib/core/types'
+import { isOnTerrain } from '~/lib/core/utils'
 
-// ==================== 类型定义 ====================
+// ==================== Types ====================
+
+export interface ResistanceAnalysisOptions {
+  weather?: string
+  terrain?: string
+  terastallization?: {
+    index: number
+    teraType: string
+  }
+}
+
+export interface ResistanceAnalysisResult {
+  summary: ResistanceSummary
+  typeResistances: TypeResistanceData[]
+  pokemonData: ResistanceItem[]
+}
+
+export interface ResistanceSummary {
+  totalTypes: number
+  teamSize: number
+  weaknesses: { type: string; pokemons: ResistanceItem[] }[]
+  resistances: { type: string; pokemons: ResistanceItem[] }[]
+  immunities: { type: string; pokemons: ResistanceItem[] }[]
+}
+
+export interface TypeResistanceData {
+  type: string
+  multipliers: { [multiplier: number]: ResistanceItem[] };
+  pokemonMultipliers: { [pokemonIndex: number]: number }; // 快速查找特定宝可梦的倍率
+  resistanceLevel: number; // 抗性等级 (-6 到 +6)
+}
 
 export interface ResistanceItem {
   name: string;
@@ -25,141 +54,50 @@ export interface ResistanceItem {
   teraType?: string; // 太晶属性
 }
 
-export interface TypeResistanceData {
-  type: string;
-  multipliers: { [multiplier: number]: ResistanceItem[] };
-  pokemonMultipliers: { [pokemonIndex: number]: number }; // 快速查找特定宝可梦的倍率
-  teamResistanceLevel: number; // 队伍整体抗性等级 (-6 到 +6)
-}
+// ==================== Resistance Analyzer ====================
 
-export interface ResistanceAnalysisResult {
-  typeResistances: TypeResistanceData[];
-  pokemonData: ResistanceItem[];
-  summary: {
-    totalTypes: number;
-    teamSize: number;
-    weaknesses: { type: string; count: number; pokemons: ResistanceItem[] }[];
-    resistances: { type: string; count: number; pokemons: ResistanceItem[] }[];
-    immunities: { type: string; count: number; pokemons: ResistanceItem[] }[];
-  };
-  metadata: {
-    generation: number;
-    weather?: string;
-    terrain?: string;
-    terastallization?: { pokemonIndex: number; teraType: string }; // 太晶化信息
-    calculatedAt: Date;
-  };
-}
+export class ResistanceAnalyzer extends BaseAnalyzer<ResistanceAnalysisResult, ResistanceAnalysisOptions> {
 
-// ==================== 数据处理类 ====================
-
-export class ResistanceAnalyzer {
-  private gen: any;
-  private types: any;
-  private species: any;
-  private generation: number;
-
-  constructor(genNum: number = 9) {
-    this.generation = genNum;
-    this.gen = new Generations(Dex).get(genNum);
-    this.types = this.gen.types;
-    this.species = this.gen.species;
+  getAnalysisType(): string {
+    return 'resistance'
   }
 
-  /**
-   * 分析队伍的完整抗性数据
-   */
-  analyze(
-    team: Team,
-    weather?: string,
-    terrain?: string,
-    terastallization?: { pokemonIndex: number; teraType: string }
-  ): ResistanceAnalysisResult {
-    const pokemonList = Array.from(team.team);
-    const pokemonData = this.createPokemonData(pokemonList, terastallization);
-    const typeList = this.getTypeList(terrain);
-    const typeResistances = this.calculateTypeResistances(pokemonData, typeList, terrain);
+  analyze(team: Pokemon[], options?: ResistanceAnalysisOptions): ResistanceAnalysisResult {
+    const pokemonData = this.createPokemonData(team, options?.terastallization)
+    const typeList = this.getTypeList(options?.terrain);
+    const typeResistances = this.calculateTypeResistances(pokemonData, typeList, options?.terrain);
 
     // 应用天气和场地效果
-    if (weather || terrain) {
-      this.applyEnvironmentEffects(typeResistances, pokemonData, weather, terrain);
+    if (options?.weather || options?.terrain) {
+      this.applyEnvironmentEffects(typeResistances, pokemonData, options?.weather, options?.terrain);
     }
 
     const summary = this.generateSummary(typeResistances, pokemonData);
 
     return {
-      typeResistances,
-      pokemonData,
       summary,
-      metadata: {
-        generation: this.generation,
-        weather,
-        terrain,
-        terastallization,
-        calculatedAt: new Date()
-      }
-    };
+      typeResistances,
+      pokemonData
+    }
   }
 
-  /**
-   * 创建宝可梦数据数组
-   */
+  // 创建宝可梦数据数组
   private createPokemonData(
-    pokemonList: (PokemonSet | Partial<PokemonSet>)[],
-    terastallization?: { pokemonIndex: number; teraType: string }
+    team: Pokemon[],
+    terastallization?: { index: number; teraType: string }
   ): ResistanceItem[] {
-    return pokemonList.map((pokemon, index) => ({
-      name: getPokemonDisplayName(pokemon),
+    return team.map((pokemon, index) => ({
+      name: pokemon.species,
       ability: pokemon.ability,
       item: pokemon.item,
-      species: pokemon.species || 'Unknown',
+      species: pokemon.species,
       index,
-      isTerastallized: terastallization?.pokemonIndex === index,
-      teraType: terastallization?.pokemonIndex === index ? terastallization.teraType : undefined
+      isTerastallized: terastallization?.index === index,
+      teraType: terastallization?.index === index ? terastallization.teraType : undefined
     }));
   }
 
-  /**
-   * 获取所有属性类型（包括场地特定的属性）
-   */
-  private getTypeList(terrain?: string): string[] {
-    const allTypes = Array.from(this.gen.types, (t: any) => t.name);
-    const regularTypes = allTypes.filter(type => type !== 'Stellar');
-    const stellarType = allTypes.find(type => type === 'Stellar');
-
-    let typeList = stellarType ? [...regularTypes, stellarType] : regularTypes;
-
-    // 为特定场地添加地面上的攻击类型
-    if (terrain) {
-      const terrainSpecificTypes = this.getTerrainSpecificTypes(terrain);
-      // 将场地特定类型插入到对应的基础类型后面
-      terrainSpecificTypes.forEach(({ baseType, terrainType }) => {
-        const baseIndex = typeList.indexOf(baseType);
-        if (baseIndex !== -1) {
-          typeList.splice(baseIndex + 1, 0, terrainType);
-        }
-      });
-    }
-
-    return typeList;
-  }
-
-  /**
-   * 获取场地特定的攻击类型
-   */
-  private getTerrainSpecificTypes(terrain: string): { baseType: string; terrainType: string }[] {
-    const terrainTypes: { [key: string]: { baseType: string; terrainType: string }[] } = {
-      'Electric Terrain': [{ baseType: 'Electric', terrainType: 'Electric (Grounded)' }],
-      'Grassy Terrain': [{ baseType: 'Grass', terrainType: 'Grass (Grounded)' }],
-      'Psychic Terrain': [{ baseType: 'Psychic', terrainType: 'Psychic (Grounded)' }],
-    };
-
-    return terrainTypes[terrain] || [];
-  }
-
-  /**
-   * 计算所有属性的抗性数据
-   */
+  // 计算抗性数据
   private calculateTypeResistances(
     pokemonData: ResistanceItem[],
     typeList: string[],
@@ -167,15 +105,15 @@ export class ResistanceAnalyzer {
   ): TypeResistanceData[] {
     return typeList.map(attackType => {
       const multipliers: { [multiplier: number]: ResistanceItem[] } = {};
-      const pokemonMultipliers: { [pokemonIndex: number]: number } = {};
-      let teamResistanceLevel = 0;
+      const pokemonMultipliers: { [index: number]: number } = {};
+      let resistanceLevel = 0;
 
       pokemonData.forEach(pokemon => {
         let multiplier: number;
 
         // 检查是否是场地特定的攻击类型
         if (this.isTerrainSpecificType(attackType)) {
-          multiplier = this.calculateTerrainSpecificResistance(pokemon, attackType, terrain);
+          multiplier = this.calculateTerrainSpecificResistance(pokemon, attackType, terrain as string);
         } else {
           multiplier = this.calculatePokemonResistance(pokemon, attackType);
         }
@@ -191,9 +129,9 @@ export class ResistanceAnalyzer {
 
         // 计算队伍抗性等级
         if (multiplier < 1) {
-          teamResistanceLevel += 1; // 抵抗
+          resistanceLevel += 1; // 抵抗
         } else if (multiplier > 1) {
-          teamResistanceLevel -= 1; // 弱点
+          resistanceLevel -= 1; // 弱点
         }
       });
 
@@ -201,36 +139,53 @@ export class ResistanceAnalyzer {
         type: attackType,
         multipliers,
         pokemonMultipliers,
-        teamResistanceLevel
+        resistanceLevel
       };
     });
   }
 
-  /**
-   * 检查是否是场地特定的攻击类型
-   */
+  // 获取所有属性类型（包括场地特定的属性）
+  private getTypeList(terrain?: string): string[] {
+    const allTypes = Array.from(this.dataService.getGeneration().types, (t: any) => t.name);
+    const regularTypes = allTypes.filter(type => type !== 'Stellar');
+    const stellarType = allTypes.find(type => type === 'Stellar');
+
+    let typeList = stellarType ? [...regularTypes, stellarType] : regularTypes;
+
+    // 为特定场地添加地面上的攻击类型
+    if (terrain) {
+      const terrainSpecificType = TERRIAN_TYPES[terrain];
+      // 将场地特定类型插入到对应的基础类型后面
+      const baseIndex = typeList.indexOf(terrainSpecificType.baseType);
+      if (baseIndex !== -1) {
+        typeList.splice(baseIndex + 1, 0, terrainSpecificType.terrainType);
+      }
+    }
+
+    return typeList;
+  }
+
+  // 检查是否是场地特定的攻击类型
   private isTerrainSpecificType(attackType: string): boolean {
     return attackType.includes('(Grounded)');
   }
 
-  /**
-   * 计算场地特定攻击的抗性倍率
-   */
+  // 计算场地特定攻击的抗性倍率
   private calculateTerrainSpecificResistance(
     pokemon: ResistanceItem,
     attackType: string,
-    terrain?: string
+    terrain: string
   ): number {
     // 提取基础属性类型
     const baseType = attackType.replace(' (Grounded)', '');
 
     // 通过species获取完整的宝可梦数据
-    const pokemonSpecies = this.species.get(pokemon.species);
+    const pokemonSpecies = this.dataService.getGeneration().species.get(pokemon.species);
     let pokemonTypes = pokemonSpecies?.types ?? [];
 
     // 如果宝可梦太晶化了，属性变为太晶属性
     if (pokemon.isTerastallized && pokemon.teraType) {
-      pokemonTypes = [pokemon.teraType];
+      pokemonTypes = [pokemon.teraType as TypeName];
     }
 
     // 计算基础抗性
@@ -242,48 +197,45 @@ export class ResistanceAnalyzer {
 
     // 只有地面上的宝可梦才受到场地效果影响
     if (onTerrain && terrain) {
-      const terrainMultiplier = getTerrainMultiplier(terrain, baseType);
+      const terrainMultiplier = TERRAIN_EFFECTS[terrain][attackType] ?? 1;
       multiplier *= terrainMultiplier;
     }
 
     return multiplier;
   }
 
-  /**
-   * 计算单个宝可梦对特定属性的抗性倍率
-   */
+  // 计算单个宝可梦对特定属性的抗性倍率
   private calculatePokemonResistance(pokemon: ResistanceItem, attackType: string): number {
     // 通过species获取完整的宝可梦数据
-    const pokemonSpecies = this.species.get(pokemon.species);
+    const pokemonSpecies = this.dataService.getGeneration().species.get(pokemon.species);
     const originalTypes = pokemonSpecies?.types ?? [];
     let pokemonTypes = originalTypes;
 
     // 如果宝可梦太晶化了，属性变为太晶属性
     if (pokemon.isTerastallized && pokemon.teraType) {
-      pokemonTypes = [pokemon.teraType];
+      pokemonTypes = [pokemon.teraType as TypeName];
     }
 
     // 特殊处理：Stellar属性的抗性计算
+    // 对Stellar属性攻击基础倍率为×2
     if (attackType === 'Stellar') {
-      return this.calculateStellarResistance(pokemon, pokemonTypes, originalTypes);
+      return this.calculateStellarResistance(pokemon);
     }
 
     // 特殊处理：宝可梦太晶化为Stellar属性时对其他属性的抗性
     if (pokemon.isTerastallized && pokemon.teraType === 'Stellar' && attackType !== 'Stellar') {
       // 当宝可梦太晶化为Stellar属性时，对所有属性攻击（除Stellar外）使用原本属性计算基础倍率
       pokemonTypes = originalTypes;
-
-      // 但对Stellar属性攻击基础倍率为×2（已在上面的Stellar处理中实现）
     }
 
     // 1. 计算基础属性抗性
-    let baseMult = this.types.totalEffectiveness(attackType, pokemonTypes);
+    let baseMult = this.dataService.getGeneration().types.totalEffectiveness(attackType as TypeName, pokemonTypes);
 
     // 2. 处理标靶道具的特殊效果
     baseMult = this.handleRingTargetEffect(pokemon, attackType, pokemonTypes);
 
     // 3. 计算特性影响
-    let abilityMult = getAbilityMultiplier(pokemon.ability, attackType);
+    let abilityMult = this.getAbilityMultiplier(pokemon.ability, attackType);
 
     // 4. 处理黑色铁球的特殊效果
     const ironBallResult = this.handleIronBallEffect(
@@ -297,22 +249,18 @@ export class ResistanceAnalyzer {
     abilityMult = ironBallResult.abilityMult;
 
     // 5. 计算道具影响
-    const itemMult = getItemMultiplier(pokemon.item, attackType);
+    const itemMult = this.getItemMultiplier(pokemon.item, attackType);
 
     return baseMult * abilityMult * itemMult;
   }
 
-  /**
-   * 计算Stellar属性的特殊抗性
-   * Stellar属性攻击规则：
-   * - 普通宝可梦：基础倍率 ×1
-   * - 太晶化的宝可梦：基础倍率 ×2
-   * - 太晶化为Stellar属性的宝可梦：基础倍率 ×2
-   */
+  // 计算Stellar属性的特殊抗性
+  // Stellar属性攻击规则：
+  // - 普通宝可梦：基础倍率 ×1
+  // - 太晶化的宝可梦：基础倍率 ×2
+  // - 太晶化为Stellar属性的宝可梦：基础倍率 ×2
   private calculateStellarResistance(
     pokemon: ResistanceItem,
-    currentTypes: string[],
-    originalTypes: string[]
   ): number {
     let baseMult: number;
 
@@ -327,15 +275,49 @@ export class ResistanceAnalyzer {
     }
 
     // 应用特性和道具效果
-    const abilityMult = getAbilityMultiplier(pokemon.ability, 'Stellar');
-    const itemMult = getItemMultiplier(pokemon.item, 'Stellar');
+    const abilityMult = this.getAbilityMultiplier(pokemon.ability, 'Stellar');
+    const itemMult = this.getItemMultiplier(pokemon.item, 'Stellar');
 
     return baseMult * abilityMult * itemMult;
   }
 
-  /**
-   * 处理黑色铁球的特殊效果
-   */
+  // 获取特性对特定属性的倍率修正
+  private getAbilityMultiplier(ability: string | undefined, attackType: string): number {
+    if (!ability) return 1;
+
+    // 检查免疫特性
+    if (IMMUNITY_ABILITIES[ability]?.includes(attackType) ?? false) {
+      return 0;
+    }
+
+    // 检查特殊效果特性
+    const specialEffect = SPECIAL_ABILITIES[ability];
+    if (specialEffect && attackType in specialEffect) {
+      return specialEffect[attackType];
+    }
+
+    return 1;
+  }
+
+  // 获取道具对特定属性的倍率修正
+  private getItemMultiplier(item: string | undefined, attackType: string): number {
+    if (!item) return 1;
+
+    // 检查免疫效果
+    if (ITEM_EFFECTS[item]?.immunities?.includes(attackType) ?? false) {
+      return 0;
+    }
+
+    // 检查倍率修正
+    const itemEffect = ITEM_EFFECTS[item];
+    if (itemEffect?.multipliers && attackType in itemEffect.multipliers) {
+      return itemEffect.multipliers[attackType];
+    }
+
+    return 1;
+  }
+
+  // 处理黑色铁球的特殊效果
   private handleIronBallEffect(
     pokemon: ResistanceItem,
     attackType: string,
@@ -350,7 +332,7 @@ export class ResistanceAnalyzer {
     let newBaseMult = baseMult;
     let newAbilityMult = abilityMult;
 
-    if (hasType(pokemonTypes, 'Flying')) {
+    if (pokemonTypes.includes('Flying')) {
       newBaseMult = 1;
     } else if (pokemon.ability === 'Levitate') {
       newAbilityMult = 1;
@@ -359,30 +341,26 @@ export class ResistanceAnalyzer {
     return { baseMult: newBaseMult, abilityMult: newAbilityMult };
   }
 
-  /**
-   * 处理标靶道具的特殊效果
-   */
+  // 处理标靶道具的特殊效果
   private handleRingTargetEffect(
     pokemon: ResistanceItem,
     attackType: string,
     pokemonTypes: string[]
   ): number {
     if (pokemon.item !== 'Ring Target') {
-      return this.types.totalEffectiveness(attackType, pokemonTypes);
+      return this.dataService.getGeneration().types.totalEffectiveness(attackType as TypeName, pokemonTypes as TypeName[]);
     }
 
     const targetType = RING_TARGET_EFFECTS[attackType];
-    if (targetType && hasType(pokemonTypes, targetType)) {
-      const filteredTypes = filterTypes(pokemonTypes, targetType);
-      return this.types.totalEffectiveness(attackType, filteredTypes);
+    if (targetType && pokemonTypes.includes(targetType)) {
+      const filteredTypes = pokemonTypes.filter(type => type !== targetType);
+      return this.dataService.getGeneration().types.totalEffectiveness(attackType as TypeName, filteredTypes as TypeName[]);
     }
 
-    return this.types.totalEffectiveness(attackType, pokemonTypes);
+    return this.dataService.getGeneration().types.totalEffectiveness(attackType as TypeName, pokemonTypes as TypeName[]);
   }
 
-  /**
-   * 应用天气和场地效果
-   */
+  // 应用天气和场地效果
   private applyEnvironmentEffects(
     typeResistances: TypeResistanceData[],
     pokemonData: ResistanceItem[],
@@ -396,21 +374,19 @@ export class ResistanceAnalyzer {
         this.applyWeatherEffects(typeData, weather);
       }
       if (terrain && !this.isTerrainSpecificType(typeData.type)) {
-        this.applyTerrainEffects(typeData, terrain, pokemonData);
+        this.applyTerrainEffects(typeData, terrain);
       }
     });
   }
 
-  /**
-   * 应用天气效果
-   */
+  // 应用天气效果
   private applyWeatherEffects(typeData: TypeResistanceData, weather: string): void {
-    const weatherMultiplier = getWeatherMultiplier(weather, typeData.type);
+    const weatherMultiplier = WEATHER_EFFECTS[weather][typeData.type] ?? 1;
     if (weatherMultiplier === 1) return;
 
     const newMultipliers: { [multiplier: number]: ResistanceItem[] } = {};
     const newPokemonMultipliers: { [pokemonIndex: number]: number } = {};
-    let newTeamResistanceLevel = 0;
+    let newResistanceLevel = 0;
 
     Object.entries(typeData.multipliers).forEach(([mult, pokemons]) => {
       const originalMult = parseFloat(mult);
@@ -436,35 +412,29 @@ export class ResistanceAnalyzer {
 
         // 重新计算队伍抗性等级
         if (finalMult < 1) {
-          newTeamResistanceLevel += 1; // 抵抗
+          newResistanceLevel += 1; // 抵抗
         } else if (finalMult > 1) {
-          newTeamResistanceLevel -= 1; // 弱点
+          newResistanceLevel -= 1; // 弱点
         }
       });
     });
 
     typeData.multipliers = newMultipliers;
     typeData.pokemonMultipliers = newPokemonMultipliers;
-    typeData.teamResistanceLevel = newTeamResistanceLevel;
+    typeData.resistanceLevel = newResistanceLevel;
   }
 
-  /**
- * 应用场地效果（仅对薄雾气场地的龙属性攻击）
- */
-  private applyTerrainEffects(
-    typeData: TypeResistanceData,
-    terrain: string,
-    pokemonData: ResistanceItem[]
-  ): void {
+  // 应用场地效果（仅对薄雾气场地的龙属性攻击）
+  private applyTerrainEffects(typeData: TypeResistanceData, terrain: string): void {
     // 只有薄雾气场地对龙属性攻击有影响
     if (terrain !== 'Misty Terrain' || typeData.type !== 'Dragon') return;
 
-    const terrainMultiplier = getTerrainMultiplier(terrain, typeData.type);
+    const terrainMultiplier = TERRAIN_EFFECTS[terrain][typeData.type] ?? 1;
     if (terrainMultiplier === 1) return;
 
     const newMultipliers: { [multiplier: number]: ResistanceItem[] } = {};
     const newPokemonMultipliers: { [pokemonIndex: number]: number } = {};
-    let newTeamResistanceLevel = 0;
+    let newResistanceLevel = 0;
 
     Object.entries(typeData.multipliers).forEach(([mult, pokemons]) => {
       const originalMult = parseFloat(mult);
@@ -473,7 +443,7 @@ export class ResistanceAnalyzer {
         let finalMult = originalMult;
 
         // 通过species获取完整的宝可梦数据
-        const pokemonSpecies = this.species.get(pokemon.species);
+        const pokemonSpecies = this.dataService.getGeneration().species.get(pokemon.species);
         // 检查宝可梦是否在地面上（使用原始属性，太晶化不影响是否在地面上）
         const originalPokemonTypes = pokemonSpecies?.types ?? [];
 
@@ -495,25 +465,23 @@ export class ResistanceAnalyzer {
 
         // 重新计算队伍抗性等级
         if (finalMult < 1) {
-          newTeamResistanceLevel += 1; // 抵抗
+          newResistanceLevel += 1; // 抵抗
         } else if (finalMult > 1) {
-          newTeamResistanceLevel -= 1; // 弱点
+          newResistanceLevel -= 1; // 弱点
         }
       });
     });
 
     typeData.multipliers = newMultipliers;
     typeData.pokemonMultipliers = newPokemonMultipliers;
-    typeData.teamResistanceLevel = newTeamResistanceLevel;
+    typeData.resistanceLevel = newResistanceLevel;
   }
 
-  /**
-   * 生成分析摘要
-   */
+  // 生成分析摘要
   private generateSummary(
     typeResistances: TypeResistanceData[],
     pokemonData: ResistanceItem[]
-  ): ResistanceAnalysisResult['summary'] {
+  ): ResistanceSummary {
     const weaknesses: { type: string; count: number; pokemons: ResistanceItem[]; weightScore: number }[] = [];
     const resistances: { type: string; count: number; pokemons: ResistanceItem[]; weightScore: number }[] = [];
     const immunities: { type: string; count: number; pokemons: ResistanceItem[]; weightScore: number }[] = [];
@@ -584,39 +552,7 @@ export class ResistanceAnalyzer {
   }
 }
 
-// ==================== 便捷函数 ====================
+// ==================== Export ====================
 
-/**
- * 获取特定宝可梦对特定属性的抗性倍率（优化的查找）
- */
-export function getPokemonResistance(
-  result: ResistanceAnalysisResult,
-  pokemonIndex: number,
-  attackType: string
-): number {
-  const typeData = result.typeResistances.find(t => t.type === attackType);
-  return typeData?.pokemonMultipliers[pokemonIndex] ?? 1;
-}
-
-/**
- * 获取队伍对特定属性的整体抗性等级
- */
-export function getTeamResistanceLevel(
-  result: ResistanceAnalysisResult,
-  attackType: string
-): number {
-  const typeData = result.typeResistances.find(t => t.type === attackType);
-  return typeData?.teamResistanceLevel ?? 0;
-}
-
-/**
- * 获取具有特定倍率的宝可梦列表
- */
-export function getPokemonWithMultiplier(
-  result: ResistanceAnalysisResult,
-  attackType: string,
-  multiplier: number
-): ResistanceItem[] {
-  const typeData = result.typeResistances.find(t => t.type === attackType);
-  return typeData?.multipliers[multiplier] ?? [];
-}
+export const resistanceAnalyzer = new ResistanceAnalyzer()
+export default resistanceAnalyzer

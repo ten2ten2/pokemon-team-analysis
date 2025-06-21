@@ -29,6 +29,14 @@ export interface NatureEffect {
   readonly decreased?: StatKey
 }
 
+// ==================== Resistance Analysis ====================
+
+export interface ItemEffect {
+  immunities?: string[];
+  multipliers?: Record<string, number>;
+  specialHandling?: boolean;
+}
+
 // ==================== Coverage Analysis ====================
 
 export interface CoverageAnalysisResult {
