@@ -1,38 +1,45 @@
-import { Dex } from '@pkmn/dex'
-import { Generations, Moves, type Move, type Specie } from '@pkmn/data'
+import { Dex, Teams, TeamValidator } from '@pkmn/sim'
+import { Moves, type Move, type Specie } from '@pkmn/data'
 import { type PokemonSet } from '@pkmn/sets'
-import { Dex as SimDex, Teams, TeamValidator } from '@pkmn/sim'
-
-import { calculateStats } from '../calculator/statsCalculator'
 import idMapping from '~/data/pokemon-id-mapping.json'
-import { initializeFormats } from './formatInitializer'
+
+import { calculateStats } from '~/lib/calculator/statsCalculator'
+import { initializeFormats } from '~/lib/core/formats/formatInitializer'
+import { dataService } from '~/lib/core/dataService'
 import { normalizeName } from '~/utils/teamUtils'
-import { DEFAULT_BASE_STATS, DEFAULT_GAME_VERSION, DEFAULT_LEVEL, DEFAULT_STATS, GENERATION_MAP } from '../core/defaults'
-import { CACHE_KEYS, CACHE_TTL } from '../core/constants'
-import type { Pokemon } from '../core/types'
-import { cacheService } from '../core/cacheService'
+import {
+  DEFAULT_BASE_STATS,
+  DEFAULT_LEVEL,
+  DEFAULT_STATS,
+  DEFAULT_GENERATION
+} from '~/lib/core/constants'
+import type { Pokemon } from '~/lib/core/types'
 
-// ==================== 缓存和常量 ====================
+// ==================== 静态数据缓存 ====================
 
-// 类型映射缓存 (避免重复类型转换)
-const idMappingCache = idMapping as Record<string, number>
+// PokeAPI ID 映射表 - 静态数据，懒加载，无需动态缓存管理
+// 直接内存访问，保证最佳性能
+let idMappingCache: Record<string, number> | null = null
 
 // ==================== 工具函数 ====================
 
 /**
- * 获取缓存的世代数据
+ * 获取 PokeAPI ID 映射表
  */
-function getCachedGeneration(genNum: number = GENERATION_MAP[DEFAULT_GAME_VERSION]) {
-  const cacheKey = CACHE_KEYS.GENERATION(genNum)
-
-  let generation = cacheService.get<ReturnType<Generations['get']>>(cacheKey)
-  if (!generation) {
-    generation = new Generations(Dex).get(genNum)
-    // 长期缓存世代数据
-    cacheService.set(cacheKey, generation, CACHE_TTL.LONG)
+function getIdMappingCache(): Record<string, number> {
+  if (!idMappingCache) {
+    idMappingCache = idMapping as Record<string, number>
   }
+  return idMappingCache
+}
 
-  return generation
+/**
+ * 获取 PokeAPI 编号
+ */
+function getPokeApiNum(name: string, nationalId: number): number {
+  const pokemonName = normalizeName(name)
+  // 直接使用缓存的映射，避免重复类型转换
+  return getIdMappingCache()[pokemonName] ?? nationalId
 }
 
 // ==================== 主要函数 ====================
@@ -47,7 +54,7 @@ function getCachedGeneration(genNum: number = GENERATION_MAP[DEFAULT_GAME_VERSIO
 export function parseAndValidateTeam(
   teamRawString: string,
   rule: string,
-  genNum: number = GENERATION_MAP[DEFAULT_GAME_VERSION]
+  genNum: number = DEFAULT_GENERATION
 ): { teamParsed: Pokemon[], errors: string[] } {
   try {
     // 确保格式已正确初始化 (幂等操作)
@@ -63,7 +70,7 @@ export function parseAndValidateTeam(
     const teamForValidation = JSON.parse(JSON.stringify(teamParsed))
 
     // 验证队伍规则
-    const validator = new TeamValidator(rule, SimDex)
+    const validator = new TeamValidator(rule, Dex)
     const validationResult = validator.validateTeam(teamForValidation)
 
     const errors: string[] = []
@@ -88,7 +95,7 @@ export function parseAndValidateTeam(
  * 补充队伍信息
  */
 function completeTeam(teamParsed: PokemonSet<string>[], genNum: number): Pokemon[] {
-  const gen = getCachedGeneration(genNum)
+  const gen = dataService.getGeneration(genNum)
   const moves = gen.moves
 
   // 批量获取所有物种数据
@@ -153,25 +160,4 @@ function completeSinglePokemon(pkm: PokemonSet, specie: Specie, moves: Moves): P
     pokeApiNum: getPokeApiNum(pkm.species, specie?.num || 0),
     movesDetails: movesDetails,
   }
-}
-
-/**
- * 获取 PokeAPI 编号
- */
-function getPokeApiNum(name: string, nationalId: number): number {
-  const pokemonName = normalizeName(name)
-
-  // 直接使用缓存的映射，避免重复类型转换
-  return idMappingCache[pokemonName] ?? nationalId
-}
-
-// ==================== 缓存清理 ====================
-
-/**
- * 清理缓存 (调试用/内存管理)
- */
-export function clearParserCache(): void {
-  // 清理所有 generation 相关的缓存
-  const generationKeys = Array.from({ length: 9 }, (_, i) => CACHE_KEYS.GENERATION(i + 1))
-  generationKeys.forEach(key => cacheService.delete(key))
 }
