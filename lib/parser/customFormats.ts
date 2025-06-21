@@ -6,6 +6,8 @@ interface FormatData {
   [key: string]: any;
 }
 
+export const customFormatNames = ['doublesregg', 'doublesregh', 'doublesregi', 'singlesregg', 'singlesregh', 'singlesregi'];
+
 export const Formats: FormatList = [
   {
     section: "Custom",

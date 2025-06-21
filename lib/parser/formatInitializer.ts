@@ -1,5 +1,5 @@
-import { Dex as SimDex } from '@pkmn/sim';
-import { Formats } from './customFormats';
+import { Dex } from '@pkmn/sim';
+import { Formats, customFormatNames } from '~/lib/parser/customFormats';
 
 // 使用全局符号作为唯一标识符，避免重复初始化
 const FORMATS_INITIALIZED_SYMBOL = Symbol.for('pokemon-team-analysis:formats-initialized');
@@ -35,10 +35,9 @@ export function initializeFormats(): void {
 
     // 检查是否有格式已经存在 (防止重复添加)
     // 注意：格式ID现在是从name自动生成的 (转为小写)
-    const customFormatNames = ['doublesregg', 'doublesregh', 'doublesregi', 'singlesregg', 'singlesregh', 'singlesregi'];
     const existingFormats = customFormatNames.filter(name => {
       try {
-        const format = SimDex.formats.get(name);
+        const format = Dex.formats.get(name);
         // 强制触发格式对象的完全初始化
         const formatExists = format?.exists;
         return format && formatExists;
@@ -52,7 +51,7 @@ export function initializeFormats(): void {
       return;
     }
 
-    SimDex.formats.extend(Formats);
+    Dex.formats.extend(Formats);
     markFormatsInitialized();
 
   } catch (error) {
@@ -76,19 +75,16 @@ export function verifyFormatsLoaded(): boolean {
     return false;
   }
 
-  // 注意：格式ID现在是从name自动生成的 (转为小写)
-  const customFormatNames = ['doublesregg', 'doublesregh', 'doublesregi', 'singlesregg', 'singlesregh', 'singlesregi'];
-
   for (const formatName of customFormatNames) {
     try {
-      const format = SimDex.formats.get(formatName);
+      const format = Dex.formats.get(formatName);
 
       // 强制触发格式对象的完全初始化，解决惰性加载问题
       // 这等价于 console.log(format) 的效果，但更明确
       const formatExists = format?.exists;
 
       if (!format || !formatExists) {
-        console.warn(`Format ${formatName} not found or doesn't exist in SimDex`);
+        console.warn(`Format ${formatName} not found or doesn't exist in Dex`);
         return false;
       }
     } catch (error) {
