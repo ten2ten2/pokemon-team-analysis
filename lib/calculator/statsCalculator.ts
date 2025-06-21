@@ -1,10 +1,15 @@
-// lib/calculator/statsCalculator.ts - 优化后的版本
-
 import type { StatsTable } from '@pkmn/types'
-import { NATURE_MODIFIERS, NATURE_BOOST, NATURE_REDUCTION, NATURE_NEUTRAL, CACHE_KEYS, CACHE_TTL } from '../core/constants'
-import { DEFAULT_BASE_STATS, DEFAULT_IVS, DEFAULT_EVS } from '../core/defaults'
-import { cacheService } from '../core/cacheService'
-import type { StatKey, NatureModifier } from '../core/types'
+import type { StatKey, NatureModifier } from '~/lib/core/types'
+import {
+  NATURE_MODIFIERS,
+  NATURE_BOOST,
+  NATURE_REDUCTION,
+  NATURE_NEUTRAL,
+  CACHE_KEYS,
+  CACHE_TTL
+} from '~/lib/core/constants'
+import { DEFAULT_BASE_STATS, DEFAULT_IVS, DEFAULT_EVS } from '~/lib/core/constants'
+import { cacheService } from '~/lib/core/cacheService'
 
 // ==================== 辅助函数 ====================
 
