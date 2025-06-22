@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 interface TabItem {
   key: string
   label: string
@@ -38,14 +42,14 @@ const getTabClasses = (tab: TabItem, isActive: boolean) => {
   const baseClasses = 'whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm transition-colors duration-200'
 
   if (tab.disabled) {
-    return `${baseClasses} border-transparent text-gray-300 dark:text-gray-600 cursor-not-allowed`
+    return `${baseClasses} border-transparent text-gray-400 dark:text-gray-600 cursor-not-allowed`
   }
 
   if (isActive) {
     return `${baseClasses} border-red-400 text-red-600 dark:text-red-400`
   }
 
-  return `${baseClasses} border-transparent text-gray-500 hover:text-red-600 hover:border-red-300 dark:text-gray-400 dark:hover:text-red-400`
+  return `${baseClasses} border-transparent text-gray-600 hover:text-red-600 hover:border-red-300 dark:text-gray-400 dark:hover:text-red-400`
 }
 </script>
 
@@ -64,6 +68,9 @@ const getTabClasses = (tab: TabItem, isActive: boolean) => {
           :tabindex="activeTab === tab.key ? 0 : -1" :disabled="tab.disabled"
           :class="getTabClasses(tab, activeTab === tab.key)" @click="handleTabClick(tab)">
           {{ tab.label }}
+          <span v-if="tab.disabled">
+            ({{ t('common.comingSoon') }})
+          </span>
         </button>
       </template>
     </div>
