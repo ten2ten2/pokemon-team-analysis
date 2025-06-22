@@ -12,8 +12,6 @@ import { usePokemonTranslations } from '~/composables/usePokemonTranslations'
 
 const route = useRoute()
 const { t } = useI18n()
-const { getTranslatedName } = usePokemonTranslations()
-const { preferences } = useUserPreferences()
 
 const activeTab = ref('coverage')
 const teamId = route.params.id as string
@@ -23,6 +21,7 @@ const selectedTypes = ref<string[]>([])
 const coverageResult = ref<CoverageAnalysisResult | null>(null)
 const loading = ref(false)
 const currentTeam = ref<TeamType | null>(null)
+const pokemonMoveCategories = ref<Record<string, 'all' | 'physical' | 'special'>>({})
 
 // 创建分析器实例
 const analyzer = new CoverageAnalyzer()
@@ -93,13 +92,13 @@ watch(selectedTypes, () => {
 
 // 获取倍率的显示文本
 const getEffectivenessText = (effectiveness: number) => {
-  if (effectiveness === 0) return t('coverage.effectiveness.immune')
+  if (effectiveness === 0) return '×0'
   if (effectiveness === 0.25) return '×0.25'
   if (effectiveness === 0.5) return '×0.5'
   if (effectiveness === 1) return '×1'
   if (effectiveness === 2) return '×2'
   if (effectiveness === 4) return '×4'
-  return `${effectiveness}×`
+  return `×${effectiveness}`
 }
 
 // 获取招式的显示信息
@@ -114,9 +113,43 @@ const getMoveDisplayInfo = (move: MoveEffectivenessInfo, translateFn: (name: str
   }
 }
 
-// 检查宝可梦是否有效果拔群的招式
-const hasEffectiveMoves = (pokemon: PokemonCoverage): boolean => {
-  return pokemon.bestMoves.overall.some(move => move.effectiveness > 1)
+// 根据效果倍率获取招式颜色
+const getMoveEffectivenessColor = (effectiveness: number): string => {
+  if (effectiveness > 1) return 'effectiveness-effective'
+  if (effectiveness === 1) return 'effectiveness-neutral'
+  if (effectiveness > 0) return 'effectiveness-resistant'
+  return 'effectiveness-immune'
+}
+
+// 根据效果倍率获取招式背景色
+const getMoveEffectivenessBackground = (effectiveness: number): string => {
+  if (effectiveness > 1) return 'effectiveness-effective-bg'
+  if (effectiveness === 1) return 'effectiveness-neutral-bg'
+  if (effectiveness > 0) return 'effectiveness-resistant-bg'
+  return 'effectiveness-immune-bg'
+}
+
+// 获取指定类别的招式
+const getPokemonMoves = (pokemon: PokemonCoverage, category: 'all' | 'physical' | 'special') => {
+  switch (category) {
+    case 'physical':
+      return pokemon.bestMoves.physical
+    case 'special':
+      return pokemon.bestMoves.special
+    case 'all':
+    default:
+      return pokemon.bestMoves.overall
+  }
+}
+
+// 设置宝可梦的招式类别
+const setPokemonMoveCategory = (pokemonName: string, category: 'all' | 'physical' | 'special') => {
+  pokemonMoveCategories.value[pokemonName] = category
+}
+
+// 获取宝可梦的招式类别
+const getPokemonMoveCategory = (pokemonName: string): 'all' | 'physical' | 'special' => {
+  return pokemonMoveCategories.value[pokemonName] || 'all'
 }
 </script>
 
@@ -135,10 +168,10 @@ const hasEffectiveMoves = (pokemon: PokemonCoverage): boolean => {
             <!-- 属性组合分析 -->
             <section class="mb-8">
               <header class="mb-6">
-                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">
+                <h2 class="section-title">
                   {{ t('coverage.typeCombination.title') }}
                 </h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-1">
+                <p class="section-description">
                   {{ t('coverage.typeCombination.description') }}
                 </p>
               </header>
@@ -157,8 +190,8 @@ const hasEffectiveMoves = (pokemon: PokemonCoverage): boolean => {
                 <div class="lg:col-span-7">
                   <!-- 属性组合分析结果 -->
                   <div v-if="coverageResult?.combinationCoverage && selectedTypes.length > 0" class="space-y-6">
-                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-                      <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    <div class="card card-large-padding">
+                      <h4 class="subsection-title mb-4">
                         <span class="mr-2">{{ t('coverage.typeCombination.analysisFor') }}</span>
                         <span v-for="(type, index) in selectedTypes" :key="type">
                           <span v-if="index > 0" class="align-top"> + </span>
@@ -196,10 +229,10 @@ const hasEffectiveMoves = (pokemon: PokemonCoverage): boolean => {
             <!-- 热门宝可梦分析 -->
             <section>
               <header class="mb-6">
-                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">
+                <h2 class="section-title">
                   {{ t('coverage.popularPokemon.title') }}
                 </h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-1">
+                <p class="section-description">
                   {{ t('coverage.popularPokemon.description') }}
                 </p>
               </header>
@@ -207,13 +240,13 @@ const hasEffectiveMoves = (pokemon: PokemonCoverage): boolean => {
               <div v-if="coverageResult?.popularPokemonCoverage"
                 class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 <div v-for="pokemon in coverageResult.popularPokemonCoverage" :key="pokemon.pokemon.name"
-                  class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                  class="card card-padding">
                   <!-- 宝可梦信息 -->
                   <div class="flex items-center space-x-3 mb-4">
                     <img :src="getSprite(pokemon, 'official-artwork')" :alt="pokemon.pokemon.name"
                       class="w-12 h-12 object-contain" loading="lazy" />
-                    <div>
-                      <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    <div class="flex-1">
+                      <h3 class="subsection-title">
                         {{ translateName(pokemon.pokemon.name, 'species') }}
                       </h3>
                       <div class="flex space-x-1">
@@ -226,31 +259,33 @@ const hasEffectiveMoves = (pokemon: PokemonCoverage): boolean => {
                     </div>
                   </div>
 
-                  <!-- 最佳招式 -->
-                  <div class="space-y-3">
-                    <div v-if="hasEffectiveMoves(pokemon)" class="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <div class="flex items-center space-x-2 mb-2">
-                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span class="text-sm font-medium text-green-700 dark:text-green-400">
-                          {{ t('coverage.popularPokemon.hasEffectiveMoves') }}
-                        </span>
-                      </div>
-                      <div v-if="pokemon.bestMoves.overall.length > 0" class="space-y-1">
-                        <MoveDisplayItem v-for="move in pokemon.bestMoves.overall.slice(0, 2)"
-                          :key="`${move.pokemon.species}-${move.name}`" :move="move"
-                          :get-move-display-info="(move) => getMoveDisplayInfo(move, translateName)"
-                          effectiveness-color="text-green-600 dark:text-green-400" background-color="bg-transparent" />
-                      </div>
-                    </div>
+                  <!-- 招式类别选择器 -->
+                  <div class="flex space-x-1 mb-3">
+                    <button v-for="category in [
+                      { key: 'all', label: t('coverage.categories.all') },
+                      { key: 'physical', label: t('coverage.categories.physical') },
+                      { key: 'special', label: t('coverage.categories.special') }
+                    ]" :key="category.key"
+                      @click="setPokemonMoveCategory(pokemon.pokemon.name, category.key as 'all' | 'physical' | 'special')"
+                      :class="[
+                        getPokemonMoveCategory(pokemon.pokemon.name) === category.key
+                          ? 'btn-small-active'
+                          : 'btn-small-inactive'
+                      ]">
+                      {{ category.label }}
+                    </button>
+                  </div>
 
-                    <div v-else class="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                      <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span class="text-sm font-medium text-red-700 dark:text-red-400">
-                          {{ t('coverage.popularPokemon.noEffectiveMoves') }}
-                        </span>
-                      </div>
-                    </div>
+                  <!-- 最佳招式 -->
+                  <div
+                    v-if="getPokemonMoves(pokemon, getPokemonMoveCategory(pokemon.pokemon.name) as 'all' | 'physical' | 'special').length > 0"
+                    class="space-y-1">
+                    <MoveDisplayItem
+                      v-for="move in getPokemonMoves(pokemon, getPokemonMoveCategory(pokemon.pokemon.name) as 'all' | 'physical' | 'special').slice(0, 3)"
+                      :key="`${move.pokemon.species}-${move.name}-${getPokemonMoveCategory(pokemon.pokemon.name)}`"
+                      :move="move" :get-move-display-info="(move) => getMoveDisplayInfo(move, translateName)"
+                      :effectiveness-color="getMoveEffectivenessColor(move.effectiveness)"
+                      :background-color="getMoveEffectivenessBackground(move.effectiveness)" />
                   </div>
                 </div>
               </div>

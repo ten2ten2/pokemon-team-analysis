@@ -16,7 +16,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  effectivenessColor: 'text-gray-600 dark:text-gray-400',
+  effectivenessColor: 'text-muted',
   backgroundColor: 'bg-gray-50 dark:bg-gray-800/50'
 })
 
@@ -24,9 +24,9 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div :class="`text-sm ${backgroundColor} p-2 rounded`">
+  <div :class="`move-item ${backgroundColor}`">
     <div class="flex justify-between items-center">
-      <span class="font-medium text-base truncate">
+      <span class="move-item-text">
         {{ getMoveDisplayInfo(move).name }} •
         {{ getMoveDisplayInfo(move).pokemon }}
       </span>
@@ -34,7 +34,7 @@ const { t } = useI18n()
         {{ getMoveDisplayInfo(move).effectiveness }}
       </span>
     </div>
-    <div class="text-gray-600 dark:text-gray-400 text-sm">
+    <div class="move-item-details">
       <span>
         {{ getMoveDisplayInfo(move).type }} •
         {{ t('coverage.moveDetails.power') }}: {{ getMoveDisplayInfo(move).power }}

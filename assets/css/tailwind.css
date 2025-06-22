@@ -167,6 +167,137 @@
     @apply p-2 text-gray-700 hover:text-red-600 transition-colors duration-200;
   }
 
+  /* Card Styles */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700;
+  }
+
+  .card-padding {
+    @apply p-4;
+  }
+
+  .card-large-padding {
+    @apply p-6;
+  }
+
+  /* Section Header Styles */
+  .section-title {
+    @apply text-2xl font-semibold text-gray-900 dark:text-white;
+  }
+
+  .section-description {
+    @apply text-gray-600 dark:text-gray-400 mt-1;
+  }
+
+  .subsection-title {
+    @apply text-lg font-semibold text-gray-900 dark:text-white;
+  }
+
+  .category-title {
+    @apply text-base font-medium text-gray-900 dark:text-white;
+  }
+
+  .component-title {
+    @apply text-lg font-medium text-gray-900 dark:text-white;
+  }
+
+  /* Text Styles */
+  .text-muted {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  .text-muted-sm {
+    @apply text-sm text-gray-500 dark:text-gray-400;
+  }
+
+  /* Move Item Styles */
+  .move-item {
+    @apply text-sm p-2 rounded;
+  }
+
+  .move-item-text {
+    @apply font-medium text-base truncate;
+  }
+
+  .move-item-details {
+    @apply text-gray-600 dark:text-gray-400 text-sm;
+  }
+
+  /* Type Selection Button Styles */
+  .type-selector-btn {
+    @apply flex flex-col items-center justify-center p-2 rounded-lg border-2 transition-all duration-200 min-h-[80px];
+  }
+
+  .type-selector-btn-selected {
+    @apply border-red-500 bg-red-50 dark:bg-red-900/20 shadow-md;
+  }
+
+  .type-selector-btn-unselected {
+    @apply border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50;
+  }
+
+  /* Small Button Styles */
+  .btn-small {
+    @apply px-3 py-1 text-xs font-medium rounded-full transition-colors;
+  }
+
+  .btn-small-active {
+    @apply px-3 py-1 text-xs font-medium rounded-full transition-colors bg-red-500 text-white;
+  }
+
+  .btn-small-inactive {
+    @apply px-3 py-1 text-xs font-medium rounded-full transition-colors bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600;
+  }
+
+  /* Effectiveness Color Styles (Consistent with MoveCategory) */
+  .effectiveness-effective {
+    @apply text-green-600 dark:text-green-400;
+  }
+
+  .effectiveness-effective-bg {
+    @apply bg-green-50 dark:bg-green-900/20;
+  }
+
+  .effectiveness-effective-title {
+    @apply text-green-700 dark:text-green-400;
+  }
+
+  .effectiveness-neutral {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  .effectiveness-neutral-bg {
+    @apply bg-gray-50 dark:bg-gray-800/50;
+  }
+
+  .effectiveness-neutral-title {
+    @apply text-gray-700 dark:text-gray-400;
+  }
+
+  .effectiveness-resistant {
+    @apply text-red-600 dark:text-red-400;
+  }
+
+  .effectiveness-resistant-bg {
+    @apply bg-red-50 dark:bg-red-900/20;
+  }
+
+  .effectiveness-resistant-title {
+    @apply text-red-700 dark:text-red-400;
+  }
+
+  .effectiveness-immune {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  .effectiveness-immune-bg {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  .effectiveness-immune-title {
+    @apply text-gray-700 dark:text-gray-400;
+  }
+
   /* Dropdown Container Styles */
   .dropdown-container {
     @apply relative;

@@ -26,6 +26,6 @@ const displayMessage = computed(() => props.message || t('common.loading.default
       'animate-spin rounded-full border-b-2 border-red-400 mx-auto mb-4',
       sizeClasses[size]
     ]" aria-hidden="true" />
-    <p class="text-gray-600 dark:text-gray-400">{{ displayMessage }}</p>
+    <p class="text-muted">{{ displayMessage }}</p>
   </div>
 </template>

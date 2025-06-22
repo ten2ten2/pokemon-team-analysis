@@ -16,7 +16,7 @@ const { t } = useI18n()
       </h1>
     </header>
     <main>
-      <p class="text-gray-600 dark:text-gray-400 mb-6">
+      <p class="text-muted mb-6">
         {{ t('teamDetail.notFound.description', { id: teamId }) }}
       </p>
       <NuxtLink to="/"

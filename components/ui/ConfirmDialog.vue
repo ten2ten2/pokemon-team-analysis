@@ -136,7 +136,7 @@ const confirmButtonClass = computed(() => {
                 </div>
 
                 <!-- Message -->
-                <p id="confirm-message" class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+                <p id="confirm-message" class="text-muted-sm mb-6">
                   {{ message }}
                 </p>
 

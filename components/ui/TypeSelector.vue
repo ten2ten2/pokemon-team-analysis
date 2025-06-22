@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">
+    <h3 class="component-title mb-4">
       {{ title }}
     </h3>
     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
       <button v-for="type in types" :key="type" @click="handleTypeSelection(type)" :class="[
-        'flex flex-col items-center justify-center p-2 rounded-lg border-2 transition-all duration-200 min-h-[80px]',
+        'type-selector-btn',
         selectedTypes.includes(type)
-          ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-md'
-          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+          ? 'type-selector-btn-selected'
+          : 'type-selector-btn-unselected'
       ]">
         <span :class="getTypeBadgeClass(type)" class="mb-1 flex-shrink-0">
           <i :class="getTypeIconClass(type)" aria-hidden="true"></i>
@@ -18,7 +18,7 @@
         </span>
       </button>
     </div>
-    <p v-if="helpText" class="text-sm text-gray-500 dark:text-gray-400 mt-3">
+    <p v-if="helpText" class="text-muted-sm mt-3">
       {{ helpText }}
     </p>
   </div>

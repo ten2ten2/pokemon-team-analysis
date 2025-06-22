@@ -295,6 +295,7 @@
         "noEffectiveMoves": "효과가 뛰어난 기술이 없습니다"
       },
       "categories": {
+        "all": "전체",
         "physical": "물리 기술",
         "special": "특수 기술"
       },

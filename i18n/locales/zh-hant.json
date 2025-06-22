@@ -295,6 +295,7 @@
       "noEffectiveMoves": "無效果絕佳的招式"
     },
     "categories": {
+      "all": "全部",
       "physical": "物理招式",
       "special": "特殊招式"
     },

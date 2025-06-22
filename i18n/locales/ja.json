@@ -295,6 +295,7 @@
       "noEffectiveMoves": "効果抜群の技がありません"
     },
     "categories": {
+      "all": "すべて",
       "physical": "物理技",
       "special": "特殊技"
     },

@@ -59,7 +59,7 @@ const spriteUrl = computed(() => {
         <span class="font-medium text-gray-700 dark:text-gray-300 min-w-0 flex-shrink-0">
           {{ t('teamDetail.pokemon.ability') }}:
         </span>
-        <span class="text-gray-600 dark:text-gray-400 break-words">
+        <span class="text-muted break-words">
           {{ translateName(pokemon.ability, 'ability') }}
         </span>
       </div>
@@ -68,7 +68,7 @@ const spriteUrl = computed(() => {
         <span class="font-medium text-gray-700 dark:text-gray-300 min-w-0 flex-shrink-0">
           {{ t('teamDetail.pokemon.item') }}:
         </span>
-        <span class="text-gray-600 dark:text-gray-400 break-words">
+        <span class="text-muted break-words">
           {{ translateName(pokemon.item, 'item') }}
         </span>
       </div>

@@ -30,7 +30,7 @@ const handleTranslationToggle = () => {
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           {{ team.name }}
         </h1>
-        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div class="flex flex-wrap items-center gap-4 text-muted-sm">
           <span class="inline-flex items-center gap-1">
             <span class="font-medium">{{ t('common.gameVersion.title') }}:</span>
             {{ getGameVersionLabel(team.gameVersion) }}
