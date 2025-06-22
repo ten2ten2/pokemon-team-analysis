@@ -3,9 +3,16 @@
  */
 
 import type { Team } from '~/types/team'
-import { type Pokemon, SPRITES_URL_PREFIX } from '~/types/pokemon'
+import type { Pokemon } from '~/lib/core/types'
 
 export const DEFAULT_TEAM_NAME = 'Untitled Team'
+
+export const SPRITES_URL_PREFIX: Record<string, string> = {
+  'default': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
+  'default-shiny': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/',
+  'official-artwork': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/',
+  'official-artwork-shiny': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/',
+} as const
 
 /**
  * 处理队伍名称，如果为空或全是空格则返回默认名称，限制最大长度为16字符

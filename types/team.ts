@@ -1,4 +1,4 @@
-import type { Pokemon } from './pokemon'
+import type { Pokemon } from '~/lib/core/types'
 
 // ==================== 常量定义 ====================
 
