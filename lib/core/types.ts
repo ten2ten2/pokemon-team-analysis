@@ -1,5 +1,6 @@
 import type { PokemonSet } from '@pkmn/sets'
 import type { StatsTable } from '@pkmn/types'
+import type { Move } from '@pkmn/data'
 
 // ==================== Core Types ====================
 
@@ -21,7 +22,7 @@ export interface Pokemon extends PokemonSet {
   stats: StatsTable
   types: string[]
   pokeApiNum: number
-  movesDetails: Record<string, any>
+  movesDetails: Record<string, Move>
 }
 
 export interface NatureEffect {
@@ -35,45 +36,4 @@ export interface ItemEffect {
   immunities?: string[];
   multipliers?: Record<string, number>;
   specialHandling?: boolean;
-}
-
-// ==================== Coverage Analysis ====================
-
-export interface CoverageAnalysisResult {
-  summary: CoverageSummary
-  typeCoverage: TypeCoverageData[]
-  moveAnalysis: MoveAnalysisData[]
-}
-
-export interface CoverageSummary {
-  totalTypes: number
-  coveredTypes: number
-  coveragePercentage: number
-  superEffectiveCount: number
-  notVeryEffectiveCount: number
-  noEffectCount: number
-}
-
-export interface TypeCoverageData {
-  type: string
-  effectiveness: number[]
-  bestMove?: string
-  summary: {
-    superEffective: number
-    neutral: number
-    notVeryEffective: number
-    noEffect: number
-  }
-}
-
-export interface MoveAnalysisData {
-  pokemonIndex: number
-  pokemonName: string
-  moves: {
-    name: string
-    type: string
-    category: string
-    power?: number
-    coverage: string[]
-  }[]
 }

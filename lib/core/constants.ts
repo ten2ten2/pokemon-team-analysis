@@ -50,6 +50,8 @@ export const DEFAULT_STATS = {
   spe: 120
 } as const
 
+export const STAB_MULTIPLIER = 1.5 as const
+
 // ==================== Nature System ====================
 
 // 性格修正值

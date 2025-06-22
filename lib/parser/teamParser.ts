@@ -47,7 +47,7 @@ function getIdMappingCache(): Record<string, number> {
 /**
  * 获取 PokeAPI 编号
  */
-function getPokeApiNum(name: string, nationalId: number): number {
+export function getPokeApiNum(name: string, nationalId?: number): number {
   const pokemonName = normalizeName(name)
   // 直接使用缓存的映射，避免重复类型转换
   return getIdMappingCache()[pokemonName] ?? nationalId
@@ -93,7 +93,7 @@ function completeSinglePokemon(pkm: PokemonSet, specie: Specie, moves: Moves): P
     baseStats: baseStats || DEFAULT_BASE_STATS,
     stats: calculatedStats,
     types: types,
-    pokeApiNum: getPokeApiNum(pkm.species, specie?.num || 0),
+    pokeApiNum: getPokeApiNum(pkm.species, specie?.num),
     movesDetails: movesDetails,
   }
 }
@@ -171,4 +171,18 @@ export function parseAndValidateTeam(
       errors: [`Parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`]
     }
   }
+}
+
+/**
+ * 解析队伍，不进行验证
+ * @param teamRawString - 原始队伍字符串
+ * @param genNum - 世代号
+ * @returns 解析结果
+ */
+export function parseTeam(teamRawString: string, genNum: number = DEFAULT_GENERATION): Pokemon[] {
+  // 解析队伍数据
+  const teamParsed = Teams.import(teamRawString)
+  // 使用原始数据进行补充处理
+  const completedTeam = completeTeam(teamParsed as PokemonSet<string>[], genNum)
+  return completedTeam
 }
