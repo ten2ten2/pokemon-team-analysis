@@ -186,7 +186,8 @@
     "useTranslation": "번역 사용",
     "tabs": {
       "overview": "개요",
-      "resistance": "상성 분석"
+      "resistance": "타입 내성 분석",
+      "coverage": "타입 커버리지 분석"
     },
     "validationErrors": {
       "title": "팀 검증 오류",

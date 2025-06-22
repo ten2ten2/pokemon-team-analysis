@@ -31,9 +31,7 @@
         "singlesRegI": "Singles, Regulation I"
       }
     },
-    "comingSoon": "Coming Soon",
-    "yes": "Yes",
-    "no": "No"
+    "comingSoon": "Coming Soon"
   },
   "home": {
     "meta": {
@@ -250,8 +248,7 @@
     },
     "terastallization": {
       "none": "No Terastallization",
-      "selectType": "Select Tera Type",
-      "indicator": "Terastallized"
+      "selectType": "Select Tera Type"
     },
     "multiplier": {
       "immune": "Immune",
@@ -273,73 +270,5 @@
       "noResistances": "Team has no major resistances",
       "noImmunities": "Team has no type immunities"
     }
-  },
-  "coverage": {
-    "meta": {
-      "title": "Coverage Analysis",
-      "description": "Analyze {name} team's offensive coverage with {count} Pokémon",
-      "defaultDescription": "Pokémon team coverage analysis page"
-    },
-    "title": "Offensive Coverage Analysis",
-    "description": "Analyze your team's offensive effectiveness against various type combinations and popular Pokémon.",
-    "validationError": {
-      "description": "Your team data has issues and cannot be analyzed for coverage. Please fix the team data first."
-    },
-    "tabs": {
-      "popularPokemon": "Popular Pokémon",
-      "typeHeatmap": "Type Heatmap"
-    },
-    "popularPokemon": {
-      "title": "Coverage Against Popular Pokémon",
-      "description": "How effectively your team can handle popular VGC Pokémon",
-      "pokemon": "Pokémon",
-      "types": "Types",
-      "bestMove": "Best Move",
-      "coverage": "Coverage",
-      "damage": "Damage Score",
-      "noMoves": "No effective moves",
-      "showDetails": "Show Details",
-      "hideDetails": "Hide Details"
-    },
-    "typeHeatmap": {
-      "title": "Type Coverage Heatmap",
-      "description": "Visualize your team's offensive coverage against all type combinations",
-      "filters": {
-        "category": "Moves Category",
-        "all": "All Moves",
-        "physical": "Physical Moves",
-        "special": "Special Moves"
-      },
-      "legend": {
-        "title": "Coverage Level",
-        "effective": "Effective",
-        "neutral": "Neutral",
-        "resistant": "Resistant",
-        "immune": "Immune"
-      },
-      "tooltip": {
-        "title": "Coverage Details",
-        "level": "Level",
-        "score": "Score",
-        "moves": "Moves",
-        "noMoves": "No moves available"
-      }
-    },
-    "levels": {
-      "effective": "Effective",
-      "neutral": "Neutral",
-      "resistant": "Resistant",
-      "immune": "Immune"
-    },
-    "moveDetails": {
-      "power": "Power",
-      "type": "Type",
-      "category": "Category",
-      "pokemon": "Pokémon",
-      "effectiveness": "Effectiveness",
-      "stab": "STAB"
-    },
-    "noData": "No coverage data available",
-    "calculating": "Calculating coverage data..."
   }
 }

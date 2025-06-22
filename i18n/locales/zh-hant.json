@@ -186,7 +186,8 @@
     "useTranslation": "使用翻譯",
     "tabs": {
       "overview": "概覽",
-      "resistance": "抗性分析"
+      "resistance": "抗性分析",
+      "coverage": "打擊面分析"
     },
     "validationErrors": {
       "title": "隊伍驗證錯誤",

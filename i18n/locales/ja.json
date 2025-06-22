@@ -186,7 +186,8 @@
     "useTranslation": "翻訳を使用",
     "tabs": {
       "overview": "概要",
-      "resistance": "タイプ相性"
+      "resistance": "タイプ耐性",
+      "coverage": "攻撃範囲分析"
     },
     "validationErrors": {
       "title": "チーム検証エラー",

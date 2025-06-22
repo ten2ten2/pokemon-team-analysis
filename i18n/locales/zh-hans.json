@@ -186,7 +186,8 @@
     "useTranslation": "使用翻译",
     "tabs": {
       "overview": "概览",
-      "resistance": "抗性分析"
+      "resistance": "抗性分析",
+      "coverage": "打击面分析"
     },
     "validationErrors": {
       "title": "队伍验证错误",
