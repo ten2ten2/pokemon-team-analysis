@@ -273,5 +273,47 @@
       "noResistances": "チームに明確な耐性はありません",
       "noImmunities": "チームにタイプ無効はありません"
     }
+  },
+  "coverage": {
+    "meta": {
+      "title": "攻撃範囲分析",
+      "description": "{name} チームの攻撃範囲を分析、{count} 匹のポケモンが含まれています",
+      "defaultDescription": "ポケモンチーム攻撃範囲分析ページ"
+    },
+    "loading": "攻撃範囲を分析中...",
+    "typeCombination": {
+      "title": "タイプ組み合わせ分析",
+      "description": "最大2つのタイプを選択し、そのタイプ組み合わせに対するチームの効果を分析します。",
+      "selectTypes": "タイプを選択",
+      "selectUpToTwo": "組み合わせ分析のために最大2つのタイプを選択できます",
+      "analysisFor": "以下のタイプ組み合わせの分析結果："
+    },
+    "popularPokemon": {
+      "title": "人気ポケモン分析",
+      "description": "人気ポケモンに対するチームの効果を分析します。",
+      "hasEffectiveMoves": "効果抜群の技があります",
+      "noEffectiveMoves": "効果抜群の技がありません"
+    },
+    "categories": {
+      "physical": "物理技",
+      "special": "特殊技"
+    },
+    "effectiveness": {
+      "effective": "効果抜群",
+      "neutral": "普通",
+      "resistant": "効果今ひとつ",
+      "immune": "効果なし",
+      "resistantCount": "{count} 個の技が効果今ひとつ",
+      "immuneCount": "{count} 個の技が効果なし"
+    },
+    "damage": "ダメージ",
+    "moveDetails": {
+      "power": "威力",
+      "type": "タイプ",
+      "category": "分類",
+      "pokemon": "ポケモン",
+      "effectiveness": "効果",
+      "stab": "タイプ一致"
+    }
   }
 }

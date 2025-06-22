@@ -272,5 +272,47 @@
       "noResistances": "Team has no major resistances",
       "noImmunities": "Team has no type immunities"
     }
+  },
+  "coverage": {
+    "meta": {
+      "title": "Coverage Analysis",
+      "description": "Analyze {name} team's type coverage with {count} Pokémon",
+      "defaultDescription": "Pokémon team coverage analysis page"
+    },
+    "loading": "Analyzing coverage...",
+    "typeCombination": {
+      "title": "Type Combination Analysis",
+      "description": "Select up to two types to analyze your team's effectiveness against that type combination.",
+      "selectTypes": "Select Types",
+      "selectUpToTwo": "Select up to two types for combination analysis",
+      "analysisFor": "Analysis results for the following type combination:"
+    },
+    "popularPokemon": {
+      "title": "Popular Pokémon Analysis",
+      "description": "Analyze your team's effectiveness against popular Pokémon.",
+      "hasEffectiveMoves": "Has super effective moves",
+      "noEffectiveMoves": "No super effective moves"
+    },
+    "categories": {
+      "physical": "Physical Moves",
+      "special": "Special Moves"
+    },
+    "effectiveness": {
+      "effective": "Super Effective",
+      "neutral": "Neutral",
+      "resistant": "Not Very Effective",
+      "immune": "No Effect",
+      "resistantCount": "{count} moves are not very effective",
+      "immuneCount": "{count} moves have no effect"
+    },
+    "damage": "Damage",
+    "moveDetails": {
+      "power": "Power",
+      "type": "Type",
+      "category": "Category",
+      "pokemon": "Pokémon",
+      "effectiveness": "Effectiveness",
+      "stab": "STAB"
+    }
   }
 }

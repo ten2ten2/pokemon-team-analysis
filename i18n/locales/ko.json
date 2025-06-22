@@ -273,5 +273,47 @@
         "noResistances": "팀에 명확한 저항이 없습니다",
         "noImmunities": "팀에 타입 무효가 없습니다"
       }
+    },
+    "coverage": {
+      "meta": {
+        "title": "커버리지 분석",
+        "description": "{name} 팀의 타입 커버리지 분석, {count}마리의 포켓몬 포함",
+        "defaultDescription": "포켓몬 팀 커버리지 분석 페이지"
+      },
+      "loading": "커버리지 분석 중...",
+      "typeCombination": {
+        "title": "타입 조합 분석",
+        "description": "최대 2개의 타입을 선택하여 해당 타입 조합에 대한 팀의 효과를 분석합니다.",
+        "selectTypes": "타입 선택",
+        "selectUpToTwo": "조합 분석을 위해 최대 2개의 타입을 선택할 수 있습니다",
+        "analysisFor": "다음 타입 조합에 대한 분석 결과:"
+      },
+      "popularPokemon": {
+        "title": "인기 포켓몬 분석",
+        "description": "인기 포켓몬에 대한 팀의 효과를 분석합니다.",
+        "hasEffectiveMoves": "효과가 뛰어난 기술이 있습니다",
+        "noEffectiveMoves": "효과가 뛰어난 기술이 없습니다"
+      },
+      "categories": {
+        "physical": "물리 기술",
+        "special": "특수 기술"
+      },
+      "effectiveness": {
+        "effective": "효과가 뛰어남",
+        "neutral": "보통",
+        "resistant": "효과가 별로",
+        "immune": "효과 없음",
+        "resistantCount": "{count}개의 기술이 효과가 별로",
+        "immuneCount": "{count}개의 기술이 효과 없음"
+      },
+      "damage": "데미지",
+      "moveDetails": {
+        "power": "위력",
+        "type": "타입",
+        "category": "분류",
+        "pokemon": "포켓몬",
+        "effectiveness": "효과",
+        "stab": "타입 일치"
+      }
     }
   }

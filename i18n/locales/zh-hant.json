@@ -273,5 +273,47 @@
       "noResistances": "隊伍無明顯抗性",
       "noImmunities": "隊伍無屬性免疫"
     }
+  },
+  "coverage": {
+    "meta": {
+      "title": "打擊面分析",
+      "description": "分析 {name} 隊伍的打擊面覆蓋，包含 {count} 隻寶可夢",
+      "defaultDescription": "寶可夢隊伍打擊面分析頁面"
+    },
+    "loading": "正在分析打擊面...",
+    "typeCombination": {
+      "title": "屬性組合分析",
+      "description": "選擇最多兩個屬性，分析您的隊伍對該屬性組合的打擊效果。",
+      "selectTypes": "選擇屬性",
+      "selectUpToTwo": "最多可選擇兩個屬性進行組合分析",
+      "analysisFor": "對以下屬性組合的分析結果："
+    },
+    "popularPokemon": {
+      "title": "熱門寶可夢分析",
+      "description": "分析您的隊伍對熱門寶可夢的打擊效果。",
+      "hasEffectiveMoves": "有效果絕佳的招式",
+      "noEffectiveMoves": "無效果絕佳的招式"
+    },
+    "categories": {
+      "physical": "物理招式",
+      "special": "特殊招式"
+    },
+    "effectiveness": {
+      "effective": "效果絕佳",
+      "neutral": "一般效果",
+      "resistant": "效果不佳",
+      "immune": "無效果",
+      "resistantCount": "共 {count} 個招式效果不佳",
+      "immuneCount": "共 {count} 個招式無效果"
+    },
+    "damage": "傷害",
+    "moveDetails": {
+      "power": "威力",
+      "type": "屬性",
+      "category": "分類",
+      "pokemon": "寶可夢",
+      "effectiveness": "效果",
+      "stab": "本系加成"
+    }
   }
 }
