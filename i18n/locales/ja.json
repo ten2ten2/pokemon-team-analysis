@@ -187,7 +187,7 @@
     "tabs": {
       "overview": "概要",
       "resistance": "タイプ耐性",
-      "coverage": "攻撃範囲分析",
+      "coverage": "攻撃範囲",
       "speedTiers": "素早さ",
       "strategy": "対策分析"
     },
