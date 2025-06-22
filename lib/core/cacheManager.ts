@@ -42,10 +42,12 @@ class EnhancedCacheManager {
     compressions: 0
   }
 
-  private cleanupTimer?: NodeJS.Timeout
+  // 基于访问频率的清理计数器
+  private operationCount = 0
+  private readonly CLEANUP_THRESHOLD = 100
 
   private constructor() {
-    this.startPeriodicCleanup()
+    // 移除定时器初始化
   }
 
   static getInstance(): EnhancedCacheManager {
@@ -86,6 +88,13 @@ class EnhancedCacheManager {
     }
 
     this.cache.set(key, entry)
+
+    // 基于访问频率的清理
+    this.operationCount++
+    if (this.operationCount >= this.CLEANUP_THRESHOLD) {
+      this.cleanupExpired()
+      this.operationCount = 0
+    }
   }
 
   get<T>(key: string): T | null {
@@ -103,7 +112,7 @@ class EnhancedCacheManager {
       return null
     }
 
-    // 检查TTL
+    // 懒惰清理：检查TTL
     if (entry.ttl) {
       const now = new Date().getTime()
       const entryTime = entry.timestamp.getTime()
@@ -123,6 +132,13 @@ class EnhancedCacheManager {
     let result = entry.data
     if (entry.compressed) {
       result = this.decompressData(entry.data)
+    }
+
+    // 基于访问频率的清理
+    this.operationCount++
+    if (this.operationCount >= this.CLEANUP_THRESHOLD) {
+      this.cleanupExpired()
+      this.operationCount = 0
     }
 
     return result as T
@@ -221,15 +237,13 @@ class EnhancedCacheManager {
   }
 
   /**
-   * 定期清理过期缓存
+   * 手动清理过期缓存
    */
-  private startPeriodicCleanup(): void {
-    this.cleanupTimer = setInterval(() => {
-      this.cleanupExpired()
-    }, CACHE_MANAGER_CONFIG.CLEANUP_INTERVAL)
+  public manualCleanup(): number {
+    return this.cleanupExpired()
   }
 
-  private cleanupExpired(): void {
+  private cleanupExpired(): number {
     const now = Date.now()
     const keysToDelete: string[] = []
 
@@ -247,7 +261,11 @@ class EnhancedCacheManager {
       if (deletedCount !== keysToDelete.length) {
         console.warn(`Cleanup warning: Expected to delete ${keysToDelete.length} entries, actually deleted ${deletedCount}`)
       }
+
+      return deletedCount
     }
+
+    return 0
   }
 
   // ==================== Compression ====================
@@ -325,6 +343,7 @@ class EnhancedCacheManager {
   clear(): void {
     this.cache.clear()
     this.stats = { hits: 0, misses: 0, evictions: 0, compressions: 0 }
+    this.operationCount = 0
   }
 
   /**
@@ -366,9 +385,7 @@ class EnhancedCacheManager {
    * 销毁缓存管理器
    */
   destroy(): void {
-    if (this.cleanupTimer) {
-      clearInterval(this.cleanupTimer)
-    }
+    // 移除定时器清理逻辑
     this.clear()
   }
 }

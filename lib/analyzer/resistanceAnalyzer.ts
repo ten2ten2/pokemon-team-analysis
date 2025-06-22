@@ -69,7 +69,7 @@ export class ResistanceAnalyzer extends BaseAnalyzer<ResistanceAnalysisResult, R
 
     // 应用天气和场地效果
     if (options?.weather || options?.terrain) {
-      this.applyEnvironmentEffects(typeResistances, pokemonData, options?.weather, options?.terrain);
+      this.applyEnvironmentEffects(typeResistances, options?.weather, options?.terrain);
     }
 
     const summary = this.generateSummary(typeResistances, pokemonData);
@@ -156,9 +156,11 @@ export class ResistanceAnalyzer extends BaseAnalyzer<ResistanceAnalysisResult, R
     if (terrain) {
       const terrainSpecificType = TERRIAN_TYPES[terrain];
       // 将场地特定类型插入到对应的基础类型后面
-      const baseIndex = typeList.indexOf(terrainSpecificType.baseType);
-      if (baseIndex !== -1) {
-        typeList.splice(baseIndex + 1, 0, terrainSpecificType.terrainType);
+      if (terrainSpecificType) {
+        const baseIndex = typeList.indexOf(terrainSpecificType.baseType);
+        if (baseIndex !== -1) {
+          typeList.splice(baseIndex + 1, 0, terrainSpecificType.terrainType);
+        }
       }
     }
 
@@ -191,13 +193,9 @@ export class ResistanceAnalyzer extends BaseAnalyzer<ResistanceAnalysisResult, R
     // 计算基础抗性
     let multiplier = this.calculatePokemonResistance(pokemon, baseType);
 
-    // 检查宝可梦是否在地面上（这里要使用原始属性，因为太晶化不影响是否在地面上）
-    const originalPokemonTypes = pokemonSpecies?.types ?? [];
-    const onTerrain = isOnTerrain(originalPokemonTypes, pokemon.ability || '', pokemon.item || '');
-
     // 只有地面上的宝可梦才受到场地效果影响
-    if (onTerrain && terrain) {
-      const terrainMultiplier = TERRAIN_EFFECTS[terrain][attackType] ?? 1;
+    if (terrain) {
+      const terrainMultiplier = TERRAIN_EFFECTS[terrain][baseType] ?? 1;
       multiplier *= terrainMultiplier;
     }
 
@@ -363,7 +361,6 @@ export class ResistanceAnalyzer extends BaseAnalyzer<ResistanceAnalysisResult, R
   // 应用天气和场地效果
   private applyEnvironmentEffects(
     typeResistances: TypeResistanceData[],
-    pokemonData: ResistanceItem[],
     weather?: string,
     terrain?: string
   ): void {
