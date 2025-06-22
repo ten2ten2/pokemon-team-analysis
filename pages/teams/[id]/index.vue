@@ -22,6 +22,18 @@ const tabs = computed(() => [
     key: 'coverage',
     label: t('teamDetail.tabs.coverage'),
     to: `/teams/${teamId}/coverage`
+  },
+  {
+    key: 'speed-tiers',
+    label: t('teamDetail.tabs.speedTiers'),
+    // to: `/teams/${teamId}/speed-tiers`,
+    disabled: true
+  },
+  {
+    key: 'strategy',
+    label: t('teamDetail.tabs.strategy'),
+    // to: `/teams/${teamId}/strategy`,
+    disabled: true
   }
 ])
 </script>
@@ -74,14 +86,6 @@ const tabs = computed(() => [
               class="bg-white dark:bg-gray-900 rounded-lg p-4 text-sm overflow-x-auto text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 whitespace-pre-wrap break-words">{{ team.teamRawData }}</pre>
           </div>
         </section>
-      </div>
-
-      <!-- 其他 Tab 内容预留 -->
-      <div v-show="activeTab === 'resistance'" role="tabpanel" :aria-labelledby="`tab-resistance`"
-        class="text-center py-12">
-        <p class="text-gray-500 dark:text-gray-400">
-          {{ t('common.comingSoon') }}
-        </p>
       </div>
     </template>
   </TeamDetailLayout>

@@ -42,7 +42,20 @@ const tabs = computed(() => [
   },
   {
     key: 'coverage',
-    label: t('teamDetail.tabs.coverage')
+    label: t('teamDetail.tabs.coverage'),
+    to: `/teams/${teamId}/coverage`
+  },
+  {
+    key: 'speed-tiers',
+    label: t('teamDetail.tabs.speedTiers'),
+    // to: `/teams/${teamId}/speed-tiers`,
+    disabled: true
+  },
+  {
+    key: 'strategy',
+    label: t('teamDetail.tabs.strategy'),
+    // to: `/teams/${teamId}/strategy`,
+    disabled: true
   }
 ])
 
