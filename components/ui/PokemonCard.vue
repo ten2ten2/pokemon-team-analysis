@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Pokemon } from '~/types/pokemon'
+import type { Pokemon } from '~/lib/core/types'
 import { getSprite } from '~/utils/teamUtils'
 import { getTypeBadgeClass, getTypeChipClass, getTypeIconClass, getMoveCategoryIconClass } from '~/utils/pokemonTypeUtils'
 
