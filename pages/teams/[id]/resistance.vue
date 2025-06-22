@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { Team } from '@pkmn/sets'
 import type { Team as TeamType } from '~/types/team'
-import type { Pokemon } from '~/types/pokemon'
+import type { Pokemon } from '~/lib/core/types'
 import { getSprite } from '~/utils/teamUtils'
 import { getTypeBadgeClass, getTypeIconClass, getTypeBadgeClassByTeraStatus, getTypeIconClassByTeraStatus } from '~/utils/pokemonTypeUtils'
 import {
   ResistanceAnalyzer,
-  getPokemonResistance,
-  getTeamResistanceLevel,
   type ResistanceAnalysisResult,
   type ResistanceItem
-} from '~/lib/analyzer/resistanceAnalysis'
-import { WEATHER_EFFECTS, TERRAIN_EFFECTS } from '~/lib/analyzer/resistanceUtils'
+} from '~/lib/analyzer/resistanceAnalyzer'
+import { WEATHER_EFFECTS, TERRAIN_EFFECTS } from '~/lib/core/constants'
 import { usePokemonTranslations } from '~/composables/usePokemonTranslations'
 
 const route = useRoute()
@@ -29,7 +27,7 @@ const loading = ref(false)
 const currentTeam = ref<TeamType | null>(null)
 
 // 创建抗性分析器实例
-const analyzer = new ResistanceAnalyzer(9)
+const analyzer = new ResistanceAnalyzer()
 
 // Tab 配置
 const tabs = computed(() => [
@@ -41,12 +39,16 @@ const tabs = computed(() => [
   {
     key: 'resistance',
     label: t('teamDetail.tabs.resistance')
+  },
+  {
+    key: 'coverage',
+    label: t('teamDetail.tabs.coverage')
   }
 ])
 
 // 计算抗性数据
 const calculateResistance = async (team: TeamType) => {
-  if (!team?.teamRawData) return
+  if (!team?.teamData) return
 
   loading.value = true
   try {
@@ -55,12 +57,12 @@ const calculateResistance = async (team: TeamType) => {
     if (!teamParsed) return
 
     // 构建太晶化参数 - 检查选择的宝可梦是否有太晶属性
-    let terastallization: { pokemonIndex: number; teraType: string } | undefined
+    let terastallization: { index: number; teraType: string } | undefined
     if (selectedTerastallizationPokemon.value >= 0 && team.teamData) {
       const pokemon = team.teamData[selectedTerastallizationPokemon.value]
       if (pokemon?.teraType) {
         terastallization = {
-          pokemonIndex: selectedTerastallizationPokemon.value,
+          index: selectedTerastallizationPokemon.value,
           teraType: pokemon.teraType
         }
       }
@@ -68,10 +70,12 @@ const calculateResistance = async (team: TeamType) => {
 
     // 执行抗性分析（包含天气、场地和太晶化效果）
     resistanceResult.value = analyzer.analyze(
-      teamParsed,
-      selectedWeather.value || undefined,
-      selectedTerrain.value || undefined,
-      terastallization
+      team?.teamData,
+      {
+        weather: selectedWeather.value || undefined,
+        terrain: selectedTerrain.value || undefined,
+        terastallization: terastallization
+      }
     )
   } catch (error) {
     console.error('抗性分析失败:', error)
@@ -173,13 +177,13 @@ const getAllTypes = computed(() => {
 // 获取特定宝可梦对特定属性的抗性倍率（优化的查找）
 const getResistanceMultiplier = (pokemonIndex: number, attackType: string): number => {
   if (!resistanceResult.value) return 1
-  return getPokemonResistance(resistanceResult.value, pokemonIndex, attackType)
+  return resistanceResult.value.typeResistances.find(tr => tr.type === attackType)?.pokemonMultipliers[pokemonIndex] ?? 1
 }
 
 // 计算队伍对特定属性的整体抵抗程度（优化的查找）
 const getTypeResistanceLevel = (attackType: string): number => {
   if (!resistanceResult.value) return 0
-  return getTeamResistanceLevel(resistanceResult.value, attackType)
+  return resistanceResult.value.typeResistances.find(tr => tr.type === attackType)?.resistanceLevel ?? 0
 }
 
 // 获取抵抗程度的竖条显示

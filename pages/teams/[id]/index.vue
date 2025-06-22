@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Pokemon } from '~/types/pokemon'
+import type { Pokemon } from '~/lib/core/types'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -32,7 +32,7 @@ const tabs = computed(() => [
       <TabNavigation :tabs="tabs" :active-tab="currentTab" :team-id="teamId" @change="handleTabChange" />
     </template>
 
-    <template #default="{ team, translateName, useTranslation }">
+    <template #default="{ team, translateName }">
       <!-- Overview Tab -->
       <div v-show="activeTab === 'overview'" role="tabpanel" :aria-labelledby="`tab-overview`" class="space-y-8">
         <!-- 团队成员 -->

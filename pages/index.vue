@@ -6,7 +6,7 @@ import { useTeamStorage } from '~/composables/useTeamStorage'
 import { useAsyncClientState } from '~/composables/useClientState'
 import type { Team, TeamImportData, TeamUpdateData } from '~/types/team'
 import { normalizeTeamName, cloneTeam, getSprite } from '~/utils/teamUtils'
-import { type Pokemon } from '~/types/pokemon';
+import type { Pokemon } from '~/lib/core/types'
 import { formatDate } from '~/utils/formatDate'
 
 const { t, locale } = useI18n()
