@@ -7,7 +7,7 @@ import { getPokeApiNum } from '~/lib/parser/teamParser'
 // ==================== Types ====================
 
 export interface CoverageAnalysisOptions {
-  combanation?: { type1: string; type2: string }
+  combination?: { type1: string; type2: string }
 }
 
 export interface CoverageAnalysisResult {
@@ -55,8 +55,8 @@ export class CoverageAnalyzer extends BaseAnalyzer<CoverageAnalysisResult, Cover
 
   analyze(team: Pokemon[], options?: CoverageAnalysisOptions): CoverageAnalysisResult {
     let combinationCoverage;
-    if (options?.combanation) {
-      combinationCoverage = this.calculateCoverageForCombination(team, options?.combanation)
+    if (options?.combination) {
+      combinationCoverage = this.calculateCoverageForCombination(team, options?.combination)
     }
 
     const popularList = ['Pikachu', 'Eevee', 'Charmander', 'Bulbasaur', 'Squirtle']

@@ -43,4 +43,10 @@ export abstract class BaseAnalyzer<TResult, TOptions = {}> {
 
     return result
   }
+
+  // 获取所有属性类型（不包括太晶属性）
+  public getAllTypesExceptStellar(): string[] {
+    const allTypes = Array.from(this.dataService.getGeneration().types, (t: any) => t.name);
+    return allTypes.filter(type => type !== 'Stellar')
+  }
 }

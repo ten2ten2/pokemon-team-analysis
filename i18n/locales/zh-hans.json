@@ -272,5 +272,47 @@
       "noResistances": "队伍无明显抗性",
       "noImmunities": "队伍无属性免疫"
     }
+  },
+  "coverage": {
+    "meta": {
+      "title": "打击面分析",
+      "description": "分析 {name} 队伍的打击面覆盖，包含 {count} 只宝可梦",
+      "defaultDescription": "宝可梦队伍打击面分析页面"
+    },
+    "loading": "正在分析打击面...",
+    "typeCombination": {
+      "title": "属性组合分析",
+      "description": "选择最多两个属性，分析您的队伍对该属性组合的打击效果。",
+      "selectTypes": "选择属性",
+      "selectUpToTwo": "最多可选择两个属性进行组合分析",
+      "analysisFor": "对以下属性组合的分析结果："
+    },
+    "popularPokemon": {
+      "title": "热门宝可梦分析",
+      "description": "分析您的队伍对热门宝可梦的打击效果。",
+      "hasEffectiveMoves": "有效果拔群的招式",
+      "noEffectiveMoves": "无效果拔群的招式"
+    },
+    "categories": {
+      "physical": "物理招式",
+      "special": "特殊招式"
+    },
+    "effectiveness": {
+      "effective": "效果拔群",
+      "neutral": "一般效果",
+      "resistant": "效果不佳",
+      "immune": "无效果",
+      "resistantCount": "共 {count} 个招式效果不佳",
+      "immuneCount": "共 {count} 个招式无效果"
+    },
+    "damage": "伤害",
+    "moveDetails": {
+      "power": "威力",
+      "type": "属性",
+      "category": "分类",
+      "pokemon": "宝可梦",
+      "effectiveness": "效果",
+      "stab": "本系加成"
+    }
   }
 }

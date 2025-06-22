@@ -4,6 +4,7 @@
 
 import type { Team } from '~/types/team'
 import type { Pokemon } from '~/lib/core/types'
+import type { PokemonCoverage } from '~/lib/analyzer/coverageAnalyzer'
 
 export const DEFAULT_TEAM_NAME = 'Untitled Team'
 
@@ -51,7 +52,7 @@ export function normalizeName(name: string): string {
  * @param stripeType - 精灵图片类型
  * @returns 精灵图片
  */
-export const getSprite = (pkm: Pokemon, stripeType: string = 'default') => {
+export const getSprite = (pkm: Pokemon | PokemonCoverage, stripeType: string = 'default') => {
   return `${SPRITES_URL_PREFIX[stripeType]}${pkm.pokeApiNum}.png`
 }
 
