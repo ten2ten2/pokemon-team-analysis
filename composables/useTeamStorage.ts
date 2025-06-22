@@ -69,7 +69,7 @@ export const useTeamStorage = () => {
         if (!Array.isArray(team.teamData) && team.teamRawData) {
           // 旧数据需要解析
           const parsedResult = parseAndValidateTeam(team.teamRawData, team.rules)
-          teamData = parsedResult.team || []
+          teamData = parsedResult.teamParsed || []
           errors = parsedResult.errors
         }
 
@@ -108,7 +108,7 @@ export const useTeamStorage = () => {
   const addTeam = (teamInput: TeamInput): Team => {
     // 解析队伍数据
     const parsedResult = parseAndValidateTeam(teamInput.teamRawData, teamInput.rules)
-    const teamData = parsedResult.team || []
+    const teamData = parsedResult.teamParsed || []
     const errors = parsedResult.errors
 
     const newTeam: Team = {
@@ -151,7 +151,7 @@ export const useTeamStorage = () => {
         updatedTeam.teamRawData,
         updatedTeam.rules
       )
-      updatedTeam.teamData = parsedResult.team || []
+      updatedTeam.teamData = parsedResult.teamParsed || []
       updatedTeam.errors = parsedResult.errors
     }
 
