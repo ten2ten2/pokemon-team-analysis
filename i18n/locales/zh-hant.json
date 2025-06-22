@@ -187,7 +187,9 @@
     "tabs": {
       "overview": "概覽",
       "resistance": "抗性分析",
-      "coverage": "打擊面分析"
+      "coverage": "打擊面分析",
+      "speedTiers": "速度階梯",
+      "strategy": "對策分析"
     },
     "validationErrors": {
       "title": "隊伍驗證錯誤",

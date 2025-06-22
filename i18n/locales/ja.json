@@ -187,7 +187,9 @@
     "tabs": {
       "overview": "概要",
       "resistance": "タイプ耐性",
-      "coverage": "攻撃範囲分析"
+      "coverage": "攻撃範囲分析",
+      "speedTiers": "素早さ",
+      "strategy": "対策分析"
     },
     "validationErrors": {
       "title": "チーム検証エラー",

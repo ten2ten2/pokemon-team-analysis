@@ -187,7 +187,9 @@
     "tabs": {
       "overview": "概览",
       "resistance": "抗性分析",
-      "coverage": "打击面分析"
+      "coverage": "打击面分析",
+      "speedTiers": "速度阶梯",
+      "strategy": "对策分析"
     },
     "validationErrors": {
       "title": "队伍验证错误",

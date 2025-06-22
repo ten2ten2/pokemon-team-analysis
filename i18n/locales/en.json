@@ -187,7 +187,9 @@
     "tabs": {
       "overview": "Overview",
       "resistance": "Resistance",
-      "coverage": "Coverage"
+      "coverage": "Coverage",
+      "speedTiers": "Speed Tiers",
+      "strategy": "Strategy"
     },
     "validationErrors": {
       "title": "Team Validation Errors",

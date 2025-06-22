@@ -1,275 +1,277 @@
-{
-  "common": {
-    "loading": {
-      "teams": "팀 로딩 중...",
-      "default": "로딩 중..."
-    },
-    "error": {
-      "title": "오류",
-      "loadingTeams": "팀을 로드하는데 실패했습니다. 페이지를 새로고침해 보세요."
-    },
-    "ability": "특성",
-    "item": "도구",
-    "teamName": {
-      "title": "팀 이름",
-      "untitled": "미정"
-    },
-    "gameVersion": {
-      "title": "게임 버전",
-      "options": {
-        "sv": "스칼렛 / 바이올렛"
-      }
-    },
-    "rules": {
-      "title": "규칙",
-      "options": {
-        "doublesRegG": "더블배틀 · 레귤레이션 G",
-        "doublesRegH": "더블배틀 · 레귤레이션 H",
-        "doublesRegI": "더블배틀 · 레귤레이션 I",
-        "singlesRegG": "싱글배틀 · 레귤레이션 G",
-        "singlesRegH": "싱글배틀 · 레귤레이션 H",
-        "singlesRegI": "싱글배틀 · 레귤레이션 I"
-      }
-    },
-    "comingSoon": "곧 출시"
-  },
-  "home": {
-    "meta": {
-      "title": "포켓몬 팀 분석",
-      "description": "당신의 포켓몬 팀을 분석하여 다른 팀과 비교 평가해 보세요.",
-      "keywords": "포켓몬, 분석, 스탯, Pokemon Go, VGC, 포켓몬 배틀, 포켓몬 팀, 랭크 배틀",
-      "openGraph": {
-        "image": "/og-image.png"
+  {
+    "common": {
+      "loading": {
+        "teams": "팀 로딩 중...",
+        "default": "로딩 중..."
       },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
-    },
-    "allTeams": "모든 팀",
-    "newTeam": "새 팀",
-    "noTeams": "아직 팀이 없습니다",
-    "noTeamsDescription": "분석을 시작하기 위해 첫 번째 포켓몬 팀을 만드세요!",
-    "createFirstTeam": "첫 번째 포켓몬 팀 만들기",
-    "teamHasProblems": "팀에 문제가 있습니다"
-  },
-  "nav": {
-    "home": "홈",
-    "qa": "Q&A",
-    "about": "회사 소개",
-    "resources": "자료",
-    "privacy-and-terms": "개인정보 보호 및 약관"
-  },
-  "cookieConsent": {
-    "title": "쿠키 동의",
-    "message": "저희는 귀하의 경험을 개선하고 사이트 사용량을 분석하기 위해 쿠키를 사용합니다. 저희 사이트를 계속 사용하시면 쿠키 사용에 동의하는 것으로 간주됩니다.",
-    "learnMore": "자세히 보기",
-    "accept": "동의",
-    "decline": "거부",
-    "dismiss": "닫기"
-  },
-  "footer": {
-    "copyright": "저작권. 모든 권리 보유.",
-    "privacyAndTerms": "개인정보 보호 및 약관"
-  },
-  "privacyAndTerms": {
-    "meta": {
-      "title": "개인정보 및 약관",
-      "description": "저희의 개인정보 보호정책 및 이용약관",
-      "keywords": "개인정보 보호정책, 이용약관, 법적 사항, 데이터 보호",
-      "openGraph": {
-        "image": "/og-image.png"
+      "error": {
+        "title": "오류",
+        "loadingTeams": "팀을 로드하는데 실패했습니다. 페이지를 새로고침해 보세요."
       },
-      "twitter": {
-        "site": "example",
-        "image": "/twitter-image.png"
-      }
-    },
-    "title": "개인정보 및 약관",
-    "lastUpdated": "최종 업데이트: {date}",
-    "lastUpdatedDate": "2025-06-12",
-    "privacyPolicy": {
-      "title": "개인정보 보호정책",
-      "introduction": "이 개인정보 보호정책은 귀하가 저희 서비스를 이용할 때 저희가 귀하의 정보를 어떻게 수집, 사용, 보호하는지 설명합니다.",
-      "informationCollection": {
-        "title": "수집하는 정보",
-        "content": "계정 생성, 문의, 서비스 이용 시 등 귀하가 직접 저희에게 제공하는 정보를 수집할 수 있습니다."
-      },
-      "informationUse": {
-        "title": "정보 사용 방법",
-        "content": "수집된 정보는 서비스 제공, 유지, 개선, 귀하와의 소통, 법적 의무 준수를 위해 사용됩니다."
-      },
-      "informationSharing": {
-        "title": "정보 공유",
-        "content": "본 정책에 명시된 경우를 제외하고, 귀하의 동의 없이 개인정보를 제3자에게 판매, 거래 또는 기타 방법으로 양도하지 않습니다."
-      },
-      "dataSecurity": {
-        "title": "데이터 보안",
-        "content": "귀하의 개인정보를 무단 접근, 변경, 공개, 파괴로부터 보호하기 위해 적절한 보안 조치를 시행합니다."
-      },
-      "contact": {
-        "title": "문의하기",
-        "content": "이 개인정보 보호정책에 대한 질문이 있으시면 {email}로 문의해 주세요."
-      }
-    },
-    "termsOfService": {
-      "title": "이용약관",
-      "introduction": "이 이용약관은 저희 웹사이트 및 서비스 이용을 규정합니다.",
-      "acceptance": {
-        "title": "약관 동의",
-        "content": "저희 서비스에 접근하고 이용함으로써, 귀하는 본 계약의 조건과 규정에 구속되는 것에 동의하고 승인합니다."
-      },
-      "useOfService": {
-        "title": "서비스 이용",
-        "content": "저희 서비스는 합법적인 목적으로만 사용할 수 있습니다. 적용 법률이나 규정을 위반하는 방식으로 서비스를 사용하지 않는 것에 동의합니다."
-      },
-      "userContent": {
-        "title": "사용자 콘텐츠",
-        "content": "서비스를 통해 제출, 게시, 표시하는 모든 콘텐츠의 소유권은 귀하에게 있습니다. 콘텐츠를 제출함으로써 저희에게 해당 콘텐츠를 사용, 수정, 표시할 수 있는 라이선스를 부여합니다."
-      },
-      "termination": {
-        "title": "종료",
-        "content": "저희는 어떤 이유로든 사전 통지 없이 즉시 귀하의 서비스 접근을 종료하거나 중단할 수 있습니다."
-      },
-      "disclaimers": {
-        "title": "면책 조항",
-        "content": "이 웹사이트의 정보는 '있는 그대로' 제공됩니다. 저희는 명시적이든 묵시적이든 모든 보증을 부인합니다."
-      },
-      "contact": {
-        "title": "문의하기",
-        "content": "이 이용약관에 대한 질문이 있으시면 {email}로 문의해 주세요."
-      }
-    }
-  },
-  "teamImportModal": {
-    "title": "포켓몬 팀 가져오기",
-    "instructions": {
-      "title": "팀 가져오기 방법:",
-      "content": {
-        "1": "적절한 게임 버전과 규칙을 선택하세요",
-        "2": "아래 텍스트 영역에 팀 데이터를 붙여넣으세요",
-        "3": "\"팀 가져오기\" 버튼을 클릭하여 컬렉션에 추가하세요"
-      }
-    },
-    "dataInputTitle": "포켓몬 팀 데이터",
-    "dataInputPlaceholder": "여기에 팀을 붙여넣으세요...\n\n예시:\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
-    "importButton": "팀 가져오기",
-    "importing": "가져오는 중...",
-    "cancelButton": "취소"
-  },
-  "teamEditModal": {
-    "title": "포켓몬 팀 편집",
-    "saveButton": "변경사항 저장",
-    "saving": "저장 중...",
-    "problemTitle": "팀에 문제가 있습니다"
-  },
-  "confirmDialog": {
-    "deleteTeam": {
-      "title": "팀 삭제",
-      "message": "이 팀을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
-      "confirmButton": "삭제",
-      "cancelButton": "취소"
-    }
-  },
-  "teamDetail": {
-    "meta": {
-      "title": "팀 상세정보",
-      "description": "{name} 상세정보 보기, {count}마리의 포켓몬 포함",
-      "defaultDescription": "포켓몬 팀 상세정보 페이지"
-    },
-    "notFound": {
-      "title": "팀을 찾을 수 없음",
-      "description": "ID \"{id}\"인 팀이 존재하지 않거나 삭제되었습니다.",
-      "backToHome": "홈으로 돌아가기"
-    },
-    "createdAt": "생성일",
-    "useTranslation": "번역 사용",
-    "tabs": {
-      "overview": "개요",
-      "resistance": "타입 내성 분석",
-      "coverage": "타입 커버리지 분석"
-    },
-    "validationErrors": {
-      "title": "팀 검증 오류",
-      "description": "팀 데이터에 다음 문제가 있습니다. 편집 버튼을 클릭하여 수정하세요:"
-    },
-    "editTeam": "팀 편집",
-    "teamMembers": {
-      "title": "팀 멤버 ({count}/6)",
-      "description": "팀 내 포켓몬의 상세 정보입니다"
-    },
-    "pokemon": {
       "ability": "특성",
       "item": "도구",
-      "teraType": "테라스탈 타입",
-      "moves": "기술"
+      "teamName": {
+        "title": "팀 이름",
+        "untitled": "미정"
+      },
+      "gameVersion": {
+        "title": "게임 버전",
+        "options": {
+          "sv": "스칼렛 / 바이올렛"
+        }
+      },
+      "rules": {
+        "title": "규칙",
+        "options": {
+          "doublesRegG": "더블배틀 · 레귤레이션 G",
+          "doublesRegH": "더블배틀 · 레귤레이션 H",
+          "doublesRegI": "더블배틀 · 레귤레이션 I",
+          "singlesRegG": "싱글배틀 · 레귤레이션 G",
+          "singlesRegH": "싱글배틀 · 레귤레이션 H",
+          "singlesRegI": "싱글배틀 · 레귤레이션 I"
+        }
+      },
+      "comingSoon": "곧 출시"
     },
-    "rawData": {
-      "title": "원본 팀 데이터",
-      "description": "가져온 원본 팀 텍스트 데이터입니다",
-      "copy": "복사",
-      "copied": "복사됨!",
-      "copyButton": "원본 팀 데이터를 클립보드에 복사"
-    }
-  },
-  "resistance": {
-    "meta": {
-      "title": "상성 분석",
-      "description": "{name} 팀의 타입 상성 분석, {count}마리의 포켓몬 포함",
-      "defaultDescription": "포켓몬 팀 타입 상성 분석 페이지"
+    "home": {
+      "meta": {
+        "title": "포켓몬 팀 분석",
+        "description": "당신의 포켓몬 팀을 분석하여 다른 팀과 비교 평가해 보세요.",
+        "keywords": "포켓몬, 분석, 스탯, Pokemon Go, VGC, 포켓몬 배틀, 포켓몬 팀, 랭크 배틀",
+        "openGraph": {
+          "image": "/og-image.png"
+        },
+        "twitter": {
+          "site": "pokemon-team-analysis",
+          "image": "/twitter-image.png"
+        }
+      },
+      "allTeams": "모든 팀",
+      "newTeam": "새 팀",
+      "noTeams": "아직 팀이 없습니다",
+      "noTeamsDescription": "분석을 시작하기 위해 첫 번째 포켓몬 팀을 만드세요!",
+      "createFirstTeam": "첫 번째 포켓몬 팀 만들기",
+      "teamHasProblems": "팀에 문제가 있습니다"
     },
-    "title": "타입 상성 분석",
-    "description": "다양한 타입 공격에 대한 팀의 상성 성능을 분석하며, 날씨와 필드 조건을 선택적으로 설정할 수 있습니다.",
-    "validationError": {
-      "description": "팀 데이터에 문제가 있어 상성 분석을 수행할 수 없습니다. 먼저 팀 데이터를 수정해 주세요."
+    "nav": {
+      "home": "홈",
+      "qa": "Q&A",
+      "about": "회사 소개",
+      "resources": "자료",
+      "privacy-and-terms": "개인정보 보호 및 약관"
     },
-    "controls": {
-      "title": "분석 설정",
-      "weather": "날씨 상태",
-      "terrain": "필드 상태",
-      "terastallizationPokemon": "테라스탈 포켓몬",
-      "teraType": "테라 타입"
+    "cookieConsent": {
+      "title": "쿠키 동의",
+      "message": "저희는 귀하의 경험을 개선하고 사이트 사용량을 분석하기 위해 쿠키를 사용합니다. 저희 사이트를 계속 사용하시면 쿠키 사용에 동의하는 것으로 간주됩니다.",
+      "learnMore": "자세히 보기",
+      "accept": "동의",
+      "decline": "거부",
+      "dismiss": "닫기"
     },
-    "weather": {
-      "none": "날씨 없음",
-      "rain": "비",
-      "heavy_rain": "큰비",
-      "harsh_sunlight": "쾌청",
-      "extremely_harsh_sunlight": "대쾌청",
-      "strong_winds": "난기류"
+    "footer": {
+      "copyright": "저작권. 모든 권리 보유.",
+      "privacyAndTerms": "개인정보 보호 및 약관"
     },
-    "terrain": {
-      "none": "필드 없음",
-      "electric_terrain": "일렉트릭필드",
-      "grassy_terrain": "그래스필드",
-      "misty_terrain": "미스트필드",
-      "psychic_terrain": "사이코필드",
-      "grounded": "접지"
+    "privacyAndTerms": {
+      "meta": {
+        "title": "개인정보 및 약관",
+        "description": "저희의 개인정보 보호정책 및 이용약관",
+        "keywords": "개인정보 보호정책, 이용약관, 법적 사항, 데이터 보호",
+        "openGraph": {
+          "image": "/og-image.png"
+        },
+        "twitter": {
+          "site": "example",
+          "image": "/twitter-image.png"
+        }
+      },
+      "title": "개인정보 및 약관",
+      "lastUpdated": "최종 업데이트: {date}",
+      "lastUpdatedDate": "2025-06-12",
+      "privacyPolicy": {
+        "title": "개인정보 보호정책",
+        "introduction": "이 개인정보 보호정책은 귀하가 저희 서비스를 이용할 때 저희가 귀하의 정보를 어떻게 수집, 사용, 보호하는지 설명합니다.",
+        "informationCollection": {
+          "title": "수집하는 정보",
+          "content": "계정 생성, 문의, 서비스 이용 시 등 귀하가 직접 저희에게 제공하는 정보를 수집할 수 있습니다."
+        },
+        "informationUse": {
+          "title": "정보 사용 방법",
+          "content": "수집된 정보는 서비스 제공, 유지, 개선, 귀하와의 소통, 법적 의무 준수를 위해 사용됩니다."
+        },
+        "informationSharing": {
+          "title": "정보 공유",
+          "content": "본 정책에 명시된 경우를 제외하고, 귀하의 동의 없이 개인정보를 제3자에게 판매, 거래 또는 기타 방법으로 양도하지 않습니다."
+        },
+        "dataSecurity": {
+          "title": "데이터 보안",
+          "content": "귀하의 개인정보를 무단 접근, 변경, 공개, 파괴로부터 보호하기 위해 적절한 보안 조치를 시행합니다."
+        },
+        "contact": {
+          "title": "문의하기",
+          "content": "이 개인정보 보호정책에 대한 질문이 있으시면 {email}로 문의해 주세요."
+        }
+      },
+      "termsOfService": {
+        "title": "이용약관",
+        "introduction": "이 이용약관은 저희 웹사이트 및 서비스 이용을 규정합니다.",
+        "acceptance": {
+          "title": "약관 동의",
+          "content": "저희 서비스에 접근하고 이용함으로써, 귀하는 본 계약의 조건과 규정에 구속되는 것에 동의하고 승인합니다."
+        },
+        "useOfService": {
+          "title": "서비스 이용",
+          "content": "저희 서비스는 합법적인 목적으로만 사용할 수 있습니다. 적용 법률이나 규정을 위반하는 방식으로 서비스를 사용하지 않는 것에 동의합니다."
+        },
+        "userContent": {
+          "title": "사용자 콘텐츠",
+          "content": "서비스를 통해 제출, 게시, 표시하는 모든 콘텐츠의 소유권은 귀하에게 있습니다. 콘텐츠를 제출함으로써 저희에게 해당 콘텐츠를 사용, 수정, 표시할 수 있는 라이선스를 부여합니다."
+        },
+        "termination": {
+          "title": "종료",
+          "content": "저희는 어떤 이유로든 사전 통지 없이 즉시 귀하의 서비스 접근을 종료하거나 중단할 수 있습니다."
+        },
+        "disclaimers": {
+          "title": "면책 조항",
+          "content": "이 웹사이트의 정보는 '있는 그대로' 제공됩니다. 저희는 명시적이든 묵시적이든 모든 보증을 부인합니다."
+        },
+        "contact": {
+          "title": "문의하기",
+          "content": "이 이용약관에 대한 질문이 있으시면 {email}로 문의해 주세요."
+        }
+      }
     },
-    "terastallization": {
-      "none": "테라스탈 없음",
-      "selectType": "테라 타입 선택",
-      "indicator": "테라스탈 상태"
+    "teamImportModal": {
+      "title": "포켓몬 팀 가져오기",
+      "instructions": {
+        "title": "팀 가져오기 방법:",
+        "content": {
+          "1": "적절한 게임 버전과 규칙을 선택하세요",
+          "2": "아래 텍스트 영역에 팀 데이터를 붙여넣으세요",
+          "3": "\"팀 가져오기\" 버튼을 클릭하여 컬렉션에 추가하세요"
+        }
+      },
+      "dataInputTitle": "포켓몬 팀 데이터",
+      "dataInputPlaceholder": "여기에 팀을 붙여넣으세요...\n\n예시:\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
+      "importButton": "팀 가져오기",
+      "importing": "가져오는 중...",
+      "cancelButton": "취소"
     },
-    "multiplier": {
-      "immune": "무효",
-      "label": "배수"
+    "teamEditModal": {
+      "title": "포켓몬 팀 편집",
+      "saveButton": "변경사항 저장",
+      "saving": "저장 중...",
+      "problemTitle": "팀에 문제가 있습니다"
     },
-    "pokemon": "포켓몬",
-    "attackType": "공격 타입",
-    "resistanceLevel": "저항 레벨",
-    "typeAttack": "타입 공격",
-    "noEffectiveAttacks": "모든 팀 멤버가 이 타입 공격을 보통 데미지로 받습니다",
-    "noData": "상성 데이터가 없습니다",
-    "calculating": "상성 데이터 계산 중...",
-    "summary": {
-      "title": "분석 요약",
-      "weaknesses": "주요 약점",
-      "resistances": "주요 저항",
-      "immunities": "완전 무효",
-      "noWeaknesses": "팀에 명확한 약점이 없습니다",
-      "noResistances": "팀에 명확한 저항이 없습니다",
-      "noImmunities": "팀에 타입 무효가 없습니다"
+    "confirmDialog": {
+      "deleteTeam": {
+        "title": "팀 삭제",
+        "message": "이 팀을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+        "confirmButton": "삭제",
+        "cancelButton": "취소"
+      }
+    },
+    "teamDetail": {
+      "meta": {
+        "title": "팀 상세정보",
+        "description": "{name} 상세정보 보기, {count}마리의 포켓몬 포함",
+        "defaultDescription": "포켓몬 팀 상세정보 페이지"
+      },
+      "notFound": {
+        "title": "팀을 찾을 수 없음",
+        "description": "ID \"{id}\"인 팀이 존재하지 않거나 삭제되었습니다.",
+        "backToHome": "홈으로 돌아가기"
+      },
+      "createdAt": "생성일",
+      "useTranslation": "번역 사용",
+      "tabs": {
+        "overview": "개요",
+        "resistance": "타입 내성 분석",
+        "coverage": "타입 커버리지 분석",
+        "speedTiers": "스피드 티어",
+        "strategy": "전략 분석"
+      },
+      "validationErrors": {
+        "title": "팀 검증 오류",
+        "description": "팀 데이터에 다음 문제가 있습니다. 편집 버튼을 클릭하여 수정하세요:"
+      },
+      "editTeam": "팀 편집",
+      "teamMembers": {
+        "title": "팀 멤버 ({count}/6)",
+        "description": "팀 내 포켓몬의 상세 정보입니다"
+      },
+      "pokemon": {
+        "ability": "특성",
+        "item": "도구",
+        "teraType": "테라스탈 타입",
+        "moves": "기술"
+      },
+      "rawData": {
+        "title": "원본 팀 데이터",
+        "description": "가져온 원본 팀 텍스트 데이터입니다",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "copyButton": "원본 팀 데이터를 클립보드에 복사"
+      }
+    },
+    "resistance": {
+      "meta": {
+        "title": "상성 분석",
+        "description": "{name} 팀의 타입 상성 분석, {count}마리의 포켓몬 포함",
+        "defaultDescription": "포켓몬 팀 타입 상성 분석 페이지"
+      },
+      "title": "타입 상성 분석",
+      "description": "다양한 타입 공격에 대한 팀의 상성 성능을 분석하며, 날씨와 필드 조건을 선택적으로 설정할 수 있습니다.",
+      "validationError": {
+        "description": "팀 데이터에 문제가 있어 상성 분석을 수행할 수 없습니다. 먼저 팀 데이터를 수정해 주세요."
+      },
+      "controls": {
+        "title": "분석 설정",
+        "weather": "날씨 상태",
+        "terrain": "필드 상태",
+        "terastallizationPokemon": "테라스탈 포켓몬",
+        "teraType": "테라 타입"
+      },
+      "weather": {
+        "none": "날씨 없음",
+        "rain": "비",
+        "heavy_rain": "큰비",
+        "harsh_sunlight": "쾌청",
+        "extremely_harsh_sunlight": "대쾌청",
+        "strong_winds": "난기류"
+      },
+      "terrain": {
+        "none": "필드 없음",
+        "electric_terrain": "일렉트릭필드",
+        "grassy_terrain": "그래스필드",
+        "misty_terrain": "미스트필드",
+        "psychic_terrain": "사이코필드",
+        "grounded": "접지"
+      },
+      "terastallization": {
+        "none": "테라스탈 없음",
+        "selectType": "테라 타입 선택",
+        "indicator": "테라스탈 상태"
+      },
+      "multiplier": {
+        "immune": "무효",
+        "label": "배수"
+      },
+      "pokemon": "포켓몬",
+      "attackType": "공격 타입",
+      "resistanceLevel": "저항 레벨",
+      "typeAttack": "타입 공격",
+      "noEffectiveAttacks": "모든 팀 멤버가 이 타입 공격을 보통 데미지로 받습니다",
+      "noData": "상성 데이터가 없습니다",
+      "calculating": "상성 데이터 계산 중...",
+      "summary": {
+        "title": "분석 요약",
+        "weaknesses": "주요 약점",
+        "resistances": "주요 저항",
+        "immunities": "완전 무효",
+        "noWeaknesses": "팀에 명확한 약점이 없습니다",
+        "noResistances": "팀에 명확한 저항이 없습니다",
+        "noImmunities": "팀에 타입 무효가 없습니다"
+      }
     }
   }
-}
