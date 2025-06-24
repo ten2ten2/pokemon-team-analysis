@@ -7,7 +7,7 @@ definePageMeta({
 })
 
 // Composables
-const { t, locale } = useI18n()
+const { t, locale, rt, tm } = useI18n()
 const config = useRuntimeConfig()
 
 // Use existing SEO composables instead of manual implementation
@@ -61,9 +61,11 @@ const breadcrumbItems = computed(() => {
           <h3 class="heading-section">
             {{ t('privacyAndTerms.privacyPolicy.informationCollection.title') }}
           </h3>
-          <p class="text-body">
-            {{ t('privacyAndTerms.privacyPolicy.informationCollection.content') }}
-          </p>
+          <ul v-for="item in tm('privacyAndTerms.privacyPolicy.informationCollection.content') as string[]" :key="item">
+            <li class="text-body">
+              - {{ rt(item) }}
+            </li>
+          </ul>
         </article>
 
         <!-- Information Use -->
@@ -86,13 +88,43 @@ const breadcrumbItems = computed(() => {
           </p>
         </article>
 
-        <!-- Data Security -->
+        <!-- Data Storage -->
         <article class="mb-6">
           <h3 class="heading-section">
-            {{ t('privacyAndTerms.privacyPolicy.dataSecurity.title') }}
+            {{ t('privacyAndTerms.privacyPolicy.dataStorage.title') }}
           </h3>
           <p class="text-body">
-            {{ t('privacyAndTerms.privacyPolicy.dataSecurity.content') }}
+            {{ t('privacyAndTerms.privacyPolicy.dataStorage.content') }}
+          </p>
+        </article>
+
+        <!-- Cookies and Storage -->
+        <article class="mb-6">
+          <h3 class="heading-section">
+            {{ t('privacyAndTerms.privacyPolicy.cookiesAndStorage.title') }}
+          </h3>
+          <p class="text-body">
+            {{ t('privacyAndTerms.privacyPolicy.cookiesAndStorage.content') }}
+          </p>
+        </article>
+
+        <!-- Third Party Services -->
+        <article class="mb-6">
+          <h3 class="heading-section">
+            {{ t('privacyAndTerms.privacyPolicy.thirdPartyServices.title') }}
+          </h3>
+          <p class="text-body">
+            {{ t('privacyAndTerms.privacyPolicy.thirdPartyServices.content') }}
+          </p>
+        </article>
+
+        <!-- User Rights -->
+        <article class="mb-6">
+          <h3 class="heading-section">
+            {{ t('privacyAndTerms.privacyPolicy.userRights.title') }}
+          </h3>
+          <p class="text-body">
+            {{ t('privacyAndTerms.privacyPolicy.userRights.content') }}
           </p>
         </article>
 
@@ -118,43 +150,23 @@ const breadcrumbItems = computed(() => {
           </p>
         </div>
 
-        <!-- Acceptance of Terms -->
+        <!-- Application Content -->
         <article class="mb-6">
           <h3 class="heading-section">
-            {{ t('privacyAndTerms.termsOfService.acceptance.title') }}
+            {{ t('privacyAndTerms.termsOfService.appContent.title') }}
           </h3>
           <p class="text-body">
-            {{ t('privacyAndTerms.termsOfService.acceptance.content') }}
+            {{ t('privacyAndTerms.termsOfService.appContent.content') }}
           </p>
         </article>
 
-        <!-- Use of Service -->
+        <!-- User Behavior -->
         <article class="mb-6">
           <h3 class="heading-section">
-            {{ t('privacyAndTerms.termsOfService.useOfService.title') }}
+            {{ t('privacyAndTerms.termsOfService.userBehavior.title') }}
           </h3>
           <p class="text-body">
-            {{ t('privacyAndTerms.termsOfService.useOfService.content') }}
-          </p>
-        </article>
-
-        <!-- User Content -->
-        <article class="mb-6">
-          <h3 class="heading-section">
-            {{ t('privacyAndTerms.termsOfService.userContent.title') }}
-          </h3>
-          <p class="text-body">
-            {{ t('privacyAndTerms.termsOfService.userContent.content') }}
-          </p>
-        </article>
-
-        <!-- Termination -->
-        <article class="mb-6">
-          <h3 class="heading-section">
-            {{ t('privacyAndTerms.termsOfService.termination.title') }}
-          </h3>
-          <p class="text-body">
-            {{ t('privacyAndTerms.termsOfService.termination.content') }}
+            {{ t('privacyAndTerms.termsOfService.userBehavior.content') }}
           </p>
         </article>
 
@@ -165,6 +177,16 @@ const breadcrumbItems = computed(() => {
           </h3>
           <p class="text-body">
             {{ t('privacyAndTerms.termsOfService.disclaimers.content') }}
+          </p>
+        </article>
+
+        <!-- Modifications -->
+        <article class="mb-6">
+          <h3 class="heading-section">
+            {{ t('privacyAndTerms.termsOfService.modifications.title') }}
+          </h3>
+          <p class="text-body">
+            {{ t('privacyAndTerms.termsOfService.modifications.content') }}
           </p>
         </article>
 
