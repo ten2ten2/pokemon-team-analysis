@@ -1,28 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
-// 动态生成重定向规则
-const generateRedirectRules = () => {
-  const rules: Record<string, any> = {}
-
-  // 默认语言 (en) 的重定向
-  rules['/teams'] = { redirect: { to: '/', statusCode: 301 } }
-  rules['/teams/'] = { redirect: { to: '/', statusCode: 301 } }
-
-  // 支持的语言列表
-  const locales = ['ja', 'ko', 'zh-hans', 'zh-hant']
-  // 为每个语言生成重定向规则
-  locales.forEach(locale => {
-    rules[`/${locale}/teams`] = { redirect: { to: `/${locale}`, statusCode: 301 } }
-    rules[`/${locale}/teams/`] = { redirect: { to: `/${locale}`, statusCode: 301 } }
-  })
-
-  return rules
-}
-
 export default defineNuxtConfig({
-  nitro: {
-    routeRules: generateRedirectRules()
-  },
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
@@ -45,7 +23,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: 'http://localhost:3000',
+      siteUrl: 'https://pokemonteamanalysis.com',
       email: 'contact@example.com',
       defaultLocale: 'en',
       ga4Id: process.env.NUXT_PUBLIC_GA4_ID || '',
@@ -121,14 +99,14 @@ export default defineNuxtConfig({
   },
   sitemap: {
     // @ts-expect-error
-    hostname: 'http://localhost:3000',
+    hostname: 'https://pokemonteamanalysis.com',
     gzip: true,
     routes: ['/', '/about', '/resources', '/privacy-and-terms']
   },
   robots: {
     enabled: true,
     allow: ['/'],
-    sitemap: ['http://localhost:3000/sitemap.xml'],
+    sitemap: ['https://pokemonteamanalysis.com/sitemap.xml'],
   },
   gtag: {
     id: process.env.NUXT_PUBLIC_GA4_ID,
