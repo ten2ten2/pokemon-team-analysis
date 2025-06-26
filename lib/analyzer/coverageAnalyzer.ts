@@ -3,6 +3,7 @@ import { BaseAnalyzer } from '~/lib/analyzer/baseAnalyzer'
 import type { Pokemon } from '~/lib/core/types'
 import { estimateDamageLevel50 } from '~/lib/calculator/statsEstimator'
 import { getPokeApiNum } from '~/lib/parser/teamParser'
+import { POPULAR_POKEMON } from '~/lib/core/constants'
 
 // ==================== Types ====================
 
@@ -59,8 +60,7 @@ export class CoverageAnalyzer extends BaseAnalyzer<CoverageAnalysisResult, Cover
       combinationCoverage = this.calculateCoverageForCombination(team, options?.combination)
     }
 
-    const popularList = ['Pikachu', 'Eevee', 'Charmander', 'Bulbasaur', 'Squirtle']
-    const popularPokemonCoverage = this.generatePopularPokemonCoverage(popularList, team)
+    const popularPokemonCoverage = this.generatePopularPokemonCoverage(POPULAR_POKEMON, team)
 
     return {
       combinationCoverage: combinationCoverage as CombinationCoverage,

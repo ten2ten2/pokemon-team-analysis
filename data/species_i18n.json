@@ -11021,6 +11021,17 @@
     "zh-hans": "煤炭龟",
     "ko": "코터스"
   },
+  "tornadus": {
+    "en": "Tornadus (Incarnate Forme)",
+    "ja": "トルネロス (けしんフォルム)",
+    "es": "Tornadus (Forma Avatar)",
+    "de": "Boreos (Inkarnationsform)",
+    "it": "Tornadus (Forma Incarnazione)",
+    "fr": "Boréas (Forme Avatar)",
+    "zh-hant": "龍捲雲 (化身形態)",
+    "zh-hans": "龙卷云 (化身形态)",
+    "ko": "토네로스 (화신폼)"
+  },
   "tornadus-incarnate": {
     "en": "Tornadus (Incarnate Forme)",
     "ja": "トルネロス (けしんフォルム)",

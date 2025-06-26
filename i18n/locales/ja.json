@@ -68,8 +68,8 @@
     "dismiss": "閉じる"
   },
   "footer": {
-    "copyright": "著作権。すべての権利を保有。",
-    "privacyAndTerms": "プライバシーと利用規約"
+    "copyright": "ポケモンチーム分析。オリジナルコンテンツの著作権は当社が保有します。",
+    "privacyAndTerms": "プライバシーポリシーと利用規約"
   },
   "privacyAndTerms": {
     "meta": {
@@ -133,7 +133,7 @@
       "introduction": "ポケモンチーム分析を使用することで、これらの利用規約に同意したことになります。",
       "appContent": {
         "title": "アプリケーションの内容",
-        "content": "ポケモンチーム分析はファンが作成したアプリケーションです。ポケモンに関連するすべてのコンテンツ（名前、画像、データを含む）は任天堂、ゲームフリーク、クリーチャーズの財産です。このアプリケーションはこれらの会社に関連付けられておらず、承認されていません。"
+        "content": "ポケモンチーム分析はファンが作成したアプリケーションです。すべての権利を保有。ポケモンに関連するすべてのコンテンツ（名前、画像、データを含む）は任天堂、Game Freak、Creatures Inc.の財産です。"
       },
       "userBehavior": {
         "title": "ユーザーの行動",
@@ -327,6 +327,102 @@
       "pokemon": "ポケモン",
       "effectiveness": "効果",
       "stab": "タイプ一致"
+    }
+  },
+  "resources": {
+    "meta": {
+      "title": "リソース",
+      "description": "便利なポケモンバトルリソースとツール",
+      "keywords": "ポケモンリソース, バトルツール, 図鑑, シミュレーター, 計算機",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "リソース",
+    "description": "便利なポケモンバトルリソース、ツール、コミュニティを発見して、競技体験を向上させましょう。",
+    "visitLink": "訪問",
+    "categories": {
+      "official": {
+        "title": "公式ポケモン",
+        "description": "公式ポケモンバトルウェブサイトとチャンピオンシップ情報"
+      },
+      "wiki": {
+        "title": "ポケモン図鑑",
+        "description": "包括的なポケモンデータベースと百科事典"
+      },
+      "tools": {
+        "title": "バトルツール",
+        "description": "チーム構築とバトル分析に必須のツール"
+      },
+      "games": {
+        "title": "ミニゲーム",
+        "description": "楽しいポケモンテーマのゲームとアクティビティ"
+      }
+    },
+    "links": {
+      "officialBattle": {
+        "title": "ポケモンバトル公式サイト",
+        "description": "公式チャンピオンシップシリーズと競技バトル情報"
+      },
+      "worldChampionships": {
+        "title": "ポケモンワールドチャンピオンシップ",
+        "description": "最高峰のポケモン競技ゲームイベント"
+      },
+      "pokemonWiki": {
+        "title": "ポケモン図鑑",
+        "description": "詳細情報を含む包括的なポケモンデータベース"
+      },
+      "pokemonShowdown": {
+        "title": "ポケモンシミュレーター",
+        "description": "オンラインポケモンバトルシミュレーターとチームビルダー"
+      },
+      "damageCalculator": {
+        "title": "ダメージ計算機",
+        "description": "正確な公式を使ってポケモンバトルのダメージを計算"
+      },
+      "pikalytics": {
+        "title": "ポケモン使用率統計",
+        "description": "ポケモンの使用統計と競技データ分析"
+      },
+      "vgcPastes": {
+        "title": "VGCチームレンタル",
+        "description": "VGCレンタルチームと人気チーム構成"
+      },
+      "pokeWordle": {
+        "title": "ポケモン単語ゲーム",
+        "description": "ポケモンテーマの単語推測ゲーム"
+      }
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "私たちについて",
+      "description": "ポケモンチーム分析についてと連絡方法について詳しく学ぶ",
+      "keywords": "について, 連絡, ポケモンチーム分析, よくある質問",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "私たちについて",
+    "description": "ポケモンチーム分析プラットフォームについてのよくある質問。",
+    "faq": {
+      "title": "よくある質問",
+      "whatIsThisSite": {
+        "question": "このウェブサイトは何のためのものですか？",
+        "answer": "ポケモンチーム分析は、トレーナーが競技プレイのためにポケモンチームを分析し最適化するのを支援する包括的なプラットフォームです。私たちのツールは、チーム構成、タイプカバレッジ、相性、戦略的推奨事項の詳細な洞察を提供し、VGCやその他の競技フォーマットでのバトルパフォーマンスを向上させます。"
+      },
+      "howToContact": {
+        "question": "どのように連絡できますか？",
+        "answer": "メール <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>contact{'@'}example.com</a> でお問い合わせいただけます。ポケモン競技コミュニティのためのプラットフォーム改善に役立つフィードバック、提案、バグレポートを歓迎しています。"
+      }
     }
   }
 }

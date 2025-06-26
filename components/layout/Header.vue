@@ -84,7 +84,7 @@ onUnmounted(() => {
 <template>
   <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
+      <div class="flex items-center h-16">
         <!-- Logo/Brand -->
         <div class="flex-shrink-0">
           <NuxtLinkLocale to="/" class="header-title flex items-center space-x-2 text-xl font-bold"
@@ -94,7 +94,7 @@ onUnmounted(() => {
         </div>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
+        <nav class="hidden md:flex items-center space-x-8 ml-12" role="navigation" aria-label="Main navigation">
           <ul class="flex items-center space-x-8">
             <li v-for="item in navItems" :key="item.id" class="relative">
               <!-- Dropdown Navigation Item -->
@@ -147,6 +147,9 @@ onUnmounted(() => {
             </li>
           </ul>
         </nav>
+
+        <!-- Spacer -->
+        <div class="flex-1"></div>
 
         <!-- Desktop Language Switcher & Mobile Menu Button -->
         <div class="flex items-center space-x-4">

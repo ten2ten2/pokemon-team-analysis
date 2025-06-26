@@ -68,7 +68,7 @@
       "dismiss": "닫기"
     },
     "footer": {
-      "copyright": "저작권. 모든 권리 보유.",
+      "copyright": "포켓몬 팀 분석. 원본 콘텐츠의 저작권은 당사가 보유합니다.",
       "privacyAndTerms": "개인정보 보호 및 약관"
     },
     "privacyAndTerms": {
@@ -133,7 +133,7 @@
         "introduction": "포켓몬 팀 분석을 사용하면 이 이용약관에 동의하는 것입니다.",
         "appContent": {
           "title": "애플리케이션 콘텐츠",
-          "content": "포켓몬 팀 분석은 팬이 만든 애플리케이션입니다. 포켓몬과 관련된 모든 콘텐츠(이름, 이미지, 데이터 포함)는 닌텐도, 게임프리크, 크리처스의 재산입니다. 이 애플리케이션은 이러한 회사와 제휴하거나 승인받지 않았습니다."
+          "content": "포켓몬 팀 분석은 팬이 만든 애플리케이션입니다. 모든 원본 콘텐츠에 대한 권리를 보유합니다. 포켓몬과 관련된 모든 콘텐츠(이름, 이미지, 데이터 포함)는 Nintendo, Game Freak, Creatures Inc.의 재산입니다."
         },
         "userBehavior": {
           "title": "사용자 행동",
@@ -327,6 +327,102 @@
         "pokemon": "포켓몬",
         "effectiveness": "효과",
         "stab": "타입 일치"
+      }
+    },
+    "resources": {
+      "meta": {
+        "title": "리소스",
+        "description": "유용한 포켓몬 배틀 리소스 및 도구",
+        "keywords": "포켓몬 리소스, 배틀 도구, 도감, 시뮬레이터, 계산기",
+        "openGraph": {
+          "image": "/og-image.png"
+        },
+        "twitter": {
+          "site": "pokemon-team-analysis",
+          "image": "/twitter-image.png"
+        }
+      },
+      "title": "리소스",
+      "description": "유용한 포켓몬 배틀 리소스, 도구 및 커뮤니티를 발견하여 경쟁 경험을 향상시키세요.",
+      "visitLink": "방문",
+      "categories": {
+        "official": {
+          "title": "공식 포켓몬",
+          "description": "공식 포켓몬 배틀 웹사이트 및 챔피언십 정보"
+        },
+        "wiki": {
+          "title": "포켓몬 위키",
+          "description": "포괄적인 포켓몬 데이터베이스 및 백과사전"
+        },
+        "tools": {
+          "title": "배틀 도구",
+          "description": "팀 빌딩 및 배틀 분석을 위한 필수 도구"
+        },
+        "games": {
+          "title": "미니 게임",
+          "description": "재미있는 포켓몬 테마 게임 및 활동"
+        }
+      },
+      "links": {
+        "officialBattle": {
+          "title": "포켓몬 배틀 공식 사이트",
+          "description": "공식 챔피언십 시리즈 및 경쟁 배틀 정보"
+        },
+        "worldChampionships": {
+          "title": "포켓몬 월드 챔피언십",
+          "description": "최고 수준의 포켓몬 경쟁 게임 이벤트"
+        },
+        "pokemonWiki": {
+          "title": "포켓몬 위키",
+          "description": "상세한 정보가 포함된 포괄적인 포켓몬 데이터베이스"
+        },
+        "pokemonShowdown": {
+          "title": "포켓몬 시뮬레이터",
+          "description": "온라인 포켓몬 배틀 시뮬레이터 및 팀 빌더"
+        },
+        "damageCalculator": {
+          "title": "데미지 계산기",
+          "description": "정확한 공식으로 포켓몬 배틀 데미지 계산"
+        },
+        "pikalytics": {
+          "title": "포켓몬 사용률 통계",
+          "description": "포켓몬 사용 통계 및 경쟁 데이터 분석"
+        },
+        "vgcPastes": {
+          "title": "VGC 팀 대여",
+          "description": "VGC 대여 팀 및 인기 팀 구성"
+        },
+        "pokeWordle": {
+          "title": "포켓몬 단어 게임",
+          "description": "포켓몬 테마의 단어 추측 게임"
+        }
+      }
+    },
+    "about": {
+      "meta": {
+        "title": "소개",
+        "description": "포켓몬 팀 분석에 대해 자세히 알아보고 연락 방법을 확인하세요",
+        "keywords": "소개, 연락, 포켓몬 팀 분석, 자주 묻는 질문",
+        "openGraph": {
+          "image": "/og-image.png"
+        },
+        "twitter": {
+          "site": "pokemon-team-analysis",
+          "image": "/twitter-image.png"
+        }
+      },
+      "title": "소개",
+      "description": "포켓몬 팀 분석 플랫폼에 대한 자주 묻는 질문입니다.",
+      "faq": {
+        "title": "자주 묻는 질문",
+        "whatIsThisSite": {
+          "question": "이 웹사이트는 무엇을 위한 것인가요?",
+          "answer": "포켓몬 팀 분석은 트레이너가 경쟁 플레이를 위해 포켓몬 팀을 분석하고 최적화하는 데 도움을 주는 종합 플랫폼입니다. 저희 도구는 팀 구성, 타입 커버리지, 저항성, 전략적 권장사항에 대한 상세한 통찰력을 제공하여 VGC 및 기타 경쟁 형식에서의 배틀 성능을 향상시킵니다."
+        },
+        "howToContact": {
+          "question": "어떻게 연락할 수 있나요?",
+          "answer": "이메일 <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>contact{'@'}example.com</a>을 통해 연락하실 수 있습니다. 포켓몬 경쟁 커뮤니티를 위한 플랫폼 개선에 도움이 되는 피드백, 제안, 버그 리포트를 환영합니다."
+        }
       }
     }
   }

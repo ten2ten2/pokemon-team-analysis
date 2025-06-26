@@ -68,7 +68,7 @@
     "dismiss": "关闭"
   },
   "footer": {
-    "copyright": "版权所有。保留所有权利。",
+    "copyright": "宝可梦队伍分析。原创内容保留所有权利。",
     "privacyAndTerms": "隐私和条款"
   },
   "privacyAndTerms": {
@@ -133,7 +133,7 @@
       "introduction": "使用宝可梦队伍分析即表示您同意这些服务条款。",
       "appContent": {
         "title": "应用内容",
-        "content": "宝可梦队伍分析是一个粉丝制作的应用。所有宝可梦相关内容，包括名称、图像和数据，均为任天堂、Game Freak 和 Creatures Inc. 的财产。本应用未获得这些公司的关联或认可。"
+        "content": "宝可梦队伍分析是一个粉丝制作的应用。所有原创内容保留所有权利。所有宝可梦相关内容，包括名称、图像和数据，均为任天堂、Game Freak 和 Creatures Inc. 的财产。"
       },
       "userBehavior": {
         "title": "用户行为",
@@ -326,6 +326,102 @@
       "pokemon": "宝可梦",
       "effectiveness": "效果",
       "stab": "本系加成"
+    }
+  },
+  "resources": {
+    "meta": {
+      "title": "其它资源",
+      "description": "实用的宝可梦对战资源和工具",
+      "keywords": "宝可梦资源, 对战工具, 百科, 模拟器, 计算器",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "其它资源",
+    "description": "发现实用的宝可梦对战资源、工具和社区，提升您的竞技体验。",
+    "visitLink": "访问",
+    "categories": {
+      "official": {
+        "title": "官方宝可梦",
+        "description": "官方宝可梦对战网站和锦标赛信息"
+      },
+      "wiki": {
+        "title": "宝可梦百科",
+        "description": "全面的宝可梦数据库和百科全书"
+      },
+      "tools": {
+        "title": "对战工具",
+        "description": "队伍构建和对战分析的必备工具"
+      },
+      "games": {
+        "title": "小游戏",
+        "description": "有趣的宝可梦主题游戏和活动"
+      }
+    },
+    "links": {
+      "officialBattle": {
+        "title": "宝可梦对战官网",
+        "description": "官方锦标赛系列和竞技对战信息"
+      },
+      "worldChampionships": {
+        "title": "宝可梦世界锦标赛",
+        "description": "顶级宝可梦竞技游戏赛事"
+      },
+      "pokemonWiki": {
+        "title": "宝可梦百科",
+        "description": "包含详细信息的全面宝可梦数据库"
+      },
+      "pokemonShowdown": {
+        "title": "宝可梦对战模拟器",
+        "description": "在线宝可梦对战模拟器和队伍构建工具"
+      },
+      "damageCalculator": {
+        "title": "伤害计算器",
+        "description": "使用精确公式计算宝可梦对战伤害"
+      },
+      "pikalytics": {
+        "title": "宝可梦使用率统计",
+        "description": "宝可梦使用统计和竞技数据分析"
+      },
+      "vgcPastes": {
+        "title": "VGC 队伍租用",
+        "description": "VGC 租用队伍和热门队伍配置"
+      },
+      "pokeWordle": {
+        "title": "宝可梦猜词游戏",
+        "description": "宝可梦主题的猜词游戏"
+      }
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "关于我们",
+      "description": "了解更多关于宝可梦队伍分析以及如何联系我们",
+      "keywords": "关于, 联系, 宝可梦队伍分析, 常见问题",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "关于我们",
+    "description": "关于我们宝可梦队伍分析平台的常见问题。",
+    "faq": {
+      "title": "常见问题",
+      "whatIsThisSite": {
+        "question": "这个网站是做什么的？",
+        "answer": "宝可梦队伍分析是一个综合性平台，旨在帮助训练师分析和优化他们的宝可梦队伍以进行竞技对战。我们的工具提供队伍组成、属性覆盖、抗性和战略建议的详细洞察，以提升您在VGC和其他竞技格式中的对战表现。"
+      },
+      "howToContact": {
+        "question": "如何联系我们？",
+        "answer": "您可以通过邮箱 <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>contact{'@'}example.com</a> 联系我们。我们欢迎反馈、建议和错误报告，以帮助改进我们为宝可梦竞技社区提供的平台。"
+      }
     }
   }
 }

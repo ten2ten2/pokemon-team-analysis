@@ -22,7 +22,8 @@ import {
   Edit2,
   Copy,
   Sword,
-  Shield
+  Shield,
+  ExternalLink
 } from 'lucide-vue-next'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -49,4 +50,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Copy', Copy)
   nuxtApp.vueApp.component('Sword', Sword)
   nuxtApp.vueApp.component('Shield', Shield)
+  nuxtApp.vueApp.component('ExternalLink', ExternalLink)
 })

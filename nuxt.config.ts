@@ -87,6 +87,9 @@ export default defineNuxtConfig({
     bundle: {
       optimizeTranslationDirective: false,
     },
+    compilation: {
+      strictMessage: false,
+    }
   },
   css: ['~/assets/css/tailwind.css'],
   vite: {
@@ -120,7 +123,7 @@ export default defineNuxtConfig({
     // @ts-expect-error
     hostname: 'http://localhost:3000',
     gzip: true,
-    routes: ['/', '/privacy-and-terms']
+    routes: ['/', '/about', '/resources', '/privacy-and-terms']
   },
   robots: {
     enabled: true,

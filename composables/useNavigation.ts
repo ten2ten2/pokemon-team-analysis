@@ -11,15 +11,21 @@ export interface NavItem {
 
 export const useNavigation = () => {
   const navItems: NavItem[] = [
-    // {
-    //   id: 'about',
-    //   labelKey: 'nav.about',
-    //   type: 'internal',
-    //   href: '/about'
-    // }
+    {
+      id: 'about',
+      labelKey: 'nav.about',
+      type: 'internal',
+      href: '/about'
+    },
+    {
+      id: 'resources',
+      labelKey: 'nav.resources',
+      type: 'internal',
+      href: '/resources'
+    }
   ]
 
   return {
     navItems
   }
-} 
+}

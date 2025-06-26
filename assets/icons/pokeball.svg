@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Outer circle -->
+  <circle cx="12" cy="12" r="11" fill="#fff" stroke="#333" stroke-width="1"/>
+
+  <!-- Top half (red) -->
+  <path d="M1 12 C1 5.925 5.925 1 12 1 C18.075 1 23 5.925 23 12 L1 12 Z" fill="#dc2626"/>
+
+  <!-- Middle line -->
+  <line x1="1" y1="12" x2="23" y2="12" stroke="#333" stroke-width="2"/>
+
+  <!-- Center circle (white) -->
+  <circle cx="12" cy="12" r="3" fill="#fff" stroke="#333" stroke-width="2"/>
+
+  <!-- Center button -->
+  <circle cx="12" cy="12" r="1.5" fill="#f3f4f6" stroke="#333" stroke-width="1"/>
+</svg>

@@ -68,7 +68,7 @@
     "dismiss": "Dismiss"
   },
   "footer": {
-    "copyright": "Copyright. All rights reserved.",
+    "copyright": "Pokémon Team Analysis. All rights reserved for original content.",
     "privacyAndTerms": "Privacy and Terms"
   },
   "privacyAndTerms": {
@@ -133,7 +133,7 @@
       "introduction": "By using Pokemon Team Analysis, you agree to these Terms of Service.",
       "appContent": {
         "title": "Application Content",
-        "content": "Pokemon Team Analysis is a fan-made application. All Pokémon-related content, including names, images, and data, are the property of Nintendo, Game Freak, and Creatures Inc. This application is not affiliated with or endorsed by these companies."
+        "content": "Pokemon Team Analysis is a fan-made application. All rights reserved for original content. All Pokémon-related content, including names, images, and data, are the property of Nintendo, Game Freak, and Creatures Inc."
       },
       "userBehavior": {
         "title": "User Behavior",
@@ -326,6 +326,102 @@
       "pokemon": "Pokémon",
       "effectiveness": "Effectiveness",
       "stab": "STAB"
+    }
+  },
+  "resources": {
+    "meta": {
+      "title": "Resources",
+      "description": "Useful Pokémon battle resources and tools",
+      "keywords": "Pokémon resources, battle tools, wiki, showdown, calculator",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "Resources",
+    "description": "Discover useful Pokémon battle resources, tools, and communities to enhance your competitive experience.",
+    "visitLink": "Visit",
+    "categories": {
+      "official": {
+        "title": "Official Pokémon",
+        "description": "Official Pokémon battle websites and championship information"
+      },
+      "wiki": {
+        "title": "Pokémon Wiki",
+        "description": "Comprehensive Pokémon databases and encyclopedias"
+      },
+      "tools": {
+        "title": "Battle Tools",
+        "description": "Essential tools for team building and battle analysis"
+      },
+      "games": {
+        "title": "Mini Games",
+        "description": "Fun Pokémon-themed games and activities"
+      }
+    },
+    "links": {
+      "officialBattle": {
+        "title": "Official Pokémon Battle",
+        "description": "Official championship series and competitive play information"
+      },
+      "worldChampionships": {
+        "title": "Pokémon World Championships",
+        "description": "The premier Pokémon competitive gaming event"
+      },
+      "pokemonWiki": {
+        "title": "Pokémon Wiki",
+        "description": "Comprehensive Pokémon database with detailed information"
+      },
+      "pokemonShowdown": {
+        "title": "Pokémon Showdown",
+        "description": "Online Pokémon battle simulator and team builder"
+      },
+      "damageCalculator": {
+        "title": "Damage Calculator",
+        "description": "Calculate damage for Pokémon battles with precise formulas"
+      },
+      "pikalytics": {
+        "title": "Pikalytics",
+        "description": "Pokémon usage statistics and competitive data analysis"
+      },
+      "vgcPastes": {
+        "title": "VGC Pastes",
+        "description": "Rental teams and popular team compositions for VGC"
+      },
+      "pokeWordle": {
+        "title": "PokéWordle",
+        "description": "A Pokémon-themed word guessing game"
+      }
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "About Us",
+      "description": "Learn more about Pokémon Team Analysis and how to contact us",
+      "keywords": "about, contact, Pokémon team analysis, FAQ",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "About Us",
+    "description": "Frequently asked questions about our Pokémon team analysis platform.",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "whatIsThisSite": {
+        "question": "What is this website for?",
+        "answer": "Pokémon Team Analysis is a comprehensive platform designed to help trainers analyze and optimize their Pokémon teams for competitive play. Our tools provide detailed insights into team composition, type coverage, resistances, and strategic recommendations to enhance your battle performance in VGC and other competitive formats."
+      },
+      "howToContact": {
+        "question": "How can we contact you?",
+        "answer": "You can reach us through email at <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>contact{'@'}example.com</a>. We welcome feedback, suggestions, and bug reports to help improve our platform for the Pokémon competitive community."
+      }
     }
   }
 }

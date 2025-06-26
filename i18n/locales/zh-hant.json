@@ -68,7 +68,7 @@
     "dismiss": "關閉"
   },
   "footer": {
-    "copyright": "版權所有。保留所有權利。",
+    "copyright": "寶可夢隊伍分析。原创内容保留所有權利。",
     "privacyAndTerms": "隱私和條款"
   },
   "privacyAndTerms": {
@@ -133,7 +133,7 @@
       "introduction": "使用寶可夢隊伍分析即表示您同意這些服務條款。",
       "appContent": {
         "title": "應用內容",
-        "content": "寶可夢隊伍分析是一個粉絲製作的應用。所有寶可夢相關內容，包括名稱、圖像和數據，均為任天堂、Game Freak 和 Creatures Inc. 的財產。本應用未獲得這些公司的關聯或認可。"
+        "content": "寶可夢隊伍分析是一個粉絲製作的應用。所有原創內容保留所有權利。所有寶可夢相關內容，包括名稱、圖像和數據，均為任天堂、Game Freak 和 Creatures Inc. 的財產。"
       },
       "userBehavior": {
         "title": "使用者行為",
@@ -327,6 +327,102 @@
       "pokemon": "寶可夢",
       "effectiveness": "效果",
       "stab": "本系加成"
+    }
+  },
+  "resources": {
+    "meta": {
+      "title": "其它資源",
+      "description": "實用的寶可夢對戰資源和工具",
+      "keywords": "寶可夢資源, 對戰工具, 百科, 模擬器, 計算器",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "其它資源",
+    "description": "發現實用的寶可夢對戰資源、工具和社群，提升您的競技體驗。",
+    "visitLink": "造訪",
+    "categories": {
+      "official": {
+        "title": "官方寶可夢",
+        "description": "官方寶可夢對戰網站和錦標賽資訊"
+      },
+      "wiki": {
+        "title": "寶可夢百科",
+        "description": "全面的寶可夢資料庫和百科全書"
+      },
+      "tools": {
+        "title": "對戰工具",
+        "description": "隊伍建構和對戰分析的必備工具"
+      },
+      "games": {
+        "title": "小遊戲",
+        "description": "有趣的寶可夢主題遊戲和活動"
+      }
+    },
+    "links": {
+      "officialBattle": {
+        "title": "寶可夢對戰官網",
+        "description": "官方錦標賽系列和競技對戰資訊"
+      },
+      "worldChampionships": {
+        "title": "寶可夢世界錦標賽",
+        "description": "頂級寶可夢競技遊戲賽事"
+      },
+      "pokemonWiki": {
+        "title": "寶可夢百科",
+        "description": "包含詳細資訊的全面寶可夢資料庫"
+      },
+      "pokemonShowdown": {
+        "title": "寶可夢對戰模擬器",
+        "description": "線上寶可夢對戰模擬器和隊伍建構工具"
+      },
+      "damageCalculator": {
+        "title": "傷害計算器",
+        "description": "使用精確公式計算寶可夢對戰傷害"
+      },
+      "pikalytics": {
+        "title": "寶可夢使用率統計",
+        "description": "寶可夢使用統計和競技資料分析"
+      },
+      "vgcPastes": {
+        "title": "VGC 隊伍租用",
+        "description": "VGC 租用隊伍和熱門隊伍配置"
+      },
+      "pokeWordle": {
+        "title": "寶可夢猜詞遊戲",
+        "description": "寶可夢主題的猜詞遊戲"
+      }
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "關於我們",
+      "description": "了解更多關於寶可夢隊伍分析以及如何聯絡我們",
+      "keywords": "關於, 聯絡, 寶可夢隊伍分析, 常見問題",
+      "openGraph": {
+        "image": "/og-image.png"
+      },
+      "twitter": {
+        "site": "pokemon-team-analysis",
+        "image": "/twitter-image.png"
+      }
+    },
+    "title": "關於我們",
+    "description": "關於我們寶可夢隊伍分析平台的常見問題。",
+    "faq": {
+      "title": "常見問題",
+      "whatIsThisSite": {
+        "question": "這個網站是做什麼的？",
+        "answer": "寶可夢隊伍分析是一個綜合性平台，旨在幫助訓練師分析和優化他們的寶可夢隊伍以進行競技對戰。我們的工具提供隊伍組成、屬性覆蓋、抗性和戰略建議的詳細洞察，以提升您在VGC和其他競技格式中的對戰表現。"
+      },
+      "howToContact": {
+        "question": "如何聯絡我們？",
+        "answer": "您可以透過電子郵件 <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>contact{'@'}example.com</a> 聯絡我們。我們歡迎回饋、建議和錯誤報告，以幫助改進我們為寶可夢競技社群提供的平台。"
+      }
     }
   }
 }
