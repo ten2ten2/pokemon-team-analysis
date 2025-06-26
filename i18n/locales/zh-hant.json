@@ -421,7 +421,7 @@
       },
       "howToContact": {
         "question": "如何聯絡我們？",
-        "answer": "您可以透過電子郵件 <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>GitHub</a> 聯絡我們。我們歡迎回饋、建議和錯誤報告，以幫助改進我們為寶可夢競技社群提供的平台。"
+        "answer": "您可以透過 <a href='https://github.com/ten2ten2/pokemon-team-analysis/issues' class='text-red-500 hover:text-red-600 underline' target='_blank'>GitHub</a> 聯絡我們。我們歡迎回饋、建議和錯誤報告，以幫助改進我們為寶可夢競技社群提供的平台。"
       }
     }
   }

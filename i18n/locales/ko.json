@@ -421,7 +421,7 @@
         },
         "howToContact": {
           "question": "어떻게 연락할 수 있나요?",
-          "answer": "이메일 <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>contact{'@'}example.com</a>을 통해 연락하실 수 있습니다. 포켓몬 경쟁 커뮤니티를 위한 플랫폼 개선에 도움이 되는 피드백, 제안, 버그 리포트를 환영합니다."
+          "answer": "<a href='https://github.com/ten2ten2/pokemon-team-analysis/issues' class='text-red-500 hover:text-red-600 underline' target='_blank'>GitHub</a>를 통해 연락하실 수 있습니다. 포켓몬 경쟁 커뮤니티를 위한 플랫폼 개선에 도움이 되는 피드백, 제안, 버그 리포트를 환영합니다."
         }
       }
     }

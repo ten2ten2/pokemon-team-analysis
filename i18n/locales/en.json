@@ -420,7 +420,7 @@
       },
       "howToContact": {
         "question": "How can we contact you?",
-        "answer": "You can reach us through email at <a href='mailto:contact{'@'}example.com' class='text-red-500 hover:text-red-600 underline'>contact{'@'}example.com</a>. We welcome feedback, suggestions, and bug reports to help improve our platform for the Pokémon competitive community."
+        "answer": "You can reach us through <a href='https://github.com/ten2ten2/pokemon-team-analysis/issues' class='text-red-500 hover:text-red-600 underline' target='_blank'>GitHub</a>. We welcome feedback, suggestions, and bug reports to help improve our platform for the Pokémon competitive community."
       }
     }
   }
