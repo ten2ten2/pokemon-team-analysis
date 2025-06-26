@@ -4,7 +4,7 @@ export function useSeoLinks() {
   const config = useRuntimeConfig()
 
   // Use computed to ensure consistent values between server and client
-  const baseUrl = computed(() => config.public.siteUrl || 'http://localhost:3000')
+  const baseUrl = computed(() => config.public.siteUrl || 'https://pokemonteamanalysis.com')
   const canonicalUrl = computed(() => `${baseUrl.value}${route.fullPath}`)
 
   // Generate hreflang links with computed for reactivity
