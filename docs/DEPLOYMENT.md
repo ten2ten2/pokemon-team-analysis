@@ -1,6 +1,6 @@
-# Pokemon Team Analysis - Deployment Guide
+# Pokémon Team Analysis - Deployment Guide
 
-This guide covers deploying the Pokemon Team Analysis application to various platforms and environments.
+This guide covers deploying the Pokémon Team Analysis application to various platforms and environments.
 
 ## 🚀 Deployment Options
 
@@ -602,4 +602,4 @@ export const dbConfig = {
 }
 ```
 
-This deployment guide provides comprehensive coverage for deploying the Pokemon Team Analysis application across various platforms and environments. Choose the deployment method that best fits your infrastructure and requirements.
+This deployment guide provides comprehensive coverage for deploying the Pokémon Team Analysis application across various platforms and environments. Choose the deployment method that best fits your infrastructure and requirements.

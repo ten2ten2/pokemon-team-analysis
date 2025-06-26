@@ -87,9 +87,9 @@ export default defineNuxtConfig({
       rollupOptions: {
         output: {
           manualChunks: {
-            // 将Pokemon相关的大型依赖分离到单独的chunk
+            // 将 Pokémon 相关的大型依赖分离到单独的chunk
             pokemon: ['@pkmn/data', '@pkmn/dex', '@pkmn/sets', '@pkmn/sim'],
-            // 将UI库分离
+            // 将 UI 库分离
             ui: ['lucide-vue-next']
           }
         }

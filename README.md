@@ -1,11 +1,11 @@
-# Pokemon Team Analysis
+# Pokémon Team Analysis
 
 [![Nuxt](https://img.shields.io/badge/Nuxt-3.17.5-00DC82?logo=nuxt.js&logoColor=white)](https://nuxt.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1.10-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![i18n](https://img.shields.io/badge/i18n-5%20Languages-4F46E5)](https://i18n.nuxtjs.org/)
 
-> A comprehensive Pokemon team analysis tool built with Nuxt 3, providing in-depth coverage and resistance analysis for competitive Pokemon battles.
+> A comprehensive Pokémon team analysis tool built with Nuxt 3, providing in-depth coverage and resistance analysis for competitive Pokémon battles.
 
 ## ✨ Features
 
@@ -87,7 +87,7 @@ pokemon-team-analysis/
 │   ├── layout/               # Layout-specific components
 │   └── ui/                   # Reusable UI components
 ├── composables/              # Vue composables (reusable logic)
-├── data/                     # Static Pokemon data files
+├── data/                     # Static Pokémon data files
 ├── docs/                     # 📚 Project documentation
 ├── i18n/                     # Internationalization
 │   └── locales/             # Translation files
@@ -131,12 +131,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [Smogon](https://www.smogon.com/) - Competitive Pokemon data and formats
-- [@pkmn](https://github.com/pkmn) - Pokemon data libraries and tools
-- [PokéAPI](https://pokeapi.co/) - Pokemon data API
+- [Smogon](https://www.smogon.com/) - Competitive Pokémon data and formats
+- [@pkmn](https://github.com/pkmn) - Pokémon data libraries and tools
+- [PokéAPI](https://pokeapi.co/) - Pokémon data API
 
 ---
 
 <div align="center">
-  <p>Built with ❤️ for the Pokemon competitive community</p>
+  <p>Built with ❤️ for the Pokémon competitive community</p>
 </div>

@@ -215,7 +215,7 @@ export const TERRIAN_TYPES: Record<string, { baseType: string; terrainType: stri
   'Psychic Terrain': { baseType: 'Psychic', terrainType: 'Psychic (Grounded)' },
 } as const;
 
-// ==================== Popular Pokemon ====================
+// ==================== Popular Pokémon ====================
 
 export const POPULAR_POKEMON: string[] = [
   'Incineroar', 'Miraidon', 'Calyrex-Ice', 'Rillaboom', 'Urshifu-Rapid-Strike',

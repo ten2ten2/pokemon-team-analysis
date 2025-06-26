@@ -89,11 +89,11 @@
     "lastUpdatedDate": "2025-06-12",
     "privacyPolicy": {
       "title": "Privacy Policy",
-      "introduction": "This Privacy Policy describes how Pokemon Team Analysis (\"we\" or \"our\") collects, uses, and protects your information when you use our service.",
+      "introduction": "This Privacy Policy describes how Pokémon Team Analysis (\"we\" or \"our\") collects, uses, and protects your information when you use our service.",
       "informationCollection": {
         "title": "Information We Collect",
         "content": [
-          "Pokemon team data and configurations (stored locally in your browser)",
+          "Pokémon team data and configurations (stored locally in your browser)",
           "Analysis preferences and settings (stored locally in your browser)",
           "Language preferences (stored locally in your browser)",
           "Basic usage analytics (anonymized)"
@@ -101,7 +101,7 @@
       },
       "informationUse": {
         "title": "How We Use Your Information",
-        "content": "We use the collected information to provide and improve our Pokemon team analysis service, remember your preferences, and ensure the proper functioning of our platform."
+        "content": "We use the collected information to provide and improve our Pokémon team analysis service, remember your preferences, and ensure the proper functioning of our platform."
       },
       "dataStorage": {
         "title": "How We Store Your Data",
@@ -109,7 +109,7 @@
       },
       "informationSharing": {
         "title": "Information Sharing and Disclosure",
-        "content": "We do not sell, rent, or share your personal information with third parties for their marketing purposes. Your Pokemon team data remains private and is stored locally on your device. We may share anonymized, aggregated data for research purposes to improve Pokemon battle analysis. We may disclose information if required by law or to protect our rights and safety."
+        "content": "We do not sell, rent, or share your personal information with third parties for their marketing purposes. Your Pokémon team data remains private and is stored locally on your device. We may share anonymized, aggregated data for research purposes to improve Pokémon battle analysis. We may disclose information if required by law or to protect our rights and safety."
       },
       "cookiesAndStorage": {
         "title": "Cookies and Local Storage",
@@ -130,10 +130,10 @@
     },
     "termsOfService": {
       "title": "Terms of Service",
-      "introduction": "By using Pokemon Team Analysis, you agree to these Terms of Service.",
+      "introduction": "By using Pokémon Team Analysis, you agree to these Terms of Service.",
       "appContent": {
         "title": "Application Content",
-        "content": "Pokemon Team Analysis is a fan-made application. All rights reserved for original content. All Pokémon-related content, including names, images, and data, are the property of Nintendo, Game Freak, and Creatures Inc."
+        "content": "Pokémon Team Analysis is a fan-made application. All rights reserved for original content. All Pokémon-related content, including names, images, and data, are the property of Nintendo, Game Freak, and Creatures Inc."
       },
       "userBehavior": {
         "title": "User Behavior",

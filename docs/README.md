@@ -1,6 +1,6 @@
-# Pokemon Team Analysis - Documentation
+# Pokémon Team Analysis - Documentation
 
-Welcome to the comprehensive documentation for the Pokemon Team Analysis project. This documentation covers everything from basic setup to advanced development and deployment.
+Welcome to the comprehensive documentation for the Pokémon Team Analysis project. This documentation covers everything from basic setup to advanced development and deployment.
 
 ## 📚 Documentation Overview
 
@@ -84,7 +84,7 @@ New to the project? Start here:
 - [i18n Architecture](./I18N.md#i18n-architecture)
 - [Translation Management](./I18N.md#translation-file-structure)
 - [Adding Languages](./I18N.md#adding-new-languages)
-- [Pokemon Data Translations](./I18N.md#pokemon-data-translations)
+- [Pokémon Data Translations](./I18N.md#pokemon-data-translations)
 - [SEO Optimization](./I18N.md#url-localization)
 
 ### 🚀 **Deployment**
@@ -101,7 +101,7 @@ New to the project? Start here:
 - **Vue 3**: [Development - Vue Components](./DEVELOPMENT.md#vue-components), [Style Guide](./STYLE_GUIDE.md)
 - **TypeScript**: [Development - TypeScript](./DEVELOPMENT.md#typescript), [API Reference](./API.md)
 - **Tailwind CSS**: [Development - CSS/Tailwind](./DEVELOPMENT.md#csstailwind), [Style Guide](./STYLE_GUIDE.md)
-- **Pokemon Libraries**: [API Reference](./API.md), [Architecture - Data Layer](./ARCHITECTURE.md#data-layer)
+- **Pokémon Libraries**: [API Reference](./API.md), [Architecture - Data Layer](./ARCHITECTURE.md#data-layer)
 
 ### Search by Feature
 - **Team Analysis**: [API - Analyzer Module](./API.md#analyzer-module-analyzer)
@@ -139,10 +139,10 @@ We welcome improvements to our documentation! Here's how to contribute:
 
 ## 🔗 External Resources
 
-### **Pokemon Data & APIs**
-- [Smogon University](https://www.smogon.com/) - Competitive Pokemon strategies
-- [PokéAPI](https://pokeapi.co/) - Pokemon data API
-- [@pkmn Libraries](https://github.com/pkmn) - Pokemon data and simulation libraries
+### **Pokémon Data & APIs**
+- [Smogon University](https://www.smogon.com/) - Competitive Pokémon strategies
+- [PokéAPI](https://pokeapi.co/) - Pokémon data API
+- [@pkmn Libraries](https://github.com/pkmn) - Pokémon data and simulation libraries
 
 ### **Technology Documentation**
 - [Nuxt 3 Documentation](https://nuxt.com/docs)
@@ -188,5 +188,5 @@ We welcome improvements to our documentation! Here's how to contribute:
 
 <div align="center">
   <p><strong>Happy coding! 🚀</strong></p>
-  <p>Built with ❤️ for the Pokemon competitive community</p>
+  <p>Built with ❤️ for the Pokémon competitive community</p>
 </div>

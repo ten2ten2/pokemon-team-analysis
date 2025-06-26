@@ -1,6 +1,6 @@
-# Pokemon Team Analysis - Development Guide
+# Pokémon Team Analysis - Development Guide
 
-This guide covers everything you need to know to contribute to the Pokemon Team Analysis project.
+This guide covers everything you need to know to contribute to the Pokémon Team Analysis project.
 
 ## 🚀 Getting Started
 
@@ -83,7 +83,7 @@ pokemon-team-analysis/
 │   ├── layout/              # Layout components
 │   └── ui/                  # Reusable UI components
 ├── composables/             # Vue composables
-├── data/                    # Static Pokemon data
+├── data/                    # Static Pokémon data
 ├── docs/                    # 📚 Documentation
 ├── i18n/                    # Internationalization
 │   └── locales/            # Translation files

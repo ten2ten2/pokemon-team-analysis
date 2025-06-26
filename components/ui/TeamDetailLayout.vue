@@ -132,7 +132,7 @@ useHead({
         dateModified: team.value?.createdAt?.toISOString(),
         author: {
           '@type': 'Organization',
-          name: 'Pokemon Team Analysis'
+          name: 'Pokémon Team Analysis'
         }
       })
     }

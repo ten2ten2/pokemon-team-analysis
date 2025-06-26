@@ -1,10 +1,10 @@
-# Pokemon Team Analysis - Architecture Guide
+# Pokémon Team Analysis - Architecture Guide
 
-This document outlines the system architecture, design patterns, and technical decisions behind the Pokemon Team Analysis application.
+This document outlines the system architecture, design patterns, and technical decisions behind the Pokémon Team Analysis application.
 
 ## 🏛️ System Overview
 
-The Pokemon Team Analysis application is built using a **modern full-stack architecture** with clear separation of concerns:
+The Pokémon Team Analysis application is built using a **modern full-stack architecture** with clear separation of concerns:
 
 ```mermaid
 graph TB
@@ -23,7 +23,7 @@ graph TB
     end
 
     subgraph "Data Layer"
-        I[Pokemon Data]
+        I[Pokémon Data]
         J[Translation Files]
         K[Static Assets]
         L[External APIs]
@@ -48,7 +48,7 @@ graph TB
 ### 1. **Separation of Concerns**
 - **Frontend**: UI/UX, user interactions, presentation logic
 - **Business Logic**: Analysis algorithms, data processing, calculations
-- **Data**: Pokemon data, translations, static content
+- **Data**: Pokémon data, translations, static content
 
 ### 2. **Modularity**
 - Each module has a single responsibility
@@ -111,7 +111,7 @@ frontend/
    - Extensible analyzer architecture
 
 2. **Calculation Engine** (`calculator/`)
-   - Pokemon stats calculations
+   - Pokémon stats calculations
    - Nature and EV/IV handling
    - Performance optimized formulas
 
@@ -137,7 +137,7 @@ frontend/
 ### Data Layer
 
 #### **Data Sources**
-- **@pkmn libraries**: Pokemon data and mechanics
+- **@pkmn libraries**: Pokémon data and mechanics
 - **Static JSON files**: Translations and mappings
 - **Runtime cache**: Computed results and API responses
 
@@ -156,7 +156,7 @@ sequenceDiagram
     alt Cache hit
         C->>L: Return cached data
     else Cache miss
-        L->>D: Fetch Pokemon data
+        L->>D: Fetch Pokémon data
         D->>L: Return data
         L->>C: Store in cache
     end
@@ -174,7 +174,7 @@ sequenceDiagram
 - **L3 Cache**: Persistent storage (future enhancement)
 
 **Cache Policies**:
-- **Static data**: 24 hours (Pokemon base stats, types)
+- **Static data**: 24 hours (Pokémon base stats, types)
 - **Analysis results**: 1 hour (team analysis cache)
 - **User data**: 30 minutes (preferences, settings)
 - **Temporary data**: 5 minutes (API responses)
@@ -190,7 +190,7 @@ i18n/
 │   ├── ko.json       # Korean
 │   ├── zh-hans.json  # Simplified Chinese
 │   └── zh-hant.json  # Traditional Chinese
-└── data/             # Pokemon data translations
+└── data/             # Pokémon data translations
     ├── species_i18n.json
     ├── move_i18n.json
     ├── ability_i18n.json
@@ -318,7 +318,7 @@ build: {
 - **API Layer**: REST/GraphQL API for external integrations
 
 ### 2. **Feature Enhancements**
-- **Team Builder**: Visual Pokemon team builder
+- **Team Builder**: Visual Pokémon team builder
 - **Battle Simulator**: Damage calculations and battle simulation
 - **Meta Analysis**: Current meta trends and statistics
 - **User Accounts**: Save teams and analysis history
@@ -368,4 +368,4 @@ build: {
 - Cache invalidation strategies
 - Memory management
 
-This architecture provides a solid foundation for the Pokemon Team Analysis application while maintaining flexibility for future enhancements and scaling needs.
+This architecture provides a solid foundation for the Pokémon Team Analysis application while maintaining flexibility for future enhancements and scaling needs.

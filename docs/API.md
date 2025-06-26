@@ -1,6 +1,6 @@
-# Pokemon Team Analysis - API Reference
+# Pokémon Team Analysis - API Reference
 
-This document provides comprehensive API documentation for the Pokemon Team Analysis library.
+This document provides comprehensive API documentation for the Pokémon Team Analysis library.
 
 ## 📁 Library Architecture
 
@@ -60,12 +60,12 @@ lib/
 
 **Core Types**:
 - **Basic Types**: `StatKey`, `NatureModifier`, `HealthStatus`
-- **Pokemon Data**:
+- **Pokémon Data**:
   - `Pokemon` - Extends `@pkmn/sets` `PokemonSet` with computed properties and analysis data
   - `NatureEffect` - Nature effect definitions
   - `PokemonSpeciesData`, `PokemonMoveData`, `PokemonAbilityData`, `PokemonItemData`
 - **Analysis Related**:
-  - `PokemonAnalysisData` - Pokemon data structure for analysis
+  - `PokemonAnalysisData` - Pokémon data structure for analysis
   - `TeamAnalysisCache` - Team analysis cache structure
 - **Validation Types**: `PokemonValidationError`, `TeamValidationResult`
 - **Analysis Results**:
@@ -76,7 +76,7 @@ lib/
 **Purpose**: Provide internal utility functions for the library
 
 **Key Functions**:
-- `normalizeName(name: string)` - Normalize Pokemon names for ID mapping
+- `normalizeName(name: string)` - Normalize Pokémon names for ID mapping
   - Convert to lowercase
   - Standardize hyphen format
   - Remove special characters
@@ -103,7 +103,7 @@ lib/
 - `COMPRESSION_THRESHOLD: 1KB` - Compression threshold
 
 ### `dataService.ts` - Data Service Core
-**Purpose**: Unified data access service for Pokemon data management
+**Purpose**: Unified data access service for Pokémon data management
 
 **Core Functions**:
 - **Generation Management**:
@@ -116,7 +116,7 @@ lib/
 ### `formats/` - Format System
 
 #### `customFormats.ts` - Custom Format Definitions
-**Purpose**: Define Pokemon Showdown custom battle formats
+**Purpose**: Define Pokémon Showdown custom battle formats
 
 **Supported Formats**:
 - `doublesRegG` - Doubles Regulation G (one legendary allowed)
@@ -127,7 +127,7 @@ lib/
 - `singlesRegI` - Singles Regulation I
 
 #### `formatInitializer.ts` - Format Initializer
-**Purpose**: Safely initialize Pokemon Showdown battle formats
+**Purpose**: Safely initialize Pokémon Showdown battle formats
 
 **Core Features**:
 - **Idempotent Operations**: Uses global symbols to prevent duplicate initialization
@@ -140,7 +140,7 @@ lib/
 ## 🧮 Calculator Module (calculator/)
 
 ### `statsCalculator.ts` - Stats Calculator
-**Purpose**: Calculate Pokemon final stats
+**Purpose**: Calculate Pokémon final stats
 
 **Core Functions**:
 - `calculateStats()` - Main calculation function with defensive programming
@@ -180,7 +180,7 @@ Other = floor((base * 2 + iv + ev/4) * level/100 + 5) * nature_modifier
 **Helper Functions**:
 - `getIdMappingCache()` - Get PokeAPI ID mapping table (lazy loading)
 - `getPokeApiNum()` - Get PokeAPI number
-- `completeSinglePokemon()` - Complete single Pokemon information
+- `completeSinglePokemon()` - Complete single Pokémon information
 - `completeTeam()` - Batch complete team information
 
 **Workflow**:
@@ -313,7 +313,7 @@ console.log('Cache hit rate:', stats.hitRate)
 
 The library implements comprehensive error handling:
 
-- **Validation Errors**: Team and Pokemon validation with detailed error messages
+- **Validation Errors**: Team and Pokémon validation with detailed error messages
 - **Data Errors**: Safe handling of missing or invalid data with fallbacks
 - **Cache Errors**: Graceful degradation when cache operations fail
 - **Network Errors**: Retry mechanisms for external data fetching
