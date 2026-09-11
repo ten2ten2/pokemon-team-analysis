@@ -1,142 +1,61 @@
 # Pokémon Team Analysis
 
-[![Nuxt](https://img.shields.io/badge/Nuxt-3.17.5-00DC82?logo=nuxt.js&logoColor=white)](https://nuxt.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1.10-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![i18n](https://img.shields.io/badge/i18n-5%20Languages-4F46E5)](https://i18n.nuxtjs.org/)
+Import Pokémon Showdown teams, validate Scarlet/Violet rules, and inspect defensive resistances and offensive type coverage. Teams stay in this browser's local storage; there is no account or cloud synchronization.
 
-> A comprehensive Pokémon team analysis tool built with Nuxt 3, providing in-depth coverage and resistance analysis for competitive Pokémon battles.
+## Develop
 
-## ✨ Features
+Install [mise](https://mise.jdx.dev/getting-started.html), then:
 
-### 🔍 **Team Analysis**
-- **Coverage Analysis** - Analyze your team's offensive type coverage
-- **Resistance Analysis** - Identify defensive weaknesses and strengths
-- **Multi-format Support** - Supports various competitive formats (Regulation G/H/I)
-
-### 🌍 **Internationalization**
-- **5 Languages**: English, Japanese, Korean, Simplified Chinese, Traditional Chinese
-- **SEO Optimized** - Proper hreflang and canonical URLs
-- **Browser Detection** - Automatic language detection
-
-### 🎨 **Modern UI/UX**
-- **Responsive Design** - Mobile-first approach
-- **Dark Mode Support** - Automatic theme switching
-- **Accessibility** - WCAG compliant
-- **Performance** - Optimized for speed and SEO
-
-### ⚡ **Technical Features**
-- **Server-Side Rendering** - Fast initial page loads
-- **Static Generation** - Deploy anywhere
-- **PWA Ready** - Offline support capabilities
-- **Analytics Ready** - Google Analytics 4 & AdSense integration
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/pokemon-team-analysis.git
+```sh
+git clone https://github.com/ten2ten2/pokemon-team-analysis.git
 cd pokemon-team-analysis
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+git switch dev
+mise trust
+mise install
+mise run install
+cp .env.example .env
+mise run dev
 ```
 
-The application will be available at `http://localhost:3000`
+Open `http://localhost:3000`. Tool versions are pinned in `mise.toml`; dependencies are pinned in `package.json` and `pnpm-lock.yaml`. Commit lockfile changes with dependency updates.
 
-### Build for Production
-
-```bash
-# Build for production
-npm run build
-
-# Generate static site
-npm run generate
-
-# Preview production build
-npm run preview
+```sh
+mise run check       # translations, TypeScript, regression tests
+mise run build       # production server
+mise run preview
+mise run generate    # static output
 ```
 
-## 📚 Documentation
+Nuxt 4 uses Vue 3, Tailwind CSS through its Vite plugin, Nuxt i18n, and `@pkmn/data` / `@pkmn/sim`. TypeScript stays on 6.0.3 because Vue's current type checker requires the JavaScript compiler API, which TypeScript 7 no longer exports; Nuxt's TypeScript ESLint dependencies also require `<6.1`.
 
-Comprehensive documentation is available in the [`docs/`](./docs/) directory:
+## Features and scope
 
-- **[Architecture Guide](./docs/ARCHITECTURE.md)** - System architecture and design patterns
-- **[API Reference](./docs/API.md)** - Core library API documentation
-- **[Style Guide](./docs/STYLE_GUIDE.md)** - UI components and styling conventions
-- **[Development Guide](./docs/DEVELOPMENT.md)** - Setup, workflow, and contribution guidelines
-- **[Deployment Guide](./docs/DEPLOYMENT.md)** - Production deployment instructions
-- **[i18n Guide](./docs/I18N.md)** - Internationalization and localization
+- Import, edit, delete and copy Showdown team text. Validation errors remain visible and editable.
+- Defensive type multipliers with the implemented ability/item modifiers, weather, terrain and one Terastallization selection.
+- Offensive coverage against a selected type combination and a curated reference Pokémon list; separate physical and special moves.
+- English `/`, Japanese `/ja`, Korean `/ko`, Simplified Chinese `/zh-hans`, Traditional Chinese `/zh-hant`.
+- Optional Google Analytics, initialized after consent. Configure `NUXT_PUBLIC_GTAG_ID`.
 
-## 🏗️ Project Structure
+The selectable formats are Regulation G, H and I in singles and doubles. They are explicit historical rule sets, not an automatically updated current-season feed. Speed tiers and strategy analysis are not implemented.
 
-```
-pokemon-team-analysis/
-├── assets/                    # Static assets (CSS, icons, images)
-├── components/                # Vue components
-│   ├── global/               # Auto-imported global components
-│   ├── layout/               # Layout-specific components
-│   └── ui/                   # Reusable UI components
-├── composables/              # Vue composables (reusable logic)
-├── data/                     # Static Pokémon data files
-├── docs/                     # 📚 Project documentation
-├── i18n/                     # Internationalization
-│   └── locales/             # Translation files
-├── lib/                      # Core analysis library
-│   ├── analyzer/            # Analysis engines
-│   ├── calculator/          # Stats calculations
-│   ├── core/                # Core infrastructure
-│   └── parser/              # Team parsing logic
-├── pages/                    # Vue pages (auto-routed)
-├── plugins/                  # Nuxt plugins
-├── server/                   # Server-side API routes
-├── types/                    # TypeScript type definitions
-└── utils/                    # Utility functions
-```
+Coverage scores are a ranking heuristic using the attacker's level/stats, base power, STAB and type effectiveness against fixed neutral defenses. They are not exact battle damage. Coverage does not simulate target abilities/items, weather, terrain or every conditional move mechanic. The reference Pokémon list is maintained in source, not fetched usage data.
 
-## 🧪 Testing & Validation
+## Code map
 
-```bash
-# Validate translation consistency
-npm run validate:translations
+| Path | Responsibility |
+| --- | --- |
+| `app/pages`, `app/components` | Pages and reusable UI |
+| `app/composables` | Nuxt state, storage integration, translations and SEO |
+| `app/lib/parser`, `app/lib/core/formats` | Showdown import, rules and format-normalized stats |
+| `app/lib/analyzer`, `app/lib/calculator` | Pure analysis and ranking logic |
+| `app/lib/storage` | Persistent source text; derived analysis recalculated on read |
+| `i18n/locales` | UI translations |
+| `server/assets/data` | Pokémon terminology translations |
+| `server/api/pokemon-translations.get.ts` | Shared, cacheable translation payload |
+| `tests` | Parser, rules, calculations, persistence and component regressions |
 
-# Type checking
-npx nuxi typecheck
-```
+See [development notes](docs/DEVELOPMENT.md) and [deployment](docs/DEPLOYMENT.md).
 
-## 🌐 Supported Languages
+Pokémon data and validation come from [Pokémon Showdown / pkmn](https://github.com/pkmn/ps); sprites are served from [PokeAPI](https://github.com/PokeAPI/sprites). Pokémon names and artwork belong to their respective owners.
 
-| Language | Code | Status |
-|----------|------|---------|
-| English | `en` | ✅ Complete |
-| 日本語 | `ja` | 🔄 Needs Improvement |
-| 한국어 | `ko` | 🔄 Needs Improvement |
-| 简体中文 | `zh-hans` | ✅ Complete |
-| 繁體中文 | `zh-hant` | ✅ Complete |
-
-> 💡 **Want to help improve translations?** We welcome native speakers to help improve our Japanese and Korean translations. Please contact us through [GitHub Issues](https://github.com/your-username/pokemon-team-analysis/issues) or check our [i18n Guide](./docs/I18N.md) for contribution guidelines.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Smogon](https://www.smogon.com/) - Competitive Pokémon data and formats
-- [@pkmn](https://github.com/pkmn) - Pokémon data libraries and tools
-- [PokéAPI](https://pokeapi.co/) - Pokémon data API
-
----
-
-<div align="center">
-  <p>Built with ❤️ for the Pokémon competitive community</p>
-</div>
+License: MIT.

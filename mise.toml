@@ -1,0 +1,23 @@
+[tools]
+node = "26.8.2"
+pnpm = "12.3.4"
+
+[tasks.install]
+description = "Install locked dependencies"
+run = "pnpm install --frozen-lockfile"
+
+[tasks.dev]
+run = "pnpm dev"
+
+[tasks.check]
+description = "Validate translations, types, and regression tests"
+run = "pnpm check"
+
+[tasks.build]
+run = "pnpm build"
+
+[tasks.generate]
+run = "pnpm generate"
+
+[tasks.preview]
+run = "pnpm preview"

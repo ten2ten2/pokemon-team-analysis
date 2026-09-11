@@ -6,7 +6,9 @@
     },
     "error": {
       "title": "エラー",
-      "loadingTeams": "チームの読み込みに失敗しました。ページを更新してみてください。"
+      "loadingTeams": "チームの読み込みに失敗しました。ページを更新してみてください。",
+      "copy": "コピーできませんでした。テキストを選択してコピーしてください。",
+      "savingTeam": "チームを保存できませんでした。ブラウザーのストレージを確認して再試行してください。"
     },
     "ability": "特性",
     "item": "持ち物",
@@ -36,15 +38,7 @@
   "home": {
     "meta": {
       "title": "ポケモンチーム分析",
-      "description": "あなたのポケモンチームを分析し、他のチームとの比較評価を行います。",
-      "keywords": "ポケモン, 分析, ステータス, Pokemon Go, VGC, ポケモンバトル, ポケモンチーム, ランクバトル",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "あなたのポケモンチームを分析し、他のチームとの比較評価を行います。"
     },
     "allTeams": "すべてのチーム",
     "newTeam": "新しいチーム",
@@ -74,15 +68,7 @@
   "privacyAndTerms": {
     "meta": {
       "title": "プライバシーと利用規約",
-      "description": "私たちのプライバシーポリシーと利用規約",
-      "keywords": "プライバシーポリシー, 利用規約, 法的事項, データ保護",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "example",
-        "image": "/twitter-image.png"
-      }
+      "description": "私たちのプライバシーポリシーと利用規約"
     },
     "title": "プライバシーと利用規約",
     "lastUpdated": "最終更新日：{date}",
@@ -262,8 +248,7 @@
     },
     "terastallization": {
       "none": "テラスタルなし",
-      "selectType": "テラスタイプを選択",
-      "indicator": "テラスタル状態"
+      "selectType": "テラスタイプを選択"
     },
     "multiplier": {
       "immune": "無効",
@@ -332,15 +317,7 @@
   "resources": {
     "meta": {
       "title": "リソース",
-      "description": "便利なポケモンバトルリソースとツール",
-      "keywords": "ポケモンリソース, バトルツール, 図鑑, シミュレーター, 計算機",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "便利なポケモンバトルリソースとツール"
     },
     "title": "リソース",
     "description": "便利なポケモンバトルリソース、ツール、コミュニティを発見して、競技体験を向上させましょう。",
@@ -401,15 +378,7 @@
   "about": {
     "meta": {
       "title": "私たちについて",
-      "description": "ポケモンチーム分析についてと連絡方法について詳しく学ぶ",
-      "keywords": "について, 連絡, ポケモンチーム分析, よくある質問",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "ポケモンチーム分析についてと連絡方法について詳しく学ぶ"
     },
     "title": "私たちについて",
     "description": "ポケモンチーム分析プラットフォームについてのよくある質問。",

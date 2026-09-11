@@ -7,30 +7,43 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "validate:translations": "node scripts/validate-translations.js"
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "validate:translations": "node scripts/validate-translations.js",
+    "check": "pnpm validate:translations && pnpm typecheck && pnpm test"
   },
   "dependencies": {
-    "@nuxt/image": "^1.10.0",
-    "@nuxt/scripts": "^0.11.8",
-    "@nuxtjs/i18n": "^9.5.5",
-    "@nuxtjs/robots": "^5.2.10",
-    "@nuxtjs/sitemap": "^7.3.1",
-    "@pkmn/data": "^0.9.35",
-    "@pkmn/dex": "^0.9.35",
-    "@pkmn/sets": "^5.1.2",
-    "@pkmn/sim": "^0.9.35",
-    "@unhead/vue": "^2.0.10",
-    "ipx": "^3.0.3",
-    "lucide-vue-next": "^0.514.0",
-    "nuxt": "^3.17.5",
-    "nuxt-gtag": "^3.0.3"
+    "@lucide/vue": "1.45.0",
+    "@nuxt/image": "2.1.0",
+    "@nuxtjs/i18n": "10.6.0",
+    "@nuxtjs/robots": "6.2.2",
+    "@nuxtjs/sitemap": "8.5.0",
+    "@pkmn/data": "0.10.11",
+    "@pkmn/dex": "0.10.11",
+    "@pkmn/sim": "0.10.11",
+    "nuxt": "4.5.2",
+    "nuxt-gtag": "5.0.0",
+    "vue": "3.5.42",
+    "vue-i18n": "11.4.10",
+    "vue-router": "5.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.10",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.5",
-    "tailwindcss": "^4.1.10",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "@pkmn/types": "4.0.0",
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "26.5.1",
+    "@vitejs/plugin-vue": "6.0.8",
+    "@vue/test-utils": "2.5.0",
+    "happy-dom": "20.14.3",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0",
+    "vue-tsc": "3.3.11"
+  },
+  "private": true,
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=26.8.2 <27",
+    "pnpm": ">=12.3.4 <13"
   }
 }

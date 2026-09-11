@@ -1,428 +1,397 @@
-  {
-    "common": {
-      "loading": {
-        "teams": "팀 로딩 중...",
-        "default": "로딩 중..."
+{
+  "common": {
+    "loading": {
+      "teams": "팀 로딩 중...",
+      "default": "로딩 중..."
+    },
+    "error": {
+      "title": "오류",
+      "loadingTeams": "팀을 로드하는데 실패했습니다. 페이지를 새로고침해 보세요.",
+      "copy": "복사하지 못했습니다. 텍스트를 선택해 직접 복사해 주세요.",
+      "savingTeam": "팀을 저장하지 못했습니다. 브라우저 저장 공간을 확인하고 다시 시도해 주세요."
+    },
+    "ability": "특성",
+    "item": "도구",
+    "teamName": {
+      "title": "팀 이름",
+      "untitled": "미정"
+    },
+    "gameVersion": {
+      "title": "게임 버전",
+      "options": {
+        "sv": "스칼렛 / 바이올렛"
+      }
+    },
+    "rules": {
+      "title": "규칙",
+      "options": {
+        "doublesRegG": "더블배틀 · 레귤레이션 G",
+        "doublesRegH": "더블배틀 · 레귤레이션 H",
+        "doublesRegI": "더블배틀 · 레귤레이션 I",
+        "singlesRegG": "싱글배틀 · 레귤레이션 G",
+        "singlesRegH": "싱글배틀 · 레귤레이션 H",
+        "singlesRegI": "싱글배틀 · 레귤레이션 I"
+      }
+    },
+    "comingSoon": "곧 출시"
+  },
+  "home": {
+    "meta": {
+      "title": "포켓몬 팀 분석",
+      "description": "당신의 포켓몬 팀을 분석하여 다른 팀과 비교 평가해 보세요."
+    },
+    "allTeams": "모든 팀",
+    "newTeam": "새 팀",
+    "noTeams": "아직 팀이 없습니다",
+    "noTeamsDescription": "분석을 시작하기 위해 첫 번째 포켓몬 팀을 만드세요!",
+    "createFirstTeam": "첫 번째 포켓몬 팀 만들기",
+    "teamHasProblems": "팀에 문제가 있습니다"
+  },
+  "nav": {
+    "home": "홈",
+    "about": "회사 소개",
+    "resources": "자료",
+    "privacy-and-terms": "개인정보 보호 및 약관"
+  },
+  "cookieConsent": {
+    "title": "쿠키 동의",
+    "message": "저희는 귀하의 경험을 개선하고 사이트 사용량을 분석하기 위해 쿠키를 사용합니다. 저희 사이트를 계속 사용하시면 쿠키 사용에 동의하는 것으로 간주됩니다.",
+    "learnMore": "자세히 보기",
+    "accept": "동의",
+    "decline": "거부",
+    "dismiss": "닫기"
+  },
+  "footer": {
+    "copyright": "포켓몬 팀 분석. 원본 콘텐츠의 저작권은 당사가 보유합니다.",
+    "privacyAndTerms": "개인정보 보호 및 약관"
+  },
+  "privacyAndTerms": {
+    "meta": {
+      "title": "개인정보 및 약관",
+      "description": "저희의 개인정보 보호정책 및 이용약관"
+    },
+    "title": "개인정보 및 약관",
+    "lastUpdated": "최종 업데이트: {date}",
+    "lastUpdatedDate": "2025-06-12",
+    "privacyPolicy": {
+      "title": "개인정보 보호정책",
+      "introduction": "이 개인정보 보호정책은 포켓몬 팀 분석(\"저희\" 또는 \"당사\")이 서비스 사용 시 귀하의 정보를 어떻게 수집, 사용, 보호하는지 설명합니다.",
+      "informationCollection": {
+        "title": "수집하는 정보",
+        "content": [
+          "포켓몬 팀 데이터와 설정 (브라우저 로컬에 저장)",
+          "분석 설정과 선호도 (브라우저 로컬에 저장)",
+          "언어 설정 (브라우저 로컬에 저장)",
+          "기본적인 사용 분석 (익명화)"
+        ]
       },
-      "error": {
-        "title": "오류",
-        "loadingTeams": "팀을 로드하는데 실패했습니다. 페이지를 새로고침해 보세요."
+      "informationUse": {
+        "title": "정보 사용 방법",
+        "content": "수집된 정보는 포켓몬 팀 분석 서비스 제공 및 개선, 설정 기억, 플랫폼의 정상적인 작동 보장을 위해 사용됩니다."
       },
+      "dataStorage": {
+        "title": "데이터 저장 방법",
+        "content": "팀 데이터는 브라우저의 localStorage를 사용하여 로컬에 저장됩니다. 이는 다음을 의미합니다: 데이터가 기기를 떠나지 않습니다, 개인 팀 구성에 접근할 수 없습니다, 브라우저 데이터를 삭제하면 저장된 팀이 재설정됩니다, 데이터가 제3자와 공유되지 않습니다."
+      },
+      "informationSharing": {
+        "title": "정보 공유 및 공개",
+        "content": "마케팅 목적으로 개인정보를 제3자에게 판매, 임대 또는 공유하지 않습니다. 포켓몬 팀 데이터는 비공개로 기기에 로컬 저장됩니다. 포켓몬 배틀 분석 개선을 위해 익명화된 집계 데이터를 연구 목적으로 공유할 수 있습니다. 법적 요구가 있거나 권리와 안전을 보호하기 위해 정보를 공개할 수 있습니다."
+      },
+      "cookiesAndStorage": {
+        "title": "쿠키 및 로컬 스토리지",
+        "content": "언어 설정 저장에는 쿠키를, 팀 분석 데이터와 구성 저장에는 브라우저 localStorage를 사용합니다. 광고나 분석 목적의 추적 쿠키는 사용하지 않습니다."
+      },
+      "thirdPartyServices": {
+        "title": "제3자 서비스",
+        "content": "분석 및 호스팅을 위해 제3자 서비스를 사용할 수 있습니다. 이러한 서비스에는 자체 개인정보 보호정책이 있습니다."
+      },
+      "userRights": {
+        "title": "귀하의 권리",
+        "content": "귀하는 다음의 권리가 있습니다: 언제든지 로컬 팀 데이터를 지우기, 데이터 저장을 방지하기 위해 JavaScript 비활성화하기, 개인정보 보호 관련 우려사항에 대해 연락하기."
+      },
+      "contact": {
+        "title": "연락처",
+        "content": "이 개인정보 보호정책에 대한 질문이 있으시면 {email}로 문의해 주세요."
+      }
+    },
+    "termsOfService": {
+      "title": "이용약관",
+      "introduction": "포켓몬 팀 분석을 사용하면 이 이용약관에 동의하는 것입니다.",
+      "appContent": {
+        "title": "애플리케이션 콘텐츠",
+        "content": "포켓몬 팀 분석은 팬이 만든 애플리케이션입니다. 모든 원본 콘텐츠에 대한 권리를 보유합니다. 포켓몬과 관련된 모든 콘텐츠(이름, 이미지, 데이터 포함)는 Nintendo, Game Freak, Creatures Inc.의 재산입니다."
+      },
+      "userBehavior": {
+        "title": "사용자 행동",
+        "content": "서비스를 사용할 때 다음에 동의합니다: 개인적이고 비상업적인 목적으로만 애플리케이션 사용하기, 애플리케이션의 역공학이나 악용을 시도하지 않기, 애플리케이션과 함께 자동화 도구나 봇을 사용하지 않기, 포켓몬 제작자의 지적 재산권을 존중하기."
+      },
+      "disclaimers": {
+        "title": "면책 조항",
+        "content": "애플리케이션은 \"있는 그대로\" 제공되며 어떤 종류의 보증도 제공되지 않습니다. 데이터 손실이나 기술적 문제에 대해 책임을 지지 않습니다."
+      },
+      "modifications": {
+        "title": "수정",
+        "content": "언제든지 이 약관을 수정할 권리를 보유합니다. 서비스의 지속 사용은 변경 사항의 수락을 의미합니다."
+      },
+      "contact": {
+        "title": "연락처",
+        "content": "이 약관이나 개인정보 보호정책에 대한 질문이 있으시면 {email}로 문의해 주세요."
+      }
+    }
+  },
+  "teamImportModal": {
+    "title": "포켓몬 팀 가져오기",
+    "instructions": {
+      "title": "팀 가져오기 방법:",
+      "content": {
+        "1": "적절한 게임 버전과 규칙을 선택하세요",
+        "2": "아래 텍스트 영역에 팀 데이터를 붙여넣으세요",
+        "3": "\"팀 가져오기\" 버튼을 클릭하여 컬렉션에 추가하세요"
+      }
+    },
+    "dataInputTitle": "포켓몬 팀 데이터",
+    "dataInputPlaceholder": "여기에 팀을 붙여넣으세요...\n\n예시:\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
+    "importButton": "팀 가져오기",
+    "importing": "가져오는 중...",
+    "cancelButton": "취소"
+  },
+  "teamEditModal": {
+    "title": "포켓몬 팀 편집",
+    "saveButton": "변경사항 저장",
+    "saving": "저장 중...",
+    "problemTitle": "팀에 문제가 있습니다"
+  },
+  "confirmDialog": {
+    "deleteTeam": {
+      "title": "팀 삭제",
+      "message": "이 팀을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+      "confirmButton": "삭제",
+      "cancelButton": "취소"
+    }
+  },
+  "teamDetail": {
+    "meta": {
+      "title": "팀 상세정보",
+      "description": "{name} 상세정보 보기, {count}마리의 포켓몬 포함",
+      "defaultDescription": "포켓몬 팀 상세정보 페이지"
+    },
+    "notFound": {
+      "title": "팀을 찾을 수 없음",
+      "description": "ID \"{id}\"인 팀이 존재하지 않거나 삭제되었습니다.",
+      "backToHome": "홈으로 돌아가기"
+    },
+    "createdAt": "생성일",
+    "useTranslation": "번역 사용",
+    "tabs": {
+      "overview": "개요",
+      "resistance": "타입 내성 분석",
+      "coverage": "타입 커버리지 분석",
+      "speedTiers": "스피드 티어",
+      "strategy": "전략 분석"
+    },
+    "validationErrors": {
+      "title": "팀 검증 오류",
+      "description": "팀 데이터에 다음 문제가 있습니다. 편집 버튼을 클릭하여 수정하세요:"
+    },
+    "editTeam": "팀 편집",
+    "teamMembers": {
+      "title": "팀 멤버 ({count}/6)",
+      "description": "팀 내 포켓몬의 상세 정보입니다"
+    },
+    "pokemon": {
       "ability": "특성",
       "item": "도구",
-      "teamName": {
-        "title": "팀 이름",
-        "untitled": "미정"
-      },
-      "gameVersion": {
-        "title": "게임 버전",
-        "options": {
-          "sv": "스칼렛 / 바이올렛"
-        }
-      },
-      "rules": {
-        "title": "규칙",
-        "options": {
-          "doublesRegG": "더블배틀 · 레귤레이션 G",
-          "doublesRegH": "더블배틀 · 레귤레이션 H",
-          "doublesRegI": "더블배틀 · 레귤레이션 I",
-          "singlesRegG": "싱글배틀 · 레귤레이션 G",
-          "singlesRegH": "싱글배틀 · 레귤레이션 H",
-          "singlesRegI": "싱글배틀 · 레귤레이션 I"
-        }
-      },
-      "comingSoon": "곧 출시"
+      "teraType": "테라스탈 타입",
+      "moves": "기술"
     },
-    "home": {
-      "meta": {
-        "title": "포켓몬 팀 분석",
-        "description": "당신의 포켓몬 팀을 분석하여 다른 팀과 비교 평가해 보세요.",
-        "keywords": "포켓몬, 분석, 스탯, Pokemon Go, VGC, 포켓몬 배틀, 포켓몬 팀, 랭크 배틀",
-        "openGraph": {
-          "image": "/og-image.png"
-        },
-        "twitter": {
-          "site": "pokemon-team-analysis",
-          "image": "/twitter-image.png"
-        }
-      },
-      "allTeams": "모든 팀",
-      "newTeam": "새 팀",
-      "noTeams": "아직 팀이 없습니다",
-      "noTeamsDescription": "분석을 시작하기 위해 첫 번째 포켓몬 팀을 만드세요!",
-      "createFirstTeam": "첫 번째 포켓몬 팀 만들기",
-      "teamHasProblems": "팀에 문제가 있습니다"
+    "rawData": {
+      "title": "원본 팀 데이터",
+      "description": "가져온 원본 팀 텍스트 데이터입니다",
+      "copy": "복사",
+      "copied": "복사됨!",
+      "copyButton": "원본 팀 데이터를 클립보드에 복사"
+    }
+  },
+  "resistance": {
+    "meta": {
+      "title": "상성 분석",
+      "description": "{name} 팀의 타입 상성 분석, {count}마리의 포켓몬 포함",
+      "defaultDescription": "포켓몬 팀 타입 상성 분석 페이지"
     },
-    "nav": {
-      "home": "홈",
-      "about": "회사 소개",
-      "resources": "자료",
-      "privacy-and-terms": "개인정보 보호 및 약관"
+    "title": "타입 상성 분석",
+    "description": "다양한 타입 공격에 대한 팀의 상성 성능을 분석하며, 날씨와 필드 조건을 선택적으로 설정할 수 있습니다.",
+    "validationError": {
+      "description": "팀 데이터에 문제가 있어 상성 분석을 수행할 수 없습니다. 먼저 팀 데이터를 수정해 주세요."
     },
-    "cookieConsent": {
-      "title": "쿠키 동의",
-      "message": "저희는 귀하의 경험을 개선하고 사이트 사용량을 분석하기 위해 쿠키를 사용합니다. 저희 사이트를 계속 사용하시면 쿠키 사용에 동의하는 것으로 간주됩니다.",
-      "learnMore": "자세히 보기",
-      "accept": "동의",
-      "decline": "거부",
-      "dismiss": "닫기"
+    "controls": {
+      "title": "분석 설정",
+      "weather": "날씨 상태",
+      "terrain": "필드 상태",
+      "terastallizationPokemon": "테라스탈 포켓몬",
+      "teraType": "테라 타입"
     },
-    "footer": {
-      "copyright": "포켓몬 팀 분석. 원본 콘텐츠의 저작권은 당사가 보유합니다.",
-      "privacyAndTerms": "개인정보 보호 및 약관"
+    "weather": {
+      "none": "날씨 없음",
+      "rain": "비",
+      "heavy_rain": "큰비",
+      "harsh_sunlight": "쾌청",
+      "extremely_harsh_sunlight": "대쾌청",
+      "strong_winds": "난기류"
     },
-    "privacyAndTerms": {
-      "meta": {
-        "title": "개인정보 및 약관",
-        "description": "저희의 개인정보 보호정책 및 이용약관",
-        "keywords": "개인정보 보호정책, 이용약관, 법적 사항, 데이터 보호",
-        "openGraph": {
-          "image": "/og-image.png"
-        },
-        "twitter": {
-          "site": "example",
-          "image": "/twitter-image.png"
-        }
-      },
-      "title": "개인정보 및 약관",
-      "lastUpdated": "최종 업데이트: {date}",
-      "lastUpdatedDate": "2025-06-12",
-      "privacyPolicy": {
-        "title": "개인정보 보호정책",
-        "introduction": "이 개인정보 보호정책은 포켓몬 팀 분석(\"저희\" 또는 \"당사\")이 서비스 사용 시 귀하의 정보를 어떻게 수집, 사용, 보호하는지 설명합니다.",
-        "informationCollection": {
-          "title": "수집하는 정보",
-          "content": [
-            "포켓몬 팀 데이터와 설정 (브라우저 로컬에 저장)",
-            "분석 설정과 선호도 (브라우저 로컬에 저장)",
-            "언어 설정 (브라우저 로컬에 저장)",
-            "기본적인 사용 분석 (익명화)"
-          ]
-        },
-        "informationUse": {
-          "title": "정보 사용 방법",
-          "content": "수집된 정보는 포켓몬 팀 분석 서비스 제공 및 개선, 설정 기억, 플랫폼의 정상적인 작동 보장을 위해 사용됩니다."
-        },
-        "dataStorage": {
-          "title": "데이터 저장 방법",
-          "content": "팀 데이터는 브라우저의 localStorage를 사용하여 로컬에 저장됩니다. 이는 다음을 의미합니다: 데이터가 기기를 떠나지 않습니다, 개인 팀 구성에 접근할 수 없습니다, 브라우저 데이터를 삭제하면 저장된 팀이 재설정됩니다, 데이터가 제3자와 공유되지 않습니다."
-        },
-        "informationSharing": {
-          "title": "정보 공유 및 공개",
-          "content": "마케팅 목적으로 개인정보를 제3자에게 판매, 임대 또는 공유하지 않습니다. 포켓몬 팀 데이터는 비공개로 기기에 로컬 저장됩니다. 포켓몬 배틀 분석 개선을 위해 익명화된 집계 데이터를 연구 목적으로 공유할 수 있습니다. 법적 요구가 있거나 권리와 안전을 보호하기 위해 정보를 공개할 수 있습니다."
-        },
-        "cookiesAndStorage": {
-          "title": "쿠키 및 로컬 스토리지",
-          "content": "언어 설정 저장에는 쿠키를, 팀 분석 데이터와 구성 저장에는 브라우저 localStorage를 사용합니다. 광고나 분석 목적의 추적 쿠키는 사용하지 않습니다."
-        },
-        "thirdPartyServices": {
-          "title": "제3자 서비스",
-          "content": "분석 및 호스팅을 위해 제3자 서비스를 사용할 수 있습니다. 이러한 서비스에는 자체 개인정보 보호정책이 있습니다."
-        },
-        "userRights": {
-          "title": "귀하의 권리",
-          "content": "귀하는 다음의 권리가 있습니다: 언제든지 로컬 팀 데이터를 지우기, 데이터 저장을 방지하기 위해 JavaScript 비활성화하기, 개인정보 보호 관련 우려사항에 대해 연락하기."
-        },
-        "contact": {
-          "title": "연락처",
-          "content": "이 개인정보 보호정책에 대한 질문이 있으시면 {email}로 문의해 주세요."
-        }
-      },
-      "termsOfService": {
-        "title": "이용약관",
-        "introduction": "포켓몬 팀 분석을 사용하면 이 이용약관에 동의하는 것입니다.",
-        "appContent": {
-          "title": "애플리케이션 콘텐츠",
-          "content": "포켓몬 팀 분석은 팬이 만든 애플리케이션입니다. 모든 원본 콘텐츠에 대한 권리를 보유합니다. 포켓몬과 관련된 모든 콘텐츠(이름, 이미지, 데이터 포함)는 Nintendo, Game Freak, Creatures Inc.의 재산입니다."
-        },
-        "userBehavior": {
-          "title": "사용자 행동",
-          "content": "서비스를 사용할 때 다음에 동의합니다: 개인적이고 비상업적인 목적으로만 애플리케이션 사용하기, 애플리케이션의 역공학이나 악용을 시도하지 않기, 애플리케이션과 함께 자동화 도구나 봇을 사용하지 않기, 포켓몬 제작자의 지적 재산권을 존중하기."
-        },
-        "disclaimers": {
-          "title": "면책 조항",
-          "content": "애플리케이션은 \"있는 그대로\" 제공되며 어떤 종류의 보증도 제공되지 않습니다. 데이터 손실이나 기술적 문제에 대해 책임을 지지 않습니다."
-        },
-        "modifications": {
-          "title": "수정",
-          "content": "언제든지 이 약관을 수정할 권리를 보유합니다. 서비스의 지속 사용은 변경 사항의 수락을 의미합니다."
-        },
-        "contact": {
-          "title": "연락처",
-          "content": "이 약관이나 개인정보 보호정책에 대한 질문이 있으시면 {email}로 문의해 주세요."
-        }
-      }
+    "terrain": {
+      "none": "필드 없음",
+      "electric_terrain": "일렉트릭필드",
+      "grassy_terrain": "그래스필드",
+      "misty_terrain": "미스트필드",
+      "psychic_terrain": "사이코필드",
+      "grounded": "접지"
     },
-    "teamImportModal": {
-      "title": "포켓몬 팀 가져오기",
-      "instructions": {
-        "title": "팀 가져오기 방법:",
-        "content": {
-          "1": "적절한 게임 버전과 규칙을 선택하세요",
-          "2": "아래 텍스트 영역에 팀 데이터를 붙여넣으세요",
-          "3": "\"팀 가져오기\" 버튼을 클릭하여 컬렉션에 추가하세요"
-        }
-      },
-      "dataInputTitle": "포켓몬 팀 데이터",
-      "dataInputPlaceholder": "여기에 팀을 붙여넣으세요...\n\n예시:\nIncineroar (M) {'@'} Safety Goggles\nAbility: Intimidate\nLevel: 50\nShiny: Yes\nTera Type: Fairy\nEVs: 244 HP / 188 Def / 76 SpD\nImpish Nature\nIVs: 0 Spe\n - U - turn\n - Fake Out\n - Flare Blitz\n - Knock Off",
-      "importButton": "팀 가져오기",
-      "importing": "가져오는 중...",
-      "cancelButton": "취소"
+    "terastallization": {
+      "none": "테라스탈 없음",
+      "selectType": "테라 타입 선택"
     },
-    "teamEditModal": {
-      "title": "포켓몬 팀 편집",
-      "saveButton": "변경사항 저장",
-      "saving": "저장 중...",
-      "problemTitle": "팀에 문제가 있습니다"
+    "multiplier": {
+      "immune": "무효",
+      "label": "배수"
     },
-    "confirmDialog": {
-      "deleteTeam": {
-        "title": "팀 삭제",
-        "message": "이 팀을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
-        "confirmButton": "삭제",
-        "cancelButton": "취소"
-      }
+    "pokemon": "포켓몬",
+    "attackType": "공격 타입",
+    "resistanceLevel": "저항 레벨",
+    "typeAttack": "타입 공격",
+    "noEffectiveAttacks": "모든 팀 멤버가 이 타입 공격을 보통 데미지로 받습니다",
+    "noData": "상성 데이터가 없습니다",
+    "calculating": "상성 데이터 계산 중...",
+    "summary": {
+      "title": "분석 요약",
+      "weaknesses": "주요 약점",
+      "resistances": "주요 저항",
+      "immunities": "완전 무효",
+      "noWeaknesses": "팀에 명확한 약점이 없습니다",
+      "noResistances": "팀에 명확한 저항이 없습니다",
+      "noImmunities": "팀에 타입 무효가 없습니다"
+    }
+  },
+  "coverage": {
+    "meta": {
+      "title": "커버리지 분석",
+      "description": "{name} 팀의 타입 커버리지 분석, {count}마리의 포켓몬 포함",
+      "defaultDescription": "포켓몬 팀 커버리지 분석 페이지"
     },
-    "teamDetail": {
-      "meta": {
-        "title": "팀 상세정보",
-        "description": "{name} 상세정보 보기, {count}마리의 포켓몬 포함",
-        "defaultDescription": "포켓몬 팀 상세정보 페이지"
-      },
-      "notFound": {
-        "title": "팀을 찾을 수 없음",
-        "description": "ID \"{id}\"인 팀이 존재하지 않거나 삭제되었습니다.",
-        "backToHome": "홈으로 돌아가기"
-      },
-      "createdAt": "생성일",
-      "useTranslation": "번역 사용",
-      "tabs": {
-        "overview": "개요",
-        "resistance": "타입 내성 분석",
-        "coverage": "타입 커버리지 분석",
-        "speedTiers": "스피드 티어",
-        "strategy": "전략 분석"
-      },
-      "validationErrors": {
-        "title": "팀 검증 오류",
-        "description": "팀 데이터에 다음 문제가 있습니다. 편집 버튼을 클릭하여 수정하세요:"
-      },
-      "editTeam": "팀 편집",
-      "teamMembers": {
-        "title": "팀 멤버 ({count}/6)",
-        "description": "팀 내 포켓몬의 상세 정보입니다"
-      },
-      "pokemon": {
-        "ability": "특성",
-        "item": "도구",
-        "teraType": "테라스탈 타입",
-        "moves": "기술"
-      },
-      "rawData": {
-        "title": "원본 팀 데이터",
-        "description": "가져온 원본 팀 텍스트 데이터입니다",
-        "copy": "복사",
-        "copied": "복사됨!",
-        "copyButton": "원본 팀 데이터를 클립보드에 복사"
-      }
+    "loading": "커버리지 분석 중...",
+    "typeCombination": {
+      "title": "타입 조합 분석",
+      "description": "최대 2개의 타입을 선택하여 해당 타입 조합에 대한 팀의 효과를 분석합니다.",
+      "selectTypes": "타입 선택",
+      "selectUpToTwo": "조합 분석을 위해 최대 2개의 타입을 선택할 수 있습니다",
+      "analysisFor": "다음 타입 조합에 대한 분석 결과:"
     },
-    "resistance": {
-      "meta": {
-        "title": "상성 분석",
-        "description": "{name} 팀의 타입 상성 분석, {count}마리의 포켓몬 포함",
-        "defaultDescription": "포켓몬 팀 타입 상성 분석 페이지"
-      },
-      "title": "타입 상성 분석",
-      "description": "다양한 타입 공격에 대한 팀의 상성 성능을 분석하며, 날씨와 필드 조건을 선택적으로 설정할 수 있습니다.",
-      "validationError": {
-        "description": "팀 데이터에 문제가 있어 상성 분석을 수행할 수 없습니다. 먼저 팀 데이터를 수정해 주세요."
-      },
-      "controls": {
-        "title": "분석 설정",
-        "weather": "날씨 상태",
-        "terrain": "필드 상태",
-        "terastallizationPokemon": "테라스탈 포켓몬",
-        "teraType": "테라 타입"
-      },
-      "weather": {
-        "none": "날씨 없음",
-        "rain": "비",
-        "heavy_rain": "큰비",
-        "harsh_sunlight": "쾌청",
-        "extremely_harsh_sunlight": "대쾌청",
-        "strong_winds": "난기류"
-      },
-      "terrain": {
-        "none": "필드 없음",
-        "electric_terrain": "일렉트릭필드",
-        "grassy_terrain": "그래스필드",
-        "misty_terrain": "미스트필드",
-        "psychic_terrain": "사이코필드",
-        "grounded": "접지"
-      },
-      "terastallization": {
-        "none": "테라스탈 없음",
-        "selectType": "테라 타입 선택",
-        "indicator": "테라스탈 상태"
-      },
-      "multiplier": {
-        "immune": "무효",
-        "label": "배수"
-      },
+    "popularPokemon": {
+      "title": "인기 포켓몬 분석",
+      "description": "인기 포켓몬에 대한 팀의 효과를 분석합니다.",
+      "hasEffectiveMoves": "효과가 뛰어난 기술이 있습니다",
+      "noEffectiveMoves": "효과가 뛰어난 기술이 없습니다"
+    },
+    "categories": {
+      "all": "전체",
+      "physical": "물리 기술",
+      "special": "특수 기술"
+    },
+    "effectiveness": {
+      "effective": "효과가 뛰어남",
+      "neutral": "보통",
+      "resistant": "효과가 별로",
+      "immune": "효과 없음",
+      "resistantCount": "{count}개의 기술이 효과가 별로",
+      "immuneCount": "{count}개의 기술이 효과 없음"
+    },
+    "damage": "데미지",
+    "moveDetails": {
+      "power": "위력",
+      "type": "타입",
+      "category": "분류",
       "pokemon": "포켓몬",
-      "attackType": "공격 타입",
-      "resistanceLevel": "저항 레벨",
-      "typeAttack": "타입 공격",
-      "noEffectiveAttacks": "모든 팀 멤버가 이 타입 공격을 보통 데미지로 받습니다",
-      "noData": "상성 데이터가 없습니다",
-      "calculating": "상성 데이터 계산 중...",
-      "summary": {
-        "title": "분석 요약",
-        "weaknesses": "주요 약점",
-        "resistances": "주요 저항",
-        "immunities": "완전 무효",
-        "noWeaknesses": "팀에 명확한 약점이 없습니다",
-        "noResistances": "팀에 명확한 저항이 없습니다",
-        "noImmunities": "팀에 타입 무효가 없습니다"
-      }
-    },
-    "coverage": {
-      "meta": {
-        "title": "커버리지 분석",
-        "description": "{name} 팀의 타입 커버리지 분석, {count}마리의 포켓몬 포함",
-        "defaultDescription": "포켓몬 팀 커버리지 분석 페이지"
-      },
-      "loading": "커버리지 분석 중...",
-      "typeCombination": {
-        "title": "타입 조합 분석",
-        "description": "최대 2개의 타입을 선택하여 해당 타입 조합에 대한 팀의 효과를 분석합니다.",
-        "selectTypes": "타입 선택",
-        "selectUpToTwo": "조합 분석을 위해 최대 2개의 타입을 선택할 수 있습니다",
-        "analysisFor": "다음 타입 조합에 대한 분석 결과:"
-      },
-      "popularPokemon": {
-        "title": "인기 포켓몬 분석",
-        "description": "인기 포켓몬에 대한 팀의 효과를 분석합니다.",
-        "hasEffectiveMoves": "효과가 뛰어난 기술이 있습니다",
-        "noEffectiveMoves": "효과가 뛰어난 기술이 없습니다"
-      },
-      "categories": {
-        "all": "전체",
-        "physical": "물리 기술",
-        "special": "특수 기술"
-      },
-      "effectiveness": {
-        "effective": "효과가 뛰어남",
-        "neutral": "보통",
-        "resistant": "효과가 별로",
-        "immune": "효과 없음",
-        "resistantCount": "{count}개의 기술이 효과가 별로",
-        "immuneCount": "{count}개의 기술이 효과 없음"
-      },
-      "damage": "데미지",
-      "moveDetails": {
-        "power": "위력",
-        "type": "타입",
-        "category": "분류",
-        "pokemon": "포켓몬",
-        "effectiveness": "효과",
-        "stab": "타입 일치"
-      }
-    },
-    "resources": {
-      "meta": {
-        "title": "리소스",
-        "description": "유용한 포켓몬 배틀 리소스 및 도구",
-        "keywords": "포켓몬 리소스, 배틀 도구, 도감, 시뮬레이터, 계산기",
-        "openGraph": {
-          "image": "/og-image.png"
-        },
-        "twitter": {
-          "site": "pokemon-team-analysis",
-          "image": "/twitter-image.png"
-        }
-      },
+      "effectiveness": "효과",
+      "stab": "타입 일치"
+    }
+  },
+  "resources": {
+    "meta": {
       "title": "리소스",
-      "description": "유용한 포켓몬 배틀 리소스, 도구 및 커뮤니티를 발견하여 경쟁 경험을 향상시키세요.",
-      "visitLink": "방문",
-      "categories": {
-        "official": {
-          "title": "공식 포켓몬",
-          "description": "공식 포켓몬 배틀 웹사이트 및 챔피언십 정보"
-        },
-        "wiki": {
-          "title": "포켓몬 위키",
-          "description": "포괄적인 포켓몬 데이터베이스 및 백과사전"
-        },
-        "tools": {
-          "title": "배틀 도구",
-          "description": "팀 빌딩 및 배틀 분석을 위한 필수 도구"
-        },
-        "games": {
-          "title": "미니 게임",
-          "description": "재미있는 포켓몬 테마 게임 및 활동"
-        }
+      "description": "유용한 포켓몬 배틀 리소스 및 도구"
+    },
+    "title": "리소스",
+    "description": "유용한 포켓몬 배틀 리소스, 도구 및 커뮤니티를 발견하여 경쟁 경험을 향상시키세요.",
+    "visitLink": "방문",
+    "categories": {
+      "official": {
+        "title": "공식 포켓몬",
+        "description": "공식 포켓몬 배틀 웹사이트 및 챔피언십 정보"
       },
-      "links": {
-        "officialBattle": {
-          "title": "포켓몬 배틀 공식 사이트",
-          "description": "공식 챔피언십 시리즈 및 경쟁 배틀 정보"
-        },
-        "worldChampionships": {
-          "title": "포켓몬 월드 챔피언십",
-          "description": "최고 수준의 포켓몬 경쟁 게임 이벤트"
-        },
-        "pokemonWiki": {
-          "title": "포켓몬 위키",
-          "description": "상세한 정보가 포함된 포괄적인 포켓몬 데이터베이스"
-        },
-        "pokemonShowdown": {
-          "title": "포켓몬 시뮬레이터",
-          "description": "온라인 포켓몬 배틀 시뮬레이터 및 팀 빌더"
-        },
-        "damageCalculator": {
-          "title": "데미지 계산기",
-          "description": "정확한 공식으로 포켓몬 배틀 데미지 계산"
-        },
-        "pikalytics": {
-          "title": "포켓몬 사용률 통계",
-          "description": "포켓몬 사용 통계 및 경쟁 데이터 분석"
-        },
-        "vgcPastes": {
-          "title": "VGC 팀 대여",
-          "description": "VGC 대여 팀 및 인기 팀 구성"
-        },
-        "pokeWordle": {
-          "title": "포켓몬 단어 게임",
-          "description": "포켓몬 테마의 단어 추측 게임"
-        }
+      "wiki": {
+        "title": "포켓몬 위키",
+        "description": "포괄적인 포켓몬 데이터베이스 및 백과사전"
+      },
+      "tools": {
+        "title": "배틀 도구",
+        "description": "팀 빌딩 및 배틀 분석을 위한 필수 도구"
+      },
+      "games": {
+        "title": "미니 게임",
+        "description": "재미있는 포켓몬 테마 게임 및 활동"
       }
     },
-    "about": {
-      "meta": {
-        "title": "소개",
-        "description": "포켓몬 팀 분석에 대해 자세히 알아보고 연락 방법을 확인하세요",
-        "keywords": "소개, 연락, 포켓몬 팀 분석, 자주 묻는 질문",
-        "openGraph": {
-          "image": "/og-image.png"
-        },
-        "twitter": {
-          "site": "pokemon-team-analysis",
-          "image": "/twitter-image.png"
-        }
+    "links": {
+      "officialBattle": {
+        "title": "포켓몬 배틀 공식 사이트",
+        "description": "공식 챔피언십 시리즈 및 경쟁 배틀 정보"
       },
+      "worldChampionships": {
+        "title": "포켓몬 월드 챔피언십",
+        "description": "최고 수준의 포켓몬 경쟁 게임 이벤트"
+      },
+      "pokemonWiki": {
+        "title": "포켓몬 위키",
+        "description": "상세한 정보가 포함된 포괄적인 포켓몬 데이터베이스"
+      },
+      "pokemonShowdown": {
+        "title": "포켓몬 시뮬레이터",
+        "description": "온라인 포켓몬 배틀 시뮬레이터 및 팀 빌더"
+      },
+      "damageCalculator": {
+        "title": "데미지 계산기",
+        "description": "정확한 공식으로 포켓몬 배틀 데미지 계산"
+      },
+      "pikalytics": {
+        "title": "포켓몬 사용률 통계",
+        "description": "포켓몬 사용 통계 및 경쟁 데이터 분석"
+      },
+      "vgcPastes": {
+        "title": "VGC 팀 대여",
+        "description": "VGC 대여 팀 및 인기 팀 구성"
+      },
+      "pokeWordle": {
+        "title": "포켓몬 단어 게임",
+        "description": "포켓몬 테마의 단어 추측 게임"
+      }
+    }
+  },
+  "about": {
+    "meta": {
       "title": "소개",
-      "description": "포켓몬 팀 분석 플랫폼에 대한 자주 묻는 질문입니다.",
-      "faq": {
-        "title": "자주 묻는 질문",
-        "whatIsThisSite": {
-          "question": "이 웹사이트는 무엇을 위한 것인가요?",
-          "answer": "포켓몬 팀 분석은 트레이너가 경쟁 플레이를 위해 포켓몬 팀을 분석하고 최적화하는 데 도움을 주는 종합 플랫폼입니다. 저희 도구는 팀 구성, 타입 커버리지, 저항성, 전략적 권장사항에 대한 상세한 통찰력을 제공하여 VGC 및 기타 경쟁 형식에서의 배틀 성능을 향상시킵니다."
-        },
-        "howToContact": {
-          "question": "어떻게 연락할 수 있나요?",
-          "answer": "<a href='https://github.com/ten2ten2/pokemon-team-analysis/issues' class='text-red-500 hover:text-red-600 underline' target='_blank'>GitHub</a>를 통해 연락하실 수 있습니다. 포켓몬 경쟁 커뮤니티를 위한 플랫폼 개선에 도움이 되는 피드백, 제안, 버그 리포트를 환영합니다."
-        }
+      "description": "포켓몬 팀 분석에 대해 자세히 알아보고 연락 방법을 확인하세요"
+    },
+    "title": "소개",
+    "description": "포켓몬 팀 분석 플랫폼에 대한 자주 묻는 질문입니다.",
+    "faq": {
+      "title": "자주 묻는 질문",
+      "whatIsThisSite": {
+        "question": "이 웹사이트는 무엇을 위한 것인가요?",
+        "answer": "포켓몬 팀 분석은 트레이너가 경쟁 플레이를 위해 포켓몬 팀을 분석하고 최적화하는 데 도움을 주는 종합 플랫폼입니다. 저희 도구는 팀 구성, 타입 커버리지, 저항성, 전략적 권장사항에 대한 상세한 통찰력을 제공하여 VGC 및 기타 경쟁 형식에서의 배틀 성능을 향상시킵니다."
+      },
+      "howToContact": {
+        "question": "어떻게 연락할 수 있나요?",
+        "answer": "<a href='https://github.com/ten2ten2/pokemon-team-analysis/issues' class='text-red-500 hover:text-red-600 underline' target='_blank'>GitHub</a>를 통해 연락하실 수 있습니다. 포켓몬 경쟁 커뮤니티를 위한 플랫폼 개선에 도움이 되는 피드백, 제안, 버그 리포트를 환영합니다."
       }
     }
   }
+}

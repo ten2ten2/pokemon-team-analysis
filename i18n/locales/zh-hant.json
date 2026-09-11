@@ -6,7 +6,9 @@
     },
     "error": {
       "title": "錯誤",
-      "loadingTeams": "載入隊伍失敗，請嘗試重新整理頁面。"
+      "loadingTeams": "載入隊伍失敗，請嘗試重新整理頁面。",
+      "copy": "複製失敗，請選取文字手動複製。",
+      "savingTeam": "隊伍儲存失敗，請檢查瀏覽器儲存空間後重試。"
     },
     "ability": "特性",
     "item": "道具",
@@ -36,15 +38,7 @@
   "home": {
     "meta": {
       "title": "寶可夢隊伍分析",
-      "description": "分析您的寶可夢隊伍，了解它們與其他隊伍相比的表現如何。",
-      "keywords": "寶可夢, Pokemon GO, VGC, 寶可夢對戰, 寶可夢隊伍, 排位對戰",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "分析您的寶可夢隊伍，了解它們與其他隊伍相比的表現如何。"
     },
     "allTeams": "所有隊伍",
     "newTeam": "新隊伍",
@@ -74,15 +68,7 @@
   "privacyAndTerms": {
     "meta": {
       "title": "隱私和條款",
-      "description": "我們的隱私政策和服務條款",
-      "keywords": "隱私政策, 服務條款, 法律, 資料保護",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "example",
-        "image": "/twitter-image.png"
-      }
+      "description": "我們的隱私政策和服務條款"
     },
     "title": "隱私和條款",
     "lastUpdated": "最後更新：{date}",
@@ -262,8 +248,7 @@
     },
     "terastallization": {
       "none": "無太晶化",
-      "selectType": "選擇太晶屬性",
-      "indicator": "太晶化狀態"
+      "selectType": "選擇太晶屬性"
     },
     "multiplier": {
       "immune": "無效",
@@ -332,15 +317,7 @@
   "resources": {
     "meta": {
       "title": "其它資源",
-      "description": "實用的寶可夢對戰資源和工具",
-      "keywords": "寶可夢資源, 對戰工具, 百科, 模擬器, 計算器",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "實用的寶可夢對戰資源和工具"
     },
     "title": "其它資源",
     "description": "發現實用的寶可夢對戰資源、工具和社群，提升您的競技體驗。",
@@ -401,15 +378,7 @@
   "about": {
     "meta": {
       "title": "關於我們",
-      "description": "了解更多關於寶可夢隊伍分析以及如何聯絡我們",
-      "keywords": "關於, 聯絡, 寶可夢隊伍分析, 常見問題",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "了解更多關於寶可夢隊伍分析以及如何聯絡我們"
     },
     "title": "關於我們",
     "description": "關於我們寶可夢隊伍分析平台的常見問題。",

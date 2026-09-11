@@ -1,0 +1,8 @@
+allowBuilds:
+  '@parcel/watcher': true
+  '@tailwindcss/oxide': true
+  esbuild: true
+  sharp: true
+minimumReleaseAgeExclude:
+  - '@lucide/vue@1.45.0'
+  - '@nuxtjs/robots@6.2.2'
