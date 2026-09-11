@@ -1,5 +1,13 @@
 # Deployment
 
+## Vercel
+
+Import the repository using the Nuxt framework preset. `package.json` selects Node.js `24.x` for Vercel; `mise.toml` pins the Node 24 LTS patch used locally and in CI. Nitro explicitly targets `nodejs24.x` for server functions.
+
+`vercel.json` runs installation and builds with pnpm `12.3.4` through npm's `npx`, so deployment does not depend on Vercel's default pnpm version. Keep these commands aligned with `packageManager` and `mise.toml` when upgrading pnpm. Dependency installation uses the committed lockfile.
+
+Set the environment variables from `.env.example` in Vercel for the appropriate deployment environments. Leave the output directory at the framework default. To build the Vercel output locally, run `NITRO_PRESET=vercel mise run build`; CI uses the same preset. Build artifacts under `.vercel/` are not committed.
+
 ## Production server
 
 ```sh

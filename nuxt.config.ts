@@ -44,6 +44,9 @@ export default defineNuxtConfig({
   routeRules: {
     '/api/pokemon-translations': { prerender: true },
   },
+  nitro: {
+    vercel: { functions: { runtime: 'nodejs24.x' } },
+  },
   gtag: {
     initMode: 'manual',
     initCommands: [

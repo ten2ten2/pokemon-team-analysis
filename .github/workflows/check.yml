@@ -16,4 +16,7 @@ jobs:
       - uses: jdx/mise-action@v4.3.0
       - run: mise run install
       - run: mise run check
-      - run: mise run build
+      - name: Build for Vercel
+        run: mise run build
+        env:
+          NITRO_PRESET: vercel
