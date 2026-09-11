@@ -1,80 +1,24 @@
-# Nuxt 3 & Node.js
-node_modules
-.nuxt
-output
-.output
-build
-dist
-
-# OS
-.DS_Store
-.AppleDouble
-.LSOverride
-Thumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+node_modules/
+.nuxt/
+.output/
+.vercel/
+.data/
+/dist
+coverage/
+playwright-report/
+test-results/
+.cache/
+.pnpm-store/
 *.log
-
-# Dependency directories
-jspm_packages/
-
-# Environment files
+*.tsbuildinfo
 .env
 .env.*
-
-# Editor directories and files
+!.env.example
+mise.local.toml
+mise.*.local.toml
+.DS_Store
+Thumbs.db
 .idea/
 .vscode/
-*.sublime*
-*.code-workspace
-
-# Cursor Editor
-.cursor/
-.cursorignore
-.cursorindexingignore
-*.cursor-*
-.cursor-settings/
-
-# Test & coverage
-coverage/
-.nyc_output/
-
-# Cache
-.cache/
-.npm/
-.yarn/
-.pnpm-store/
-.husky/_/
-.eslintcache
-
-# Lock files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# Build output
-*.tsbuildinfo
-
-# Misc
-*.local
-*.tmp
 *.swp
-*.bak
-*.orig
-*.rej
-
-# Static & public assets (if generated)
-public/dist/
-public/build/
-
-# JetBrains IDEs
-*.iml
-*.ipr
-*.iws
+*.tmp

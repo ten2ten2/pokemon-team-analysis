@@ -6,7 +6,9 @@
     },
     "error": {
       "title": "Error",
-      "loadingTeams": "Failed to load teams. Please try refreshing the page."
+      "loadingTeams": "Failed to load teams. Please try refreshing the page.",
+      "copy": "Copy failed. Select and copy the text manually.",
+      "savingTeam": "Could not save the team. Check your browser storage and try again."
     },
     "ability": "Ability",
     "item": "Item",
@@ -36,15 +38,7 @@
   "home": {
     "meta": {
       "title": "Pokémon Team Analysis",
-      "description": "Analyze your Pokémon team to see how they stack up against other teams.",
-      "keywords": "Pokémon, Analysis, Stats, Pokémon Go, VGC, Pokémon Battle, Pokémon Team, Ranked Battles",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "Analyze your Pokémon team to see how they stack up against other teams."
     },
     "allTeams": "All Teams",
     "newTeam": "New Team",
@@ -74,15 +68,7 @@
   "privacyAndTerms": {
     "meta": {
       "title": "Privacy and Terms",
-      "description": "Our privacy policy and terms of service",
-      "keywords": "privacy policy, terms of service, legal, data protection",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "example",
-        "image": "/twitter-image.png"
-      }
+      "description": "Our privacy policy and terms of service"
     },
     "title": "Privacy and Terms",
     "lastUpdated": "Last updated: {date}",
@@ -331,15 +317,7 @@
   "resources": {
     "meta": {
       "title": "Resources",
-      "description": "Useful Pokémon battle resources and tools",
-      "keywords": "Pokémon resources, battle tools, wiki, showdown, calculator",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "Useful Pokémon battle resources and tools"
     },
     "title": "Resources",
     "description": "Discover useful Pokémon battle resources, tools, and communities to enhance your competitive experience.",
@@ -400,15 +378,7 @@
   "about": {
     "meta": {
       "title": "About Us",
-      "description": "Learn more about Pokémon Team Analysis and how to contact us",
-      "keywords": "about, contact, Pokémon team analysis, FAQ",
-      "openGraph": {
-        "image": "/og-image.png"
-      },
-      "twitter": {
-        "site": "pokemon-team-analysis",
-        "image": "/twitter-image.png"
-      }
+      "description": "Learn more about Pokémon Team Analysis and how to contact us"
     },
     "title": "About Us",
     "description": "Frequently asked questions about our Pokémon team analysis platform.",
